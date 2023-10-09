@@ -4,6 +4,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class DetailsConfig {
     public static final ForgeConfigSpec DETAILS_CONFIG;
+
+
     public static final ForgeConfigSpec.IntValue RUN_LIKE_HELL_INVISIBILITY_DURATION;
     public static final ForgeConfigSpec.IntValue RUN_LIKE_HELL_MOVEMENT_SPEED_DURATION;
     public static final ForgeConfigSpec.IntValue RUN_LIKE_HELL_MOVEMENT_SPEED_AMPLIFIER;
@@ -32,28 +34,37 @@ public class DetailsConfig {
 
     public static final ForgeConfigSpec.ConfigValue<? extends String> GUREN_NO_YUMIYA_FIRE_ARROW_RADIUS;
     public static final ForgeConfigSpec.IntValue GUREN_NO_YUMIYA_FIRE_DURATION_TICKS;
+
     public static final ForgeConfigSpec.ConfigValue<? extends String> BONE_SUCKALAKA_DETECTION_RADIUS;
+
     public static final ForgeConfigSpec.IntValue LORA_TRAINER_KILL_COUNTS_REQUIREMENT;
     public static final ForgeConfigSpec.DoubleValue LORA_TRAINER_DAMAGE_BONUS;
+
     public static final ForgeConfigSpec.ConfigValue<? extends String> RIPPLE_OF_DEATH_DETECTION_RADIUS;
     public static final ForgeConfigSpec.DoubleValue RIPPLE_OF_DEATH_EXTRA_DAMAGE;
+
     public static final ForgeConfigSpec.DoubleValue HUA_JIN_TRIGGER_DAMAGE_PERCENTAGE;
     public static final ForgeConfigSpec.DoubleValue HUA_JIN_DAMAGE_REDUCTION_PERCENTAGE;
     public static final ForgeConfigSpec.IntValue HUA_JIN_STRENGTH_EFFECT_DURATION;
     public static final ForgeConfigSpec.IntValue HUA_JIN_STRENGTH_EFFECT_AMPLIFIER;
+
     public static final ForgeConfigSpec.DoubleValue WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE;
+
     public static final ForgeConfigSpec.IntValue MARK_FROM_THE_BENEATH_VALID_Y;
     public static final ForgeConfigSpec.DoubleValue MARK_FROM_THE_BENEATH_DIG_SPEED_MULTIPLIER;
+
     public static final ForgeConfigSpec.DoubleValue ARMOR_BREAKING_ARMOR_VALUE_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue ARMOR_BREAKING_ARMOR_TOUGHNESS_MULTIPLIER;
     public static final ForgeConfigSpec.IntValue ARMOR_BREAKING_MULTIPLIER_DURATION_TICKS;
     public static final ForgeConfigSpec.IntValue ARMOR_BREAKING_MAX_ARMOR_VALUE_REDUCTION;
+
     public static final ForgeConfigSpec.IntValue BLESSING_OF_THE_NATURE_HEALING_INTERVAL_TICK;
     public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_HEALING_AMOUNT;
     public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE;
     public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE;
     public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_STRENGTH;
     public static final ForgeConfigSpec.ConfigValue<? extends String> BLESSING_OF_THE_NATURE_DETECTION_RANGE;
+
     public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_DAMAGE_MULTIPLIER_ON_IGNITED_TARGET;
     public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_FIRE_DAMAGE_MULTIPLIER_ON_IGNITED_OWNER;
     public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING;
@@ -61,13 +72,12 @@ public class DetailsConfig {
     public static final ForgeConfigSpec.BooleanValue FLAME_CROSS_IGNITE_OWNER_ON_ATTACKING;
     public static final ForgeConfigSpec.IntValue FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_OWNER;
     public static final ForgeConfigSpec.IntValue FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET;
+
     public static final ForgeConfigSpec.IntValue OCEAN_HUED_TIMER_TICKS;
     public static final ForgeConfigSpec.IntValue OCEAN_HUED_COOL_DOWN_TICKS;
-
     public static final ForgeConfigSpec.DoubleValue OCEAN_HUED_ADDITIONAL_DAMAGE_PERCENT_BASED_ON_HEALING_AMOUNT;
     public static final ForgeConfigSpec.DoubleValue OCEAN_HUED_MAX_DAMAGE_ADDITION;
     public static final ForgeConfigSpec.ConfigValue<? extends String> OCEAN_HUED_DETECTION_RANGE;
-
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();

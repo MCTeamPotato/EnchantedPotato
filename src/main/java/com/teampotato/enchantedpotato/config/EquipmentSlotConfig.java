@@ -10,17 +10,18 @@ import java.io.*;
 
 public class EquipmentSlotConfig {
     public EquipmentSlotConfig() {
-        File enchantmentCategoryConfig = new File(EarlySetupInitializer.potatoDir, "equipmentSlot.json");
-        if (!enchantmentCategoryConfig.exists()) {
+        File equipmentSlotConfig = new File(EarlySetupInitializer.potatoDir, "equipmentSlot.json");
+        if (!equipmentSlotConfig.exists()) {
             try {
-                FileWriter writer = writeFile(enchantmentCategoryConfig);
+                FileWriter writer = writeFile(equipmentSlotConfig);
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create equipmentSlot.json");
                 System.exit(-1);
             }
         }
-        try (BufferedReader reader = new BufferedReader(new FileReader(enchantmentCategoryConfig))) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(equipmentSlotConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
             this.runLikeHell = configObject.get("runLikeHell").getAsString().split(";");
             this.blackParade = configObject.get("blackParade").getAsString().split(";");
@@ -45,6 +46,27 @@ public class EquipmentSlotConfig {
             this.caressingMoonlight = configObject.get("caressingMoonlight").getAsString().split(";");
             this.flameCross = configObject.get("flameCross").getAsString().split(";");
             this.oceanHued = configObject.get("oceanHued").getAsString().split(";");
+            this.trueMan = configObject.get("trueMan").getAsString().split(";");
+            this.mineCarve = configObject.get("mineCarve").getAsString().split(";");
+            this.uniteStonesOfAll = configObject.get("uniteStonesOfAll").getAsString().split(";");
+            this.wendingWatersSereneLotus = configObject.get("wendingWatersSereneLotus").getAsString().split(";");
+            this.kingOfRiding = configObject.get("kingOfRiding").getAsString().split(";");
+            this.lawOfInertia = configObject.get("lawOfInertia").getAsString().split(";");
+            this.shootingStar = configObject.get("shootingStar").getAsString().split(";");
+            this.triback = configObject.get("triback").getAsString().split(";");
+            this.sniper = configObject.get("sniper").getAsString().split(";");
+            this.musician = configObject.get("musician").getAsString().split(";");
+            this.enderEnder = configObject.get("enderEnder").getAsString().split(";");
+            this.multiLoad = configObject.get("multiLoad").getAsString().split(";");
+            this.blackElegance = configObject.get("blackElegance").getAsString().split(";");
+            this.whiteInnocence = configObject.get("whiteInnocence").getAsString().split(";");
+            this.armsDrum = configObject.get("armsDrum").getAsString().split(";");
+            this.rickRod = configObject.get("rickRod").getAsString().split(";");
+            this.goldfishFireworks = configObject.get("goldfishFireworks").getAsString().split(";");
+            this.softTouch = configObject.get("softTouch").getAsString().split(";");
+            this.copperholic = configObject.get("copperholic").getAsString().split(";");
+            this.wellOfBlood = configObject.get("wellOfBlood").getAsString().split(";");
+            this.missile = configObject.get("missile").getAsString().split(";");
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read equipmentSlot.json");
             System.exit(-1);
@@ -77,33 +99,40 @@ public class EquipmentSlotConfig {
         defaultConfig.addProperty("caressingMoonlight", "CHEST");
         defaultConfig.addProperty("flameCross", "CHEST");
         defaultConfig.addProperty("oceanHued", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("trueMan", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("mineCarve", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("uniteStonesOfAll", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("wendingWatersSereneLotus", "FEET");
+        defaultConfig.addProperty("kingOfRiding", "LEGS");
+        defaultConfig.addProperty("lawOfInertia", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("shootingStar", "CHEST");
+        defaultConfig.addProperty("triback", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("sniper", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("musician", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("enderEnder", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("multiLoad", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("blackElegance", "LEGS");
+        defaultConfig.addProperty("whiteInnocence", "LEGS");
+        defaultConfig.addProperty("armsDrum", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("rickRod", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("goldfishFireworks", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("softTouch", "MAINHAND;OFFHAND");
+        defaultConfig.addProperty("copperholic", "FEET");
+        defaultConfig.addProperty("wellOfBlood", "CHEST");
+        defaultConfig.addProperty("missile", "MAINHAND;OFFHAND");
         FileWriter writer = new FileWriter(configFile);
         writer.write(defaultConfig.toString());
         return writer;
     }
 
-    public String[] runLikeHell;
-
-    public String[] blackParade;
-    public String[] graceOfGungnir;
-    public String[] thisIsLeopard;
-    public String[] dyingOfLight;
-    public String[] pressurizedCollapse;
-    public String[] errorSpore;
-    public String[] untouchable;
-    public String[] shieldBladeCommendation;
-    public String[] gaiaBlessing;
-    public String[] gurenNoYumiya;
-    public String[] boneSuckalaka;
-    public String[] loraTrainer;
-    public String[] rippleOfDeath;
-    public String[] poisonOfTheLastBreath;
-    public String[] huaJin;
-    public String[] wonderEggPriority;
-    public String[] markFromTheBeneath;
-    public String[] armorBreaking;
-    public String[] blessingOfTheNature;
-    public String[] caressingMoonlight;
-    public String[] flameCross;
-    public String[] oceanHued;
+    public String[] runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
+    pressurizedCollapse, errorSpore, untouchable, shieldBladeCommendation,
+    gaiaBlessing, gurenNoYumiya, boneSuckalaka, loraTrainer, rippleOfDeath, 
+    poisonOfTheLastBreath, huaJin, wonderEggPriority, markFromTheBeneath, 
+    armorBreaking, blessingOfTheNature, caressingMoonlight, flameCross, oceanHued, 
+    trueMan, mineCarve, uniteStonesOfAll, wendingWatersSereneLotus, 
+    kingOfRiding, lawOfInertia, shootingStar, triback, 
+    sniper, musician, enderEnder, multiLoad, 
+    blackElegance, whiteInnocence, armsDrum, rickRod, 
+    goldfishFireworks, softTouch, copperholic, wellOfBlood, missile;
 }

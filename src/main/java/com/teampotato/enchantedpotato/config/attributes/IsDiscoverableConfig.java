@@ -10,10 +10,10 @@ import java.io.*;
 
 public class IsDiscoverableConfig {
     public IsDiscoverableConfig() {
-        File canApplyAtEnchantingTableConfig = new File(EarlySetupInitializer.attributesDir, "isDiscoverable.json");
-        if (!canApplyAtEnchantingTableConfig.exists()) {
+        File isDiscorverableConfig = new File(EarlySetupInitializer.attributesDir, "isDiscoverable.json");
+        if (!isDiscorverableConfig.exists()) {
             try {
-                FileWriter writer = writeFile(canApplyAtEnchantingTableConfig);
+                FileWriter writer = writeFile(isDiscorverableConfig);
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isDiscoverable.json");
@@ -21,7 +21,8 @@ public class IsDiscoverableConfig {
             }
         }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(canApplyAtEnchantingTableConfig))) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(isDiscorverableConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
             this.runLikeHell = configObject.get("runLikeHell").getAsBoolean();
             this.blackParade = configObject.get("blackParade").getAsBoolean();
@@ -46,6 +47,27 @@ public class IsDiscoverableConfig {
             this.caressingMoonlight = configObject.get("caressingMoonlight").getAsBoolean();
             this.flameCross = configObject.get("flameCross").getAsBoolean();
             this.oceanHued = configObject.get("oceanHued").getAsBoolean();
+            this.trueMan = configObject.get("trueMan").getAsBoolean();
+            this.mineCarve = configObject.get("mineCarve").getAsBoolean();
+            this.uniteStonesOfAll = configObject.get("uniteStonesOfAll").getAsBoolean();
+            this.wendingWatersSereneLotus = configObject.get("wendingWatersSereneLotus").getAsBoolean();
+            this.kingOfRiding = configObject.get("kingOfRiding").getAsBoolean();
+            this.lawOfInertia = configObject.get("lawOfInertia").getAsBoolean();
+            this.shootingStar = configObject.get("shootingStar").getAsBoolean();
+            this.triback = configObject.get("triback").getAsBoolean();
+            this.sniper = configObject.get("sniper").getAsBoolean();
+            this.musician = configObject.get("musician").getAsBoolean();
+            this.enderEnder = configObject.get("enderEnder").getAsBoolean();
+            this.multiLoad = configObject.get("multiLoad").getAsBoolean();
+            this.blackElegance = configObject.get("blackElegance").getAsBoolean();
+            this.whiteInnocence = configObject.get("whiteInnocence").getAsBoolean();
+            this.armsDrum = configObject.get("armsDrum").getAsBoolean();
+            this.rickRod = configObject.get("rickRod").getAsBoolean();
+            this.goldfishFireworks = configObject.get("goldfishFireworks").getAsBoolean();
+            this.softTouch = configObject.get("softTouch").getAsBoolean();
+            this.copperholic = configObject.get("copperholic").getAsBoolean();
+            this.wellOfBlood  = configObject.get("wellOfBlood").getAsBoolean();
+            this.missile = configObject.get("missile").getAsBoolean();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isDiscoverable.json");
             System.exit(-1);
@@ -78,32 +100,41 @@ public class IsDiscoverableConfig {
         defaultConfig.addProperty("caressingMoonlight", true);
         defaultConfig.addProperty("flameCross", true);
         defaultConfig.addProperty("oceanHued", true);
+        defaultConfig.addProperty("trueMan", true);
+        defaultConfig.addProperty("mineCarve", true);
+        defaultConfig.addProperty("uniteStonesOfAll", true);
+        defaultConfig.addProperty("wendingWatersSereneLotus", true);
+        defaultConfig.addProperty("kingOfRiding", true);
+        defaultConfig.addProperty("lawOfInertia", true);
+        defaultConfig.addProperty("shootingStar", true);
+        defaultConfig.addProperty("triback", true);
+        defaultConfig.addProperty("sniper", true);
+        defaultConfig.addProperty("musician", true);
+        defaultConfig.addProperty("enderEnder", true);
+        defaultConfig.addProperty("multiLoad", true);
+        defaultConfig.addProperty("blackElegance", true);
+        defaultConfig.addProperty("whiteInnocence", true);
+        defaultConfig.addProperty("armsDrum", true);
+        defaultConfig.addProperty("rickRod", true);
+        defaultConfig.addProperty("goldfishFireworks", true);
+        defaultConfig.addProperty("softTouch", true);
+        defaultConfig.addProperty("copperholic", true);
+        defaultConfig.addProperty("wellOfBlood", true);
+        defaultConfig.addProperty("missile", true);
         FileWriter writer = new FileWriter(configFile);
         writer.write(defaultConfig.toString());
         return writer;
     }
 
-    public boolean runLikeHell;
-    public boolean blackParade;
-    public boolean graceOfGungnir;
-    public boolean thisIsLeopard;
-    public boolean dyingOfLight;
-    public boolean pressurizedCollapse;
-    public boolean errorSpore;
-    public boolean untouchable;
-    public boolean shieldBladeCommendation;
-    public boolean gaiaBlessing;
-    public boolean gurenNoYumiya;
-    public boolean boneSuckalaka;
-    public boolean loraTrainer;
-    public boolean rippleOfDeath;
-    public boolean poisonOfTheLastBreath;
-    public boolean huaJin;
-    public boolean wonderEggPriority;
-    public boolean markFromTheBeneath;
-    public boolean armorBreaking;
-    public boolean blessingOfTheNature;
-    public boolean caressingMoonlight;
-    public boolean flameCross;
-    public boolean oceanHued;
+    
+    public boolean runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
+    pressurizedCollapse, errorSpore, untouchable, shieldBladeCommendation,
+    gaiaBlessing, gurenNoYumiya, boneSuckalaka, loraTrainer, rippleOfDeath, 
+    poisonOfTheLastBreath, huaJin, wonderEggPriority, markFromTheBeneath, 
+    armorBreaking, blessingOfTheNature, caressingMoonlight, flameCross, oceanHued, 
+    trueMan, mineCarve, uniteStonesOfAll, wendingWatersSereneLotus, 
+    kingOfRiding, lawOfInertia, shootingStar, triback, 
+    sniper, musician, enderEnder, multiLoad, 
+    blackElegance, whiteInnocence, armsDrum, rickRod, 
+    goldfishFireworks, softTouch, copperholic, wellOfBlood, missile;
 }

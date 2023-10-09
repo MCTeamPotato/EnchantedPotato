@@ -19,14 +19,22 @@ import org.jetbrains.annotations.NotNull;
 public class EnchantedPotato {
 
     public EnchantedPotato() {
-        IEventBus modEventBus =  FMLJavaModLoadingContext.get().getModEventBus();
         EarlySetupInitializer.LOGGER.info("Oh, potato, I'm enchanted by you.");
-        ModEnchantments.ENCHANTMENTS.register(modEventBus);
-        ModEffects.EFFECTS.register(modEventBus);
+        IEventBus bus =  FMLJavaModLoadingContext.get().getModEventBus();
+        bus.addListener(this::onCommonSetup);
+        setupEvents();
+        ModEnchantments.ENCHANTMENTS.register(bus);
+        ModEffects.EFFECTS.register(bus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DetailsConfig.DETAILS_CONFIG, EarlySetupInitializer.MOD_ID + "/details.toml");
+    }
+
+    private void onCommonSetup(@NotNull FMLCommonSetupEvent event) {
+        event.enqueueWork(Constants::initConstants);
+    }
+
+    private static void setupEvents() {
         final IEventBus bus = MinecraftForge.EVENT_BUS;
         bus.register(EquipChangeCenter.class);
-        modEventBus.addListener(this::onCommonSetup);
         if (EarlySetupInitializer.functionConfig.blackParade) bus.register(BlackParadeEvents.class);
         if (EarlySetupInitializer.functionConfig.boneSuckalaka) bus.register(BoneSuckalakaEvents.class);
         if (EarlySetupInitializer.functionConfig.dyingOfLight) bus.register(DyingOfLightEvents.class);
@@ -44,9 +52,5 @@ public class EnchantedPotato {
         if (EarlySetupInitializer.functionConfig.huaJin) bus.register(HuaJinEvents.class);
         if (EarlySetupInitializer.functionConfig.flameCross) bus.register(FlameCrossEvents.class);
         if (EarlySetupInitializer.functionConfig.armorBreaking) bus.register(ArmorBreakingEvents.class);
-    }
-
-    private void onCommonSetup(@NotNull FMLCommonSetupEvent event) {
-        event.enqueueWork(Constants::initConstants);
     }
 }

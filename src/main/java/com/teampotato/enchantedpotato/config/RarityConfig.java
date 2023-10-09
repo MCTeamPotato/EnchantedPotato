@@ -10,17 +10,18 @@ import java.io.*;
 
 public class RarityConfig {
     public RarityConfig() {
-        File enchantmentCategoryConfig = new File(EarlySetupInitializer.potatoDir, "rarity.json");
-        if (!enchantmentCategoryConfig.exists()) {
+        File rarityConfig = new File(EarlySetupInitializer.potatoDir, "rarity.json");
+        if (!rarityConfig.exists()) {
             try {
-                FileWriter writer = writeFile(enchantmentCategoryConfig);
+                FileWriter writer = writeFile(rarityConfig);
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create rarity.json");
                 System.exit(-1);
             }
         }
-        try (BufferedReader reader = new BufferedReader(new FileReader(enchantmentCategoryConfig))) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(rarityConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
             this.runLikeHell = configObject.get("runLikeHell").getAsString();
             this.blackParade = configObject.get("blackParade").getAsString();
@@ -45,6 +46,27 @@ public class RarityConfig {
             this.caressingMoonlight = configObject.get("caressingMoonlight").getAsString();
             this.flameCross = configObject.get("flameCross").getAsString();
             this.oceanHued = configObject.get("oceanHued").getAsString();
+            this.trueMan = configObject.get("trueMan").getAsString();
+            this.mineCarve  = configObject.get("mineCarve").getAsString();
+            this.uniteStonesOfAll = configObject.get("uniteStonesOfAll").getAsString();
+            this.wendingWatersSereneLotus = configObject.get("wendingWatersSereneLotus").getAsString();
+            this.kingOfRiding = configObject.get("kingOfRiding").getAsString();
+            this.lawOfInertia = configObject.get("lawOfInertia").getAsString();
+            this.shootingStar = configObject.get("shootingStar").getAsString();
+            this.triback = configObject.get("triback").getAsString();
+            this.sniper = configObject.get("sniper").getAsString();
+            this.musician = configObject.get("musician").getAsString();
+            this.enderEnder = configObject.get("enderEnder").getAsString();
+            this.multiLoad = configObject.get("multiLoad").getAsString();
+            this.blackElegance = configObject.get("blackElegance").getAsString();
+            this.whiteInnocence = configObject.get("whiteInnocence").getAsString();
+            this.armsDrum = configObject.get("armsDrum").getAsString();
+            this.rickRod = configObject.get("rickRod").getAsString();
+            this.goldfishFireworks = configObject.get("goldfishFireworks").getAsString();
+            this.softTouch = configObject.get("softTouch").getAsString();
+            this.copperholic = configObject.get("copperholic").getAsString();
+            this.wellOfBlood = configObject.get("wellOfBlood").getAsString();
+            this.missile = configObject.get("missile").getAsString();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read rarity.json");
             System.exit(-1);
@@ -77,32 +99,41 @@ public class RarityConfig {
         defaultConfig.addProperty("caressingMoonlight", "RARE");
         defaultConfig.addProperty("flameCross", "RARE");
         defaultConfig.addProperty("oceanHued", "RARE");
+        defaultConfig.addProperty("trueMan", "RARE");
+        defaultConfig.addProperty("mineCarve", "RARE");
+        defaultConfig.addProperty("uniteStonesOfAll", "RARE");
+        defaultConfig.addProperty("wendingWatersSereneLotus", "RARE");
+        defaultConfig.addProperty("kingOfRiding", "RARE");
+        defaultConfig.addProperty("lawOfInertia", "RARE");
+        defaultConfig.addProperty("shootingStar", "RARE");
+        defaultConfig.addProperty("triback", "RARE");
+        defaultConfig.addProperty("sniper", "RARE");
+        defaultConfig.addProperty("musician", "RARE");
+        defaultConfig.addProperty("enderEnder", "RARE");
+        defaultConfig.addProperty("multiLoad", "RARE");
+        defaultConfig.addProperty("blackElegance", "RARE");
+        defaultConfig.addProperty("whiteInnocence", "RARE");
+        defaultConfig.addProperty("armsDrum", "RARE");
+        defaultConfig.addProperty("rickRod", "RARE");
+        defaultConfig.addProperty("goldfishFireworks", "RARE");
+        defaultConfig.addProperty("softTouch", "RARE");
+        defaultConfig.addProperty("copperholic", "RARE");
+        defaultConfig.addProperty("wellOfBlood", "RARE");
+        defaultConfig.addProperty("missile", "RARE");
         FileWriter writer = new FileWriter(configFile);
         writer.write(defaultConfig.toString());
         return writer;
     }
 
-    public String runLikeHell;
-    public String blackParade;
-    public String graceOfGungnir;
-    public String thisIsLeopard;
-    public String dyingOfLight;
-    public String pressurizedCollapse;
-    public String errorSpore;
-    public String untouchable;
-    public String shieldBladeCommendation;
-    public String gaiaBlessing;
-    public String gurenNoYumiya;
-    public String boneSuckalaka;
-    public String loraTrainer;
-    public String rippleOfDeath;
-    public String poisonOfTheLastBreath;
-    public String huaJin;
-    public String wonderEggPriority;
-    public String markFromTheBeneath;
-    public String armorBreaking;
-    public String blessingOfTheNature;
-    public String caressingMoonlight;
-    public String flameCross;
-    public String oceanHued;
+    
+    public String runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
+    pressurizedCollapse, errorSpore, untouchable, shieldBladeCommendation,
+    gaiaBlessing, gurenNoYumiya, boneSuckalaka, loraTrainer, rippleOfDeath, 
+    poisonOfTheLastBreath, huaJin, wonderEggPriority, markFromTheBeneath, 
+    armorBreaking, blessingOfTheNature, caressingMoonlight, flameCross, oceanHued, 
+    trueMan, mineCarve, uniteStonesOfAll, wendingWatersSereneLotus, 
+    kingOfRiding, lawOfInertia, shootingStar, triback, 
+    sniper, musician, enderEnder, multiLoad, 
+    blackElegance, whiteInnocence, armsDrum, rickRod, 
+    goldfishFireworks, softTouch, copperholic, wellOfBlood, missile;
 }
