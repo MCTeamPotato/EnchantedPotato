@@ -1,0 +1,11 @@
+{
+  "jei.enchantedpotato.enchantments.info": "可附于书上：%d\n 是诅咒附魔：%d\n 可在随机池（如战利品池）中抽取：%d\n 可由村民售卖：%d\n 为宝藏附魔：%d\n 最高等级：%d\n 稀有度：%d\n",
+
+  "jei.enchantedpotato.true": "是",
+  "jei.enchantedpotato.false": "否",
+
+  "jei.enchantedpotato.rarity.common": "常见",
+  "jei.enchantedpotato.rarity.uncommon": "不常见",
+  "jei.enchantedpotato.rarity.rare": "稀有",
+  "jei.enchantedpotato.rarity.very_rare": "非常稀有"
+}

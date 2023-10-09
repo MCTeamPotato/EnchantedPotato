@@ -1,0 +1,11 @@
+{
+  "jei.enchantedpotato.enchantments.info": "isAllowedOnBooks: %d\n isCurse: %d\n isDiscoverable: %d\n isTradeable: %d\n isTreasure: %d\n maxLevel: %d\n rarity: %d\n",
+
+  "jei.enchantedpotato.true": "Yes",
+  "jei.enchantedpotato.false": "No",
+
+  "jei.enchantedpotato.rarity.common": "Common",
+  "jei.enchantedpotato.rarity.uncommon": "Uncommon",
+  "jei.enchantedpotato.rarity.rare": "Rare",
+  "jei.enchantedpotato.rarity.very_rare": "Very Rare"
+}

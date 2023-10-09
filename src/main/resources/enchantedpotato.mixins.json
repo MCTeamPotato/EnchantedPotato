@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "package": "com.teampotato.enchantedpotato.mixin",
+  "plugin": "com.teampotato.enchantedpotato.EarlySetupInitializer",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "overwrites": {
+    "conformVisibility": true
+  },
+  "mixins": [
+    "EntityMixin",
+    "LivingEntityMixin",
+    "MixinAbstractArrow",
+    "MobMixin",
+    "PiglinAiMixin",
+    "PlayerMixin",
+    "ProjectileMixin",
+    "SlimeMixin",
+    "ThrownEggMixin",
+    "VillagerMixin",
+    "api.AttributeModifierMixin",
+    "api.EnchantmentMixin",
+    "api.LevelMixin",
+    "api.LivingEntityMixin",
+    "api.PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
