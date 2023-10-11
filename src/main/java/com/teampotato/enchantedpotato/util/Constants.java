@@ -1,9 +1,12 @@
 package com.teampotato.enchantedpotato.util;
 
-import com.teampotato.enchantedpotato.config.DetailsConfig;
-import com.teampotato.enchantedpotato.enchantment.ArmorBreaking;
-import com.teampotato.enchantedpotato.enchantment.ErrorSpore;
-import com.teampotato.enchantedpotato.enchantment.MarkFromTheBeneath;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
+import com.teampotato.enchantedpotato.enchantment.weapon.ArmorBreaking;
+import com.teampotato.enchantedpotato.enchantment.digger.MarkFromTheBeneath;
+import com.teampotato.enchantedpotato.enchantment.digger.MineCarve;
+import com.teampotato.enchantedpotato.enchantment.armor.legs.ErrorSpore;
+import com.teampotato.enchantedpotato.enchantment.weapon.EnderEnder;
+import com.teampotato.enchantedpotato.registry.ModEnchantments;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 public class Constants {
@@ -79,16 +82,20 @@ public class Constants {
         rippleOfDeathY = Double.parseDouble(rippleOfDeathRange[1]);
         rippleOfDeathZ = Double.parseDouble(rippleOfDeathRange[2]);
 
-        for (int i = 1; i <= ErrorSpore.ERROR_SPORE.getMaxLevel(); i++) {
+        for (int i = 1; i <= ModEnchantments.ENDER_ENDER.get().getMaxLevel(); i ++) {
+            EnderEnder.ENDER_ENDER_TELEPORTATION_LIMIT_LEVEL_MAP.put(i, DetailsConfig.ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL.get().intValue());
+        }
+
+        for (int i = 1; i <= ModEnchantments.ERROR_SPORE.get().getMaxLevel(); i ++) {
             double damageReductionPercent = DetailsConfig.ERROR_SPORE_DAMAGE_REDUCTION_PER_LEVEL.get() * i;
             if (damageReductionPercent >= 1.00) damageReductionPercent = 1.00;
             ErrorSpore.ERROR_SPORE_LEVEL_MAP.put(i, (float) damageReductionPercent);
         }
 
+        EnderEnder.ENDER_ENDER_TELEPORTATION_LIMIT_LEVEL_MAP.put(0, 0);
         ErrorSpore.ERROR_SPORE_LEVEL_MAP.put(0, 0.0F);
 
-        ErrorSpore.maxLevel = ErrorSpore.ERROR_SPORE.getMaxLevel();
-
+        MineCarve.ARMOR_VALUE_MODIFIER = new AttributeModifier(MineCarve.ARMOR_VALUE_MODIFIER_UUID, "mineCarveArmorValue", -DetailsConfig.MINE_CARVE_ARMOR_VALUE_REDUCTION.get(), AttributeModifier.Operation.ADDITION);
         MarkFromTheBeneath.DIG_SPEED_MODIFIER = new AttributeModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER_UUID, "markFromTheBeneathDigSpeed", (DetailsConfig.MARK_FROM_THE_BENEATH_DIG_SPEED_MULTIPLIER.get() - 1.00), AttributeModifier.Operation.MULTIPLY_TOTAL);
         ArmorBreaking.ARMOR_VALUE_MODIFIER = new AttributeModifier(ArmorBreaking.ARMOR_VALUE_MODIFIER_UUID, "armorBreakingArmorValue", (DetailsConfig.ARMOR_BREAKING_ARMOR_VALUE_MULTIPLIER.get() - 1.00), AttributeModifier.Operation.MULTIPLY_TOTAL);
         ArmorBreaking.ARMOR_TOUGHNESS_MODIFIER = new AttributeModifier(ArmorBreaking.ARMOR_TOUGHNESS_MODIFIER_UUID, "armorBreakingArmorToughness", (DetailsConfig.ARMOR_BREAKING_ARMOR_TOUGHNESS_MULTIPLIER.get() - 1.00), AttributeModifier.Operation.MULTIPLY_TOTAL);

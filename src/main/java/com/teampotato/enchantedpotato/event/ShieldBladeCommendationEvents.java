@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.effect.CounterattackMoment;
-import com.teampotato.enchantedpotato.enchantment.ShieldBladeCommendation;
+import com.teampotato.enchantedpotato.enchantment.breakable.shield.ShieldBladeCommendation;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;

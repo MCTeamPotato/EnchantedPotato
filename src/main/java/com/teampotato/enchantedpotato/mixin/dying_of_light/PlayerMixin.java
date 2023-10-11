@@ -1,9 +1,9 @@
 package com.teampotato.enchantedpotato.mixin.dying_of_light;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
 import com.teampotato.enchantedpotato.api.IPlayer;
-import com.teampotato.enchantedpotato.enchantment.DyingOfLight;
+import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

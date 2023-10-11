@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.grace_of_gungnir;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.enchantment.GraceOfGungnir;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.enchantment.bow.GraceOfGungnir;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;

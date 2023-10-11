@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.guren_no_yumiya;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.IEntity;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.util.Constants;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

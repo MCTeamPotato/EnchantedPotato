@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.run_like_hell;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

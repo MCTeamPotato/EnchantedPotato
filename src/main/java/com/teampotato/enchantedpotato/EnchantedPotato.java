@@ -1,8 +1,9 @@
 package com.teampotato.enchantedpotato;
 
-import com.teampotato.enchantedpotato.config.DetailsConfig;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.event.*;
 import com.teampotato.enchantedpotato.event.center.EquipChangeCenter;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.registry.ModEffects;
 import com.teampotato.enchantedpotato.registry.ModEnchantments;
 import com.teampotato.enchantedpotato.util.Constants;
@@ -13,23 +14,18 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.jetbrains.annotations.NotNull;
 
 @Mod(EarlySetupInitializer.MOD_ID)
 public class EnchantedPotato {
 
     public EnchantedPotato() {
-        EarlySetupInitializer.LOGGER.info("Oh, potato, I'm enchanted by you.");
-        IEventBus bus =  FMLJavaModLoadingContext.get().getModEventBus();
         setupEvents();
+        IEventBus bus =  FMLJavaModLoadingContext.get().getModEventBus();
         ModEnchantments.ENCHANTMENTS.register(bus);
         ModEffects.EFFECTS.register(bus);
-        bus.addListener(this::onCommonSetup);
+        bus.addListener((FMLCommonSetupEvent event) -> event.enqueueWork(Constants::initConstants));
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DetailsConfig.DETAILS_CONFIG, EarlySetupInitializer.MOD_ID + "/details.toml");
-    }
-
-    private void onCommonSetup(@NotNull FMLCommonSetupEvent event) {
-        event.enqueueWork(Constants::initConstants);
+        EarlySetupInitializer.LOGGER.info("Oh, potato, I'm enchanted by you.");
     }
 
     private static void setupEvents() {
@@ -52,5 +48,7 @@ public class EnchantedPotato {
         if (EarlySetupInitializer.functionConfig.huaJin) bus.register(HuaJinEvents.class);
         if (EarlySetupInitializer.functionConfig.flameCross) bus.register(FlameCrossEvents.class);
         if (EarlySetupInitializer.functionConfig.armorBreaking) bus.register(ArmorBreakingEvents.class);
+        if (EarlySetupInitializer.functionConfig.mineCarve) bus.register(MineCarveEvents.class);
+        if (EarlySetupInitializer.functionConfig.enderEnder) bus.register(EnderEnderEvents.class);
     }
 }

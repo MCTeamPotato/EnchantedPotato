@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.pressurized_collapse;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.IPlayer;
-import com.teampotato.enchantedpotato.enchantment.PressurizedCollapse;
+import com.teampotato.enchantedpotato.enchantment.bow.PressurizedCollapse;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

@@ -1,10 +1,10 @@
 package com.teampotato.enchantedpotato.mixin.dying_of_light;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILevel;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
-import com.teampotato.enchantedpotato.enchantment.DyingOfLight;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
+import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
 import com.teampotato.enchantedpotato.util.Constants;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.server.level.ServerLevel;

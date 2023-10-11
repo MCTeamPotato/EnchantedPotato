@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.IAttributeModifier;
-import com.teampotato.enchantedpotato.enchantment.GaiaBlessing;
+import com.teampotato.enchantedpotato.enchantment.armor.feet.GaiaBlessing;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;

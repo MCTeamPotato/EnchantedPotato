@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.pressurized_collapse;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.util.Constants;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;

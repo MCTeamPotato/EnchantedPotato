@@ -1,16 +1,13 @@
 {
   "required": true,
   "package": "com.teampotato.enchantedpotato.mixin",
-  "plugin": "com.teampotato.enchantedpotato.EarlySetupInitializer",
+  "plugin": "com.teampotato.enchantedpotato.mixin.EarlySetupInitializer",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "overwrites": {
     "conformVisibility": true
   },
   "mixins": [
-    "grace_of_gungnir.MixinAbstractArrow",
-    "guren_no_yumiya.ProjectileMixin",
-    "wonder_egg_priority.ThrownEggMixin",
     "api.AttributeModifierMixin",
     "api.EntityMixin",
     "api.LevelMixin",
@@ -19,14 +16,22 @@
     "blessing_of_the_nature.LivingEntityMixin",
     "dying_of_light.LivingEntityMixin",
     "dying_of_light.PlayerMixin",
+    "ender_ender.EnderManMixin",
+    "goldfish_fireworks.CrossbowItemMixin",
+    "grace_of_gungnir.MixinAbstractArrow",
     "guren_no_yumiya.MixinAbstractArrow",
+    "guren_no_yumiya.ProjectileMixin",
     "poison_of_the_last_breath.PiglinAiMixin",
     "poison_of_the_last_breath.SlimeMixin",
     "poison_of_the_last_breath.VillagerMixin",
     "pressurized_collapse.MixinAbstractArrow",
     "pressurized_collapse.ProjectileMixin",
     "run_like_hell.LivingEntityMixin",
-    "run_like_hell.MobMixin"
+    "run_like_hell.MobMixin",
+    "sniper.CrossbowItemMixin",
+    "triback.ThrownTridentMixin",
+    "wending_waters_serene_lotus.EntityMixin",
+    "wonder_egg_priority.ThrownEggMixin"
   ],
   "injectors": {
     "defaultRequire": 1

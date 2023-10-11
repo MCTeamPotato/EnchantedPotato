@@ -13,7 +13,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Utils {
@@ -56,7 +55,7 @@ public class Utils {
         return false;
     }
 
-    public static Random getRandom() {
+    public static ThreadLocalRandom getRandom() {
         return ThreadLocalRandom.current();
     }
 }

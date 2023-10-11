@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.api;
 
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

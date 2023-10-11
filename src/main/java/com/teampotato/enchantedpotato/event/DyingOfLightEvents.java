@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.enchantment.DyingOfLight;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Monster;

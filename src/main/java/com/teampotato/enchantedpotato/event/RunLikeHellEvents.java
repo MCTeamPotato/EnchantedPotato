@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.enchantment.RunLikeHell;
+import com.teampotato.enchantedpotato.enchantment.armor.feet.RunLikeHell;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
-import static com.teampotato.enchantedpotato.config.DetailsConfig.*;
+import static com.teampotato.enchantedpotato.config.toml.DetailsConfig.*;
 
 public class RunLikeHellEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)

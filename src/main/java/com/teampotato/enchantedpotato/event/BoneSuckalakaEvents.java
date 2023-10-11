@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.enchantment.BoneSuckalaka;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.enchantment.breakable.shield.BoneSuckalaka;
 import com.teampotato.enchantedpotato.util.Constants;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.server.level.ServerPlayer;

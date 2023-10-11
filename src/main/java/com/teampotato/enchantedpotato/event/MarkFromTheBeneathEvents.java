@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
-import com.teampotato.enchantedpotato.enchantment.MarkFromTheBeneath;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
+import com.teampotato.enchantedpotato.enchantment.digger.MarkFromTheBeneath;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;

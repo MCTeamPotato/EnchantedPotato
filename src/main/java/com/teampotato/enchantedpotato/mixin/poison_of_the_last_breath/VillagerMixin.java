@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.poison_of_the_last_breath;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.enchantment.PoisonOfTheLastBreath;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.enchantment.weapon.PoisonOfTheLastBreath;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

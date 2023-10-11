@@ -1,9 +1,9 @@
 package com.teampotato.enchantedpotato.event.center;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.enchantment.BlessingOfTheNature;
-import com.teampotato.enchantedpotato.enchantment.DyingOfLight;
-import com.teampotato.enchantedpotato.enchantment.Untouchable;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.enchantment.armor.chest.BlessingOfTheNature;
+import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
+import com.teampotato.enchantedpotato.enchantment.armor.legs.Untouchable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

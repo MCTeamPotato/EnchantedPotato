@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.wonder_egg_priority;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.config.DetailsConfig;
-import com.teampotato.enchantedpotato.enchantment.WonderEggPriority;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
+import com.teampotato.enchantedpotato.enchantment.armor.head.WonderEggPriority;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

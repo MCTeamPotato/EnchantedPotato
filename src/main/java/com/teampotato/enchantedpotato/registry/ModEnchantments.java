@@ -1,7 +1,30 @@
 package com.teampotato.enchantedpotato.registry;
 
-import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.enchantment.*;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.enchantment.bow.*;
+import com.teampotato.enchantedpotato.enchantment.breakable.elytra.ShootingStar;
+import com.teampotato.enchantedpotato.enchantment.breakable.fishing_rod.RickRod;
+import com.teampotato.enchantedpotato.enchantment.breakable.shield.ArmsDrum;
+import com.teampotato.enchantedpotato.enchantment.breakable.shield.BoneSuckalaka;
+import com.teampotato.enchantedpotato.enchantment.breakable.shield.ShieldBladeCommendation;
+import com.teampotato.enchantedpotato.enchantment.armor.chest.BlessingOfTheNature;
+import com.teampotato.enchantedpotato.enchantment.armor.chest.CaressingMoonlight;
+import com.teampotato.enchantedpotato.enchantment.armor.chest.HuaJin;
+import com.teampotato.enchantedpotato.enchantment.armor.chest.WellOfBlood;
+import com.teampotato.enchantedpotato.enchantment.crossbow.GoldfishFireworks;
+import com.teampotato.enchantedpotato.enchantment.crossbow.MultiLoad;
+import com.teampotato.enchantedpotato.enchantment.crossbow.Sniper;
+import com.teampotato.enchantedpotato.enchantment.digger.MarkFromTheBeneath;
+import com.teampotato.enchantedpotato.enchantment.digger.MineCarve;
+import com.teampotato.enchantedpotato.enchantment.digger.UniteStonesOfAll;
+import com.teampotato.enchantedpotato.enchantment.armor.feet.*;
+import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
+import com.teampotato.enchantedpotato.enchantment.armor.head.FlameCross;
+import com.teampotato.enchantedpotato.enchantment.armor.head.WonderEggPriority;
+import com.teampotato.enchantedpotato.enchantment.armor.legs.*;
+import com.teampotato.enchantedpotato.enchantment.trident.Missile;
+import com.teampotato.enchantedpotato.enchantment.trident.Triback;
+import com.teampotato.enchantedpotato.enchantment.weapon.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,10 +52,7 @@ public final class ModEnchantments {
         THIS_IS_LEOPARD = ENCHANTMENTS.register(ThisIsLeopard.PATH, ThisIsLeopard::new);
         DYING_OF_LIGHT = ENCHANTMENTS.register(DyingOfLight.PATH, DyingOfLight::new);
         PRESSURIZED_COLLAPSE = ENCHANTMENTS.register(PressurizedCollapse.PATH, PressurizedCollapse::new);
-        ERROR_SPORE = ENCHANTMENTS.register(ErrorSpore.PATH, () -> {
-            if (ErrorSpore.ERROR_SPORE == null) ErrorSpore.ERROR_SPORE = new ErrorSpore();
-            return ErrorSpore.ERROR_SPORE;
-        });
+        ERROR_SPORE = ENCHANTMENTS.register(ErrorSpore.PATH, ErrorSpore::new);
         UNTOUCHABLE = ENCHANTMENTS.register(Untouchable.PATH, Untouchable::new);
         SHIELD_BLADE_COMMENDATION = ENCHANTMENTS.register(ShieldBladeCommendation.PATH, ShieldBladeCommendation::new);
         GAIA_BLESSING = ENCHANTMENTS.register(GaiaBlessing.PATH, GaiaBlessing::new);
