@@ -4,6 +4,7 @@ import com.teampotato.enchantedpotato.config.*;
 import com.teampotato.enchantedpotato.config.attributes.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -55,7 +56,7 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
     }
 
     @Override
-    public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+    public boolean shouldApplyMixin(String targetClassName, @NotNull String mixinClassName) {
         if (mixinClassName.contains("wonder_egg_priority")) return functionConfig.wonderEggPriority;
         if (mixinClassName.contains("grace_of_gungnir")) return functionConfig.graceOfGungnir;
         if (mixinClassName.contains("guren_no_yumiya")) return functionConfig.gurenNoYumiya;
