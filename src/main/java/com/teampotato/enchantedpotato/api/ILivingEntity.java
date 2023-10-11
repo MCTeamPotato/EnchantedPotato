@@ -4,7 +4,7 @@ package com.teampotato.enchantedpotato.api;
 public interface ILivingEntity {
     void ep$setShouldTrackRunLikeHell(boolean shouldTrackRunLikeHell);
     void ep$setRunLikeHellTickCount(int runLikeHellTickCount);
-    boolean ep$getShouldTrackRunLikeHell();
+    boolean ep$shouldTrackRunLikeHell();
     int ep$getRunLikeHellTickCount();
     int ep$getDyingOfLightTickCount();
     void ep$setDyingOfLightTickCount(int tickCount);

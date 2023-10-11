@@ -23,7 +23,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", shift = At.Shift.AFTER))
     private void onTick(CallbackInfo ci) {
         if (this.removeTag(EarlySetupInitializer.MOD_ID + ".tickCountTrigger")) this.ep$setShouldTrackRunLikeHell(true);
-        if (this.ep$getShouldTrackRunLikeHell()) {
+        if (this.ep$shouldTrackRunLikeHell()) {
             this.ep$setRunLikeHellTickCount(this.ep$getRunLikeHellTickCount() + 1);
             if (this.ep$getRunLikeHellTickCount() == DetailsConfig.RUN_LIKE_HELL_INVISIBILITY_DURATION.get()) {
                 this.removeTag(EarlySetupInitializer.MOD_ID + ".blinder");

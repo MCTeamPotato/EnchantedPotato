@@ -136,7 +136,7 @@ public class LivingEntityMixin implements ILivingEntity, ILivingEntity.OceanHued
     }
 
     @Override
-    public boolean ep$getShouldTrackRunLikeHell() {
+    public boolean ep$shouldTrackRunLikeHell() {
         return this.ep$shouldTrackRunLikeHell;
     }
 
