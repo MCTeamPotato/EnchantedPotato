@@ -16,8 +16,9 @@ public class MarkFromTheBeneathEvents {
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.@NotNull LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
+        if (entity.level().isClientSide) return;
         AttributeInstance digSpeedAttribute = entity.getAttribute(Attributes.ATTACK_SPEED);
-        if (entity.level().isClientSide() || entity.getY() > DetailsConfig.MARK_FROM_THE_BENEATH_VALID_Y.get() || event.isCanceled() || digSpeedAttribute == null || digSpeedAttribute.hasModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER) || !(entity.getUseItem().getItem() instanceof PickaxeItem) || !Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.markFromTheBeneath, MarkFromTheBeneath.PATH)) {
+        if (entity.getY() > DetailsConfig.MARK_FROM_THE_BENEATH_VALID_Y.get() || event.isCanceled() || digSpeedAttribute == null || digSpeedAttribute.hasModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER) || !(entity.getUseItem().getItem() instanceof PickaxeItem) || !Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.markFromTheBeneath, MarkFromTheBeneath.PATH)) {
             if (digSpeedAttribute != null) digSpeedAttribute.removeModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER_UUID);
             return;
         }
