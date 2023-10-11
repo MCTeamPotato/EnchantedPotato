@@ -11,29 +11,16 @@ import net.minecraftforge.registries.RegistryObject;
 public final class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, EarlySetupInitializer.MOD_ID);
 
-    public static final RegistryObject<Enchantment> RUN_LIKE_HELL;
-    public static final RegistryObject<Enchantment> BLACK_PARADE;
-    public static final RegistryObject<Enchantment> GRACE_OF_GUNGNIR;
-    public static final RegistryObject<Enchantment> THIS_IS_LEOPARD;
-    public static final RegistryObject<Enchantment> DYING_OF_LIGHT;
-    public static final RegistryObject<Enchantment> PRESSURIZED_COLLAPSE;
-    public static final RegistryObject<Enchantment> ERROR_SPORE;
-    public static final RegistryObject<Enchantment> UNTOUCHABLE;
-    public static final RegistryObject<Enchantment> SHIELD_BLADE_COMMENDATION;
-    public static final RegistryObject<Enchantment> GAIA_BLESSING;
-    public static final RegistryObject<Enchantment> GUREN_NO_YUMIYA;
-    public static final RegistryObject<Enchantment> BONE_SUCKALAKA;
-    public static final RegistryObject<Enchantment> LORA_TRAINER;
-    public static final RegistryObject<Enchantment> RIPPLE_OF_DEATH;
-    public static final RegistryObject<Enchantment> POISON_OF_THE_LAST_BREATH;
-    public static final RegistryObject<Enchantment> HUA_JIN;
-    public static final RegistryObject<Enchantment> WONDER_EGG_PRIORITY;
-    public static final RegistryObject<Enchantment> MARK_FROM_THE_BENEATH;
-    public static final RegistryObject<Enchantment> ARMOR_BREAKING;
-    public static final RegistryObject<Enchantment> BLESSING_OF_THE_NATURE;
-    public static final RegistryObject<Enchantment> FLAME_CROSS;
-    public static final RegistryObject<Enchantment> OCEAN_HUED;
-    public static final RegistryObject<Enchantment> CARESSING_MOONLIGHT;
+    public static final RegistryObject<Enchantment> RUN_LIKE_HELL, BLACK_PARADE, GRACE_OF_GUNGNIR, THIS_IS_LEOPARD,
+            DYING_OF_LIGHT, PRESSURIZED_COLLAPSE, ERROR_SPORE, UNTOUCHABLE, SHIELD_BLADE_COMMENDATION, GAIA_BLESSING,
+            GUREN_NO_YUMIYA, BONE_SUCKALAKA, LORA_TRAINER, RIPPLE_OF_DEATH, POISON_OF_THE_LAST_BREATH,
+            HUA_JIN, WONDER_EGG_PRIORITY, MARK_FROM_THE_BENEATH, ARMOR_BREAKING,
+            BLESSING_OF_THE_NATURE, FLAME_CROSS, OCEAN_HUED, CARESSING_MOONLIGHT,
+            TRUE_MAN, MINE_CARVE, UNITE_STONES_OF_ALL, WENDING_WATERS_SERENE_LOTUS, KING_OF_RIDING,
+            LAW_OF_INERTIA, SHOOTING_STAR, TRIBACK, SNIPER, MUSICIAN, ENDER_ENDER, MULTI_LOAD,
+            BLACK_ELEGANCE, WHITE_INNOCENCE, ARMS_DRUM, RICK_ROD, GOLDFISH_FIREWORKS,
+            SOFT_TOUCH, COPPERHOLIC, WELL_OF_BLOOD, MISSILE;
+
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register(RunLikeHell.PATH, RunLikeHell::new);
@@ -59,5 +46,26 @@ public final class ModEnchantments {
         FLAME_CROSS = ENCHANTMENTS.register(FlameCross.PATH, FlameCross::new);
         OCEAN_HUED = ENCHANTMENTS.register(OceanHued.PATH, OceanHued::new);
         CARESSING_MOONLIGHT = ENCHANTMENTS.register(CaressingMoonlight.PATH, CaressingMoonlight::new);
+        TRUE_MAN = ENCHANTMENTS.register(TrueMan.PATH, TrueMan::new);
+        MINE_CARVE = ENCHANTMENTS.register(MineCarve.PATH, MineCarve::new);
+        UNITE_STONES_OF_ALL = ENCHANTMENTS.register(UniteStonesOfAll.PATH, UniteStonesOfAll::new);
+        WENDING_WATERS_SERENE_LOTUS = ENCHANTMENTS.register(WendingWatersSereneLotus.PATH, WendingWatersSereneLotus::new);
+        KING_OF_RIDING = ENCHANTMENTS.register(KingOfRiding.PATH, KingOfRiding::new);
+        LAW_OF_INERTIA = ENCHANTMENTS.register(LawOfInertia.PATH, LawOfInertia::new);
+        SHOOTING_STAR = ENCHANTMENTS.register(ShootingStar.PATH, ShootingStar::new);
+        TRIBACK = ENCHANTMENTS.register(Triback.PATH, Triback::new);
+        SNIPER = ENCHANTMENTS.register(Sniper.PATH, Sniper::new);
+        MUSICIAN = ENCHANTMENTS.register(Musician.PATH, Musician::new);
+        ENDER_ENDER = ENCHANTMENTS.register(EnderEnder.PATH, EnderEnder::new);
+        MULTI_LOAD = ENCHANTMENTS.register(MultiLoad.PATH, MultiLoad::new);
+        BLACK_ELEGANCE = ENCHANTMENTS.register(BlackElegance.PATH, BlackElegance::new);
+        WHITE_INNOCENCE = ENCHANTMENTS.register(WhiteInnocence.PATH, WhiteInnocence::new);
+        ARMS_DRUM = ENCHANTMENTS.register(ArmsDrum.PATH, ArmsDrum::new);
+        RICK_ROD = ENCHANTMENTS.register(RickRod.PATH, RickRod::new);
+        GOLDFISH_FIREWORKS = ENCHANTMENTS.register(GoldfishFireworks.PATH, GoldfishFireworks::new);
+        SOFT_TOUCH = ENCHANTMENTS.register(SoftTouch.PATH, SoftTouch::new);
+        COPPERHOLIC = ENCHANTMENTS.register(Copperholic.PATH, Copperholic::new);
+        WELL_OF_BLOOD = ENCHANTMENTS.register(WellOfBlood.PATH, WellOfBlood::new);
+        MISSILE = ENCHANTMENTS.register(Missile.PATH, Missile::new);
     }
 }
