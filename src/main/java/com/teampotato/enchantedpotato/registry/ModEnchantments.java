@@ -29,7 +29,10 @@ public final class ModEnchantments {
         THIS_IS_LEOPARD = ENCHANTMENTS.register(ThisIsLeopard.PATH, ThisIsLeopard::new);
         DYING_OF_LIGHT = ENCHANTMENTS.register(DyingOfLight.PATH, DyingOfLight::new);
         PRESSURIZED_COLLAPSE = ENCHANTMENTS.register(PressurizedCollapse.PATH, PressurizedCollapse::new);
-        ERROR_SPORE = ENCHANTMENTS.register(ErrorSpore.PATH, () -> ErrorSpore.ERROR_SPORE);
+        ERROR_SPORE = ENCHANTMENTS.register(ErrorSpore.PATH, () -> {
+            if (ErrorSpore.ERROR_SPORE == null) ErrorSpore.ERROR_SPORE = new ErrorSpore();
+            return ErrorSpore.ERROR_SPORE;
+        });
         UNTOUCHABLE = ENCHANTMENTS.register(Untouchable.PATH, Untouchable::new);
         SHIELD_BLADE_COMMENDATION = ENCHANTMENTS.register(ShieldBladeCommendation.PATH, ShieldBladeCommendation::new);
         GAIA_BLESSING = ENCHANTMENTS.register(GaiaBlessing.PATH, GaiaBlessing::new);

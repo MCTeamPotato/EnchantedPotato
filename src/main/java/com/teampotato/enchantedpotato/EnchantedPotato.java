@@ -21,10 +21,10 @@ public class EnchantedPotato {
     public EnchantedPotato() {
         EarlySetupInitializer.LOGGER.info("Oh, potato, I'm enchanted by you.");
         IEventBus bus =  FMLJavaModLoadingContext.get().getModEventBus();
-        bus.addListener(this::onCommonSetup);
         setupEvents();
         ModEnchantments.ENCHANTMENTS.register(bus);
         ModEffects.EFFECTS.register(bus);
+        bus.addListener(this::onCommonSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DetailsConfig.DETAILS_CONFIG, EarlySetupInitializer.MOD_ID + "/details.toml");
     }
 

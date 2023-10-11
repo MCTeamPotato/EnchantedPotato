@@ -9,7 +9,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.jetbrains.annotations.NotNull;
 
 public class ErrorSpore extends Enchantment {
-    public static final ErrorSpore ERROR_SPORE = new ErrorSpore();
+    public static ErrorSpore ERROR_SPORE;
 
     public static final String PATH = "error_spore";
 
