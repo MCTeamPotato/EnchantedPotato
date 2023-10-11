@@ -1,20 +1,15 @@
-package com.teampotato.enchantedpotato.mixin;
+package com.teampotato.enchantedpotato.mixin.grace_of_gungnir;
 
 import com.teampotato.enchantedpotato.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.api.IPlayer;
 import com.teampotato.enchantedpotato.enchantment.GraceOfGungnir;
-import com.teampotato.enchantedpotato.enchantment.GurenNoYumiya;
-import com.teampotato.enchantedpotato.enchantment.PressurizedCollapse;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.item.BowItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -44,21 +39,13 @@ public abstract class MixinAbstractArrow extends Entity {
     }
 
     @Unique
-    private boolean ep$graceOfGungnirTracked, ep$gurenNoYumiyaTracked, ep$pressurizedCollapseTracked;
+    private boolean ep$graceOfGungnirTracked;
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/Projectile;tick()V", shift = At.Shift.AFTER))
     private void onTick(CallbackInfo ci) {
         Level level = this.level();
         if (level.isClientSide) return;
-        if (EarlySetupInitializer.functionConfig.gurenNoYumiya && !this.ep$gurenNoYumiyaTracked) {
-            if (ep$getThis().getOwner() instanceof LivingEntity owner && Utils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.gurenNoYumiya, GurenNoYumiya.PATH) && owner instanceof Player player && (int)((IPlayer)player).ep$getRealChargeTime() - BowItem.MAX_DRAW_DURATION >= 20) {
-                this.addTag(EarlySetupInitializer.MOD_ID + ".fireArrow");
-                ((IPlayer)player).ep$setRealChargeTime(0);
-                ((IPlayer)player).ep$setStartUsingBowTime(0);
-            }
-            this.ep$gurenNoYumiyaTracked = true;
-        }
-        if (EarlySetupInitializer.functionConfig.graceOfGungnir && !this.ep$graceOfGungnirTracked) {
+        if (!this.ep$graceOfGungnirTracked) {
             this.ep$graceOfGungnirTracked = true;
             if (!(ep$getThis().getOwner() instanceof LivingEntity owner) || this.getTags().contains(EarlySetupInitializer.MOD_ID + ".newArrow") || !Utils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir, GraceOfGungnir.PATH)) return;
             BlockPos arrowBlockPos = this.blockPosition();
@@ -79,20 +66,6 @@ public abstract class MixinAbstractArrow extends Entity {
                 level.addFreshEntity(newArrow);
                 this.remove(Entity.RemovalReason.DISCARDED);
             }
-        }
-        if (EarlySetupInitializer.functionConfig.pressurizedCollapse && !this.ep$pressurizedCollapseTracked) {
-            if (ep$getThis().getOwner() instanceof LivingEntity owner && Utils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.pressurizedCollapse, PressurizedCollapse.PATH)) {
-                this.addTag(EarlySetupInitializer.MOD_ID + ".gravityArrow");
-                if (owner instanceof Player player) {
-                    long additionalChargeTime = ((IPlayer)player).ep$getRealChargeTime() - ((long)BowItem.MAX_DRAW_DURATION);
-                    this.addTag(EarlySetupInitializer.MOD_ID + ".gravityArrow." + additionalChargeTime);
-                    ((IPlayer)player).ep$setRealChargeTime(0);
-                    ((IPlayer)player).ep$setStartUsingBowTime(0);
-                } else {
-                    this.addTag(EarlySetupInitializer.MOD_ID + ".gravityArrow.0");
-                }
-            }
-            this.ep$pressurizedCollapseTracked = true;
         }
     }
 

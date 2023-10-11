@@ -12,11 +12,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class ThisIsLeopardEvents {
-    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
-
     @SubscribeEvent
     public static void onLivingAttack(@NotNull LivingHurtEvent event) {
         DamageSource source = event.getSource();
@@ -28,7 +24,7 @@ public class ThisIsLeopardEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingChangeTarget(@NotNull LivingChangeTargetEvent event) {
         LivingEntity target = event.getOriginalTarget();
-        if (target.getY() > DetailsConfig.THIS_IS_LEOPARD_VALID_HEIGHT.get() && Utils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH) && RANDOM.nextDouble(0.00,1.00) < DetailsConfig.THIS_IS_LEOPARD_TARGET_MISS_CHANCE.get()) {
+        if (target.getY() > DetailsConfig.THIS_IS_LEOPARD_VALID_HEIGHT.get() && Utils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH) && Utils.getRandom().nextDouble(0.00,1.00) < DetailsConfig.THIS_IS_LEOPARD_TARGET_MISS_CHANCE.get()) {
             event.setCanceled(true);
         }
     }

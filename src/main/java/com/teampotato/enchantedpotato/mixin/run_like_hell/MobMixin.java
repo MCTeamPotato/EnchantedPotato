@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.mixin;
+package com.teampotato.enchantedpotato.mixin.run_like_hell;
 
 import com.teampotato.enchantedpotato.EarlySetupInitializer;
 import net.minecraft.world.entity.EntityType;
@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MobMixin extends LivingEntity {
     @Shadow @Nullable
     private LivingEntity target;
+    
     @Shadow public abstract void setTarget(@Nullable LivingEntity arg);
     protected MobMixin(EntityType<? extends LivingEntity> arg, Level arg2) {
         super(arg, arg2);
@@ -25,7 +26,7 @@ public abstract class MobMixin extends LivingEntity {
 
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", shift = At.Shift.AFTER))
     private void onTick(CallbackInfo ci) {
-        if (EarlySetupInitializer.functionConfig.runLikeHell && this.target != null && this.target.getTags().contains(EarlySetupInitializer.MOD_ID + ".blinder")) {
+        if (this.target != null && this.target.getTags().contains(EarlySetupInitializer.MOD_ID + ".blinder")) {
             this.setTarget(null);
             if (this.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isEmpty()) return;
             this.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);

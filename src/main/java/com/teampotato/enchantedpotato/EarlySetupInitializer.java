@@ -54,9 +54,21 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
         maxLevelConfig = new MaxLevelConfig();
     }
 
+    @Override
+    public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if (mixinClassName.contains("wonder_egg_priority")) return functionConfig.wonderEggPriority;
+        if (mixinClassName.contains("grace_of_gungnir")) return functionConfig.graceOfGungnir;
+        if (mixinClassName.contains("guren_no_yumiya")) return functionConfig.gurenNoYumiya;
+        if (mixinClassName.contains("dying_of_light")) return functionConfig.dyingOfLight;
+        if (mixinClassName.contains("blessing_of_the_nature")) return functionConfig.blessingOfTheNature;
+        if (mixinClassName.contains("run_like_hell")) return functionConfig.runLikeHell;
+        if (mixinClassName.contains("pressurized_collapse")) return functionConfig.pressurizedCollapse;
+        if (mixinClassName.contains("poison_of_the_last_breath")) return functionConfig.poisonOfTheLastBreath;
+        return true;
+    }
+
     @Override public void onLoad(String s) {}
     @Override public String getRefMapperConfig() {return null;}
-    @Override public boolean shouldApplyMixin(String s, String s1) {return true;}
     @Override public void acceptTargets(Set<String> set, Set<String> set1) {}
     @Override public List<String> getMixins() {return null;}
     @Override public void preApply(String s, ClassNode classNode, String s1, IMixinInfo iMixinInfo) {}

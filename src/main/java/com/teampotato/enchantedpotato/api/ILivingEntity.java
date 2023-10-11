@@ -16,6 +16,7 @@ public interface ILivingEntity {
     int ep$getUntouchableTickCount();
     void ep$setUntouchableTickCount(int tickCount);
 
+
     //Need a new interface, or it will be a mess.
     interface OceanHued {
         boolean ep$getOceanHuedTimerStatus();

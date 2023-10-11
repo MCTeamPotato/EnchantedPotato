@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.mixin;
+package com.teampotato.enchantedpotato.mixin.poison_of_the_last_breath;
 
 import com.teampotato.enchantedpotato.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.enchantment.PoisonOfTheLastBreath;
@@ -16,21 +16,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class VillagerMixin {
     @Inject(method = "tellWitnessesThatIWasMurdered", at = @At("HEAD"), cancellable = true)
     private void onTell(Entity murderer, CallbackInfo ci) {
-        if (EarlySetupInitializer.functionConfig.poisonOfTheLastBreath && murderer instanceof LivingEntity entity && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (murderer instanceof LivingEntity entity && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
         }
     }
 
     @Inject(method = "onReputationEventFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/gossip/GossipContainer;add(Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V", ordinal = 3), cancellable = true)
     private void onVillagerHurt(ReputationEventType type, Entity target, CallbackInfo ci) {
-        if (EarlySetupInitializer.functionConfig.poisonOfTheLastBreath && target instanceof LivingEntity entity && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (target instanceof LivingEntity entity && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
         }
     }
 
     @Inject(method = "onReputationEventFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/gossip/GossipContainer;add(Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V", ordinal = 4), cancellable = true)
     private void onVillagerKilled(ReputationEventType type, Entity target, CallbackInfo ci) {
-        if (EarlySetupInitializer.functionConfig.poisonOfTheLastBreath && target instanceof LivingEntity entity && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (target instanceof LivingEntity entity && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
         }
     }

@@ -1,6 +1,5 @@
 package com.teampotato.enchantedpotato.util;
 
-import com.teampotato.enchantedpotato.api.IEnchantment;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -14,6 +13,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Utils {
     public static @NotNull List<NeutralMob> getNeutralMobs(AABB area, @NotNull ServerLevel level) {
@@ -47,14 +48,15 @@ public class Utils {
             ItemStack stack =  entity.getItemBySlot(EquipmentSlot.valueOf(slot));
             for (Tag tag : stack.getEnchantmentTags()) {
                 if (tag instanceof CompoundTag compoundTag) {
-                    Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(compoundTag.getString("id")));
-                    if (enchantment != null) {
-                        ResourceLocation enchantmentId = ((IEnchantment)enchantment).ep$getRegistryName();
-                        if (enchantmentId != null && enchantmentId.getPath().equals(enchantmentName)) return true;
-                    }
+                    ResourceLocation id = ResourceLocation.tryParse(compoundTag.getString("id"));
+                    if (id != null && ForgeRegistries.ENCHANTMENTS.getValue(id) != null && id.getPath().equals(enchantmentName)) return true;
                 }
             }
         }
         return false;
+    }
+
+    public static Random getRandom() {
+        return ThreadLocalRandom.current();
     }
 }

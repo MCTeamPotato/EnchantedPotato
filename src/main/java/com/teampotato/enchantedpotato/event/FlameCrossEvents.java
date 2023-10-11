@@ -13,11 +13,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class FlameCrossEvents {
-    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
-
     @SubscribeEvent
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
@@ -28,11 +24,11 @@ public class FlameCrossEvents {
         if (sourceDirectEntity instanceof LivingEntity source && sourceEntity != null && Utils.hasPotatoEnchantmentEquipped(source, EarlySetupInitializer.equipmentSlotConfig.flameCross, FlameCross.PATH)) {
             if (DetailsConfig.FLAME_CROSS_IGNITE_OWNER_ON_ATTACKING.get()) ((IEntity)source).ep$setTicksOnFire(DetailsConfig.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_OWNER.get());
             if (sourceDirectEntity.getStringUUID().equals(sourceEntity.getStringUUID())) {
-                if (random.nextDouble(0.00, 1.00) < DetailsConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING.get()) {
+                if (Utils.getRandom().nextDouble(0.00, 1.00) < DetailsConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING.get()) {
                     ((IEntity)entity).ep$setTicksOnFire(DetailsConfig.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET.get());
                 }
             } else {
-                if (random.nextDouble(0.00, 1.00) < DetailsConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING.get()) {
+                if (Utils.getRandom().nextDouble(0.00, 1.00) < DetailsConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING.get()) {
                     ((IEntity)entity).ep$setTicksOnFire(DetailsConfig.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET.get());
                 }
             }

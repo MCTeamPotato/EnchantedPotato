@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.mixin;
+package com.teampotato.enchantedpotato.mixin.poison_of_the_last_breath;
 
 import com.teampotato.enchantedpotato.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.enchantment.PoisonOfTheLastBreath;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PiglinAiMixin {
     @Inject(method = "maybeRetaliate", at = @At("HEAD"), cancellable = true)
     private static void onAnger(AbstractPiglin piglin, LivingEntity target, CallbackInfo ci) {
-        if (EarlySetupInitializer.functionConfig.poisonOfTheLastBreath && Utils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (Utils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
         }
     }

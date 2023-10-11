@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.mixin;
+package com.teampotato.enchantedpotato.mixin.wonder_egg_priority;
 
 import com.teampotato.enchantedpotato.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.config.DetailsConfig;
@@ -22,7 +22,6 @@ public abstract class ThrownEggMixin extends ThrowableItemProjectile {
 
     @ModifyConstant(method = "onHitEntity", constant = @Constant(floatValue = 0.0f))
     private float onHitEntity(float constant) {
-        if (!EarlySetupInitializer.functionConfig.wonderEggPriority) return constant;
         Entity owner = this.getOwner();
         return owner instanceof LivingEntity &&
                 Utils.hasPotatoEnchantmentEquipped((LivingEntity) owner, EarlySetupInitializer.equipmentSlotConfig.wonderEggPriority, WonderEggPriority.PATH) ?
