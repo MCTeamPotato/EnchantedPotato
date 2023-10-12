@@ -34,15 +34,50 @@ import net.minecraftforge.registries.RegistryObject;
 public final class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, EarlySetupInitializer.MOD_ID);
 
-    public static final RegistryObject<Enchantment> RUN_LIKE_HELL, BLACK_PARADE, GRACE_OF_GUNGNIR, THIS_IS_LEOPARD,
-            DYING_OF_LIGHT, PRESSURIZED_COLLAPSE, ERROR_SPORE, UNTOUCHABLE, SHIELD_BLADE_COMMENDATION, GAIA_BLESSING,
-            GUREN_NO_YUMIYA, BONE_SUCKALAKA, LORA_TRAINER, RIPPLE_OF_DEATH, POISON_OF_THE_LAST_BREATH,
-            HUA_JIN, WONDER_EGG_PRIORITY, MARK_FROM_THE_BENEATH, ARMOR_BREAKING,
-            BLESSING_OF_THE_NATURE, FLAME_CROSS, OCEAN_HUED, CARESSING_MOONLIGHT,
-            TRUE_MAN, MINE_CARVE, UNITE_STONES_OF_ALL, WENDING_WATERS_SERENE_LOTUS, KING_OF_RIDING,
-            LAW_OF_INERTIA, SHOOTING_STAR, TRIBACK, SNIPER, MUSICIAN, ENDER_ENDER, MULTI_LOAD,
-            BLACK_ELEGANCE, WHITE_INNOCENCE, ARMS_DRUM, RICK_ROD, GOLDFISH_FIREWORKS,
-            SOFT_TOUCH, COPPERHOLIC, WELL_OF_BLOOD, MISSILE;
+    public static final RegistryObject<Enchantment> RUN_LIKE_HELL;
+    public static final RegistryObject<Enchantment> BLACK_PARADE;
+    public static final RegistryObject<Enchantment> GRACE_OF_GUNGNIR;
+    public static final RegistryObject<Enchantment> THIS_IS_LEOPARD;
+    public static final RegistryObject<Enchantment> DYING_OF_LIGHT;
+    public static final RegistryObject<Enchantment> PRESSURIZED_COLLAPSE;
+    public static final RegistryObject<Enchantment> ERROR_SPORE;
+    public static final RegistryObject<Enchantment> UNTOUCHABLE;
+    public static final RegistryObject<Enchantment> SHIELD_BLADE_COMMENDATION;
+    public static final RegistryObject<Enchantment> GAIA_BLESSING;
+    public static final RegistryObject<Enchantment> GUREN_NO_YUMIYA;
+    public static final RegistryObject<Enchantment> BONE_SUCKALAKA;
+    public static final RegistryObject<Enchantment> LORA_TRAINER;
+    public static final RegistryObject<Enchantment> RIPPLE_OF_DEATH;
+    public static final RegistryObject<Enchantment> POISON_OF_THE_LAST_BREATH;
+    public static final RegistryObject<Enchantment> HUA_JIN;
+    public static final RegistryObject<Enchantment> WONDER_EGG_PRIORITY;
+    public static final RegistryObject<Enchantment> MARK_FROM_THE_BENEATH;
+    public static final RegistryObject<Enchantment> ARMOR_BREAKING;
+    public static final RegistryObject<Enchantment> BLESSING_OF_THE_NATURE;
+    public static final RegistryObject<Enchantment> FLAME_CROSS;
+    public static final RegistryObject<Enchantment> OCEAN_HUED;
+    public static final RegistryObject<Enchantment> CARESSING_MOONLIGHT;
+    public static final RegistryObject<Enchantment> TRUE_MAN;
+    public static final RegistryObject<Enchantment> MINE_CARVE;
+    public static final RegistryObject<Enchantment> UNITE_STONES_OF_ALL;
+    public static final RegistryObject<Enchantment> WENDING_WATERS_SERENE_LOTUS;
+    public static final RegistryObject<Enchantment> KING_OF_RIDING;
+    public static final RegistryObject<Enchantment> LAW_OF_INERTIA;
+    public static final RegistryObject<Enchantment> SHOOTING_STAR;
+    public static final RegistryObject<Enchantment> TRIBACK;
+    public static final RegistryObject<Enchantment> SNIPER;
+    public static final RegistryObject<Enchantment> MUSICIAN;
+    public static final RegistryObject<Enchantment> ENDER_ENDER;
+    public static final RegistryObject<Enchantment> MULTI_LOAD;
+    public static final RegistryObject<Enchantment> BLACK_ELEGANCE;
+    public static final RegistryObject<Enchantment> WHITE_INNOCENCE;
+    public static final RegistryObject<Enchantment> ARMS_DRUM;
+    public static final RegistryObject<Enchantment> RICK_ROD;
+    public static final RegistryObject<Enchantment> GOLDFISH_FIREWORKS;
+    public static final RegistryObject<Enchantment> SOFT_TOUCH;
+    public static final RegistryObject<Enchantment> COPPERHOLIC;
+    public static final RegistryObject<Enchantment> WELL_OF_BLOOD;
+    public static final RegistryObject<Enchantment> MISSILE;
 
 
     static {

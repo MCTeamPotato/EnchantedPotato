@@ -53,62 +53,44 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
         rarityConfig = new RarityConfig();
         functionConfig = new FunctionConfig();
         maxLevelConfig = new MaxLevelConfig();
+
+        LOGGER.info("Goldfish Fireworks Mixin: " + getStatus(functionConfig.goldfishFireworks));
+        LOGGER.info("Ender Ender Mixin: " + getStatus(functionConfig.enderEnder));
+        LOGGER.info("Triback Mixin: " + getStatus(functionConfig.triback));
+        LOGGER.info("Sniper Mixin: " + getStatus(functionConfig.sniper));
+        LOGGER.info("Wending Waters Serene Lotus Mixin: " + getStatus(functionConfig.wendingWatersSereneLotus));
+        LOGGER.info("Wonder Egg Priority Mixin: " + getStatus(functionConfig.wonderEggPriority));
+        LOGGER.info("Grace Of Gungnir Mixin: " + getStatus(functionConfig.graceOfGungnir));
+        LOGGER.info("Guren No Yumiya Mixin: " + getStatus(functionConfig.gurenNoYumiya));
+        LOGGER.info("Dying Of Light Mixin: " + getStatus(functionConfig.dyingOfLight));
+        LOGGER.info("Blessing Of The Nature Mixin: " + getStatus(functionConfig.blessingOfTheNature));
+        LOGGER.info("Run Like Hell Mixin: " + getStatus(functionConfig.runLikeHell));
+        LOGGER.info("Pressurized Collapse Mixin: " + getStatus(functionConfig.pressurizedCollapse));
+        LOGGER.info("Poison Of The Last Breath Mixin: " + getStatus(functionConfig.poisonOfTheLastBreath));
+    }
+
+    private static final String ENABLED = "Enabled";
+    private static final String DISABLED = "Disabled";
+
+    private static String getStatus(boolean status) {
+        return status ? ENABLED : DISABLED;
     }
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, @NotNull String mixinClassName) {
-        if (mixinClassName.contains("goldfish_fireworks")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.goldfishFireworks);
-            return functionConfig.goldfishFireworks;
-        }
-        if (mixinClassName.contains("ender_ender")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.enderEnder);
-            return functionConfig.enderEnder;
-        }
-        if (mixinClassName.contains("triback")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.triback);
-            return functionConfig.triback;
-        }
-        if (mixinClassName.contains("sniper")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.sniper);
-            return functionConfig.sniper;
-        }
-        if (mixinClassName.contains("wending_waters_serene_lotus")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.wendingWatersSereneLotus);
-            return functionConfig.wendingWatersSereneLotus;
-        }
-        if (mixinClassName.contains("wonder_egg_priority")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.wonderEggPriority);
-            return functionConfig.wonderEggPriority;
-        }
-        if (mixinClassName.contains("grace_of_gungnir")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.graceOfGungnir);
-            return functionConfig.graceOfGungnir;
-        }
-        if (mixinClassName.contains("guren_no_yumiya")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.gurenNoYumiya);
-            return functionConfig.gurenNoYumiya;
-        }
-        if (mixinClassName.contains("dying_of_light")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.dyingOfLight);
-            return functionConfig.dyingOfLight;
-        }
-        if (mixinClassName.contains("blessing_of_the_nature")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.blessingOfTheNature);
-            return functionConfig.blessingOfTheNature;
-        }
-        if (mixinClassName.contains("run_like_hell")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.runLikeHell);
-            return functionConfig.runLikeHell;
-        }
-        if (mixinClassName.contains("pressurized_collapse")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.pressurizedCollapse);
-            return functionConfig.pressurizedCollapse;
-        }
-        if (mixinClassName.contains("poison_of_the_last_breath")) {
-            LOGGER.debug(mixinClassName + ": " + functionConfig.poisonOfTheLastBreath);
-            return functionConfig.poisonOfTheLastBreath;
-        }
+        if (mixinClassName.contains("goldfish_fireworks")) return functionConfig.goldfishFireworks;
+        if (mixinClassName.contains("ender_ender")) return functionConfig.enderEnder;
+        if (mixinClassName.contains("triback")) return functionConfig.triback;
+        if (mixinClassName.contains("sniper")) return functionConfig.sniper;
+        if (mixinClassName.contains("wending_waters_serene_lotus")) return functionConfig.wendingWatersSereneLotus;
+        if (mixinClassName.contains("wonder_egg_priority")) return functionConfig.wonderEggPriority;
+        if (mixinClassName.contains("grace_of_gungnir")) return functionConfig.graceOfGungnir;
+        if (mixinClassName.contains("guren_no_yumiya")) return functionConfig.gurenNoYumiya;
+        if (mixinClassName.contains("dying_of_light")) return functionConfig.dyingOfLight;
+        if (mixinClassName.contains("blessing_of_the_nature")) return functionConfig.blessingOfTheNature;
+        if (mixinClassName.contains("run_like_hell")) return functionConfig.runLikeHell;
+        if (mixinClassName.contains("pressurized_collapse")) return functionConfig.pressurizedCollapse;
+        if (mixinClassName.contains("poison_of_the_last_breath")) return functionConfig.poisonOfTheLastBreath;
         return true;
     }
 
