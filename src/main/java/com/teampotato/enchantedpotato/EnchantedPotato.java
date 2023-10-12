@@ -6,6 +6,7 @@ import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.event.*;
 import com.teampotato.enchantedpotato.event.center.EquipChangeCenter;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
+import com.teampotato.enchantedpotato.mixin.api.CommandSourceStackAccessor;
 import com.teampotato.enchantedpotato.registry.ModEffects;
 import com.teampotato.enchantedpotato.registry.ModEnchantments;
 import com.teampotato.enchantedpotato.util.Constants;
@@ -51,7 +52,7 @@ public class EnchantedPotato {
                             IsTreasureOnlyConfig.readConfig(IsTreasureOnlyConfig.FILE);
                             EarlySetupInitializer.LOGGER.info("EnchantedPotato Attribute Config reloaded!");
                             ServerPlayer player = context.getSource().getPlayer();
-                            if (player != null) player.displayClientMessage(Component.literal("EnchantedPotato Attribute Config reloaded!"), true);
+                            if (player != null && !((CommandSourceStackAccessor)context.getSource()).isSilent()) player.displayClientMessage(Component.literal("EnchantedPotato Attribute Config reloaded!"), true);
                             return 1;
                         })
         ));

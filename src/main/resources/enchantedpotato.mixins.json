@@ -9,6 +9,7 @@
   },
   "mixins": [
     "api.AttributeModifierMixin",
+    "api.CommandSourceStackAccessor",
     "api.EntityMixin",
     "api.LevelMixin",
     "api.LivingEntityMixin",
