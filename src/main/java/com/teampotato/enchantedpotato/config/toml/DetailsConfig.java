@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
-
+//TODO: transfer to json
 public class DetailsConfig {
     public static final ForgeConfigSpec DETAILS_CONFIG;
 
