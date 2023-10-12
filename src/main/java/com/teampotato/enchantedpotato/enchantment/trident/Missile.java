@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.trident;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class Missile extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.missile;
+        return IsTreasureOnlyConfig.missile;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.missile;
+        return IsCurseConfig.missile;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.missile;
+        return IsTradeableConfig.missile;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.missile;
+        return IsDiscoverableConfig.missile;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.missile && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.missile && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.missile;
+        return IsAllowedOnBooksConfig.missile;
     }
 }

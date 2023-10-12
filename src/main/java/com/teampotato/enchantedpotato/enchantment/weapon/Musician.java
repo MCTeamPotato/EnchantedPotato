@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,32 +20,32 @@ public class Musician extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.musician;
+        return IsTreasureOnlyConfig.musician;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.musician;
+        return IsCurseConfig.musician;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.musician;
+        return IsTradeableConfig.musician;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.musician;
+        return IsDiscoverableConfig.musician;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.musician && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.musician && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.musician;
+        return IsAllowedOnBooksConfig.musician;
     }
 }
 

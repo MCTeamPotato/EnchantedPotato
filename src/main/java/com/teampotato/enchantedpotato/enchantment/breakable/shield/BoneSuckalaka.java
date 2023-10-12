@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.shield;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -20,31 +21,31 @@ public class BoneSuckalaka extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.boneSuckalaka;
+        return IsTreasureOnlyConfig.boneSuckalaka;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.boneSuckalaka;
+        return IsCurseConfig.boneSuckalaka;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.boneSuckalaka;
+        return IsTradeableConfig.boneSuckalaka;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.boneSuckalaka;
+        return IsDiscoverableConfig.boneSuckalaka;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.boneSuckalaka && stack.getItem() instanceof ShieldItem && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.boneSuckalaka && stack.getItem() instanceof ShieldItem && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.boneSuckalaka;
+        return IsAllowedOnBooksConfig.boneSuckalaka;
     }
 }

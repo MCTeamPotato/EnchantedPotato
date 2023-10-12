@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class LawOfInertia extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.lawOfInertia;
+        return IsTreasureOnlyConfig.lawOfInertia;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.lawOfInertia;
+        return IsCurseConfig.lawOfInertia;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.lawOfInertia;
+        return IsTradeableConfig.lawOfInertia;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.lawOfInertia;
+        return IsDiscoverableConfig.lawOfInertia;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.lawOfInertia && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.lawOfInertia && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.lawOfInertia;
+        return IsAllowedOnBooksConfig.lawOfInertia;
     }
 }

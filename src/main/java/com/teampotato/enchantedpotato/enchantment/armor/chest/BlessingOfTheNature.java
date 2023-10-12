@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.chest;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +20,30 @@ public class BlessingOfTheNature extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.blessingOfTheNature;
+        return IsTreasureOnlyConfig.blessingOfTheNature;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.blessingOfTheNature;
+        return IsCurseConfig.blessingOfTheNature;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.blessingOfTheNature;
+        return IsTradeableConfig.blessingOfTheNature;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.blessingOfTheNature;
+        return IsDiscoverableConfig.blessingOfTheNature;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.blessingOfTheNature && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.blessingOfTheNature && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.blessingOfTheNature;
+        return IsAllowedOnBooksConfig.blessingOfTheNature;
     }
 }

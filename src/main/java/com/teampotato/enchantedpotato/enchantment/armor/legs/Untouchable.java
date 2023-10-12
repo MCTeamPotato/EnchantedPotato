@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class Untouchable extends Enchantment {
     }
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.untouchable;
+        return IsTreasureOnlyConfig.untouchable;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.untouchable;
+        return IsCurseConfig.untouchable;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.untouchable;
+        return IsTradeableConfig.untouchable;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.untouchable;
+        return IsDiscoverableConfig.untouchable;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.untouchable && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.untouchable && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.untouchable;
+        return IsAllowedOnBooksConfig.untouchable;
     }
 }

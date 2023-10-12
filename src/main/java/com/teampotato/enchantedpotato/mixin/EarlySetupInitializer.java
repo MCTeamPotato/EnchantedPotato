@@ -1,6 +1,5 @@
 package com.teampotato.enchantedpotato.mixin;
 
-import com.teampotato.enchantedpotato.config.json.attributes.*;
 import com.teampotato.enchantedpotato.config.json.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,12 +20,6 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
     public static File potatoDir;
     public static File attributesDir;
 
-    public static CanApplyAtEnchantingTableConfig canApplyAtEnchantingTableConfig;
-    public static IsAllowedOnBooksConfig isAllowedOnBooksConfig;
-    public static IsCurseConfig isCurseConfig;
-    public static IsDiscoverableConfig isDiscoverableConfig;
-    public static IsTradeableConfig isTradeableConfig;
-    public static IsTreasureOnlyConfig isTreasureOnlyConfig;
     public static EnchantmentCategoryConfig enchantmentCategoryConfig;
     public static EquipmentSlotConfig equipmentSlotConfig;
     public static RarityConfig rarityConfig;
@@ -42,12 +35,6 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
         attributesDir = new File(potatoDir, "attributes");
         attributesDir.mkdirs();
 
-        canApplyAtEnchantingTableConfig = new CanApplyAtEnchantingTableConfig();
-        isAllowedOnBooksConfig = new IsAllowedOnBooksConfig();
-        isCurseConfig = new IsCurseConfig();
-        isDiscoverableConfig = new IsDiscoverableConfig();
-        isTradeableConfig = new IsTradeableConfig();
-        isTreasureOnlyConfig = new IsTreasureOnlyConfig();
         enchantmentCategoryConfig = new EnchantmentCategoryConfig();
         equipmentSlotConfig = new EquipmentSlotConfig();
         rarityConfig = new RarityConfig();

@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.elytra;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ElytraItem;
@@ -20,31 +21,31 @@ public class ShootingStar extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.shootingStar;
+        return IsTreasureOnlyConfig.shootingStar;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.shootingStar;
+        return IsCurseConfig.shootingStar;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.shootingStar;
+        return IsTradeableConfig.shootingStar;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.shootingStar;
+        return IsDiscoverableConfig.shootingStar;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.shootingStar && stack.getItem() instanceof ElytraItem && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.shootingStar && stack.getItem() instanceof ElytraItem && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.shootingStar;
+        return IsAllowedOnBooksConfig.shootingStar;
     }
 }

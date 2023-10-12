@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.chest;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +20,30 @@ public class CaressingMoonlight extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.caressingMoonlight;
+        return IsTreasureOnlyConfig.caressingMoonlight;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.caressingMoonlight;
+        return IsCurseConfig.caressingMoonlight;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.caressingMoonlight;
+        return IsTradeableConfig.caressingMoonlight;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.caressingMoonlight;
+        return IsDiscoverableConfig.caressingMoonlight;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.caressingMoonlight && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.caressingMoonlight && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.caressingMoonlight;
+        return IsAllowedOnBooksConfig.caressingMoonlight;
     }
 }

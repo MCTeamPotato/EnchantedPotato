@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.digger;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -24,31 +25,31 @@ public class MineCarve extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.mineCarve;
+        return IsTreasureOnlyConfig.mineCarve;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.mineCarve;
+        return IsCurseConfig.mineCarve;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.mineCarve;
+        return IsTradeableConfig.mineCarve;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.mineCarve;
+        return IsDiscoverableConfig.mineCarve;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.mineCarve && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.mineCarve && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.mineCarve;
+        return IsAllowedOnBooksConfig.mineCarve;
     }
 }

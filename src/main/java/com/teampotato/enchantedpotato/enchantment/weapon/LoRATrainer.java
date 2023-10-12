@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class LoRATrainer extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.loraTrainer;
+        return IsTreasureOnlyConfig.loraTrainer;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.loraTrainer;
+        return IsCurseConfig.loraTrainer;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.loraTrainer;
+        return IsTradeableConfig.loraTrainer;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.loraTrainer;
+        return IsDiscoverableConfig.loraTrainer;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.loraTrainer && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.loraTrainer && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.loraTrainer;
+        return IsAllowedOnBooksConfig.loraTrainer;
     }
 }

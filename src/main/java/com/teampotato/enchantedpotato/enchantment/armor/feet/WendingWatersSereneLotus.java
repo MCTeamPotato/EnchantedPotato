@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class WendingWatersSereneLotus extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.wendingWatersSereneLotus;
+        return IsTreasureOnlyConfig.wendingWatersSereneLotus;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.wendingWatersSereneLotus;
+        return IsCurseConfig.wendingWatersSereneLotus;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.wendingWatersSereneLotus;
+        return IsTradeableConfig.wendingWatersSereneLotus;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.wendingWatersSereneLotus;
+        return IsDiscoverableConfig.wendingWatersSereneLotus;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.wendingWatersSereneLotus && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.wendingWatersSereneLotus && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.wendingWatersSereneLotus;
+        return IsAllowedOnBooksConfig.wendingWatersSereneLotus;
     }
 }

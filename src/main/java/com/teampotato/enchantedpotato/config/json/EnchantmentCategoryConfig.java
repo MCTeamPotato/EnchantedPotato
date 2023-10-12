@@ -17,7 +17,7 @@ public class EnchantmentCategoryConfig {
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create enchantmentCategory.json");
-                System.exit(-1);
+                
             }
         }
         try {
@@ -69,7 +69,7 @@ public class EnchantmentCategoryConfig {
             this.missile = configObject.get("missile").getAsString();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read enchantmentCategory.json");
-            System.exit(-1);
+            
         }
     }
 

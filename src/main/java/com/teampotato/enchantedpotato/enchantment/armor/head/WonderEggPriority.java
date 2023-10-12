@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.head;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class WonderEggPriority extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.wonderEggPriority;
+        return IsTreasureOnlyConfig.wonderEggPriority;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.wonderEggPriority;
+        return IsCurseConfig.wonderEggPriority;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.wonderEggPriority;
+        return IsTradeableConfig.wonderEggPriority;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.wonderEggPriority;
+        return IsDiscoverableConfig.wonderEggPriority;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.wonderEggPriority && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.wonderEggPriority && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.wonderEggPriority;
+        return IsAllowedOnBooksConfig.wonderEggPriority;
     }
 }

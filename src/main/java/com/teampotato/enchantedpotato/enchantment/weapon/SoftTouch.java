@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,32 +20,32 @@ public class SoftTouch extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.softTouch;
+        return IsTreasureOnlyConfig.softTouch;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.softTouch;
+        return IsCurseConfig.softTouch;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.softTouch;
+        return IsTradeableConfig.softTouch;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.softTouch;
+        return IsDiscoverableConfig.softTouch;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.softTouch && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.softTouch && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.softTouch;
+        return IsAllowedOnBooksConfig.softTouch;
     }
 }
 

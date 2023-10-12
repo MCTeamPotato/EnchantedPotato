@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.chest;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class WellOfBlood extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.wellOfBlood;
+        return IsTreasureOnlyConfig.wellOfBlood;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.wellOfBlood;
+        return IsCurseConfig.wellOfBlood;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.wellOfBlood;
+        return IsTradeableConfig.wellOfBlood;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.wellOfBlood;
+        return IsDiscoverableConfig.wellOfBlood;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.wellOfBlood && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.wellOfBlood && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.wellOfBlood;
+        return IsAllowedOnBooksConfig.wellOfBlood;
     }
 }

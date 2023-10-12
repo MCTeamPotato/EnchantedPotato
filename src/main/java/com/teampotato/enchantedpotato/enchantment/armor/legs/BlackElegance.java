@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,32 +20,32 @@ public class BlackElegance extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.blackElegance;
+        return IsTreasureOnlyConfig.blackElegance;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.blackElegance;
+        return IsCurseConfig.blackElegance;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.blackElegance;
+        return IsTradeableConfig.blackElegance;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.blackElegance;
+        return IsDiscoverableConfig.blackElegance;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.blackElegance && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.blackElegance && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.blackElegance;
+        return IsAllowedOnBooksConfig.blackElegance;
     }
 }
 

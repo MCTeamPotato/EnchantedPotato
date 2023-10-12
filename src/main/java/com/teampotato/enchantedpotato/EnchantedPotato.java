@@ -1,5 +1,7 @@
 package com.teampotato.enchantedpotato;
 
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.event.*;
 import com.teampotato.enchantedpotato.event.center.EquipChangeCenter;
@@ -7,7 +9,11 @@ import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.registry.ModEffects;
 import com.teampotato.enchantedpotato.registry.ModEnchantments;
 import com.teampotato.enchantedpotato.util.Constants;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -31,6 +37,25 @@ public class EnchantedPotato {
     private static void setupEvents() {
         final IEventBus bus = MinecraftForge.EVENT_BUS;
         bus.register(EquipChangeCenter.class);
+
+        bus.addListener((RegisterCommandsEvent event) -> event.getDispatcher().register(
+                LiteralArgumentBuilder.<CommandSourceStack>literal(EarlySetupInitializer.MOD_ID)
+                        .requires(player -> player.hasPermission(2))
+                        .then(LiteralArgumentBuilder.literal("reloadconfig"))
+                        .executes(context -> {
+                            CanApplyAtEnchantingTableConfig.readConfig(CanApplyAtEnchantingTableConfig.FILE);
+                            IsAllowedOnBooksConfig.readConfig(IsAllowedOnBooksConfig.FILE);
+                            IsCurseConfig.readConfig(IsCurseConfig.FILE);
+                            IsDiscoverableConfig.readConfig(IsDiscoverableConfig.FILE);
+                            IsTradeableConfig.readConfig(IsTradeableConfig.FILE);
+                            IsTreasureOnlyConfig.readConfig(IsTreasureOnlyConfig.FILE);
+                            EarlySetupInitializer.LOGGER.info("EnchantedPotato Attribute Config reloaded!");
+                            ServerPlayer player = context.getSource().getPlayer();
+                            if (player != null) player.displayClientMessage(Component.literal("EnchantedPotato Attribute Config reloaded!"), true);
+                            return 1;
+                        })
+        ));
+
         if (EarlySetupInitializer.functionConfig.blackParade) bus.register(BlackParadeEvents.class);
         if (EarlySetupInitializer.functionConfig.boneSuckalaka) bus.register(BoneSuckalakaEvents.class);
         if (EarlySetupInitializer.functionConfig.dyingOfLight) bus.register(DyingOfLightEvents.class);

@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -22,30 +23,30 @@ public class RunLikeHell extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.runLikeHell;
+        return IsTreasureOnlyConfig.runLikeHell;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.runLikeHell;
+        return IsCurseConfig.runLikeHell;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.runLikeHell;
+        return IsTradeableConfig.runLikeHell;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.runLikeHell;
+        return IsDiscoverableConfig.runLikeHell;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.runLikeHell && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.runLikeHell && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.runLikeHell;
+        return IsAllowedOnBooksConfig.runLikeHell;
     }
 }

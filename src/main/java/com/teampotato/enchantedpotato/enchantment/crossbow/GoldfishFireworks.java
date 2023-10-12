@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.crossbow;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,32 +20,32 @@ public class GoldfishFireworks extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.goldfishFireworks;
+        return IsTreasureOnlyConfig.goldfishFireworks;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.goldfishFireworks;
+        return IsCurseConfig.goldfishFireworks;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.goldfishFireworks;
+        return IsTradeableConfig.goldfishFireworks;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.goldfishFireworks;
+        return IsDiscoverableConfig.goldfishFireworks;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.goldfishFireworks && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.goldfishFireworks && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.goldfishFireworks;
+        return IsAllowedOnBooksConfig.goldfishFireworks;
     }
 
     @Override

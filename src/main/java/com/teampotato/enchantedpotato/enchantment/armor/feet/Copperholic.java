@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,32 +20,32 @@ public class Copperholic extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.copperholic;
+        return IsTreasureOnlyConfig.copperholic;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.copperholic;
+        return IsCurseConfig.copperholic;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.copperholic;
+        return IsTradeableConfig.copperholic;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.copperholic;
+        return IsDiscoverableConfig.copperholic;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.copperholic && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.copperholic && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.copperholic;
+        return IsAllowedOnBooksConfig.copperholic;
     }
 }
 

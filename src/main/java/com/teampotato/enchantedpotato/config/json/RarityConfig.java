@@ -17,7 +17,7 @@ public class RarityConfig {
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create rarity.json");
-                System.exit(-1);
+                
             }
         }
         try {
@@ -69,7 +69,7 @@ public class RarityConfig {
             this.missile = configObject.get("missile").getAsString();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read rarity.json");
-            System.exit(-1);
+            
         }
     }
 

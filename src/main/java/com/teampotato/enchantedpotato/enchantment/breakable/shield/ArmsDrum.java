@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.shield;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -20,32 +21,32 @@ public class ArmsDrum extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.armsDrum;
+        return IsTreasureOnlyConfig.armsDrum;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.armsDrum;
+        return IsCurseConfig.armsDrum;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.armsDrum;
+        return IsTradeableConfig.armsDrum;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.armsDrum;
+        return IsDiscoverableConfig.armsDrum;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.armsDrum && super.canApplyAtEnchantingTable(stack) && stack.getItem() instanceof ShieldItem;
+        return CanApplyAtEnchantingTableConfig.armsDrum && super.canApplyAtEnchantingTable(stack) && stack.getItem() instanceof ShieldItem;
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.armsDrum;
+        return IsAllowedOnBooksConfig.armsDrum;
     }
 }
 

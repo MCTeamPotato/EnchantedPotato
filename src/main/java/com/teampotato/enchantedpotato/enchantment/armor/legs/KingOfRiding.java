@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class KingOfRiding extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.kingOfRiding;
+        return IsTreasureOnlyConfig.kingOfRiding;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.kingOfRiding;
+        return IsCurseConfig.kingOfRiding;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.kingOfRiding;
+        return IsTradeableConfig.kingOfRiding;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.kingOfRiding;
+        return IsDiscoverableConfig.kingOfRiding;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.kingOfRiding && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.kingOfRiding && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.kingOfRiding;
+        return IsAllowedOnBooksConfig.kingOfRiding;
     }
 }

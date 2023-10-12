@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.chest;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class HuaJin extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.huaJin;
+        return IsTreasureOnlyConfig.huaJin;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.huaJin;
+        return IsCurseConfig.huaJin;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.huaJin;
+        return IsTradeableConfig.huaJin;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.huaJin;
+        return IsDiscoverableConfig.huaJin;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.huaJin && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.huaJin && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.huaJin;
+        return IsAllowedOnBooksConfig.huaJin;
     }
 }

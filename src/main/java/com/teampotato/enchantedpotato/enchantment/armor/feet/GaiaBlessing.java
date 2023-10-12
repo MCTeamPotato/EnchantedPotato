@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -23,31 +24,31 @@ public class GaiaBlessing extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.gaiaBlessing;
+        return IsTreasureOnlyConfig.gaiaBlessing;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.gaiaBlessing;
+        return IsCurseConfig.gaiaBlessing;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.gaiaBlessing;
+        return IsTradeableConfig.gaiaBlessing;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.gaiaBlessing;
+        return IsDiscoverableConfig.gaiaBlessing;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.gaiaBlessing && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.gaiaBlessing && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.gaiaBlessing;
+        return IsAllowedOnBooksConfig.gaiaBlessing;
     }
 }

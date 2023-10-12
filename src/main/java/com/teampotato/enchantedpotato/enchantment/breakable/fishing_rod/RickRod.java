@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.fishing_rod;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.FishingRodItem;
@@ -20,32 +21,32 @@ public class RickRod extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.rickRod;
+        return IsTreasureOnlyConfig.rickRod;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.rickRod;
+        return IsCurseConfig.rickRod;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.rickRod;
+        return IsTradeableConfig.rickRod;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.rickRod;
+        return IsDiscoverableConfig.rickRod;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.rickRod && stack.getItem() instanceof FishingRodItem && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.rickRod && stack.getItem() instanceof FishingRodItem && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.rickRod;
+        return IsAllowedOnBooksConfig.rickRod;
     }
 }
 

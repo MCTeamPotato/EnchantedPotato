@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.crossbow;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,32 +20,32 @@ public class MultiLoad extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.multiLoad;
+        return IsTreasureOnlyConfig.multiLoad;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.multiLoad;
+        return IsCurseConfig.multiLoad;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.multiLoad;
+        return IsTradeableConfig.multiLoad;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.multiLoad;
+        return IsDiscoverableConfig.multiLoad;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.multiLoad && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.multiLoad && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.multiLoad;
+        return IsAllowedOnBooksConfig.multiLoad;
     }
 }
 

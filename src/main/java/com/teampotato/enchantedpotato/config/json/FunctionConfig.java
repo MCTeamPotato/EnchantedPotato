@@ -17,7 +17,7 @@ public class FunctionConfig {
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create function.json");
-                System.exit(-1);
+                
             }
         }
 
@@ -70,7 +70,7 @@ public class FunctionConfig {
             this.missile = configObject.get("missile").getAsBoolean();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read function.json");
-            System.exit(-1);
+            
         }
     }
 

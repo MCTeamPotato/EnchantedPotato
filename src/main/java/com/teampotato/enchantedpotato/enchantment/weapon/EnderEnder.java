@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
@@ -22,32 +23,32 @@ public class EnderEnder extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.enderEnder;
+        return IsTreasureOnlyConfig.enderEnder;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.enderEnder;
+        return IsCurseConfig.enderEnder;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.enderEnder;
+        return IsTradeableConfig.enderEnder;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.enderEnder;
+        return IsDiscoverableConfig.enderEnder;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.enderEnder && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.enderEnder && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.enderEnder;
+        return IsAllowedOnBooksConfig.enderEnder;
     }
 
     @Override

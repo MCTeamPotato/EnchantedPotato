@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -20,31 +21,31 @@ public class RippleOfDeath extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.rippleOfDeath;
+        return IsTreasureOnlyConfig.rippleOfDeath;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.rippleOfDeath;
+        return IsCurseConfig.rippleOfDeath;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.rippleOfDeath;
+        return IsTradeableConfig.rippleOfDeath;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.rippleOfDeath;
+        return IsDiscoverableConfig.rippleOfDeath;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.rippleOfDeath && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.rippleOfDeath && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.rippleOfDeath;
+        return IsAllowedOnBooksConfig.rippleOfDeath;
     }
 }

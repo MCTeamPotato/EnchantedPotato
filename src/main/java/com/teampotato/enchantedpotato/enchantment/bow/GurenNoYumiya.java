@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.bow;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class GurenNoYumiya extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.gurenNoYumiya;
+        return IsTreasureOnlyConfig.gurenNoYumiya;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.gurenNoYumiya;
+        return IsCurseConfig.gurenNoYumiya;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.gurenNoYumiya;
+        return IsTradeableConfig.gurenNoYumiya;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.gurenNoYumiya;
+        return IsDiscoverableConfig.gurenNoYumiya;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.gurenNoYumiya && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.gurenNoYumiya && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.gurenNoYumiya;
+        return IsAllowedOnBooksConfig.gurenNoYumiya;
     }
 }

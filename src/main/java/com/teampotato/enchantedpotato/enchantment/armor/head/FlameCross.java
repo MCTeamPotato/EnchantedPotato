@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.head;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +20,30 @@ public class FlameCross extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.flameCross;
+        return IsTreasureOnlyConfig.flameCross;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.flameCross;
+        return IsCurseConfig.flameCross;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.flameCross;
+        return IsTradeableConfig.flameCross;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.flameCross;
+        return IsDiscoverableConfig.flameCross;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.flameCross && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.flameCross && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.flameCross;
+        return IsAllowedOnBooksConfig.flameCross;
     }
 }

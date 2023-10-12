@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +20,30 @@ public class BlackParade extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.blackParade;
+        return IsTreasureOnlyConfig.blackParade;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.blackParade;
+        return IsCurseConfig.blackParade;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.blackParade;
+        return IsTradeableConfig.blackParade;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.blackParade;
+        return IsDiscoverableConfig.blackParade;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.blackParade && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.blackParade && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.blackParade;
+        return IsAllowedOnBooksConfig.blackParade;
     }
 }

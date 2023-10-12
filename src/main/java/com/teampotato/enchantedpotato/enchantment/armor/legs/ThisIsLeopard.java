@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +20,30 @@ public class ThisIsLeopard extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.thisIsLeopard;
+        return IsTreasureOnlyConfig.thisIsLeopard;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.thisIsLeopard;
+        return IsCurseConfig.thisIsLeopard;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.thisIsLeopard;
+        return IsTradeableConfig.thisIsLeopard;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.thisIsLeopard;
+        return IsDiscoverableConfig.thisIsLeopard;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.thisIsLeopard && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.thisIsLeopard && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.thisIsLeopard;
+        return IsAllowedOnBooksConfig.thisIsLeopard;
     }
 }

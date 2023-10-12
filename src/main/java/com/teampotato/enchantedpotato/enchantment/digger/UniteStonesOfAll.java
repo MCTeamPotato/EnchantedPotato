@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.digger;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class UniteStonesOfAll extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.uniteStonesOfAll;
+        return IsTreasureOnlyConfig.uniteStonesOfAll;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.uniteStonesOfAll;
+        return IsCurseConfig.uniteStonesOfAll;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.uniteStonesOfAll;
+        return IsTradeableConfig.uniteStonesOfAll;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.uniteStonesOfAll;
+        return IsDiscoverableConfig.uniteStonesOfAll;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.uniteStonesOfAll && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.uniteStonesOfAll && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.uniteStonesOfAll;
+        return IsAllowedOnBooksConfig.uniteStonesOfAll;
     }
 }

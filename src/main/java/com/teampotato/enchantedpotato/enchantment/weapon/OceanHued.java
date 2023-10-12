@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,30 +20,30 @@ public class OceanHued extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.oceanHued;
+        return IsTreasureOnlyConfig.oceanHued;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.oceanHued;
+        return IsCurseConfig.oceanHued;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.oceanHued;
+        return IsTradeableConfig.oceanHued;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.oceanHued;
+        return IsDiscoverableConfig.oceanHued;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.oceanHued && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.oceanHued && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.oceanHued;
+        return IsAllowedOnBooksConfig.oceanHued;
     }
 }

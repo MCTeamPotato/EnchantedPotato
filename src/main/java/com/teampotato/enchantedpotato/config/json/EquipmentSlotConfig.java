@@ -17,7 +17,7 @@ public class EquipmentSlotConfig {
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create equipmentSlot.json");
-                System.exit(-1);
+                
             }
         }
         try {
@@ -69,7 +69,7 @@ public class EquipmentSlotConfig {
             this.missile = configObject.get("missile").getAsString().split(";");
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read equipmentSlot.json");
-            System.exit(-1);
+            
         }
     }
 

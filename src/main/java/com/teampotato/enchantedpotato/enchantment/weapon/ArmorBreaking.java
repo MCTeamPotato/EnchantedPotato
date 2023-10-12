@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -30,30 +31,30 @@ public class ArmorBreaking extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.armorBreaking;
+        return IsTreasureOnlyConfig.armorBreaking;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.armorBreaking;
+        return IsCurseConfig.armorBreaking;
     }
 
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.armorBreaking;
+        return IsTradeableConfig.armorBreaking;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.armorBreaking;
+        return IsDiscoverableConfig.armorBreaking;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.armorBreaking && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.armorBreaking && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.armorBreaking;
+        return IsAllowedOnBooksConfig.armorBreaking;
     }
 }

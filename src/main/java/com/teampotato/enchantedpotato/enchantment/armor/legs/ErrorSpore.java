@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import it.unimi.dsi.fastutil.ints.Int2FloatOpenHashMap;
@@ -23,32 +24,32 @@ public class ErrorSpore extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.errorSpore;
+        return IsTreasureOnlyConfig.errorSpore;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.errorSpore;
+        return IsCurseConfig.errorSpore;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.errorSpore;
+        return IsTradeableConfig.errorSpore;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.errorSpore;
+        return IsDiscoverableConfig.errorSpore;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.errorSpore && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.errorSpore && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.errorSpore;
+        return IsAllowedOnBooksConfig.errorSpore;
     }
 
     @Override

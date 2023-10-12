@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.armor.head;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -20,31 +21,31 @@ public class DyingOfLight extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.dyingOfLight;
+        return IsTreasureOnlyConfig.dyingOfLight;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.dyingOfLight;
+        return IsCurseConfig.dyingOfLight;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.dyingOfLight;
+        return IsTradeableConfig.dyingOfLight;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.dyingOfLight;
+        return IsDiscoverableConfig.dyingOfLight;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.dyingOfLight && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.dyingOfLight && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.dyingOfLight;
+        return IsAllowedOnBooksConfig.dyingOfLight;
     }
 }

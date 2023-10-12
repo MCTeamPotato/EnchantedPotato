@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class PoisonOfTheLastBreath extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.poisonOfTheLastBreath;
+        return IsTreasureOnlyConfig.poisonOfTheLastBreath;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.poisonOfTheLastBreath;
+        return IsCurseConfig.poisonOfTheLastBreath;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.poisonOfTheLastBreath;
+        return IsTradeableConfig.poisonOfTheLastBreath;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.poisonOfTheLastBreath;
+        return IsDiscoverableConfig.poisonOfTheLastBreath;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.poisonOfTheLastBreath && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.poisonOfTheLastBreath && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.poisonOfTheLastBreath;
+        return IsAllowedOnBooksConfig.poisonOfTheLastBreath;
     }
 }

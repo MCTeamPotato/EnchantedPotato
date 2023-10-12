@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.bow;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -19,31 +20,31 @@ public class TrueMan extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.trueMan;
+        return IsTreasureOnlyConfig.trueMan;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.trueMan;
+        return IsCurseConfig.trueMan;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.trueMan;
+        return IsTradeableConfig.trueMan;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.trueMan;
+        return IsDiscoverableConfig.trueMan;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.trueMan && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.trueMan && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.trueMan;
+        return IsAllowedOnBooksConfig.trueMan;
     }
 }

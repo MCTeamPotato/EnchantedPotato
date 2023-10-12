@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.crossbow;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -20,32 +21,32 @@ public class Sniper extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.sniper;
+        return IsTreasureOnlyConfig.sniper;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.sniper;
+        return IsCurseConfig.sniper;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.sniper;
+        return IsTradeableConfig.sniper;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.sniper;
+        return IsDiscoverableConfig.sniper;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.sniper && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.sniper && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.sniper;
+        return IsAllowedOnBooksConfig.sniper;
     }
 
     @Override

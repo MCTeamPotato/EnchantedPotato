@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.digger;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -25,31 +26,31 @@ public class MarkFromTheBeneath extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.markFromTheBeneath;
+        return IsTreasureOnlyConfig.markFromTheBeneath;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.markFromTheBeneath;
+        return IsCurseConfig.markFromTheBeneath;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.markFromTheBeneath;
+        return IsTradeableConfig.markFromTheBeneath;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.markFromTheBeneath;
+        return IsDiscoverableConfig.markFromTheBeneath;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.markFromTheBeneath && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.markFromTheBeneath && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.markFromTheBeneath;
+        return IsAllowedOnBooksConfig.markFromTheBeneath;
     }
 }

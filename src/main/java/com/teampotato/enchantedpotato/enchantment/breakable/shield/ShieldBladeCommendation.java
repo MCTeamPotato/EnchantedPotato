@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.shield;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -21,31 +22,31 @@ public class ShieldBladeCommendation extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.shieldBladeCommendation;
+        return IsTreasureOnlyConfig.shieldBladeCommendation;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.shieldBladeCommendation;
+        return IsCurseConfig.shieldBladeCommendation;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.shieldBladeCommendation;
+        return IsTradeableConfig.shieldBladeCommendation;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.shieldBladeCommendation;
+        return IsDiscoverableConfig.shieldBladeCommendation;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.shieldBladeCommendation && stack.getItem() instanceof ShieldItem && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.shieldBladeCommendation && stack.getItem() instanceof ShieldItem && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.shieldBladeCommendation;
+        return IsAllowedOnBooksConfig.shieldBladeCommendation;
     }
 }

@@ -17,7 +17,7 @@ public class MaxLevelConfig {
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create maxLevelConfig.json");
-                System.exit(-1);
+                
             }
         }
 
@@ -29,7 +29,7 @@ public class MaxLevelConfig {
             this.goldfishFireworks = configObject.get("goldfishFireworks").getAsInt();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read maxLevelConfig.json");
-            System.exit(-1);
+            
         }
     }
 

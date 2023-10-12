@@ -1,5 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.bow;
 
+import com.teampotato.enchantedpotato.config.json.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -20,31 +21,31 @@ public class PressurizedCollapse extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return EarlySetupInitializer.isTreasureOnlyConfig.pressurizedCollapse;
+        return IsTreasureOnlyConfig.pressurizedCollapse;
     }
 
     @Override
     public boolean isCurse() {
-        return EarlySetupInitializer.isCurseConfig.pressurizedCollapse;
+        return IsCurseConfig.pressurizedCollapse;
     }
 
     @Override
     public boolean isTradeable() {
-        return EarlySetupInitializer.isTradeableConfig.pressurizedCollapse;
+        return IsTradeableConfig.pressurizedCollapse;
     }
 
     @Override
     public boolean isDiscoverable() {
-        return EarlySetupInitializer.isDiscoverableConfig.pressurizedCollapse;
+        return IsDiscoverableConfig.pressurizedCollapse;
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(@NotNull ItemStack stack) {
-        return EarlySetupInitializer.canApplyAtEnchantingTableConfig.pressurizedCollapse && super.canApplyAtEnchantingTable(stack);
+        return CanApplyAtEnchantingTableConfig.pressurizedCollapse && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override
     public boolean isAllowedOnBooks() {
-        return EarlySetupInitializer.isAllowedOnBooksConfig.pressurizedCollapse;
+        return IsAllowedOnBooksConfig.pressurizedCollapse;
     }
 }

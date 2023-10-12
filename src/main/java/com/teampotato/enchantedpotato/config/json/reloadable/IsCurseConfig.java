@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.config.json.attributes;
+package com.teampotato.enchantedpotato.config.json.reloadable;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -9,73 +9,78 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 
 public class IsCurseConfig {
+    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "isCurse.json");
+
     public IsCurseConfig() {
-        File isCurseConfig = new File(EarlySetupInitializer.attributesDir, "isCurse.json");
-        if (!isCurseConfig.exists()) {
+        if (!FILE.exists()) {
             try {
-                FileWriter writer = writeFile(isCurseConfig);
+                FileWriter writer = writeFile();
                 writer.close();
             } catch (Exception e) {
                 EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isCurse.json");
-                System.exit(-1);
+                
             }
         }
 
+        readConfig(FILE);
+    }
+
+    public static void readConfig(File isCurseConfig) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(isCurseConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
-            this.runLikeHell = configObject.get("runLikeHell").getAsBoolean();
-            this.blackParade = configObject.get("blackParade").getAsBoolean();
-            this.graceOfGungnir = configObject.get("graceOfGungnir").getAsBoolean();
-            this.thisIsLeopard = configObject.get("thisIsLeopard").getAsBoolean();
-            this.dyingOfLight = configObject.get("dyingOfLight").getAsBoolean();
-            this.pressurizedCollapse = configObject.get("pressurizedCollapse").getAsBoolean();
-            this.errorSpore = configObject.get("errorSpore").getAsBoolean();
-            this.untouchable = configObject.get("untouchable").getAsBoolean();
-            this.shieldBladeCommendation = configObject.get("shieldBladeCommendation").getAsBoolean();
-            this.gaiaBlessing = configObject.get("gaiaBlessing").getAsBoolean();
-            this.gurenNoYumiya = configObject.get("gurenNoYumiya").getAsBoolean();
-            this.boneSuckalaka = configObject.get("boneSuckalaka").getAsBoolean();
-            this.loraTrainer = configObject.get("loraTrainer").getAsBoolean();
-            this.rippleOfDeath = configObject.get("rippleOfDeath").getAsBoolean();
-            this.poisonOfTheLastBreath = configObject.get("poisonOfTheLastBreath").getAsBoolean();
-            this.huaJin = configObject.get("huaJin").getAsBoolean();
-            this.wonderEggPriority = configObject.get("wonderEggPriority").getAsBoolean();
-            this.markFromTheBeneath = configObject.get("markFromTheBeneath").getAsBoolean();
-            this.armorBreaking = configObject.get("armorBreaking").getAsBoolean();
-            this.blessingOfTheNature = configObject.get("blessingOfTheNature").getAsBoolean();
-            this.caressingMoonlight = configObject.get("caressingMoonlight").getAsBoolean();
-            this.flameCross = configObject.get("flameCross").getAsBoolean();
-            this.oceanHued = configObject.get("oceanHued").getAsBoolean();
-            this.trueMan = configObject.get("trueMan").getAsBoolean();
-            this.mineCarve = configObject.get("mineCarve").getAsBoolean();
-            this.uniteStonesOfAll = configObject.get("uniteStonesOfAll").getAsBoolean();
-            this.wendingWatersSereneLotus = configObject.get("wendingWatersSereneLotus").getAsBoolean();
-            this.kingOfRiding = configObject.get("kingOfRiding").getAsBoolean();
-            this.lawOfInertia = configObject.get("lawOfInertia").getAsBoolean();
-            this.shootingStar = configObject.get("shootingStar").getAsBoolean();
-            this.triback = configObject.get("triback").getAsBoolean();
-            this.sniper = configObject.get("sniper").getAsBoolean();
-            this.musician = configObject.get("musician").getAsBoolean();
-            this.enderEnder = configObject.get("enderEnder").getAsBoolean();
-            this.multiLoad = configObject.get("multiLoad").getAsBoolean();
-            this.blackElegance = configObject.get("blackElegance").getAsBoolean();
-            this.whiteInnocence = configObject.get("whiteInnocence").getAsBoolean();
-            this.armsDrum = configObject.get("armsDrum").getAsBoolean();
-            this.rickRod = configObject.get("rickRod").getAsBoolean();
-            this.goldfishFireworks = configObject.get("goldfishFireworks").getAsBoolean();
-            this.softTouch = configObject.get("softTouch").getAsBoolean();
-            this.copperholic = configObject.get("copperholic").getAsBoolean();
-            this.wellOfBlood  = configObject.get("wellOfBlood").getAsBoolean();
-            this.missile = configObject.get("missile").getAsBoolean();
+            runLikeHell = configObject.get("runLikeHell").getAsBoolean();
+            blackParade = configObject.get("blackParade").getAsBoolean();
+            graceOfGungnir = configObject.get("graceOfGungnir").getAsBoolean();
+            thisIsLeopard = configObject.get("thisIsLeopard").getAsBoolean();
+            dyingOfLight = configObject.get("dyingOfLight").getAsBoolean();
+            pressurizedCollapse = configObject.get("pressurizedCollapse").getAsBoolean();
+            errorSpore = configObject.get("errorSpore").getAsBoolean();
+            untouchable = configObject.get("untouchable").getAsBoolean();
+            shieldBladeCommendation = configObject.get("shieldBladeCommendation").getAsBoolean();
+            gaiaBlessing = configObject.get("gaiaBlessing").getAsBoolean();
+            gurenNoYumiya = configObject.get("gurenNoYumiya").getAsBoolean();
+            boneSuckalaka = configObject.get("boneSuckalaka").getAsBoolean();
+            loraTrainer = configObject.get("loraTrainer").getAsBoolean();
+            rippleOfDeath = configObject.get("rippleOfDeath").getAsBoolean();
+            poisonOfTheLastBreath = configObject.get("poisonOfTheLastBreath").getAsBoolean();
+            huaJin = configObject.get("huaJin").getAsBoolean();
+            wonderEggPriority = configObject.get("wonderEggPriority").getAsBoolean();
+            markFromTheBeneath = configObject.get("markFromTheBeneath").getAsBoolean();
+            armorBreaking = configObject.get("armorBreaking").getAsBoolean();
+            blessingOfTheNature = configObject.get("blessingOfTheNature").getAsBoolean();
+            caressingMoonlight = configObject.get("caressingMoonlight").getAsBoolean();
+            flameCross = configObject.get("flameCross").getAsBoolean();
+            oceanHued = configObject.get("oceanHued").getAsBoolean();
+            trueMan = configObject.get("trueMan").getAsBoolean();
+            mineCarve = configObject.get("mineCarve").getAsBoolean();
+            uniteStonesOfAll = configObject.get("uniteStonesOfAll").getAsBoolean();
+            wendingWatersSereneLotus = configObject.get("wendingWatersSereneLotus").getAsBoolean();
+            kingOfRiding = configObject.get("kingOfRiding").getAsBoolean();
+            lawOfInertia = configObject.get("lawOfInertia").getAsBoolean();
+            shootingStar = configObject.get("shootingStar").getAsBoolean();
+            triback = configObject.get("triback").getAsBoolean();
+            sniper = configObject.get("sniper").getAsBoolean();
+            musician = configObject.get("musician").getAsBoolean();
+            enderEnder = configObject.get("enderEnder").getAsBoolean();
+            multiLoad = configObject.get("multiLoad").getAsBoolean();
+            blackElegance = configObject.get("blackElegance").getAsBoolean();
+            whiteInnocence = configObject.get("whiteInnocence").getAsBoolean();
+            armsDrum = configObject.get("armsDrum").getAsBoolean();
+            rickRod = configObject.get("rickRod").getAsBoolean();
+            goldfishFireworks = configObject.get("goldfishFireworks").getAsBoolean();
+            softTouch = configObject.get("softTouch").getAsBoolean();
+            copperholic = configObject.get("copperholic").getAsBoolean();
+            wellOfBlood  = configObject.get("wellOfBlood").getAsBoolean();
+            missile = configObject.get("missile").getAsBoolean();
         } catch (Exception e) {
             EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isCurse.json");
-            System.exit(-1);
+            
         }
     }
 
     @NotNull
-    private static FileWriter writeFile(File configFile) throws IOException {
+    private static FileWriter writeFile() throws IOException {
         JsonObject defaultConfig = new JsonObject();
         defaultConfig.addProperty("runLikeHell", false);
         defaultConfig.addProperty("blackParade", false);
@@ -121,13 +126,13 @@ public class IsCurseConfig {
         defaultConfig.addProperty("copperholic", false);
         defaultConfig.addProperty("wellOfBlood", false);
         defaultConfig.addProperty("missile", false);
-        FileWriter writer = new FileWriter(configFile);
+        FileWriter writer = new FileWriter(IsCurseConfig.FILE);
         writer.write(defaultConfig.toString());
         return writer;
     }
 
     
-    public boolean runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
+    public static boolean runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
     pressurizedCollapse, errorSpore, untouchable, shieldBladeCommendation,
     gaiaBlessing, gurenNoYumiya, boneSuckalaka, loraTrainer, rippleOfDeath, 
     poisonOfTheLastBreath, huaJin, wonderEggPriority, markFromTheBeneath, 
