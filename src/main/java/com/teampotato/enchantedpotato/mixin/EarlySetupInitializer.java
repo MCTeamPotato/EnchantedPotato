@@ -40,27 +40,6 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
         rarityConfig = new RarityConfig();
         functionConfig = new FunctionConfig();
         maxLevelConfig = new MaxLevelConfig();
-
-        LOGGER.info("Goldfish Fireworks Mixin: " + getStatus(functionConfig.goldfishFireworks));
-        LOGGER.info("Ender Ender Mixin: " + getStatus(functionConfig.enderEnder));
-        LOGGER.info("Triback Mixin: " + getStatus(functionConfig.triback));
-        LOGGER.info("Sniper Mixin: " + getStatus(functionConfig.sniper));
-        LOGGER.info("Wending Waters Serene Lotus Mixin: " + getStatus(functionConfig.wendingWatersSereneLotus));
-        LOGGER.info("Wonder Egg Priority Mixin: " + getStatus(functionConfig.wonderEggPriority));
-        LOGGER.info("Grace Of Gungnir Mixin: " + getStatus(functionConfig.graceOfGungnir));
-        LOGGER.info("Guren No Yumiya Mixin: " + getStatus(functionConfig.gurenNoYumiya));
-        LOGGER.info("Dying Of Light Mixin: " + getStatus(functionConfig.dyingOfLight));
-        LOGGER.info("Blessing Of The Nature Mixin: " + getStatus(functionConfig.blessingOfTheNature));
-        LOGGER.info("Run Like Hell Mixin: " + getStatus(functionConfig.runLikeHell));
-        LOGGER.info("Pressurized Collapse Mixin: " + getStatus(functionConfig.pressurizedCollapse));
-        LOGGER.info("Poison Of The Last Breath Mixin: " + getStatus(functionConfig.poisonOfTheLastBreath));
-    }
-
-    private static final String ENABLED = "Enabled";
-    private static final String DISABLED = "Disabled";
-
-    private static String getStatus(boolean status) {
-        return status ? ENABLED : DISABLED;
     }
 
     @Override
