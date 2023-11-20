@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.enchantment.breakable.shield.BoneSuckalaka;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Constants;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,8 +9,8 @@ import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.TickEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class BoneSuckalakaEvents {

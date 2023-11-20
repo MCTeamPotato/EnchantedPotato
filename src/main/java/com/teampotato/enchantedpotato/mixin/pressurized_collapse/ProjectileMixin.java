@@ -19,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Projectile.class)
 public abstract class ProjectileMixin extends Entity {
-    @SuppressWarnings("resource")
     @Inject(method = "onHit", at = @At("RETURN"))
     private void onHit(HitResult result, CallbackInfo ci) {
         if (result == null) return;

@@ -24,7 +24,6 @@ public abstract class PlayerMixin extends LivingEntity implements IPlayer {
 
     @Shadow protected FoodData foodData;
 
-    @SuppressWarnings("resource")
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", ordinal = 2, shift = At.Shift.AFTER))
     private void onTick(CallbackInfo ci) {
         if (!Utils.hasPotatoEnchantmentEquipped((Player)(Object)this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH)) return;

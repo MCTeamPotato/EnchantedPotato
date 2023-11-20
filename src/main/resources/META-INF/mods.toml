@@ -10,3 +10,6 @@ authors = "TeamPotato"
 description = '''
 A Minecraft mod.
 '''
+
+[[mixins]]
+config = "enchantedpotato.mixins.json"

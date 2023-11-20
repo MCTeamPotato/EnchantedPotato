@@ -3,8 +3,8 @@ package com.teampotato.enchantedpotato.event;
 import com.teampotato.enchantedpotato.api.IPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BowItem;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class PressurizedCollapseEvents {

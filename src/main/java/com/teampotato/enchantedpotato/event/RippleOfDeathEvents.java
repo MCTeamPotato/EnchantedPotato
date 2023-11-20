@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.enchantment.armor.feet.RippleOfDeath;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Constants;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,9 +10,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class RippleOfDeathEvents {

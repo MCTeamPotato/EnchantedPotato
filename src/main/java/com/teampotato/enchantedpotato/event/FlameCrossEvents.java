@@ -1,16 +1,16 @@
 package com.teampotato.enchantedpotato.event;
 
-import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.IEntity;
 import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.enchantment.armor.head.FlameCross;
+import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class FlameCrossEvents {

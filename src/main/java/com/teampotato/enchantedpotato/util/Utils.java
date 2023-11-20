@@ -1,6 +1,7 @@
 package com.teampotato.enchantedpotato.util;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
@@ -9,7 +10,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class Utils {
             for (Tag tag : stack.getEnchantmentTags()) {
                 if (tag instanceof CompoundTag compoundTag) {
                     ResourceLocation id = ResourceLocation.tryParse(compoundTag.getString("id"));
-                    if (id != null && ForgeRegistries.ENCHANTMENTS.getValue(id) != null && id.getPath().equals(enchantmentName)) return true;
+                    if (id != null && BuiltInRegistries.ENCHANTMENT.get(id) != null && id.getPath().equals(enchantmentName)) return true;
                 }
             }
         }

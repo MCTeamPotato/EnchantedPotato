@@ -1,100 +1,100 @@
 package com.teampotato.enchantedpotato.config.toml;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;
 
 //TODO: transfer to json and make it reloadable
 public class DetailsConfig {
-    public static final ForgeConfigSpec DETAILS_CONFIG;
+    public static final ModConfigSpec DETAILS_CONFIG;
 
 
-    public static final ForgeConfigSpec.IntValue RUN_LIKE_HELL_INVISIBILITY_DURATION;
-    public static final ForgeConfigSpec.IntValue RUN_LIKE_HELL_MOVEMENT_SPEED_DURATION;
-    public static final ForgeConfigSpec.IntValue RUN_LIKE_HELL_MOVEMENT_SPEED_AMPLIFIER;
-    public static final ForgeConfigSpec.ConfigValue<Double> RUN_LIKE_HELL_VALID_MIN_HEALTH;
+    public static final ModConfigSpec.IntValue RUN_LIKE_HELL_INVISIBILITY_DURATION;
+    public static final ModConfigSpec.IntValue RUN_LIKE_HELL_MOVEMENT_SPEED_DURATION;
+    public static final ModConfigSpec.IntValue RUN_LIKE_HELL_MOVEMENT_SPEED_AMPLIFIER;
+    public static final ModConfigSpec.ConfigValue<Double> RUN_LIKE_HELL_VALID_MIN_HEALTH;
 
-    public static final ForgeConfigSpec.IntValue BLACK_PARADE_MOVEMENT_SPEED_DURATION;
-    public static final ForgeConfigSpec.IntValue BLACK_PARADE_MOVEMENT_SPEED_AMPLIFIER;
+    public static final ModConfigSpec.IntValue BLACK_PARADE_MOVEMENT_SPEED_DURATION;
+    public static final ModConfigSpec.IntValue BLACK_PARADE_MOVEMENT_SPEED_AMPLIFIER;
 
-    public static final ForgeConfigSpec.ConfigValue<Float> THIS_IS_LEOPARD_DAMAGE_MULTIPLIER;
-    public static final ForgeConfigSpec.DoubleValue THIS_IS_LEOPARD_TARGET_MISS_CHANCE;
-    public static final ForgeConfigSpec.DoubleValue THIS_IS_LEOPARD_VALID_HEIGHT;
+    public static final ModConfigSpec.ConfigValue<Float> THIS_IS_LEOPARD_DAMAGE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue THIS_IS_LEOPARD_TARGET_MISS_CHANCE;
+    public static final ModConfigSpec.DoubleValue THIS_IS_LEOPARD_VALID_HEIGHT;
 
-    public static final ForgeConfigSpec.ConfigValue<? extends String> DYING_OF_LIGHT_ENTITIES_DETECTION_RANGE;
-    public static final ForgeConfigSpec.IntValue DYING_OF_LIGHT_DETECTION_TICK_INTERVAL;
-    public static final ForgeConfigSpec.DoubleValue DYING_OF_LIGHT_VILLAGER_HURT_DAMAGE;
+    public static final ModConfigSpec.ConfigValue<? extends String> DYING_OF_LIGHT_ENTITIES_DETECTION_RANGE;
+    public static final ModConfigSpec.IntValue DYING_OF_LIGHT_DETECTION_TICK_INTERVAL;
+    public static final ModConfigSpec.DoubleValue DYING_OF_LIGHT_VILLAGER_HURT_DAMAGE;
 
-    public static final ForgeConfigSpec.LongValue PRESSURIZED_COLLAPSE_MAX_RANGE_ADDITION;
-    public static final ForgeConfigSpec.ConfigValue<? extends String> PRESSURIZED_COLLAPSE_BASIC_RANGE;
+    public static final ModConfigSpec.LongValue PRESSURIZED_COLLAPSE_MAX_RANGE_ADDITION;
+    public static final ModConfigSpec.ConfigValue<? extends String> PRESSURIZED_COLLAPSE_BASIC_RANGE;
 
-    public static final ForgeConfigSpec.DoubleValue ERROR_SPORE_DAMAGE_REDUCTION_PER_LEVEL;
-    public static final ForgeConfigSpec.IntValue ERROR_SPORE_CREEPER_SPAWN_CHECKER;
+    public static final ModConfigSpec.DoubleValue ERROR_SPORE_DAMAGE_REDUCTION_PER_LEVEL;
+    public static final ModConfigSpec.IntValue ERROR_SPORE_CREEPER_SPAWN_CHECKER;
 
-    public static final ForgeConfigSpec.ConfigValue<? extends String> UNTOUCHABLE_DETECTION_RANGE;
-    public static final ForgeConfigSpec.ConfigValue<Float> UNTOUCHABLE_KNOCK_BACK_STRENGTH;
-    public static final ForgeConfigSpec.IntValue UNTOUCHABLE_COOL_DOWN;
+    public static final ModConfigSpec.ConfigValue<? extends String> UNTOUCHABLE_DETECTION_RANGE;
+    public static final ModConfigSpec.ConfigValue<Float> UNTOUCHABLE_KNOCK_BACK_STRENGTH;
+    public static final ModConfigSpec.IntValue UNTOUCHABLE_COOL_DOWN;
 
-    public static final ForgeConfigSpec.ConfigValue<? extends String> GUREN_NO_YUMIYA_FIRE_ARROW_RADIUS;
-    public static final ForgeConfigSpec.IntValue GUREN_NO_YUMIYA_FIRE_DURATION_TICKS;
+    public static final ModConfigSpec.ConfigValue<? extends String> GUREN_NO_YUMIYA_FIRE_ARROW_RADIUS;
+    public static final ModConfigSpec.IntValue GUREN_NO_YUMIYA_FIRE_DURATION_TICKS;
 
-    public static final ForgeConfigSpec.ConfigValue<? extends String> BONE_SUCKALAKA_DETECTION_RADIUS;
+    public static final ModConfigSpec.ConfigValue<? extends String> BONE_SUCKALAKA_DETECTION_RADIUS;
 
-    public static final ForgeConfigSpec.IntValue LORA_TRAINER_KILL_COUNTS_REQUIREMENT;
-    public static final ForgeConfigSpec.DoubleValue LORA_TRAINER_DAMAGE_BONUS;
+    public static final ModConfigSpec.IntValue LORA_TRAINER_KILL_COUNTS_REQUIREMENT;
+    public static final ModConfigSpec.DoubleValue LORA_TRAINER_DAMAGE_BONUS;
 
-    public static final ForgeConfigSpec.ConfigValue<? extends String> RIPPLE_OF_DEATH_DETECTION_RADIUS;
-    public static final ForgeConfigSpec.DoubleValue RIPPLE_OF_DEATH_EXTRA_DAMAGE;
+    public static final ModConfigSpec.ConfigValue<? extends String> RIPPLE_OF_DEATH_DETECTION_RADIUS;
+    public static final ModConfigSpec.DoubleValue RIPPLE_OF_DEATH_EXTRA_DAMAGE;
 
-    public static final ForgeConfigSpec.DoubleValue HUA_JIN_TRIGGER_DAMAGE_PERCENTAGE;
-    public static final ForgeConfigSpec.DoubleValue HUA_JIN_DAMAGE_REDUCTION_PERCENTAGE;
-    public static final ForgeConfigSpec.IntValue HUA_JIN_STRENGTH_EFFECT_DURATION;
-    public static final ForgeConfigSpec.IntValue HUA_JIN_STRENGTH_EFFECT_AMPLIFIER;
+    public static final ModConfigSpec.DoubleValue HUA_JIN_TRIGGER_DAMAGE_PERCENTAGE;
+    public static final ModConfigSpec.DoubleValue HUA_JIN_DAMAGE_REDUCTION_PERCENTAGE;
+    public static final ModConfigSpec.IntValue HUA_JIN_STRENGTH_EFFECT_DURATION;
+    public static final ModConfigSpec.IntValue HUA_JIN_STRENGTH_EFFECT_AMPLIFIER;
 
-    public static final ForgeConfigSpec.DoubleValue WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE;
+    public static final ModConfigSpec.DoubleValue WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE;
 
-    public static final ForgeConfigSpec.IntValue MARK_FROM_THE_BENEATH_VALID_Y;
-    public static final ForgeConfigSpec.DoubleValue MARK_FROM_THE_BENEATH_DIG_SPEED_MULTIPLIER;
+    public static final ModConfigSpec.IntValue MARK_FROM_THE_BENEATH_VALID_Y;
+    public static final ModConfigSpec.DoubleValue MARK_FROM_THE_BENEATH_DIG_SPEED_MULTIPLIER;
 
-    public static final ForgeConfigSpec.DoubleValue ARMOR_BREAKING_ARMOR_VALUE_MULTIPLIER;
-    public static final ForgeConfigSpec.DoubleValue ARMOR_BREAKING_ARMOR_TOUGHNESS_MULTIPLIER;
-    public static final ForgeConfigSpec.IntValue ARMOR_BREAKING_MULTIPLIER_DURATION_TICKS;
-    public static final ForgeConfigSpec.IntValue ARMOR_BREAKING_MAX_ARMOR_VALUE_REDUCTION;
+    public static final ModConfigSpec.DoubleValue ARMOR_BREAKING_ARMOR_VALUE_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue ARMOR_BREAKING_ARMOR_TOUGHNESS_MULTIPLIER;
+    public static final ModConfigSpec.IntValue ARMOR_BREAKING_MULTIPLIER_DURATION_TICKS;
+    public static final ModConfigSpec.IntValue ARMOR_BREAKING_MAX_ARMOR_VALUE_REDUCTION;
 
-    public static final ForgeConfigSpec.IntValue BLESSING_OF_THE_NATURE_HEALING_INTERVAL_TICK;
-    public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_HEALING_AMOUNT;
-    public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE;
-    public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE;
-    public static final ForgeConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_STRENGTH;
-    public static final ForgeConfigSpec.ConfigValue<? extends String> BLESSING_OF_THE_NATURE_DETECTION_RANGE;
+    public static final ModConfigSpec.IntValue BLESSING_OF_THE_NATURE_HEALING_INTERVAL_TICK;
+    public static final ModConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_HEALING_AMOUNT;
+    public static final ModConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE;
+    public static final ModConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE;
+    public static final ModConfigSpec.DoubleValue BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_STRENGTH;
+    public static final ModConfigSpec.ConfigValue<? extends String> BLESSING_OF_THE_NATURE_DETECTION_RANGE;
 
-    public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_DAMAGE_MULTIPLIER_ON_IGNITED_TARGET;
-    public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_FIRE_DAMAGE_MULTIPLIER_ON_IGNITED_OWNER;
-    public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING;
-    public static final ForgeConfigSpec.DoubleValue FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING;
-    public static final ForgeConfigSpec.BooleanValue FLAME_CROSS_IGNITE_OWNER_ON_ATTACKING;
-    public static final ForgeConfigSpec.IntValue FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_OWNER;
-    public static final ForgeConfigSpec.IntValue FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET;
+    public static final ModConfigSpec.DoubleValue FLAME_CROSS_DAMAGE_MULTIPLIER_ON_IGNITED_TARGET;
+    public static final ModConfigSpec.DoubleValue FLAME_CROSS_FIRE_DAMAGE_MULTIPLIER_ON_IGNITED_OWNER;
+    public static final ModConfigSpec.DoubleValue FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING;
+    public static final ModConfigSpec.DoubleValue FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING;
+    public static final ModConfigSpec.BooleanValue FLAME_CROSS_IGNITE_OWNER_ON_ATTACKING;
+    public static final ModConfigSpec.IntValue FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_OWNER;
+    public static final ModConfigSpec.IntValue FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET;
 
-    public static final ForgeConfigSpec.IntValue OCEAN_HUED_TIMER_TICKS;
-    public static final ForgeConfigSpec.IntValue OCEAN_HUED_COOL_DOWN_TICKS;
-    public static final ForgeConfigSpec.DoubleValue OCEAN_HUED_ADDITIONAL_DAMAGE_PERCENT_BASED_ON_HEALING_AMOUNT;
-    public static final ForgeConfigSpec.DoubleValue OCEAN_HUED_MAX_DAMAGE_ADDITION;
-    public static final ForgeConfigSpec.ConfigValue<? extends String> OCEAN_HUED_DETECTION_RANGE;
+    public static final ModConfigSpec.IntValue OCEAN_HUED_TIMER_TICKS;
+    public static final ModConfigSpec.IntValue OCEAN_HUED_COOL_DOWN_TICKS;
+    public static final ModConfigSpec.DoubleValue OCEAN_HUED_ADDITIONAL_DAMAGE_PERCENT_BASED_ON_HEALING_AMOUNT;
+    public static final ModConfigSpec.DoubleValue OCEAN_HUED_MAX_DAMAGE_ADDITION;
+    public static final ModConfigSpec.ConfigValue<? extends String> OCEAN_HUED_DETECTION_RANGE;
 
-    public static final ForgeConfigSpec.IntValue MINE_CARVE_VALID_ARMOR_VALUE, MINE_CARVE_ARMOR_VALUE_REDUCTION;
+    public static final ModConfigSpec.IntValue MINE_CARVE_VALID_ARMOR_VALUE, MINE_CARVE_ARMOR_VALUE_REDUCTION;
 
-    public static final ForgeConfigSpec.DoubleValue SNIPER_ARROW_SPEED_INCREASE_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue SNIPER_ARROW_SPEED_INCREASE_PER_LEVEL;
 
-    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ENDER_ENDER_VALID_TARGET;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> ENDER_ENDER_VALID_TARGET;
 
-    public static final ForgeConfigSpec.IntValue ENDER_ENDER_DAMAGE_INCREASE_PER_LEVEL, ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL;
+    public static final ModConfigSpec.IntValue ENDER_ENDER_DAMAGE_INCREASE_PER_LEVEL, ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL;
 
-    public static final ForgeConfigSpec.DoubleValue GOLDFISH_FIREWORKS_SHOOT_PERCENT_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue GOLDFISH_FIREWORKS_SHOOT_PERCENT_PER_LEVEL;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.comment("DetailsConfig");
 
         builder.push("GoldfishFireworks");

@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -33,7 +33,7 @@ public class EnchantedInfoPlugin implements IModPlugin {
     @Override
     public void registerRecipes(@NotNull IRecipeRegistration registration) {
         if (JEI_INFO_MAP.isEmpty()) {
-            for (RegistryObject<Enchantment> registryObject : ModEnchantments.ENCHANTMENTS.getEntries()) {
+            for (DeferredHolder<Enchantment, ? extends Enchantment> registryObject : ModEnchantments.ENCHANTMENTS.getEntries()) {
                 JEI_INFO_MAP.put(registryObject.get(), "jei." + registryObject.get().getDescriptionId().replace("enchantment.", "") + ".info");
             }
         }

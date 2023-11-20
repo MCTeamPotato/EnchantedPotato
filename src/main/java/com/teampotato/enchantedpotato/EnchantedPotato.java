@@ -13,14 +13,14 @@ import com.teampotato.enchantedpotato.util.Constants;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 @Mod(EarlySetupInitializer.MOD_ID)
 public class EnchantedPotato {
@@ -36,7 +36,7 @@ public class EnchantedPotato {
     }
 
     private static void setupEvents() {
-        final IEventBus bus = MinecraftForge.EVENT_BUS;
+        final IEventBus bus = NeoForge.EVENT_BUS;
         bus.register(EquipChangeCenter.class);
 
         bus.addListener((RegisterCommandsEvent event) -> event.getDispatcher().register(

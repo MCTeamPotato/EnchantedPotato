@@ -23,7 +23,6 @@ public abstract class ProjectileMixin extends Entity {
         super(arg, arg2);
     }
 
-    @SuppressWarnings("resource")
     @Inject(method = "onHit", at = @At("RETURN"))
     private void onHit(HitResult result, CallbackInfo ci) {
         if (result == null) return;
