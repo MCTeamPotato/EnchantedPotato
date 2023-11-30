@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -14,7 +14,7 @@ public class ThisIsLeopard extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.thisIsLeopard),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.thisIsLeopard),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard)
         );
     }
 

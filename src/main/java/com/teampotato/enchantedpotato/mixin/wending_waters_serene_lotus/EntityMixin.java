@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.wending_waters_serene_lotus;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.enchantment.armor.feet.WendingWatersSereneLotus;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -26,7 +26,7 @@ public abstract class EntityMixin {
 
     @Inject(method = "updateFluidHeightAndDoFluidPushing()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;isPushedByFluid()Z", shift = At.Shift.AFTER))
     private void onUpdateFluidPushingPre(CallbackInfo ci) {
-        if (ep$getThis() instanceof LivingEntity entity) this.ep$cantPush = Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.wendingWatersSereneLotus, WendingWatersSereneLotus.PATH);
+        if (ep$getThis() instanceof LivingEntity entity) this.ep$cantPush = EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.wendingWatersSereneLotus, WendingWatersSereneLotus.PATH);
     }
 
     @Redirect(method = "updateFluidHeightAndDoFluidPushing()V", remap = false, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;isPushedByFluid(Lnet/neoforged/neoforge/fluids/FluidType;)Z"))

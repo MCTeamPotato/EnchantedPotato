@@ -1,10 +1,9 @@
-package com.teampotato.enchantedpotato.util;
+package com.teampotato.enchantedpotato;
 
-import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.enchantment.weapon.ArmorBreaking;
+import com.teampotato.enchantedpotato.enchantment.armor.legs.ErrorSpore;
 import com.teampotato.enchantedpotato.enchantment.digger.MarkFromTheBeneath;
 import com.teampotato.enchantedpotato.enchantment.digger.MineCarve;
-import com.teampotato.enchantedpotato.enchantment.armor.legs.ErrorSpore;
+import com.teampotato.enchantedpotato.enchantment.weapon.ArmorBreaking;
 import com.teampotato.enchantedpotato.enchantment.weapon.EnderEnder;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 

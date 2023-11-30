@@ -20,8 +20,6 @@ import com.teampotato.enchantedpotato.enchantment.digger.MineCarve;
 import com.teampotato.enchantedpotato.enchantment.weapon.ArmorBreaking;
 import com.teampotato.enchantedpotato.enchantment.weapon.LoRATrainer;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Constants;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -77,7 +75,7 @@ public class EnchantedEventFactory {
         AttributeInstance armorValueAttribute = entity.getAttribute(Attributes.ARMOR);
         AttributeInstance armorToughnessAttribute = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (armorToughnessAttribute == null || armorValueAttribute == null || entity.level().isClientSide) return;
-        if (event.getSource().getDirectEntity() instanceof LivingEntity sourceDirectEntity && Utils.hasPotatoEnchantmentEquipped(sourceDirectEntity, EarlySetupInitializer.equipmentSlotConfig.armorBreaking, ArmorBreaking.PATH)) {
+        if (event.getSource().getDirectEntity() instanceof LivingEntity sourceDirectEntity && EnchantedPotato.hasPotatoEnchantmentEquipped(sourceDirectEntity, EarlySetupInitializer.equipmentSlotConfig.armorBreaking, ArmorBreaking.PATH)) {
             if (!armorValueAttribute.hasModifier(ArmorBreaking.ARMOR_VALUE_MODIFIER) && armorValueAttribute.getValue() * (1.00 - EnchantedPotato.ARMOR_BREAKING_ARMOR_VALUE_MULTIPLIER.get()) <= EnchantedPotato.ARMOR_BREAKING_MAX_ARMOR_VALUE_REDUCTION.get().doubleValue()) armorValueAttribute.addTransientModifier(ArmorBreaking.ARMOR_VALUE_MODIFIER);
             if (!armorToughnessAttribute.hasModifier(ArmorBreaking.ARMOR_TOUGHNESS_MODIFIER)) armorToughnessAttribute.addTransientModifier(ArmorBreaking.ARMOR_TOUGHNESS_MODIFIER);
         }
@@ -87,7 +85,7 @@ public class EnchantedEventFactory {
         DamageSource damageSource = event.getSource();
         if (damageSource.getDirectEntity() instanceof LivingEntity directSourceEntity) {
             MobEffectInstance effect = directSourceEntity.getEffect(MobEffects.MOVEMENT_SPEED);
-            if (Utils.hasPotatoEnchantmentEquipped(directSourceEntity, EarlySetupInitializer.equipmentSlotConfig.blackParade, BlackParade.PATH)) {
+            if (EnchantedPotato.hasPotatoEnchantmentEquipped(directSourceEntity, EarlySetupInitializer.equipmentSlotConfig.blackParade, BlackParade.PATH)) {
                 if (effect != null) {
                     directSourceEntity.removeEffect(effect.getEffect());
                     directSourceEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, EnchantedPotato.BLACK_PARADE_MOVEMENT_SPEED_DURATION.get() + effect.getDuration(), EnchantedPotato.BLACK_PARADE_MOVEMENT_SPEED_AMPLIFIER.get()));
@@ -100,7 +98,7 @@ public class EnchantedEventFactory {
 
     static void handleBoneSuckalaka(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (player instanceof ServerPlayer serverPlayer && serverPlayer.isShiftKeyDown() && serverPlayer.isUsingItem() && serverPlayer.getUseItem().getItem() instanceof ShieldItem && Utils.hasPotatoEnchantmentEquipped(serverPlayer, EarlySetupInitializer.equipmentSlotConfig.boneSuckalaka, BoneSuckalaka.PATH)) {
+        if (player instanceof ServerPlayer serverPlayer && serverPlayer.isShiftKeyDown() && serverPlayer.isUsingItem() && serverPlayer.getUseItem().getItem() instanceof ShieldItem && EnchantedPotato.hasPotatoEnchantmentEquipped(serverPlayer, EarlySetupInitializer.equipmentSlotConfig.boneSuckalaka, BoneSuckalaka.PATH)) {
             double x = player.getX();
             double y = player.getY();
             double z = player.getZ();
@@ -114,7 +112,7 @@ public class EnchantedEventFactory {
         if (event.isCanceled()) return;
         LivingEntity entity = event.getEntity();
         LivingEntity target = event.getOriginalTarget();
-        if (Utils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH) && entity.level().isNight() && entity instanceof Monster) {
+        if (EnchantedPotato.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH) && entity.level().isNight() && entity instanceof Monster) {
             LivingEntity lastHurtMob = target.getLastHurtMob();
             if (lastHurtMob != null && lastHurtMob.getUUID().equals(entity.getUUID())) return;
             event.setCanceled(true);
@@ -125,7 +123,7 @@ public class EnchantedEventFactory {
         LivingEntity attacked = event.getEntity();
         DamageSource damageSource = event.getSource();
         if (event.isCanceled() || attacked.level().isClientSide || !((EnderTarget)attacked.getType()).isEnderTarget() || !(damageSource.getDirectEntity() instanceof LivingEntity entity)) return;
-        int level = Utils.getPotatoEnchantmentLevel(entity, EnchantedPotato.EnchantedRegistries.ENDER_ENDER.get(), EarlySetupInitializer.equipmentSlotConfig.enderEnder);
+        int level = EnchantedPotato.getPotatoEnchantmentLevel(entity, EnchantedPotato.EnchantedRegistries.ENDER_ENDER.get(), EarlySetupInitializer.equipmentSlotConfig.enderEnder);
         if (level > 0) {
             if (attacked.getTags().stream().noneMatch(tag -> tag.startsWith(EarlySetupInitializer.MOD_ID + ".end."))) {
                 attacked.addTag(EarlySetupInitializer.MOD_ID + ".end." + level);
@@ -157,7 +155,7 @@ public class EnchantedEventFactory {
         Level level = entity.level();
         DamageSource source = event.getSource();
         if (level.isClientSide) return;
-        event.setAmount(event.getAmount() * (1.0F - ErrorSpore.ERROR_SPORE_LEVEL_MAP.get(Utils.getPotatoEnchantmentLevel(entity, EnchantedPotato.EnchantedRegistries.ERROR_SPORE.get(), EarlySetupInitializer.equipmentSlotConfig.errorSpore))));
+        event.setAmount(event.getAmount() * (1.0F - ErrorSpore.ERROR_SPORE_LEVEL_MAP.get(EnchantedPotato.getPotatoEnchantmentLevel(entity, EnchantedPotato.EnchantedRegistries.ERROR_SPORE.get(), EarlySetupInitializer.equipmentSlotConfig.errorSpore))));
         if (source.getDirectEntity() instanceof LivingEntity sourceDirectEntity) {
             int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(EnchantedPotato.EnchantedRegistries.ERROR_SPORE.get(), sourceDirectEntity);
             int creeperSpawnChecker = EnchantedPotato.ERROR_SPORE_CREEPER_SPAWN_CHECKER.get();
@@ -181,20 +179,20 @@ public class EnchantedEventFactory {
         DamageSource damageSource = event.getSource();
         Entity sourceEntity = damageSource.getEntity();
         Entity sourceDirectEntity = damageSource.getDirectEntity();
-        if (sourceDirectEntity instanceof LivingEntity source && sourceEntity != null && Utils.hasPotatoEnchantmentEquipped(source, EarlySetupInitializer.equipmentSlotConfig.flameCross, FlameCross.PATH)) {
+        if (sourceDirectEntity instanceof LivingEntity source && sourceEntity != null && EnchantedPotato.hasPotatoEnchantmentEquipped(source, EarlySetupInitializer.equipmentSlotConfig.flameCross, FlameCross.PATH)) {
             if (EnchantedPotato.FLAME_CROSS_IGNITE_OWNER_ON_ATTACKING.get()) ((IEntity)source).ep$setTicksOnFire(EnchantedPotato.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_OWNER.get());
             if (sourceDirectEntity.getStringUUID().equals(sourceEntity.getStringUUID())) {
-                if (Utils.getRandom().nextDouble(0.00, 1.00) < EnchantedPotato.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING.get()) {
+                if (EnchantedPotato.getRandom().nextDouble(0.00, 1.00) < EnchantedPotato.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING.get()) {
                     ((IEntity)entity).ep$setTicksOnFire(EnchantedPotato.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET.get());
                 }
             } else {
-                if (Utils.getRandom().nextDouble(0.00, 1.00) < EnchantedPotato.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING.get()) {
+                if (EnchantedPotato.getRandom().nextDouble(0.00, 1.00) < EnchantedPotato.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING.get()) {
                     ((IEntity)entity).ep$setTicksOnFire(EnchantedPotato.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET.get());
                 }
             }
             if (entity.isOnFire()) event.setAmount(event.getAmount() * EnchantedPotato.FLAME_CROSS_DAMAGE_MULTIPLIER_ON_IGNITED_TARGET.get().floatValue());
         }
-        if (Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.flameCross, FlameCross.PATH) && damageSource.is(DamageTypeTags.IS_FIRE)) {
+        if (EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.flameCross, FlameCross.PATH) && damageSource.is(DamageTypeTags.IS_FIRE)) {
             event.setAmount(event.getAmount() * EnchantedPotato.FLAME_CROSS_FIRE_DAMAGE_MULTIPLIER_ON_IGNITED_OWNER.get().floatValue());
         }
     }
@@ -204,7 +202,7 @@ public class EnchantedEventFactory {
         LivingEntity entity = event.getEntity();
         double y = entity.getY();
         AttributeInstance attributeInstance = entity.getAttribute(Attributes.ARMOR);
-        if (attributeInstance == null || y >= 50 || entity.level().isClientSide || !Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.gaiaBlessing, GaiaBlessing.PATH)) return;
+        if (attributeInstance == null || y >= 50 || entity.level().isClientSide || !EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.gaiaBlessing, GaiaBlessing.PATH)) return;
         AttributeModifier attributeModifier = attributeInstance.getModifier(GaiaBlessing.MODIFIER_UUID);
         if (attributeModifier == null) return;
         ((IAttributeModifier)attributeModifier).ep$setAmount(50.00 - y);
@@ -220,7 +218,7 @@ public class EnchantedEventFactory {
 
     static void handleHuaJin(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity.level().isClientSide() || !Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.huaJin, HuaJin.PATH)) return;
+        if (entity.level().isClientSide() || !EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.huaJin, HuaJin.PATH)) return;
         float amount = event.getAmount();
         float health = entity.getHealth();
         float huaJin = EnchantedPotato.HUA_JIN_TRIGGER_DAMAGE_PERCENTAGE.get().floatValue();
@@ -234,7 +232,7 @@ public class EnchantedEventFactory {
         LivingEntity entity = event.getEntity();
         if (event.getSource().getDirectEntity() instanceof ServerPlayer player && !entity.level().isClientSide()) {
             if (player.getStats().getValue(Stats.ENTITY_KILLED.get(entity.getType())) < EnchantedPotato.LORA_TRAINER_KILL_COUNTS_REQUIREMENT.get()) return;
-            if (Utils.hasPotatoEnchantmentEquipped(player, EarlySetupInitializer.equipmentSlotConfig.loraTrainer, LoRATrainer.PATH)) {
+            if (EnchantedPotato.hasPotatoEnchantmentEquipped(player, EarlySetupInitializer.equipmentSlotConfig.loraTrainer, LoRATrainer.PATH)) {
                 event.setAmount((EnchantedPotato.LORA_TRAINER_DAMAGE_BONUS.get().floatValue() + 1.0F) * event.getAmount());
             }
         }
@@ -244,7 +242,7 @@ public class EnchantedEventFactory {
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide) return;
         AttributeInstance digSpeedAttribute = entity.getAttribute(Attributes.ATTACK_SPEED);
-        if (entity.getY() > EnchantedPotato.MARK_FROM_THE_BENEATH_VALID_Y.get() || event.isCanceled() || digSpeedAttribute == null || digSpeedAttribute.hasModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER) || !(entity.getUseItem().getItem() instanceof PickaxeItem) || !Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.markFromTheBeneath, MarkFromTheBeneath.PATH)) {
+        if (entity.getY() > EnchantedPotato.MARK_FROM_THE_BENEATH_VALID_Y.get() || event.isCanceled() || digSpeedAttribute == null || digSpeedAttribute.hasModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER) || !(entity.getUseItem().getItem() instanceof PickaxeItem) || !EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.markFromTheBeneath, MarkFromTheBeneath.PATH)) {
             if (digSpeedAttribute != null) digSpeedAttribute.removeModifier(MarkFromTheBeneath.DIG_SPEED_MODIFIER_UUID);
             return;
         }
@@ -255,7 +253,7 @@ public class EnchantedEventFactory {
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide) return;
         DamageSource damageSource = event.getSource();
-        if (damageSource.getDirectEntity() instanceof LivingEntity source && entity.getArmorValue() >= EnchantedPotato.MINE_CARVE_VALID_ARMOR_VALUE.get() && Utils.hasPotatoEnchantmentEquipped(source, EarlySetupInitializer.equipmentSlotConfig.mineCarve, MineCarve.PATH)) {
+        if (damageSource.getDirectEntity() instanceof LivingEntity source && entity.getArmorValue() >= EnchantedPotato.MINE_CARVE_VALID_ARMOR_VALUE.get() && EnchantedPotato.hasPotatoEnchantmentEquipped(source, EarlySetupInitializer.equipmentSlotConfig.mineCarve, MineCarve.PATH)) {
             AttributeInstance armorValue = entity.getAttribute(Attributes.ARMOR);
             if (armorValue == null || armorValue.hasModifier(MineCarve.ARMOR_VALUE_MODIFIER)) return;
             armorValue.addTransientModifier(MineCarve.ARMOR_VALUE_MODIFIER);
@@ -331,7 +329,7 @@ public class EnchantedEventFactory {
             double x = entity.getX();
             double y = entity.getY();
             double z = entity.getZ();
-            if (Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.rippleOfDeath, RippleOfDeath.PATH)) {
+            if (EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.rippleOfDeath, RippleOfDeath.PATH)) {
                 for (Monster monster : level.getEntitiesOfClass(Monster.class, new AABB(x - Constants.rippleOfDeathX, y - Constants.rippleOfDeathY, z - Constants.rippleOfDeathZ, x + Constants.rippleOfDeathX, y + Constants.rippleOfDeathY, z + Constants.rippleOfDeathZ))) {
                     monster.hurt(monster.level().damageSources().generic(), EnchantedPotato.RIPPLE_OF_DEATH_EXTRA_DAMAGE.get().floatValue());
                 }
@@ -342,7 +340,7 @@ public class EnchantedEventFactory {
     static void handleRunLikeHell(LivingHurtEvent event) {
         LivingEntity attacked = event.getEntity();
         if (attacked.level().isClientSide) return;
-        if (!event.isCanceled() && Utils.hasPotatoEnchantmentEquipped(attacked, EarlySetupInitializer.equipmentSlotConfig.runLikeHell, RunLikeHell.PATH) && ((Float) attacked.getHealth()).doubleValue() - ((Float) event.getAmount()).doubleValue() < ((Float) attacked.getMaxHealth()).doubleValue() * EnchantedPotato.RUN_LIKE_HELL_VALID_MIN_HEALTH.get()) {
+        if (!event.isCanceled() && EnchantedPotato.hasPotatoEnchantmentEquipped(attacked, EarlySetupInitializer.equipmentSlotConfig.runLikeHell, RunLikeHell.PATH) && ((Float) attacked.getHealth()).doubleValue() - ((Float) event.getAmount()).doubleValue() < ((Float) attacked.getMaxHealth()).doubleValue() * EnchantedPotato.RUN_LIKE_HELL_VALID_MIN_HEALTH.get()) {
             attacked.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, EnchantedPotato.RUN_LIKE_HELL_INVISIBILITY_DURATION.get()));
             attacked.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, EnchantedPotato.RUN_LIKE_HELL_MOVEMENT_SPEED_DURATION.get(), EnchantedPotato.RUN_LIKE_HELL_MOVEMENT_SPEED_AMPLIFIER.get()));
             attacked.addTag(EarlySetupInitializer.MOD_ID + ".blinder");
@@ -360,7 +358,7 @@ public class EnchantedEventFactory {
 
     static void handleShieldBladeCommendationOnShieldBlock(ShieldBlockEvent event) {
         LivingEntity entity = event.getEntity();
-        if (!event.isCanceled() && !entity.level().isClientSide && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.shieldBladeCommendation, ShieldBladeCommendation.PATH)) {
+        if (!event.isCanceled() && !entity.level().isClientSide && EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.shieldBladeCommendation, ShieldBladeCommendation.PATH)) {
             entity.addEffect(new MobEffectInstance(CounterattackMoment.INSTANCE, 40, 0));
             entity.addTag(EarlySetupInitializer.MOD_ID + ".counter_attacker");
         }
@@ -376,14 +374,14 @@ public class EnchantedEventFactory {
 
     static void handleThisIsLeopardOnLivingAttack(LivingHurtEvent event) {
         DamageSource source = event.getSource();
-        if (source.getDirectEntity() instanceof LivingEntity entity && entity.getY() > 95.00 && Utils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH)) {
+        if (source.getDirectEntity() instanceof LivingEntity entity && entity.getY() > 95.00 && EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH)) {
             event.setAmount(event.getAmount() * EnchantedPotato.THIS_IS_LEOPARD_DAMAGE_MULTIPLIER.get());
         }
     }
 
     static void handleThisIsLeopardOnLivingChangeTarget(LivingChangeTargetEvent event) {
         LivingEntity target = event.getOriginalTarget();
-        if (target.getY() > EnchantedPotato.THIS_IS_LEOPARD_VALID_HEIGHT.get() && Utils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH) && Utils.getRandom().nextDouble(0.00,1.00) < EnchantedPotato.THIS_IS_LEOPARD_TARGET_MISS_CHANCE.get()) {
+        if (target.getY() > EnchantedPotato.THIS_IS_LEOPARD_VALID_HEIGHT.get() && EnchantedPotato.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH) && EnchantedPotato.getRandom().nextDouble(0.00,1.00) < EnchantedPotato.THIS_IS_LEOPARD_TARGET_MISS_CHANCE.get()) {
             event.setCanceled(true);
         }
     }

@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -14,7 +14,7 @@ public class SoftTouch extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.softTouch),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.softTouch),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.softTouch)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.softTouch)
         );
     }
 

@@ -3,8 +3,7 @@ package com.teampotato.enchantedpotato.mixin.blessing_of_the_nature;
 import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.util.Constants;
-import com.teampotato.enchantedpotato.util.Utils;
+import com.teampotato.enchantedpotato.Constants;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,11 +33,11 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
                     double d1 = monster.getX() - this.getX();
                     double d0 = monster.getZ() - this.getZ();
                     while (d1 * d1 + d0 * d0 < 1.0E-4) {
-                        d1 = (Utils.getRandom().nextDouble() - Utils.getRandom().nextDouble()) * 0.01;
-                        d0 = (Utils.getRandom().nextDouble() - Utils.getRandom().nextDouble()) * 0.01;
+                        d1 = (EnchantedPotato.getRandom().nextDouble() - EnchantedPotato.getRandom().nextDouble()) * 0.01;
+                        d0 = (EnchantedPotato.getRandom().nextDouble() - EnchantedPotato.getRandom().nextDouble()) * 0.01;
                     }
                     monster.knockback(EnchantedPotato.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_STRENGTH.get(), d1, d0);
-                    monster.hurt(monster.level().damageSources().generic(), Utils.getRandom().nextFloat(EnchantedPotato.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE.get().floatValue(), EnchantedPotato.BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE.get().floatValue()));
+                    monster.hurt(monster.level().damageSources().generic(), EnchantedPotato.getRandom().nextFloat(EnchantedPotato.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE.get().floatValue(), EnchantedPotato.BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE.get().floatValue()));
                 }
             }
         }

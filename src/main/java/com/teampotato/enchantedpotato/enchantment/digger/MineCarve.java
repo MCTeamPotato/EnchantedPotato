@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.digger;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -19,7 +19,7 @@ public class MineCarve extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.mineCarve),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.mineCarve),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.mineCarve)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.mineCarve)
         );
     }
 

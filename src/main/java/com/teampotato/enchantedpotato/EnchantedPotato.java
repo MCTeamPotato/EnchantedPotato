@@ -29,11 +29,18 @@ import com.teampotato.enchantedpotato.enchantment.trident.Missile;
 import com.teampotato.enchantedpotato.enchantment.trident.Triback;
 import com.teampotato.enchantedpotato.enchantment.weapon.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Constants;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
@@ -43,8 +50,10 @@ import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Mod(EarlySetupInitializer.MOD_ID)
 public final class EnchantedPotato {
@@ -263,6 +272,49 @@ public final class EnchantedPotato {
         EnchantedEventFactory.setupEvents(bus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DETAILS_CONFIG, EarlySetupInitializer.MOD_ID + "/details.toml");
         EarlySetupInitializer.LOGGER.info("Oh, potato, I'm enchanted by you.");
+    }
+
+    public static @NotNull List<NeutralMob> getNeutralMobs(AABB area, @NotNull ServerLevel level) {
+        List<NeutralMob> list = new ObjectArrayList<>();
+        for (Entity entity : level.getEntitiesOfClass(PathfinderMob.class, area)) {
+            if (entity instanceof NeutralMob) list.add((NeutralMob) entity);
+        }
+        return list;
+    }
+
+    public static EquipmentSlot @NotNull [] getSlots(String @NotNull [] enchantmentSlots) {
+        EquipmentSlot[] slots = new EquipmentSlot[enchantmentSlots.length];
+        for (int i = 0; i < enchantmentSlots.length; i++) {
+            slots[i] = EquipmentSlot.valueOf(enchantmentSlots[i]);
+        }
+        return slots;
+    }
+
+    public static int getPotatoEnchantmentLevel(LivingEntity entity, Enchantment enchantment, String @NotNull [] equipmentSlots) {
+        if (entity == null) return 0;
+        for (String slot : equipmentSlots) {
+            ItemStack stack = entity.getItemBySlot(EquipmentSlot.valueOf(slot));
+            return stack.getEnchantmentLevel(enchantment);
+        }
+        return 0;
+    }
+
+    public static boolean hasPotatoEnchantmentEquipped(LivingEntity entity, String @NotNull [] enchantmentEquipmentSlots, String enchantmentName) {
+        if (entity == null) return false;
+        for (String slot : enchantmentEquipmentSlots) {
+            ItemStack stack =  entity.getItemBySlot(EquipmentSlot.valueOf(slot));
+            for (Tag tag : stack.getEnchantmentTags()) {
+                if (tag instanceof CompoundTag compoundTag) {
+                    ResourceLocation id = ResourceLocation.tryParse(compoundTag.getString("id"));
+                    if (id != null && BuiltInRegistries.ENCHANTMENT.get(id) != null && id.getPath().equals(enchantmentName)) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static ThreadLocalRandom getRandom() {
+        return ThreadLocalRandom.current();
     }
 
     public static final class EnchantedRegistries {

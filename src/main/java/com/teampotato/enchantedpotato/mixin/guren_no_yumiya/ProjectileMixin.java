@@ -3,7 +3,7 @@ package com.teampotato.enchantedpotato.mixin.guren_no_yumiya;
 import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.IEntity;
-import com.teampotato.enchantedpotato.util.Constants;
+import com.teampotato.enchantedpotato.Constants;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;

@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.api;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.api.ILevel;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.level.Level;
@@ -18,7 +18,7 @@ public abstract class LevelMixin implements ILevel {
     @Override
     public List<NeutralMob> ep$getNeutralMobs(AABB area) {
         if (ep$getThis() instanceof ServerLevel serverLevel) {
-            return Utils.getNeutralMobs(area, serverLevel);
+            return EnchantedPotato.getNeutralMobs(area, serverLevel);
         } else {
             return Collections.emptyList();
         }

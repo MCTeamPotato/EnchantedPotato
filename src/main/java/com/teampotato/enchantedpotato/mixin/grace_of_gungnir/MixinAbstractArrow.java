@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.grace_of_gungnir;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.enchantment.bow.GraceOfGungnir;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -47,7 +47,7 @@ public abstract class MixinAbstractArrow extends Entity {
         if (level.isClientSide) return;
         if (!this.ep$graceOfGungnirTracked) {
             this.ep$graceOfGungnirTracked = true;
-            if (!(ep$getThis().getOwner() instanceof LivingEntity owner) || this.getTags().contains(EarlySetupInitializer.MOD_ID + ".newArrow") || !Utils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir, GraceOfGungnir.PATH)) return;
+            if (!(ep$getThis().getOwner() instanceof LivingEntity owner) || this.getTags().contains(EarlySetupInitializer.MOD_ID + ".newArrow") || !EnchantedPotato.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir, GraceOfGungnir.PATH)) return;
             BlockPos arrowBlockPos = this.blockPosition();
             AABB arrowBoundingBox = this.getBoundingBox().expandTowards(this.getDeltaMovement());
             ChunkPos arrowChunkPos = level.getChunk(arrowBlockPos.getX(), arrowBlockPos.getY()).getPos();

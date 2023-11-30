@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -14,7 +14,7 @@ public class BlackElegance extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.blackElegance),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.blackElegance),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.blackElegance)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.blackElegance)
         );
     }
 

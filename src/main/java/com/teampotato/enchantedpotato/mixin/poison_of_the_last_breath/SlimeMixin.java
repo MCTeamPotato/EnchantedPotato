@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.poison_of_the_last_breath;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.enchantment.weapon.PoisonOfTheLastBreath;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -21,7 +21,7 @@ public abstract class SlimeMixin extends Mob {
 
     @Inject(method = "remove", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Slime;isDeadOrDying()Z", shift = At.Shift.AFTER), cancellable = true)
     private void onRemove(Entity.RemovalReason reason, CallbackInfo ci) {
-        if (Utils.hasPotatoEnchantmentEquipped(this.getLastHurtByMob(), EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (EnchantedPotato.hasPotatoEnchantmentEquipped(this.getLastHurtByMob(), EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
             super.remove(reason);
         }

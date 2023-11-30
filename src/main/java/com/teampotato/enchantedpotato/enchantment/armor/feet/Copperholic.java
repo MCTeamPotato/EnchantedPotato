@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -14,7 +14,7 @@ public class Copperholic extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.copperholic),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.copperholic),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.copperholic)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.copperholic)
         );
     }
 
