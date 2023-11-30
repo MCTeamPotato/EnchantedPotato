@@ -271,7 +271,6 @@ public final class EnchantedPotato {
         bus.addListener((FMLCommonSetupEvent event) -> event.enqueueWork(Constants::initConstants));
         EnchantedEventFactory.setupEvents(bus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DETAILS_CONFIG, EarlySetupInitializer.MOD_ID + "/details.toml");
-        EarlySetupInitializer.LOGGER.info("Oh, potato, I'm enchanted by you.");
     }
 
     public static @NotNull List<NeutralMob> getNeutralMobs(AABB area, @NotNull ServerLevel level) {

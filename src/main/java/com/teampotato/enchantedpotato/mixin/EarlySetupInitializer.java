@@ -29,6 +29,7 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public EarlySetupInitializer() {
+        LOGGER.info("Oh, potato, I'm enchanted by you.");
         configDir = FMLLoader.getGamePath().resolve("config").toFile();
         configDir.mkdirs();
         potatoDir = new File(configDir, MOD_ID);
