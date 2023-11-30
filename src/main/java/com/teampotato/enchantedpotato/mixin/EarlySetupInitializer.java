@@ -1,6 +1,7 @@
 package com.teampotato.enchantedpotato.mixin;
 
 import com.teampotato.enchantedpotato.config.*;
+import net.neoforged.fml.loading.FMLLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +29,7 @@ public class EarlySetupInitializer implements IMixinConfigPlugin {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public EarlySetupInitializer() {
-        configDir = new File("./config");
+        configDir = FMLLoader.getGamePath().resolve("config").toFile();
         configDir.mkdirs();
         potatoDir = new File(configDir, MOD_ID);
         potatoDir.mkdirs();
