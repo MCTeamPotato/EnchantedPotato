@@ -5,8 +5,7 @@ import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILevel;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
 import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
-import com.teampotato.enchantedpotato.util.Constants;
-import com.teampotato.enchantedpotato.util.Utils;
+import com.teampotato.enchantedpotato.Constants;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -38,7 +37,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
     private void onEat(@NotNull Level level, ItemStack food, CallbackInfoReturnable<ItemStack> cir) {
         if (!level.isNight()) return;
         FoodProperties foodProperties = food.getFoodProperties((LivingEntity) (Object) this);
-        if (!Utils.hasPotatoEnchantmentEquipped((LivingEntity) (Object) this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH) || foodProperties == null || foodProperties.isMeat()) return;
+        if (!EnchantedPotato.hasPotatoEnchantmentEquipped((LivingEntity) (Object) this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH) || foodProperties == null || foodProperties.isMeat()) return;
         cir.setReturnValue(food);
     }
 

@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -25,7 +25,7 @@ public class ArmorBreaking extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.armorBreaking),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.armorBreaking),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.armorBreaking)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.armorBreaking)
         );
     }
 

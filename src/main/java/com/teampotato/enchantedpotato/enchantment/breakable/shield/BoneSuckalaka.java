@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.shield;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,7 @@ public class BoneSuckalaka extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.boneSuckalaka),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.boneSuckalaka),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.boneSuckalaka)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.boneSuckalaka)
         );
     }
 

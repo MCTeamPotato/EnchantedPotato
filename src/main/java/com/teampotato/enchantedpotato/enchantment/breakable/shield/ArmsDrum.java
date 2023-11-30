@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.shield;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,7 @@ public class ArmsDrum extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.armsDrum),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.armsDrum),
-                Utils.getSlots(EarlySetupInitializer.equipmentSlotConfig.armsDrum)
+                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.armsDrum)
         );
     }
 
