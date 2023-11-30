@@ -1,5 +1,5 @@
 package com.teampotato.enchantedpotato.api;
 
-public interface EnderTpContainer {
+public interface EnderTeleporter {
     boolean ep$cantEnderTp();
 }

@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.api;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,7 +31,7 @@ public class LivingEntityMixin implements ILivingEntity, ILivingEntity.OceanHued
 
     @Override
     public boolean ep$shouldTickDyingOfLight() {
-        return this.ep$getDyingOfLightTickCount() % DetailsConfig.DYING_OF_LIGHT_DETECTION_TICK_INTERVAL.get() == 0;
+        return this.ep$getDyingOfLightTickCount() % EnchantedPotato.DYING_OF_LIGHT_DETECTION_TICK_INTERVAL.get() == 0;
     }
 
     @Override
@@ -46,12 +46,12 @@ public class LivingEntityMixin implements ILivingEntity, ILivingEntity.OceanHued
 
     @Override
     public boolean ep$shouldTickNatureBlessed() {
-        return this.ep$getNatureBlessedTickCount() % DetailsConfig.BLESSING_OF_THE_NATURE_HEALING_INTERVAL_TICK.get() == 0;
+        return this.ep$getNatureBlessedTickCount() % EnchantedPotato.BLESSING_OF_THE_NATURE_HEALING_INTERVAL_TICK.get() == 0;
     }
 
     @Override
     public boolean ep$ShouldTickUntouchable() {
-        return this.ep$untouchableTickCount % DetailsConfig.UNTOUCHABLE_COOL_DOWN.get() == 0;
+        return this.ep$untouchableTickCount % EnchantedPotato.UNTOUCHABLE_COOL_DOWN.get() == 0;
     }
 
     @Override

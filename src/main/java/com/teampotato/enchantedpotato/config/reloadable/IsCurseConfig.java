@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.config.json.reloadable;
+package com.teampotato.enchantedpotato.config.reloadable;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -8,16 +8,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 
-public class IsTreasureOnlyConfig {
-    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "isTreasureOnly.json");
+public class IsCurseConfig {
+    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "isCurse.json");
 
-    public IsTreasureOnlyConfig() {
+    public IsCurseConfig() {
         if (!FILE.exists()) {
             try {
                 FileWriter writer = writeFile();
                 writer.close();
             } catch (Exception e) {
-                EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isTreasureOnly.json");
+                EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isCurse.json");
                 
             }
         }
@@ -25,9 +25,9 @@ public class IsTreasureOnlyConfig {
         readConfig(FILE);
     }
 
-    public static void readConfig(File isTreasureOnlyConfig) {
+    public static void readConfig(File isCurseConfig) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(isTreasureOnlyConfig));
+            BufferedReader reader = new BufferedReader(new FileReader(isCurseConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
             runLikeHell = configObject.get("runLikeHell").getAsBoolean();
             blackParade = configObject.get("blackParade").getAsBoolean();
@@ -74,7 +74,7 @@ public class IsTreasureOnlyConfig {
             wellOfBlood  = configObject.get("wellOfBlood").getAsBoolean();
             missile = configObject.get("missile").getAsBoolean();
         } catch (Exception e) {
-            EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isTreasureOnly.json");
+            EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isCurse.json");
             
         }
     }
@@ -86,7 +86,7 @@ public class IsTreasureOnlyConfig {
         defaultConfig.addProperty("blackParade", false);
         defaultConfig.addProperty("graceOfGungnir", false);
         defaultConfig.addProperty("thisIsLeopard", false);
-        defaultConfig.addProperty("dyingOfLight", false);
+        defaultConfig.addProperty("dyingOfLight", true);
         defaultConfig.addProperty("pressurizedCollapse", false);
         defaultConfig.addProperty("errorSpore", false);
         defaultConfig.addProperty("untouchable", false);
@@ -126,7 +126,7 @@ public class IsTreasureOnlyConfig {
         defaultConfig.addProperty("copperholic", false);
         defaultConfig.addProperty("wellOfBlood", false);
         defaultConfig.addProperty("missile", false);
-        FileWriter writer = new FileWriter(IsTreasureOnlyConfig.FILE);
+        FileWriter writer = new FileWriter(IsCurseConfig.FILE);
         writer.write(defaultConfig.toString());
         return writer;
     }

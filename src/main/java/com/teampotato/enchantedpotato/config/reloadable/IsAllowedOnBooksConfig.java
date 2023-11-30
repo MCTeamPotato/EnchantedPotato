@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.config.json.reloadable;
+package com.teampotato.enchantedpotato.config.reloadable;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

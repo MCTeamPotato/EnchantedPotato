@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.mixin.wonder_egg_priority;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.enchantment.armor.head.WonderEggPriority;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
@@ -25,7 +25,7 @@ public abstract class ThrownEggMixin extends ThrowableItemProjectile {
         Entity owner = this.getOwner();
         return owner instanceof LivingEntity &&
                 Utils.hasPotatoEnchantmentEquipped((LivingEntity) owner, EarlySetupInitializer.equipmentSlotConfig.wonderEggPriority, WonderEggPriority.PATH) ?
-                DetailsConfig.WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE.get().floatValue() :
+                EnchantedPotato.WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE.get().floatValue() :
                 constant;
     }
 }

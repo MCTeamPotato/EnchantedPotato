@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.run_like_hell;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
         if (this.removeTag(EarlySetupInitializer.MOD_ID + ".tickCountTrigger")) this.ep$setShouldTrackRunLikeHell(true);
         if (this.ep$shouldTrackRunLikeHell()) {
             this.ep$setRunLikeHellTickCount(this.ep$getRunLikeHellTickCount() + 1);
-            if (this.ep$getRunLikeHellTickCount() == DetailsConfig.RUN_LIKE_HELL_INVISIBILITY_DURATION.get()) {
+            if (this.ep$getRunLikeHellTickCount() == EnchantedPotato.RUN_LIKE_HELL_INVISIBILITY_DURATION.get()) {
                 this.removeTag(EarlySetupInitializer.MOD_ID + ".blinder");
                 this.ep$setRunLikeHellTickCount(0);
                 this.ep$setShouldTrackRunLikeHell(false);

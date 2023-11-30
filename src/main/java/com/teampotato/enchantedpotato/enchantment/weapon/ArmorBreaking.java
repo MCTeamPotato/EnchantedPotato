@@ -1,6 +1,6 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
-import com.teampotato.enchantedpotato.config.json.reloadable.*;
+import com.teampotato.enchantedpotato.config.reloadable.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.jei;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.registry.ModEnchantments;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -33,7 +33,7 @@ public class EnchantedInfoPlugin implements IModPlugin {
     @Override
     public void registerRecipes(@NotNull IRecipeRegistration registration) {
         if (JEI_INFO_MAP.isEmpty()) {
-            for (DeferredHolder<Enchantment, ? extends Enchantment> registryObject : ModEnchantments.ENCHANTMENTS.getEntries()) {
+            for (DeferredHolder<Enchantment, ? extends Enchantment> registryObject : EnchantedPotato.EnchantedRegistries.ENCHANTMENTS.getEntries()) {
                 JEI_INFO_MAP.put(registryObject.get(), "jei." + registryObject.get().getDescriptionId().replace("enchantment.", "") + ".info");
             }
         }

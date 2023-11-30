@@ -1,9 +1,9 @@
 package com.teampotato.enchantedpotato.mixin.dying_of_light;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILevel;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
 import com.teampotato.enchantedpotato.util.Constants;
 import com.teampotato.enchantedpotato.util.Utils;
@@ -50,7 +50,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
                 this.ep$setDyingOfLightTickCount(this.ep$getDyingOfLightTickCount() + 1);
                 if (ep$shouldTickDyingOfLight()) {
                     AABB box = this.getBoundingBox().expandTowards(Constants.dyingOfLightX, Constants.dyingOfLightY, Constants.dyingOfLightZ);
-                    for (AbstractVillager villager : serverLevel.getEntitiesOfClass(AbstractVillager.class, box)) villager.setHealth(Math.max(villager.getHealth() - DetailsConfig.DYING_OF_LIGHT_VILLAGER_HURT_DAMAGE.get().floatValue(), 0.0F));
+                    for (AbstractVillager villager : serverLevel.getEntitiesOfClass(AbstractVillager.class, box)) villager.setHealth(Math.max(villager.getHealth() - EnchantedPotato.DYING_OF_LIGHT_VILLAGER_HURT_DAMAGE.get().floatValue(), 0.0F));
                     for (NeutralMob entity : ((ILevel) serverLevel).ep$getNeutralMobs(box)) {
                         if (entity instanceof Mob mob) mob.getBrain().setMemory(MemoryModuleType.ATTACK_TARGET, Optional.of((LivingEntity) (Object) this));
                         entity.setTarget((LivingEntity) (Object) this);

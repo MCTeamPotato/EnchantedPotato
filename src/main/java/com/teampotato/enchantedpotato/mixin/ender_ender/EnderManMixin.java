@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.ender_ender;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.api.EnderTpContainer;
-import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
+import com.teampotato.enchantedpotato.api.EnderTeleporter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Monster;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EnderMan.class)
-public abstract class EnderManMixin extends Monster implements EnderTpContainer {
+public abstract class EnderManMixin extends Monster implements EnderTeleporter {
     @Unique
     private int ep$cantTpTicks;
 
@@ -33,7 +33,7 @@ public abstract class EnderManMixin extends Monster implements EnderTpContainer 
                     break;
                 }
             }
-            if (!endTag.isEmpty()) this.ep$cantTpTicks = Integer.parseInt(endTag.split("\\.")[2]) * DetailsConfig.ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL.get();
+            if (!endTag.isEmpty()) this.ep$cantTpTicks = Integer.parseInt(endTag.split("\\.")[2]) * EnchantedPotato.ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL.get();
         } else {
             this.ep$cantTpTicks = this.ep$cantTpTicks - 1;
         }

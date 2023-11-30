@@ -1,8 +1,8 @@
 package com.teampotato.enchantedpotato.mixin.blessing_of_the_nature;
 
+import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
-import com.teampotato.enchantedpotato.config.toml.DetailsConfig;
 import com.teampotato.enchantedpotato.util.Constants;
 import com.teampotato.enchantedpotato.util.Utils;
 import net.minecraft.world.entity.Entity;
@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
         if (this.getTags().contains(EarlySetupInitializer.MOD_ID + ".natureBlessed")) {
             this.ep$setNatureBlessedTickCount(this.ep$getNatureBlessedTickCount() + 1);
             if (this.ep$shouldTickNatureBlessed()) {
-                this.heal(DetailsConfig.BLESSING_OF_THE_NATURE_HEALING_AMOUNT.get().floatValue());
+                this.heal(EnchantedPotato.BLESSING_OF_THE_NATURE_HEALING_AMOUNT.get().floatValue());
                 for (Monster monster : this.level().getEntitiesOfClass(Monster.class, this.getBoundingBox().expandTowards(Constants.blessingOfTheNatureX, Constants.blessingOfTheNatureY, Constants.blessingOfTheNatureZ))) {
                     double d1 = monster.getX() - this.getX();
                     double d0 = monster.getZ() - this.getZ();
@@ -37,8 +37,8 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
                         d1 = (Utils.getRandom().nextDouble() - Utils.getRandom().nextDouble()) * 0.01;
                         d0 = (Utils.getRandom().nextDouble() - Utils.getRandom().nextDouble()) * 0.01;
                     }
-                    monster.knockback(DetailsConfig.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_STRENGTH.get(), d1, d0);
-                    monster.hurt(monster.level().damageSources().generic(), Utils.getRandom().nextFloat(DetailsConfig.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE.get().floatValue(), DetailsConfig.BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE.get().floatValue()));
+                    monster.knockback(EnchantedPotato.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_STRENGTH.get(), d1, d0);
+                    monster.hurt(monster.level().damageSources().generic(), Utils.getRandom().nextFloat(EnchantedPotato.BLESSING_OF_THE_NATURE_MIN_KNOCK_BACK_DAMAGE.get().floatValue(), EnchantedPotato.BLESSING_OF_THE_NATURE_MAX_KNOCK_BACK_DAMAGE.get().floatValue()));
                 }
             }
         }

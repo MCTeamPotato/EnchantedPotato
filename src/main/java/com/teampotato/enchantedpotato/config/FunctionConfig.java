@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.config.json;
+package com.teampotato.enchantedpotato.config;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

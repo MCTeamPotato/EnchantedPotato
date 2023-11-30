@@ -1,6 +1,6 @@
 package com.teampotato.enchantedpotato.mixin;
 
-import com.teampotato.enchantedpotato.config.json.*;
+import com.teampotato.enchantedpotato.config.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +15,7 @@ import java.util.Set;
 public class EarlySetupInitializer implements IMixinConfigPlugin {
 
     public static final String MOD_ID = "enchantedpotato";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger("EnchantedPotato");
     public static File configDir;
     public static File potatoDir;
     public static File attributesDir;
