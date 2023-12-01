@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class PoisonOfTheLastBreath extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.poisonOfTheLastBreath),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.poisonOfTheLastBreath),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath)
         );
     }
 

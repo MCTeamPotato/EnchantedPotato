@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,7 @@ public class RippleOfDeath extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.rippleOfDeath),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.rippleOfDeath),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.rippleOfDeath)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.rippleOfDeath)
         );
     }
 

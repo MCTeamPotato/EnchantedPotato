@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.digger;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class UniteStonesOfAll extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.uniteStonesOfAll),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.uniteStonesOfAll),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.uniteStonesOfAll)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.uniteStonesOfAll)
         );
     }
 

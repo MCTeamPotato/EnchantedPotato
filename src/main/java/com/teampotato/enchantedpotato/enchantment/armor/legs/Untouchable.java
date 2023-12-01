@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,7 @@ public class Untouchable extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.untouchable),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.untouchable),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.untouchable)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.untouchable)
         );
     }
     @Override

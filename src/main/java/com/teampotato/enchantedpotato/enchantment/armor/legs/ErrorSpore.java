@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.armor.legs;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import it.unimi.dsi.fastutil.ints.Int2FloatOpenHashMap;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +18,7 @@ public class ErrorSpore extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.errorSpore),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.errorSpore),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.errorSpore)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.errorSpore)
         );
     }
 

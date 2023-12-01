@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.armor.chest;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class HuaJin extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.huaJin),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.huaJin),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.huaJin)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.huaJin)
         );
     }
 

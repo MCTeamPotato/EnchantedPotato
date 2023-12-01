@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.config.reloadable;
+package com.teampotato.enchantedpotato.config.attributes;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -8,16 +8,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 
-public class IsCurseConfig {
-    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "isCurse.json");
+public class CanApplyAtEnchantingTableConfig {
+    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "canApplyAtEnchantingTable.json");
 
-    public IsCurseConfig() {
+    public CanApplyAtEnchantingTableConfig() {
         if (!FILE.exists()) {
             try {
                 FileWriter writer = writeFile();
                 writer.close();
             } catch (Exception e) {
-                EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isCurse.json");
+                EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create canApplyAtEnchantingTable.json");
                 
             }
         }
@@ -25,9 +25,9 @@ public class IsCurseConfig {
         readConfig(FILE);
     }
 
-    public static void readConfig(File isCurseConfig) {
+    public static void readConfig(File canApplyAtEnchantingTableConfig) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(isCurseConfig));
+            BufferedReader reader = new BufferedReader(new FileReader(canApplyAtEnchantingTableConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
             runLikeHell = configObject.get("runLikeHell").getAsBoolean();
             blackParade = configObject.get("blackParade").getAsBoolean();
@@ -74,64 +74,62 @@ public class IsCurseConfig {
             wellOfBlood  = configObject.get("wellOfBlood").getAsBoolean();
             missile = configObject.get("missile").getAsBoolean();
         } catch (Exception e) {
-            EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isCurse.json");
-            
+            EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read canApplyAtEnchantingTable.json");
         }
     }
 
     @NotNull
     private static FileWriter writeFile() throws IOException {
         JsonObject defaultConfig = new JsonObject();
-        defaultConfig.addProperty("runLikeHell", false);
-        defaultConfig.addProperty("blackParade", false);
-        defaultConfig.addProperty("graceOfGungnir", false);
-        defaultConfig.addProperty("thisIsLeopard", false);
+        defaultConfig.addProperty("runLikeHell", true);
+        defaultConfig.addProperty("blackParade", true);
+        defaultConfig.addProperty("graceOfGungnir", true);
+        defaultConfig.addProperty("thisIsLeopard", true);
         defaultConfig.addProperty("dyingOfLight", true);
-        defaultConfig.addProperty("pressurizedCollapse", false);
-        defaultConfig.addProperty("errorSpore", false);
-        defaultConfig.addProperty("untouchable", false);
-        defaultConfig.addProperty("shieldBladeCommendation", false);
-        defaultConfig.addProperty("gaiaBlessing", false);
-        defaultConfig.addProperty("gurenNoYumiya", false);
-        defaultConfig.addProperty("boneSuckalaka", false);
-        defaultConfig.addProperty("loraTrainer", false);
-        defaultConfig.addProperty("rippleOfDeath", false);
-        defaultConfig.addProperty("poisonOfTheLastBreath", false);
-        defaultConfig.addProperty("huaJin", false);
-        defaultConfig.addProperty("wonderEggPriority", false);
-        defaultConfig.addProperty("markFromTheBeneath", false);
-        defaultConfig.addProperty("armorBreaking", false);
-        defaultConfig.addProperty("blessingOfTheNature", false);
-        defaultConfig.addProperty("caressingMoonlight", false);
-        defaultConfig.addProperty("flameCross", false);
-        defaultConfig.addProperty("oceanHued", false);
-        defaultConfig.addProperty("trueMan", false);
-        defaultConfig.addProperty("mineCarve", false);
-        defaultConfig.addProperty("uniteStonesOfAll", false);
-        defaultConfig.addProperty("wendingWatersSereneLotus", false);
-        defaultConfig.addProperty("kingOfRiding", false);
-        defaultConfig.addProperty("lawOfInertia", false);
-        defaultConfig.addProperty("shootingStar", false);
-        defaultConfig.addProperty("triback", false);
-        defaultConfig.addProperty("sniper", false);
-        defaultConfig.addProperty("musician", false);
-        defaultConfig.addProperty("enderEnder", false);
-        defaultConfig.addProperty("multiLoad", false);
-        defaultConfig.addProperty("blackElegance", false);
-        defaultConfig.addProperty("whiteInnocence", false);
-        defaultConfig.addProperty("armsDrum", false);
-        defaultConfig.addProperty("rickRod", false);
-        defaultConfig.addProperty("goldfishFireworks", false);
-        defaultConfig.addProperty("softTouch", false);
-        defaultConfig.addProperty("copperholic", false);
-        defaultConfig.addProperty("wellOfBlood", false);
-        defaultConfig.addProperty("missile", false);
-        FileWriter writer = new FileWriter(IsCurseConfig.FILE);
+        defaultConfig.addProperty("pressurizedCollapse", true);
+        defaultConfig.addProperty("errorSpore", true);
+        defaultConfig.addProperty("untouchable", true);
+        defaultConfig.addProperty("shieldBladeCommendation", true);
+        defaultConfig.addProperty("gaiaBlessing", true);
+        defaultConfig.addProperty("gurenNoYumiya", true);
+        defaultConfig.addProperty("boneSuckalaka", true);
+        defaultConfig.addProperty("loraTrainer", true);
+        defaultConfig.addProperty("rippleOfDeath", true);
+        defaultConfig.addProperty("poisonOfTheLastBreath", true);
+        defaultConfig.addProperty("huaJin", true);
+        defaultConfig.addProperty("wonderEggPriority", true);
+        defaultConfig.addProperty("markFromTheBeneath", true);
+        defaultConfig.addProperty("armorBreaking", true);
+        defaultConfig.addProperty("blessingOfTheNature", true);
+        defaultConfig.addProperty("caressingMoonlight", true);
+        defaultConfig.addProperty("flameCross", true);
+        defaultConfig.addProperty("oceanHued", true);
+        defaultConfig.addProperty("trueMan", true);
+        defaultConfig.addProperty("mineCarve", true);
+        defaultConfig.addProperty("uniteStonesOfAll", true);
+        defaultConfig.addProperty("wendingWatersSereneLotus", true);
+        defaultConfig.addProperty("kingOfRiding", true);
+        defaultConfig.addProperty("lawOfInertia", true);
+        defaultConfig.addProperty("shootingStar", true);
+        defaultConfig.addProperty("triback", true);
+        defaultConfig.addProperty("sniper", true);
+        defaultConfig.addProperty("musician", true);
+        defaultConfig.addProperty("enderEnder", true);
+        defaultConfig.addProperty("multiLoad", true);
+        defaultConfig.addProperty("blackElegance", true);
+        defaultConfig.addProperty("whiteInnocence", true);
+        defaultConfig.addProperty("armsDrum", true);
+        defaultConfig.addProperty("rickRod", true);
+        defaultConfig.addProperty("goldfishFireworks", true);
+        defaultConfig.addProperty("softTouch", true);
+        defaultConfig.addProperty("copperholic", true);
+        defaultConfig.addProperty("wellOfBlood", true);
+        defaultConfig.addProperty("missile", true);
+        FileWriter writer = new FileWriter(CanApplyAtEnchantingTableConfig.FILE);
         writer.write(defaultConfig.toString());
         return writer;
     }
 
-    
     public static boolean runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
     pressurizedCollapse, errorSpore, untouchable, shieldBladeCommendation,
     gaiaBlessing, gurenNoYumiya, boneSuckalaka, loraTrainer, rippleOfDeath, 

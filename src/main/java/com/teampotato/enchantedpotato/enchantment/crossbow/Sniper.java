@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.crossbow;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,7 @@ public class Sniper extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.sniper),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.sniper),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.sniper)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.sniper)
         );
     }
 

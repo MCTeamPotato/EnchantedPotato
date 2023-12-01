@@ -33,7 +33,7 @@ public abstract class EnderManMixin extends Monster implements EnderTeleporter {
                     break;
                 }
             }
-            if (!endTag.isEmpty()) this.ep$cantTpTicks = Integer.parseInt(endTag.split("\\.")[2]) * EnchantedPotato.ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL.get();
+            if (!endTag.isEmpty()) this.ep$cantTpTicks = Integer.parseInt(endTag.split("\\.")[2]) * EnchantedPotato.EnchantedConfig.ENDER_ENDER_TELEPORTATION_LIMIT_TICKS_PER_LEVEL.get();
         } else {
             this.ep$cantTpTicks = this.ep$cantTpTicks - 1;
         }

@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.armor.feet;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -17,7 +17,7 @@ public class RunLikeHell extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.runLikeHell),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.runLikeHell),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.runLikeHell)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.runLikeHell)
         );
     }
 

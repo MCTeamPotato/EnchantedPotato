@@ -21,7 +21,7 @@ public abstract class ThrownTridentMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V", at = @At("RETURN"))
     private void onInit(Level level, LivingEntity shooter, ItemStack stack, CallbackInfo ci) {
-        this.ep$isTriback = EnchantedPotato.hasPotatoEnchantmentEquipped(shooter, EarlySetupInitializer.equipmentSlotConfig.triback, Triback.PATH);
+        this.ep$isTriback = EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(shooter, EarlySetupInitializer.equipmentSlotConfig.triback, Triback.PATH);
     }
 
     @Inject(method = "getWaterInertia", at = @At("RETURN"), cancellable = true)

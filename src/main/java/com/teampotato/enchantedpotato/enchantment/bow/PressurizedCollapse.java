@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.bow;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,7 @@ public class PressurizedCollapse extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.pressurizedCollapse),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.pressurizedCollapse),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.pressurizedCollapse)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.pressurizedCollapse)
         );
     }
 

@@ -5,7 +5,6 @@ import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.ILevel;
 import com.teampotato.enchantedpotato.api.ILivingEntity;
 import com.teampotato.enchantedpotato.enchantment.armor.head.DyingOfLight;
-import com.teampotato.enchantedpotato.Constants;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -37,7 +36,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
     private void onEat(@NotNull Level level, ItemStack food, CallbackInfoReturnable<ItemStack> cir) {
         if (!level.isNight()) return;
         FoodProperties foodProperties = food.getFoodProperties((LivingEntity) (Object) this);
-        if (!EnchantedPotato.hasPotatoEnchantmentEquipped((LivingEntity) (Object) this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH) || foodProperties == null || foodProperties.isMeat()) return;
+        if (!EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped((LivingEntity) (Object) this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH) || foodProperties == null || foodProperties.isMeat()) return;
         cir.setReturnValue(food);
     }
 
@@ -48,8 +47,8 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
             if (level.isNight() && level instanceof ServerLevel serverLevel) {
                 this.ep$setDyingOfLightTickCount(this.ep$getDyingOfLightTickCount() + 1);
                 if (ep$shouldTickDyingOfLight()) {
-                    AABB box = this.getBoundingBox().expandTowards(Constants.dyingOfLightX, Constants.dyingOfLightY, Constants.dyingOfLightZ);
-                    for (AbstractVillager villager : serverLevel.getEntitiesOfClass(AbstractVillager.class, box)) villager.setHealth(Math.max(villager.getHealth() - EnchantedPotato.DYING_OF_LIGHT_VILLAGER_HURT_DAMAGE.get().floatValue(), 0.0F));
+                    AABB box = this.getBoundingBox().expandTowards(EnchantedPotato.Constants.dyingOfLightX, EnchantedPotato.Constants.dyingOfLightY, EnchantedPotato.Constants.dyingOfLightZ);
+                    for (AbstractVillager villager : serverLevel.getEntitiesOfClass(AbstractVillager.class, box)) villager.setHealth(Math.max(villager.getHealth() - EnchantedPotato.EnchantedConfig.DYING_OF_LIGHT_VILLAGER_HURT_DAMAGE.get().floatValue(), 0.0F));
                     for (NeutralMob entity : ((ILevel) serverLevel).ep$getNeutralMobs(box)) {
                         if (entity instanceof Mob mob) mob.getBrain().setMemory(MemoryModuleType.ATTACK_TARGET, Optional.of((LivingEntity) (Object) this));
                         entity.setTarget((LivingEntity) (Object) this);

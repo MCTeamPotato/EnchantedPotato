@@ -26,7 +26,7 @@ public abstract class EntityMixin {
 
     @Inject(method = "updateFluidHeightAndDoFluidPushing()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;isPushedByFluid()Z", shift = At.Shift.AFTER))
     private void onUpdateFluidPushingPre(CallbackInfo ci) {
-        if (ep$getThis() instanceof LivingEntity entity) this.ep$cantPush = EnchantedPotato.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.wendingWatersSereneLotus, WendingWatersSereneLotus.PATH);
+        if (ep$getThis() instanceof LivingEntity entity) this.ep$cantPush = EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(entity, EarlySetupInitializer.equipmentSlotConfig.wendingWatersSereneLotus, WendingWatersSereneLotus.PATH);
     }
 
     @Redirect(method = "updateFluidHeightAndDoFluidPushing()V", remap = false, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;isPushedByFluid(Lnet/neoforged/neoforge/fluids/FluidType;)Z"))

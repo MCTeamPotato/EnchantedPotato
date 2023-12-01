@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.armor.chest;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class CaressingMoonlight extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.caressingMoonlight),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.caressingMoonlight),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.caressingMoonlight)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.caressingMoonlight)
         );
     }
 

@@ -35,7 +35,7 @@ public abstract class MixinAbstractArrow extends Entity {
     private void onTick(CallbackInfo ci) {
         Level level = this.level();
         if (level.isClientSide || this.ep$gurenNoYumiyaTracked) return;
-        if (ep$getThis().getOwner() instanceof LivingEntity owner && EnchantedPotato.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.gurenNoYumiya, GurenNoYumiya.PATH) && owner instanceof Player player && (int)((IPlayer)player).ep$getRealChargeTime() - BowItem.MAX_DRAW_DURATION >= 20) {
+        if (ep$getThis().getOwner() instanceof LivingEntity owner && EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.gurenNoYumiya, GurenNoYumiya.PATH) && owner instanceof Player player && (int)((IPlayer)player).ep$getRealChargeTime() - BowItem.MAX_DRAW_DURATION >= 20) {
             this.addTag(EarlySetupInitializer.MOD_ID + ".fireArrow");
             ((IPlayer)player).ep$setRealChargeTime(0);
             ((IPlayer)player).ep$setStartUsingBowTime(0);

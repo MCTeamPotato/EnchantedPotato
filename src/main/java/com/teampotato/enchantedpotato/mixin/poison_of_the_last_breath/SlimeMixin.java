@@ -21,7 +21,7 @@ public abstract class SlimeMixin extends Mob {
 
     @Inject(method = "remove", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Slime;isDeadOrDying()Z", shift = At.Shift.AFTER), cancellable = true)
     private void onRemove(Entity.RemovalReason reason, CallbackInfo ci) {
-        if (EnchantedPotato.hasPotatoEnchantmentEquipped(this.getLastHurtByMob(), EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(this.getLastHurtByMob(), EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
             super.remove(reason);
         }

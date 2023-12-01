@@ -23,8 +23,8 @@ public abstract class ThrownEggMixin extends ThrowableItemProjectile {
     private float onHitEntity(float constant) {
         Entity owner = this.getOwner();
         return owner instanceof LivingEntity &&
-                EnchantedPotato.hasPotatoEnchantmentEquipped((LivingEntity) owner, EarlySetupInitializer.equipmentSlotConfig.wonderEggPriority, WonderEggPriority.PATH) ?
-                EnchantedPotato.WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE.get().floatValue() :
+                EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped((LivingEntity) owner, EarlySetupInitializer.equipmentSlotConfig.wonderEggPriority, WonderEggPriority.PATH) ?
+                EnchantedPotato.EnchantedConfig.WONDER_EGG_PRIORITY_EGG_DAMAGE_VALUE.get().floatValue() :
                 constant;
     }
 }

@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.bow;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class GraceOfGungnir extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.graceOfGungnir),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.graceOfGungnir),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir)
         );
     }
 

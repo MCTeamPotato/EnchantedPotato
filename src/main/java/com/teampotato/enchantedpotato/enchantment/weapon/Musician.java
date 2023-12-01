@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class Musician extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.musician),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.musician),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.musician)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.musician)
         );
     }
 

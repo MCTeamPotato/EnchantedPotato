@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +17,7 @@ public class EnderEnder extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.enderEnder),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.enderEnder),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.enderEnder)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.enderEnder)
         );
     }
 

@@ -2,7 +2,6 @@ package com.teampotato.enchantedpotato.mixin.pressurized_collapse;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
-import com.teampotato.enchantedpotato.Constants;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -35,8 +34,8 @@ public abstract class ProjectileMixin extends Entity {
         }
         if (!gravityTag.isEmpty()) {
             double additionalChargeSeconds = (double) Long.parseLong(gravityTag) / 20.00;
-            if (additionalChargeSeconds > EnchantedPotato.PRESSURIZED_COLLAPSE_MAX_RANGE_ADDITION.get()) additionalChargeSeconds = EnchantedPotato.PRESSURIZED_COLLAPSE_MAX_RANGE_ADDITION.get();
-            for (Monster entity : this.level().getEntitiesOfClass(Monster.class, new AABB(x - Constants.pressurizedCollapseX - additionalChargeSeconds, y - Constants.pressurizedCollapseY - additionalChargeSeconds, z - Constants.pressurizedCollapseZ - additionalChargeSeconds, x + Constants.pressurizedCollapseX + additionalChargeSeconds, y + Constants.pressurizedCollapseY + additionalChargeSeconds, z + Constants.pressurizedCollapseZ + additionalChargeSeconds))) {
+            if (additionalChargeSeconds > EnchantedPotato.EnchantedConfig.PRESSURIZED_COLLAPSE_MAX_RANGE_ADDITION.get()) additionalChargeSeconds = EnchantedPotato.EnchantedConfig.PRESSURIZED_COLLAPSE_MAX_RANGE_ADDITION.get();
+            for (Monster entity : this.level().getEntitiesOfClass(Monster.class, new AABB(x - EnchantedPotato.Constants.pressurizedCollapseX - additionalChargeSeconds, y - EnchantedPotato.Constants.pressurizedCollapseY - additionalChargeSeconds, z - EnchantedPotato.Constants.pressurizedCollapseZ - additionalChargeSeconds, x + EnchantedPotato.Constants.pressurizedCollapseX + additionalChargeSeconds, y + EnchantedPotato.Constants.pressurizedCollapseY + additionalChargeSeconds, z + EnchantedPotato.Constants.pressurizedCollapseZ + additionalChargeSeconds))) {
                 Vec3 entityPos = entity.position();
                 entity.setDeltaMovement(result.getLocation());
                 if (this.level().isClientSide) this.level().addParticle(ParticleTypes.PORTAL, x, y, z, entityPos.x, entityPos.y, entityPos.z);

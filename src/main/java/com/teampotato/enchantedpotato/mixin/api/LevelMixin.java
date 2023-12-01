@@ -18,7 +18,7 @@ public abstract class LevelMixin implements ILevel {
     @Override
     public List<NeutralMob> ep$getNeutralMobs(AABB area) {
         if (ep$getThis() instanceof ServerLevel serverLevel) {
-            return EnchantedPotato.getNeutralMobs(area, serverLevel);
+            return EnchantedPotato.EnchantedUtils.getNeutralMobs(area, serverLevel);
         } else {
             return Collections.emptyList();
         }

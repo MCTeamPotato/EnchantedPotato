@@ -3,7 +3,6 @@ package com.teampotato.enchantedpotato.mixin.guren_no_yumiya;
 import com.teampotato.enchantedpotato.EnchantedPotato;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import com.teampotato.enchantedpotato.api.IEntity;
-import com.teampotato.enchantedpotato.Constants;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
@@ -31,8 +30,8 @@ public abstract class ProjectileMixin extends Entity {
         double y = location.y;
         double z = location.z;
         if (this.removeTag(EarlySetupInitializer.MOD_ID + ".fireArrow")) {
-                for (Monster entity : this.level().getEntitiesOfClass(Monster.class, new AABB(x - Constants.gurenNoYumiyaX, y - Constants.gurenNoYumiyaY, z - Constants.gurenNoYumiyaZ, x + Constants.gurenNoYumiyaX, y + Constants.gurenNoYumiyaY, z + Constants.gurenNoYumiyaZ))) {
-                    ((IEntity)entity).ep$setTicksOnFire(EnchantedPotato.GUREN_NO_YUMIYA_FIRE_DURATION_TICKS.get());
+                for (Monster entity : this.level().getEntitiesOfClass(Monster.class, new AABB(x - EnchantedPotato.Constants.gurenNoYumiyaX, y - EnchantedPotato.Constants.gurenNoYumiyaY, z - EnchantedPotato.Constants.gurenNoYumiyaZ, x + EnchantedPotato.Constants.gurenNoYumiyaX, y + EnchantedPotato.Constants.gurenNoYumiyaY, z + EnchantedPotato.Constants.gurenNoYumiyaZ))) {
+                    ((IEntity)entity).ep$setTicksOnFire(EnchantedPotato.EnchantedConfig.GUREN_NO_YUMIYA_FIRE_DURATION_TICKS.get());
                 }
             }
     }

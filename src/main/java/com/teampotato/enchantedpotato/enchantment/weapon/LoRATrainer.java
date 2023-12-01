@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.weapon;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class LoRATrainer extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.loraTrainer),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.loraTrainer),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.loraTrainer)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.loraTrainer)
         );
     }
 

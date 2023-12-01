@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntity 
         if (this.removeTag(EarlySetupInitializer.MOD_ID + ".tickCountTrigger")) this.ep$setShouldTrackRunLikeHell(true);
         if (this.ep$shouldTrackRunLikeHell()) {
             this.ep$setRunLikeHellTickCount(this.ep$getRunLikeHellTickCount() + 1);
-            if (this.ep$getRunLikeHellTickCount() == EnchantedPotato.RUN_LIKE_HELL_INVISIBILITY_DURATION.get()) {
+            if (this.ep$getRunLikeHellTickCount() == EnchantedPotato.EnchantedConfig.RUN_LIKE_HELL_INVISIBILITY_DURATION.get()) {
                 this.removeTag(EarlySetupInitializer.MOD_ID + ".blinder");
                 this.ep$setRunLikeHellTickCount(0);
                 this.ep$setShouldTrackRunLikeHell(false);

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PiglinAiMixin {
     @Inject(method = "maybeRetaliate", at = @At("HEAD"), cancellable = true)
     private static void onAnger(AbstractPiglin piglin, LivingEntity target, CallbackInfo ci) {
-        if (EnchantedPotato.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
+        if (EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.poisonOfTheLastBreath, PoisonOfTheLastBreath.PATH)) {
             ci.cancel();
         }
     }

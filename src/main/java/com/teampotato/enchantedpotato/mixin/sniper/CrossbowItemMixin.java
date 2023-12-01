@@ -14,6 +14,6 @@ public abstract class CrossbowItemMixin {
     @Inject(method = "getShootingPower", at = @At("RETURN"), cancellable = true)
     private static void onGetPower(@NotNull ItemStack crossbowStack, CallbackInfoReturnable<Float> cir) {
         int level = crossbowStack.getEnchantmentLevel(EnchantedPotato.EnchantedRegistries.SNIPER.get());
-        if (level > 0) cir.setReturnValue(cir.getReturnValue() * (1.0F + EnchantedPotato.SNIPER_ARROW_SPEED_INCREASE_PER_LEVEL.get().floatValue() * level));
+        if (level > 0) cir.setReturnValue(cir.getReturnValue() * (1.0F + EnchantedPotato.EnchantedConfig.SNIPER_ARROW_SPEED_INCREASE_PER_LEVEL.get().floatValue() * level));
     }
 }

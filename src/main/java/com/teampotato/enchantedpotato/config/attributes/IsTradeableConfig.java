@@ -1,4 +1,4 @@
-package com.teampotato.enchantedpotato.config.reloadable;
+package com.teampotato.enchantedpotato.config.attributes;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -8,16 +8,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 
-public class IsAllowedOnBooksConfig {
-    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "isAllowedOnBooks.json");
-
-    public IsAllowedOnBooksConfig() {
+public class IsTradeableConfig {
+    public static final File FILE = new File(EarlySetupInitializer.attributesDir, "isTradeable.json");
+    public IsTradeableConfig() {
         if (!FILE.exists()) {
             try {
                 FileWriter writer = writeFile();
                 writer.close();
             } catch (Exception e) {
-                EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isAllowedOnBooks.json");
+                EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to create isTradeable.json");
                 
             }
         }
@@ -25,9 +24,9 @@ public class IsAllowedOnBooksConfig {
         readConfig(FILE);
     }
 
-    public static void readConfig(File isAllowedOnBooksConfig) {
+    public static void readConfig(File isTradeableConfig) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(isAllowedOnBooksConfig));
+            BufferedReader reader = new BufferedReader(new FileReader(isTradeableConfig));
             JsonObject configObject = JsonParser.parseReader(reader).getAsJsonObject();
             runLikeHell = configObject.get("runLikeHell").getAsBoolean();
             blackParade = configObject.get("blackParade").getAsBoolean();
@@ -74,7 +73,7 @@ public class IsAllowedOnBooksConfig {
             wellOfBlood  = configObject.get("wellOfBlood").getAsBoolean();
             missile = configObject.get("missile").getAsBoolean();
         } catch (Exception e) {
-            EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isAllowedOnBooks.json");
+            EarlySetupInitializer.LOGGER.log(Level.FATAL, e.getMessage(), "Failed to read isTradeable.json");
             
         }
     }
@@ -126,11 +125,12 @@ public class IsAllowedOnBooksConfig {
         defaultConfig.addProperty("copperholic", true);
         defaultConfig.addProperty("wellOfBlood", true);
         defaultConfig.addProperty("missile", true);
-        FileWriter writer = new FileWriter(IsAllowedOnBooksConfig.FILE);
+        FileWriter writer = new FileWriter(IsTradeableConfig.FILE);
         writer.write(defaultConfig.toString());
         return writer;
     }
 
+    
     public static boolean runLikeHell, blackParade, graceOfGungnir, thisIsLeopard, dyingOfLight,
     pressurizedCollapse, errorSpore, untouchable, shieldBladeCommendation,
     gaiaBlessing, gurenNoYumiya, boneSuckalaka, loraTrainer, rippleOfDeath, 

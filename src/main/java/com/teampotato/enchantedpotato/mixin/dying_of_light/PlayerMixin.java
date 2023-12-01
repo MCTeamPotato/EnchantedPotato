@@ -26,9 +26,9 @@ public abstract class PlayerMixin extends LivingEntity implements IPlayer {
 
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/Level;isClientSide:Z", ordinal = 2, shift = At.Shift.AFTER))
     private void onTick(CallbackInfo ci) {
-        if (!EnchantedPotato.hasPotatoEnchantmentEquipped((Player)(Object)this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH)) return;
+        if (!EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped((Player)(Object)this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH)) return;
         Level level = this.level();
-        if (level.isNight() && ((ILivingEntity) this).ep$shouldTickDyingOfLight() && EnchantedPotato.getRandom().nextDouble(0.00, 10.01) > 9.50) {
+        if (level.isNight() && ((ILivingEntity) this).ep$shouldTickDyingOfLight() && EnchantedPotato.EnchantedUtils.getRandom().nextDouble(0.00, 10.01) > 9.50) {
             this.foodData.setFoodLevel(this.foodData.getFoodLevel() - 1);
         }
     }

@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.bow;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class GurenNoYumiya extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.gurenNoYumiya),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.gurenNoYumiya),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.gurenNoYumiya)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.gurenNoYumiya)
         );
     }
 

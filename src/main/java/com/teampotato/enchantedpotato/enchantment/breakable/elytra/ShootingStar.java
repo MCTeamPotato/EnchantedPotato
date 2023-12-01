@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.elytra;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +15,7 @@ public class ShootingStar extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.shootingStar),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.shootingStar),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.shootingStar)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.shootingStar)
         );
     }
 

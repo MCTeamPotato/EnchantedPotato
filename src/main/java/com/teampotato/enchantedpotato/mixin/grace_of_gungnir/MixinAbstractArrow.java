@@ -47,7 +47,7 @@ public abstract class MixinAbstractArrow extends Entity {
         if (level.isClientSide) return;
         if (!this.ep$graceOfGungnirTracked) {
             this.ep$graceOfGungnirTracked = true;
-            if (!(ep$getThis().getOwner() instanceof LivingEntity owner) || this.getTags().contains(EarlySetupInitializer.MOD_ID + ".newArrow") || !EnchantedPotato.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir, GraceOfGungnir.PATH)) return;
+            if (!(ep$getThis().getOwner() instanceof LivingEntity owner) || this.getTags().contains(EarlySetupInitializer.MOD_ID + ".newArrow") || !EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.graceOfGungnir, GraceOfGungnir.PATH)) return;
             BlockPos arrowBlockPos = this.blockPosition();
             AABB arrowBoundingBox = this.getBoundingBox().expandTowards(this.getDeltaMovement());
             ChunkPos arrowChunkPos = level.getChunk(arrowBlockPos.getX(), arrowBlockPos.getY()).getPos();

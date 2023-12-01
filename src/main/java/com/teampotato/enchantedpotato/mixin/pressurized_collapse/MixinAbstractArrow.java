@@ -34,7 +34,7 @@ public abstract class MixinAbstractArrow extends Entity {
     private void onTick(CallbackInfo ci) {
         Level level = this.level();
         if (level.isClientSide || this.ep$pressurizedCollapseTracked) return;
-        if (this.ep$getThis().getOwner() instanceof LivingEntity owner && EnchantedPotato.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.pressurizedCollapse, PressurizedCollapse.PATH)) {
+        if (this.ep$getThis().getOwner() instanceof LivingEntity owner && EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped(owner, EarlySetupInitializer.equipmentSlotConfig.pressurizedCollapse, PressurizedCollapse.PATH)) {
             if (owner instanceof Player player) {
                 long additionalChargeTime = ((IPlayer)player).ep$getRealChargeTime() - ((long)BowItem.MAX_DRAW_DURATION);
                 this.addTag(EarlySetupInitializer.MOD_ID + ".gravityArrow." + additionalChargeTime);

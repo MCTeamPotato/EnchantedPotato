@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.trident;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ public class Triback extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.triback),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.triback),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.triback)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.triback)
         );
     }
 

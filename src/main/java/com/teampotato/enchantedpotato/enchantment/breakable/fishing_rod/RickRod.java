@@ -1,7 +1,7 @@
 package com.teampotato.enchantedpotato.enchantment.breakable.fishing_rod;
 
 import com.teampotato.enchantedpotato.EnchantedPotato;
-import com.teampotato.enchantedpotato.config.reloadable.*;
+import com.teampotato.enchantedpotato.config.attributes.*;
 import com.teampotato.enchantedpotato.mixin.EarlySetupInitializer;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +15,7 @@ public class RickRod extends Enchantment {
         super(
                 Rarity.valueOf(EarlySetupInitializer.rarityConfig.rickRod),
                 EnchantmentCategory.valueOf(EarlySetupInitializer.enchantmentCategoryConfig.rickRod),
-                EnchantedPotato.getSlots(EarlySetupInitializer.equipmentSlotConfig.rickRod)
+                EnchantedPotato.EnchantedUtils.getSlots(EarlySetupInitializer.equipmentSlotConfig.rickRod)
         );
     }
 
