@@ -132,10 +132,6 @@ public final class EnchantedPotato {
             }
             return false;
         }
-
-        public static ThreadLocalRandom getRandom() {
-            return ThreadLocalRandom.current();
-        }
     }
 
     public static final class EnchantedConfig {
@@ -541,7 +537,7 @@ public final class EnchantedPotato {
         }
     }
 
-    public static class EnchantedEventFactory {
+    public static final class EnchantedEventFactory {
 
         static void setupEvents(final IEventBus modBus, final IEventBus forgeBus) {
             modBus.addListener(Constants::initConstants);
@@ -589,6 +585,7 @@ public final class EnchantedPotato {
                 forgeBus.addListener(EnchantedEventFactory::handleUntouchableOnLivingHurt);
             }
         }
+
         static void equipChangeCenter(LivingEquipmentChangeEvent event) {
             LivingEntity entity = event.getEntity();
             String fromEnchantments = event.getFrom().getEnchantmentTags().toString();
@@ -720,11 +717,11 @@ public final class EnchantedPotato {
             if (sourceDirectEntity instanceof LivingEntity source && sourceEntity != null && EnchantedUtils.hasPotatoEnchantmentEquipped(source, EarlySetupInitializer.equipmentSlotConfig.flameCross, FlameCross.PATH)) {
                 if (EnchantedConfig.FLAME_CROSS_IGNITE_OWNER_ON_ATTACKING.get()) ((IEntity)source).ep$setTicksOnFire(EnchantedConfig.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_OWNER.get());
                 if (sourceDirectEntity.getStringUUID().equals(sourceEntity.getStringUUID())) {
-                    if (EnchantedUtils.getRandom().nextDouble(0.00, 1.00) < EnchantedConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING.get()) {
+                    if (ThreadLocalRandom.current().nextDouble(0.00, 1.00) < EnchantedConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_MELEE_ATTACKING.get()) {
                         ((IEntity)entity).ep$setTicksOnFire(EnchantedConfig.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET.get());
                     }
                 } else {
-                    if (EnchantedUtils.getRandom().nextDouble(0.00, 1.00) < EnchantedConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING.get()) {
+                    if (ThreadLocalRandom.current().nextDouble(0.00, 1.00) < EnchantedConfig.FLAME_CROSS_IGNITE_TARGET_CHANCE_ON_IGNITED_OWNER_RANGED_ATTACKING.get()) {
                         ((IEntity)entity).ep$setTicksOnFire(EnchantedConfig.FLAME_CROSS_FIRE_DURATION_TICKS_ON_IGNITING_TARGET.get());
                     }
                 }
@@ -919,7 +916,7 @@ public final class EnchantedPotato {
 
         static void handleThisIsLeopardOnLivingChangeTarget(LivingChangeTargetEvent event) {
             LivingEntity target = event.getOriginalTarget();
-            if (target.getY() > EnchantedConfig.THIS_IS_LEOPARD_VALID_HEIGHT.get() && EnchantedUtils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH) && EnchantedUtils.getRandom().nextDouble(0.00,1.00) < EnchantedConfig.THIS_IS_LEOPARD_TARGET_MISS_CHANCE.get()) {
+            if (target.getY() > EnchantedConfig.THIS_IS_LEOPARD_VALID_HEIGHT.get() && EnchantedUtils.hasPotatoEnchantmentEquipped(target, EarlySetupInitializer.equipmentSlotConfig.thisIsLeopard, ThisIsLeopard.PATH) && ThreadLocalRandom.current().nextDouble(0.00,1.00) < EnchantedConfig.THIS_IS_LEOPARD_TARGET_MISS_CHANCE.get()) {
                 event.setCanceled(true);
             }
         }

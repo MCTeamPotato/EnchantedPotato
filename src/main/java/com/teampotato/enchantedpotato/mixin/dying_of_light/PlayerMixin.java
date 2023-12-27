@@ -16,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity implements IPlayer {
     private PlayerMixin(EntityType<? extends LivingEntity> arg, Level arg2) {
@@ -28,7 +30,7 @@ public abstract class PlayerMixin extends LivingEntity implements IPlayer {
     private void onTick(CallbackInfo ci) {
         if (!EnchantedPotato.EnchantedUtils.hasPotatoEnchantmentEquipped((Player)(Object)this, EarlySetupInitializer.equipmentSlotConfig.dyingOfLight, DyingOfLight.PATH)) return;
         Level level = this.level();
-        if (level.isNight() && ((ILivingEntity) this).ep$shouldTickDyingOfLight() && EnchantedPotato.EnchantedUtils.getRandom().nextDouble(0.00, 10.01) > 9.50) {
+        if (level.isNight() && ((ILivingEntity) this).ep$shouldTickDyingOfLight() && ThreadLocalRandom.current().nextDouble(0.00, 10.01) > 9.50) {
             this.foodData.setFoodLevel(this.foodData.getFoodLevel() - 1);
         }
     }
