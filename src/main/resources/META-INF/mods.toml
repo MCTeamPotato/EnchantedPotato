@@ -9,5 +9,6 @@ version = "${version}"
 displayName = "EnchantedPotato"
 authors = "Kall"
 description = '''
+A Minecraft enchantment mod.
 '''
 #logoFile = ""

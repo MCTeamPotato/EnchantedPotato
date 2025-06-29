@@ -1,7 +1,6 @@
 {
   "required": true,
   "package": "me.kall.enchantedpotato.common.mixin",
-  "plugin": "me.kall.enchantedpotato.common.mixin.MixinConfigPlugin",
   "refmap": "enchantedpotato-refmap.json",
   "compatibilityLevel": "JAVA_8",
   "overwrites": {

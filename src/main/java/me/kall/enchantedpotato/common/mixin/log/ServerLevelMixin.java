@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(ServerLevel.class)
+@Mixin(value = ServerLevel.class, priority = 1200)
 public abstract class ServerLevelMixin {
-    @Redirect(method = "addEntity", at = @At(value = "INVOKE", remap = false, target = "Lorg/slf4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;)V"))
+    @Redirect(method = "addEntity", at = @At(value = "INVOKE", remap = false, target = "Lorg/slf4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;)V"), require = 0)
     private void removeLog(Logger instance, String s, Object o) {}
 }
