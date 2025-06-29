@@ -11,7 +11,7 @@
   ],
   "mixins": [
     "graceofgungnir.AbstractArrowMixin",
-    "gurenNoYumiya.AbstractArrowMixin",
+    "gurennoyumiya.AbstractArrowMixin",
     "impl.ServerPlayerMixin",
     "log.ServerLevelMixin",
     "pressurizedcollapse.AbstractArrowMixin"

@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.mixin.gurenNoYumiya;
+package me.kall.enchantedpotato.common.mixin.gurennoyumiya;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
 import me.kall.enchantedpotato.common.enchantment.GurenNoYumiya;
