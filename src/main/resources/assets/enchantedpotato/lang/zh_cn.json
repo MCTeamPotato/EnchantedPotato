@@ -1,0 +1,20 @@
+{
+  "enchantment.enchantedpotato.run_like_hell": "地狱狂奔",
+  "enchantment.enchantedpotato.black_parade": "黑色游行",
+  "enchantment.enchantedpotato.grace_of_gungnir": "冈格尼尔之赐",
+  "enchantment.enchantedpotato.pressurized_collapse": "风压坍缩",
+  "enchantment.enchantedpotato.untouchable": "禁止接触",
+  "enchantment.enchantedpotato.grace_of_gaia": "盖亚赐福",
+  "enchantment.enchantedpotato.guren_no_yumiya": "红莲の弓矢",
+  "enchantment.enchantedpotato.lora_trainer": "低秩调整学习",
+  "enchantment.enchantedpotato.ripple_of_death": "死亡波纹",
+  "enchantment.enchantedpotato.run_like_hell.desc": "生命值危急时获得短暂隐身与速度效果，随后进入冷却时间。",
+  "enchantment.enchantedpotato.black_parade.desc": "击杀生物时获得速度效果，若已拥有则延长持续时间。",
+  "enchantment.enchantedpotato.grace_of_gungnir.desc": "箭矢将直接命中视线范围内最近的生物实体。",
+  "enchantment.enchantedpotato.pressurized_collapse.desc": "箭矢命中时生成引力漩涡，将非玩家实体拉向中心点。作用范围与力度随拉弓时间及附魔等级提升。",
+  "enchantment.enchantedpotato.untouchable.desc": "受伤时击退周围怪物并施加缓慢效果。冷却时间随附魔等级降低。",
+  "enchantment.enchantedpotato.grace_of_gaia.desc": "身处低处时，根据深度比例减少所受伤害。减免量随深度增加而提升。靴子专属。",
+  "enchantment.enchantedpotato.guren_no_yumiya.desc": "蓄力完成的箭矢命中时引燃范围内敌人。燃烧时间与作用范围随附魔等级提升。",
+  "enchantment.enchantedpotato.lora_trainer.desc": "对已掌握的生物类型造成额外伤害。高等级降低所需击杀数并提升伤害倍率。",
+  "enchantment.enchantedpotato.ripple_of_death.desc": "击杀时释放死亡涟漪，对附近的敌对生物造成其最大生命值百分比的伤害。伤害百分比和范围随附魔等级提升。"
+}

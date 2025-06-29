@@ -1,0 +1,13 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+#issueTrackerURL = ""
+license = "LGPL-v2.1"
+
+[[mods]]
+modId = "enchantedpotato"
+version = "${version}"
+displayName = "EnchantedPotato"
+authors = "Kall"
+description = '''
+'''
+#logoFile = ""

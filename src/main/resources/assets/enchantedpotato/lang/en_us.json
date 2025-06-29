@@ -1,0 +1,20 @@
+{
+  "enchantment.enchantedpotato.run_like_hell": "Run Like Hell",
+  "enchantment.enchantedpotato.black_parade": "Black Parade",
+  "enchantment.enchantedpotato.grace_of_gungnir": "Grace Of Gungnir",
+  "enchantment.enchantedpotato.pressurized_collapse": "Pressurized Collapse",
+  "enchantment.enchantedpotato.untouchable": "Untouchable",
+  "enchantment.enchantedpotato.grace_of_gaia": "Grace Of Gaia",
+  "enchantment.enchantedpotato.guren_no_yumiya": "Guren No Yumiya",
+  "enchantment.enchantedpotato.lora_trainer": "LoRA Trainer",
+  "enchantment.enchantedpotato.ripple_of_death": "Ripple Of Death",
+  "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
+  "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
+  "enchantment.enchantedpotato.grace_of_gungnir.desc": "Arrows instantly strike the nearest visible entity in your line of sight.",
+  "enchantment.enchantedpotato.pressurized_collapse.desc": "Arrows create a gravitational vortex on impact, pulling non-player entities toward the epicenter. Range and force scale with draw duration and enchantment level.",
+  "enchantment.enchantedpotato.untouchable.desc": "When hurt, knock back nearby monsters and inflict slowness. Cooldown decreases with enchantment level.",
+  "enchantment.enchantedpotato.grace_of_gaia.desc": "Reduces damage taken at low depths. Reduction increases proportionally with depth. Boots only.",
+  "enchantment.enchantedpotato.guren_no_yumiya.desc": "Fully drawn arrows ignite enemies in a radius on impact. Burn duration and area scale with enchantment level.",
+  "enchantment.enchantedpotato.lora_trainer.desc": "Deals bonus damage to mob types you've mastered. Higher levels reduce kill requirements and increase damage multiplier.",
+  "enchantment.enchantedpotato.ripple_of_death.desc": "Releases a death ripple on kill, damaging nearby hostile mobs for a percentage of their max health. Damage and range scale with level."
+}

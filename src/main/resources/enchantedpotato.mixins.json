@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "me.kall.enchantedpotato.common.mixin",
+  "plugin": "me.kall.enchantedpotato.common.mixin.MixinConfigPlugin",
+  "refmap": "enchantedpotato-refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "overwrites": {
+    "conformVisibility": false
+  },
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "graceofgungnir.ArrowInvoker",
+    "graceofgungnir.BowItemMixin",
+    "gurenNoYumiya.AbstractArrowMixin",
+    "impl.ServerPlayerMixin",
+    "pressurizedcollapse.AbstractArrowMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
