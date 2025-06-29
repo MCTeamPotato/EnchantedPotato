@@ -20,5 +20,6 @@ public final class EnchantedPotato {
         ModEnchantments.register(context.getModEventBus());
         ModEvents.register(MinecraftForge.EVENT_BUS);
         ModConfigs.register(context);
+        LOGGER.info("Oh, potato, I'm enchanted by you.");
     }
 }

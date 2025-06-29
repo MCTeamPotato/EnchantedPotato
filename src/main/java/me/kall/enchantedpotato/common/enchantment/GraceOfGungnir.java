@@ -20,7 +20,7 @@ import java.util.function.Predicate;
 
 public class GraceOfGungnir extends Enchantment {
     public GraceOfGungnir() {
-        super(Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+        super(Rarity.VERY_RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
     protected boolean checkCompatibility(@NotNull Enchantment other) {
@@ -34,12 +34,7 @@ public class GraceOfGungnir extends Enchantment {
         Vec3 endPos = startPos.add(viewVector.scale(maxDistance));
         Level level = player.level();
 
-        ClipContext context = new ClipContext(
-                startPos, endPos,
-                ClipContext.Block.COLLIDER,
-                ClipContext.Fluid.NONE,
-                player
-        );
+        ClipContext context = new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player);
         Vec3 blockHit = level.clip(context).getLocation();
         double actualDistance = Math.min(maxDistance, startPos.distanceTo(blockHit));
         Vec3 actualEnd = startPos.add(viewVector.scale(actualDistance));
@@ -53,9 +48,7 @@ public class GraceOfGungnir extends Enchantment {
         double closestDistance = Double.MAX_VALUE;
 
         for (Entity entity : entities) {
-            AABB entityBox = entity.getBoundingBox();
-            Optional<Vec3> hitPoint = entityBox.clip(startPos, actualEnd);
-
+            Optional<Vec3> hitPoint = entity.getBoundingBox().clip(startPos, actualEnd);
             if (hitPoint.isPresent()) {
                 double distanceSq = startPos.distanceToSqr(hitPoint.get());
                 if (distanceSq < closestDistance) {

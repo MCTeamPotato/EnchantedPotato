@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment;
 
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import me.kall.enchantedpotato.common.api.ExtendedServerPlayer;
 import me.kall.enchantedpotato.common.config.UntouchableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
@@ -19,8 +18,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class Untouchable extends Enchantment {
-    public static final Int2IntArrayMap LEVEL_COOLDOWN_MAP = new Int2IntArrayMap();
-
     public Untouchable() {
         super(Rarity.RARE, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS});
     }
@@ -33,17 +30,8 @@ public class Untouchable extends Enchantment {
         if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
             int enchantmentLevel = player.getItemBySlot(EquipmentSlot.LEGS).getEnchantmentLevel(ModEnchantments.UNTOUCHABLE.get());
             if (enchantmentLevel == 0 || ((ExtendedServerPlayer)player).untouchable$isInCoolDown()) return;
-            if (LEVEL_COOLDOWN_MAP.isEmpty()) {
-                int i = 1;
-                int max = ModEnchantments.UNTOUCHABLE.get().getMaxLevel();
-                while (i <= max) {
-                    int cooldown = UntouchableConfig.BASIC_COOLDOWN.get() - UntouchableConfig.SAVED_COOLDOWN_PER_LEVEL.get() * (i - 1);
-                    if (cooldown < 0) cooldown = 0;
-                    LEVEL_COOLDOWN_MAP.put(i, cooldown);
-                    i++;
-                }
-            }
-            ((ExtendedServerPlayer)player).untouchable$setCoolDown(LEVEL_COOLDOWN_MAP.get(enchantmentLevel));
+            int coolDown = UntouchableConfig.BASIC_COOLDOWN.get() - UntouchableConfig.SAVED_COOLDOWN_PER_LEVEL.get() * (enchantmentLevel - 1);
+            if (coolDown > 0) ((ExtendedServerPlayer)player).untouchable$setCoolDown(coolDown);
             knockBack(player, enchantmentLevel);
         }
     }
