@@ -14,5 +14,6 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.COMMON, GraceOfGaiaConfig.INSTANCE, EnchantedPotato.MOD_ID + "/GraceOfGaia.toml");
         context.registerConfig(ModConfig.Type.COMMON, GurenNoYumiyaConfig.INSTANCE, EnchantedPotato.MOD_ID + "/GurenNoYumiya.toml");
         context.registerConfig(ModConfig.Type.COMMON, LoRATrainerConfig.INSTANCE, EnchantedPotato.MOD_ID + "/LoRATrainer.toml");
+        context.registerConfig(ModConfig.Type.COMMON, RippleOfDeathConfig.INSTANCE, EnchantedPotato.MOD_ID + "/RippleOfDeath.toml");
     }
 }
