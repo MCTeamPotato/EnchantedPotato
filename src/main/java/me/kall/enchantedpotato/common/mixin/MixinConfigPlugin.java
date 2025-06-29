@@ -11,7 +11,6 @@ import java.util.Set;
 public class MixinConfigPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
-        com.llamalad7.mixinextras.MixinExtrasBootstrap.init();
     }
 
     @Override public String getRefMapperConfig() {return "";}

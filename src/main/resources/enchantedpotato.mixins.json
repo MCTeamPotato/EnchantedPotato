@@ -11,10 +11,10 @@
   "client": [
   ],
   "mixins": [
-    "graceofgungnir.ArrowInvoker",
-    "graceofgungnir.BowItemMixin",
+    "graceofgungnir.AbstractArrowMixin",
     "gurenNoYumiya.AbstractArrowMixin",
     "impl.ServerPlayerMixin",
+    "log.ServerLevelMixin",
     "pressurizedcollapse.AbstractArrowMixin"
   ],
   "injectors": {
