@@ -8,6 +8,8 @@
   "enchantment.enchantedpotato.guren_no_yumiya": "红莲の弓矢",
   "enchantment.enchantedpotato.lora_trainer": "低秩调整学习",
   "enchantment.enchantedpotato.ripple_of_death": "死亡波纹",
+  "enchantment.enchantedpotato.poison_of_the_last_breath": "绝息之毒",
+  "enchantment.enchantedpotato.dissolve": "化劲",
   "enchantment.enchantedpotato.run_like_hell.desc": "生命值危急时获得短暂隐身与速度效果，随后进入冷却时间。",
   "enchantment.enchantedpotato.black_parade.desc": "击杀生物时获得速度效果，若已拥有则延长持续时间。",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "箭矢将直接命中视线范围内最近的生物实体。",
@@ -16,5 +18,8 @@
   "enchantment.enchantedpotato.grace_of_gaia.desc": "身处低处时，根据深度比例减少所受伤害。减免量随深度增加而提升。靴子专属。",
   "enchantment.enchantedpotato.guren_no_yumiya.desc": "蓄力完成的箭矢命中时引燃范围内敌人。燃烧时间与作用范围随附魔等级提升。",
   "enchantment.enchantedpotato.lora_trainer.desc": "对已掌握的生物类型造成额外伤害。高等级降低所需击杀数并提升伤害倍率。",
-  "enchantment.enchantedpotato.ripple_of_death.desc": "击杀时释放死亡涟漪，对附近的敌对生物造成其最大生命值百分比的伤害。伤害百分比和范围随附魔等级提升。"
+  "enchantment.enchantedpotato.ripple_of_death.desc": "击杀时释放死亡涟漪，对附近的敌对生物造成其最大生命值百分比的伤害。伤害百分比和范围随附魔等级提升。",
+  "enchantment.enchantedpotato.wonder_egg_priority.desc": "投掷的鸡蛋会造成伤害。",
+  "enchantment.enchantedpotato.poison_of_the_last_breath.desc": "攻击不激怒同类，阻止史莱姆分裂。",
+  "enchantment.enchantedpotato.dissolve.desc": "当单次伤害超过生命值一定比例时，减免超出部分的伤害并获得力量效果。"
 }

@@ -12,9 +12,16 @@
   "mixins": [
     "graceofgungnir.AbstractArrowMixin",
     "gurennoyumiya.AbstractArrowMixin",
+    "impl.LivingEntityMixin",
     "impl.ServerPlayerMixin",
     "log.ServerLevelMixin",
-    "pressurizedcollapse.AbstractArrowMixin"
+    "poisonofthelastbreath.HurtByTargetGoalMixin",
+    "poisonofthelastbreath.PiglinAiMixin",
+    "poisonofthelastbreath.SlimeMixin",
+    "poisonofthelastbreath.VillagerMixin",
+    "poisonofthelastbreath.ZombifiedPiglinMixin",
+    "pressurizedcollapse.AbstractArrowMixin",
+    "wondereggpriority.ThrownEggMixin"
   ],
   "injectors": {
     "defaultRequire": 1

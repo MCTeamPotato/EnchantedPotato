@@ -14,7 +14,8 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment>
             RUN_LIKE_HELL, BLACK_PARADE, GRACE_OF_GUNGNIR,
             PRESSURIZED_COLLAPSE, UNTOUCHABLE, GRACE_OF_GAIA,
-            GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH;
+            GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH,
+            WONDER_EGG_PRIORITY, POISON_OF_THE_LAST_BREATH, DISSOLVE;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -26,6 +27,9 @@ public class ModEnchantments {
         GUREN_NO_YUMIYA = ENCHANTMENTS.register("guren_no_yumiya", GurenNoYumiya::new);
         LORA_TRAINER = ENCHANTMENTS.register("lora_trainer", LoRATrainer::new);
         RIPPLE_OF_DEATH = ENCHANTMENTS.register("ripple_of_death", RippleOfDeath::new);
+        WONDER_EGG_PRIORITY = ENCHANTMENTS.register("wonder_egg_priority", WonderEggPriority::new);
+        POISON_OF_THE_LAST_BREATH = ENCHANTMENTS.register("poison_of_the_last_breath", PoisonOfTheLastBreath::new);
+        DISSOLVE = ENCHANTMENTS.register("dissolve", Dissolve::new);
     }
 
     public static void register(IEventBus bus) {
