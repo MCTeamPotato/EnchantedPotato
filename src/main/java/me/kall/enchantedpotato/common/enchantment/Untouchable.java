@@ -1,6 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment;
 
-import me.kall.enchantedpotato.common.api.ExtendedServerPlayer;
+import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.UntouchableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
@@ -29,9 +29,9 @@ public class Untouchable extends Enchantment {
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
         if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
             int enchantmentLevel = player.getItemBySlot(EquipmentSlot.LEGS).getEnchantmentLevel(ModEnchantments.UNTOUCHABLE.get());
-            if (enchantmentLevel == 0 || ((ExtendedServerPlayer)player).untouchable$isInCoolDown()) return;
+            if (enchantmentLevel == 0 || ((ExtendedPlayer)player).untouchable$isInCoolDown()) return;
             int coolDown = UntouchableConfig.BASIC_COOLDOWN.get() - UntouchableConfig.SAVED_COOLDOWN_PER_LEVEL.get() * (enchantmentLevel - 1);
-            if (coolDown > 0) ((ExtendedServerPlayer)player).untouchable$setCoolDown(coolDown);
+            if (coolDown > 0) ((ExtendedPlayer)player).untouchable$setCoolDown(coolDown);
             knockBack(player, enchantmentLevel);
         }
     }

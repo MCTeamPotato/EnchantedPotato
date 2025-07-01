@@ -1,4 +1,6 @@
 {
+  "info.enchantedpotato.runlikehell": "RunLikeHellCoolDown: %d",
+  "info.enchantedpotato.untouchable": "UntouchableCoolDown: %d",
   "enchantment.enchantedpotato.run_like_hell": "Run Like Hell",
   "enchantment.enchantedpotato.black_parade": "Black Parade",
   "enchantment.enchantedpotato.grace_of_gungnir": "Grace Of Gungnir",

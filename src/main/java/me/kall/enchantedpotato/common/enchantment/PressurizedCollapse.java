@@ -4,6 +4,7 @@ import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
@@ -41,5 +42,9 @@ public class PressurizedCollapse extends Enchantment {
                 entity.setDeltaMovement(entity.getDeltaMovement().multiply(0.7, 0.98, 0.7));
             }
         }
+    }
+
+    public static void sendData(AbstractArrow arrow) {
+
     }
 }

@@ -1,9 +1,9 @@
 package me.kall.enchantedpotato;
 
-import me.kall.enchantedpotato.common.registry.ModConfigs;
-import me.kall.enchantedpotato.common.registry.ModEnchantments;
-import me.kall.enchantedpotato.common.registry.ModEvents;
+import me.kall.enchantedpotato.client.event.ClientModEvents;
+import me.kall.enchantedpotato.common.registry.*;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -17,9 +17,17 @@ public final class EnchantedPotato {
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 
     public EnchantedPotato(@NotNull FMLJavaModLoadingContext context) {
-        ModEnchantments.register(context.getModEventBus());
-        ModEvents.register(MinecraftForge.EVENT_BUS);
+        IEventBus modBus = context.getModEventBus();
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+
+        ModEnchantments.register(modBus);
+        ModAttributes.register(modBus);
+
+        ModEvents.register(forgeBus);
+        ClientModEvents.register(modBus, forgeBus);
+
         ModConfigs.register(context);
+        ModPackets.register();
         LOGGER.info("Oh, potato, I'm enchanted by you.");
     }
 }

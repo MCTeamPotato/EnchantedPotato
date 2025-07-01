@@ -1,6 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment;
 
-import me.kall.enchantedpotato.common.api.ExtendedServerPlayer;
+import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.RunLikeHellConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
@@ -26,10 +26,10 @@ public class RunLikeHell extends Enchantment {
         if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
             if (player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.RUN_LIKE_HELL.get()) == 0 || event.isCanceled()) return;
             float amount = event.getAmount();
-            if (player.getHealth() - amount <= player.getMaxHealth() * RunLikeHellConfig.getPercent() && !((ExtendedServerPlayer)player).runLikeHell$isInCoolDown()) {
+            if (player.getHealth() - amount <= player.getMaxHealth() * RunLikeHellConfig.getPercent() && !((ExtendedPlayer)player).runLikeHell$isInCoolDown()) {
                 player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, RunLikeHellConfig.INVISIBILITY_DURATION.get()));
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, RunLikeHellConfig.SPEED_DURATION.get(), RunLikeHellConfig.SPEED_AMPLIFIER.get()));
-                ((ExtendedServerPlayer)player).runLikeHell$setCoolDown(RunLikeHellConfig.COOL_DOWN.get());
+                ((ExtendedPlayer)player).runLikeHell$setCoolDown(RunLikeHellConfig.COOL_DOWN.get());
             }
         }
     }

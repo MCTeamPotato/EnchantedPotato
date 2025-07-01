@@ -1,9 +1,11 @@
 package me.kall.enchantedpotato.common.registry;
 
 import me.kall.enchantedpotato.EnchantedPotato;
+import me.kall.enchantedpotato.client.config.ClientConfig;
 import me.kall.enchantedpotato.common.config.*;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.jetbrains.annotations.NotNull;
 
 public class ModConfigs {
@@ -16,5 +18,10 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.COMMON, LoRATrainerConfig.INSTANCE, EnchantedPotato.MOD_ID + "/LoRATrainer.toml");
         context.registerConfig(ModConfig.Type.COMMON, RippleOfDeathConfig.INSTANCE, EnchantedPotato.MOD_ID + "/RippleOfDeath.toml");
         context.registerConfig(ModConfig.Type.COMMON, DissolveConfig.INSTANCE, EnchantedPotato.MOD_ID + "/Dissolve.toml");
+        context.registerConfig(ModConfig.Type.COMMON, PressurizedCollapseConfig.INSTANCE, EnchantedPotato.MOD_ID + "/PressurizedCollapse.toml");
+
+        if (FMLLoader.getDist().isClient()) {
+            context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "/client/Rendering.toml");
+        }
     }
 }

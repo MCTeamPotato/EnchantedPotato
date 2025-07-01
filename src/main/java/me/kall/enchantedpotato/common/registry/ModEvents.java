@@ -5,6 +5,8 @@ import me.kall.enchantedpotato.common.enchantment.*;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -23,19 +25,21 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, LoRATrainer::onLivingDamage);
         bus.addListener(EventPriority.LOWEST, RippleOfDeath::onLivingDeath);
         bus.addListener(EventPriority.LOWEST, Dissolve::onPlayerHurt);
-
-        bus.addListener(ModEvents::onServerStarted);
     }
 
-    public static void onServerStarted(@NotNull ServerStartedEvent event) {
-        Path directory = event.getServer().getServerDirectory().toPath().resolve("config").resolve(EnchantedPotato.MOD_ID);
-        try {
-            if (!Files.exists(directory)) Files.createDirectories(directory);
-            Path readmePath = directory.resolve("README.txt");
-            String content = "By default, EnchantedPotato will make mobs with invisibility effect untargetable by other mobs.\nIf this is unexpected for you, you can disable it in runLikeHell.toml";
-            Files.writeString(readmePath, content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            EnchantedPotato.LOGGER.error(e);
+    @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)
+    public static final class ForgeCommon {
+        @SubscribeEvent
+        public static void onServerStarted(@NotNull ServerStartedEvent event) {
+            Path directory = event.getServer().getServerDirectory().toPath().resolve("config").resolve(EnchantedPotato.MOD_ID);
+            try {
+                if (!Files.exists(directory)) Files.createDirectories(directory);
+                Path readmePath = directory.resolve("README.txt");
+                String content = "By default, EnchantedPotato will make mobs with invisibility effect untargetable by other mobs.\nIf this is unexpected for you, you can disable it in runLikeHell.toml";
+                Files.writeString(readmePath, content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                EnchantedPotato.LOGGER.error(e);
+            }
         }
     }
 }

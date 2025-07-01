@@ -31,7 +31,7 @@ public abstract class AbstractArrowMixin extends Projectile {
         if (this.getOwner() instanceof Player player) {
             ItemStack bow = player.getMainHandItem();
             if (!Items.BOW.equals(bow.getItem())) bow = player.getOffhandItem();
-            int level = bow.getEnchantmentLevel(ModEnchantments.GUREN_NO_YUMIYA.get());
+            int level = bow.getEnchantmentLevel(ModEnchantments.GRACE_OF_GUNGNIR.get());
             if (level == 0) return;
             LivingEntity entity = GraceOfGungnir.findNearestLivingEntityOnPath(player);
             if (entity == null) return;
