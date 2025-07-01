@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.client.gui.api;
+package me.kall.enchantedpotato.client.gui;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import net.minecraft.client.Minecraft;
@@ -7,7 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-public abstract class Overlay implements IGuiOverlay {
+public abstract class AbstractOverlay implements IGuiOverlay {
 
     public abstract String getTranslateKey();
 

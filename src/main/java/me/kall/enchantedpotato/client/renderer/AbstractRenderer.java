@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.client.renderer.api;
+package me.kall.enchantedpotato.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -11,7 +11,7 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.event.TickEvent;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class Renderer {
+public abstract class AbstractRenderer {
     public abstract int getColor();
 
     public abstract Object2ObjectArrayMap<BlockPos, RenderEffect> getActiveEffects();

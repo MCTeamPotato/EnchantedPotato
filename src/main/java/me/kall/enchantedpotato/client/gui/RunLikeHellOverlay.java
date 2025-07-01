@@ -1,11 +1,10 @@
 package me.kall.enchantedpotato.client.gui;
 
 import me.kall.enchantedpotato.client.config.ClientConfig;
-import me.kall.enchantedpotato.client.gui.api.Overlay;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-public class RunLikeHellOverlay extends Overlay implements IGuiOverlay {
+public class RunLikeHellOverlay extends AbstractOverlay implements IGuiOverlay {
     @Override
     public String getTranslateKey() {
         return "info.enchantedpotato.runlikehell";
