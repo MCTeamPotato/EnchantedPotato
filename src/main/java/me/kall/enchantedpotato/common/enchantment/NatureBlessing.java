@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.Vec3;
@@ -44,7 +45,7 @@ public class NatureBlessing extends Enchantment {
                 double knockbackStrength = NatureBlessingConfig.BASE_KNOCKBACK_STRENGTH.get() + NatureBlessingConfig.GAINED_KNOCKBACK_STRENGTH_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
 
                 for (LivingEntity entity : entities) {
-                    if (entity.getUUID() == player.getUUID() || player.isAlliedTo(entity) || !entity.isAlive()) continue;
+                    if (entity.getUUID() == player.getUUID() || player.isAlliedTo(entity) || entity instanceof Player || !entity.isAlive()) continue;
                     entity.hurt(player.damageSources().indirectMagic(player, player), damage);
 
                     Vec3 knockbackDir = new Vec3(entity.getX() - player.getX(), 0, entity.getZ() - player.getZ()).normalize();
