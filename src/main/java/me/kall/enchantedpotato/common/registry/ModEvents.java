@@ -25,6 +25,7 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, LoRATrainer::onLivingDamage);
         bus.addListener(EventPriority.LOWEST, RippleOfDeath::onLivingDeath);
         bus.addListener(EventPriority.LOWEST, Dissolve::onPlayerHurt);
+        bus.addListener(EventPriority.LOWEST, MarkFromTheBeneath::onPlayerDig);
     }
 
     @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)
