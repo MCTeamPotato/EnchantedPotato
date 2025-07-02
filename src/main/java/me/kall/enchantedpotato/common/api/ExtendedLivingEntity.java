@@ -7,4 +7,7 @@ import org.jetbrains.annotations.Nullable;
 public interface ExtendedLivingEntity {
     @Nullable Player enchantedPotato$getLastHurtByPlayer();
     AttributeInstance armorBreaking$getAttribute();
+    int armorBreaking$getInterval();
+    void armorBreaking$bumpInterval();
+    void armorBreaking$clearInterval();
 }

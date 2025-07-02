@@ -3,28 +3,22 @@ package me.kall.enchantedpotato.common.mixin.armorbreaking;
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
 import me.kall.enchantedpotato.common.enchantment.ArmorBreaking;
-import me.kall.enchantedpotato.common.registry.ModAttributes;
 import net.minecraft.world.damagesource.CombatRules;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
 import java.util.Iterator;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements ExtendedLivingEntity {
-    @Shadow @Nullable public abstract AttributeInstance getAttribute(Attribute attribute);
-
     public LivingEntityMixin(EntityType<?> entityType, Level level) {
         super(entityType, level);
     }
@@ -71,15 +65,10 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
             String tag = tags.next();
             if (tag.startsWith(ArmorBreaking.TAG)) {
                 AttributeInstance attributeInstance = this.armorBreaking$getAttribute();
-                attributeInstance.setBaseValue(attributeInstance.getValue() - 1);
-                if (attributeInstance.getValue() <= 0.0D) tags.remove();
+                attributeInstance.setBaseValue(attributeInstance.getBaseValue() - 1);
+                if (attributeInstance.getBaseValue() <= 0.0D) tags.remove();
                 break;
             }
         }
-    }
-
-    @Override
-    public AttributeInstance armorBreaking$getAttribute() {
-        return this.getAttribute(ModAttributes.ARMOR_BREAKING_DURATION.get());
     }
 }

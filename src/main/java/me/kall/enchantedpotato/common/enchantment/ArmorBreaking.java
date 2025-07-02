@@ -1,5 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment;
 
+import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
@@ -10,11 +11,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class ArmorBreaking extends Enchantment {
     public static final String TAG = "armorBreaking";
@@ -59,6 +62,23 @@ public class ArmorBreaking extends Enchantment {
                 entity.addTag(TAG + level);
             }
             ((ExtendedLivingEntity)entity).armorBreaking$getAttribute().setBaseValue(ArmorBreakingConfig.BASE_DURATION.get().doubleValue() + ArmorBreakingConfig.GAINED_DURATION_PER_LEVEL.get().doubleValue() * (double) (level - 1));
+        }
+    }
+
+    public static void checkPossibleTagError(LivingEvent.@NotNull LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+        if (!event.isCanceled() && entity.level() instanceof ServerLevel) {
+            ((ExtendedLivingEntity)entity).armorBreaking$bumpInterval();
+            if (((ExtendedLivingEntity)entity).armorBreaking$getInterval() <= 600) return;
+            ((ExtendedLivingEntity)entity).armorBreaking$clearInterval();
+            Set<String> tags = entity.getTags();
+            Predicate<String> isTag = tag -> tag.startsWith(TAG);
+            long count = tags.stream().filter(isTag).count();
+            if (count == 0) return;
+            if (count != 1) {
+                EnchantedPotato.LOGGER.error("{} has multiple {} tags, that's not reasonable! Removing all.", entity, TAG);
+                tags.removeIf(isTag);
+            }
         }
     }
 }
