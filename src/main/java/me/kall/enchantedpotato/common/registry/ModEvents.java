@@ -28,6 +28,7 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, MarkFromTheBeneath::onPlayerDig);
         bus.addListener(EventPriority.LOWEST, ArmorBreaking::onLivingHurt);
         bus.addListener(EventPriority.LOWEST, ArmorBreaking::checkPossibleTagError);
+        bus.addListener(NatureBlessing::onPlayerTick);
     }
 
     @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)

@@ -15,7 +15,7 @@ public class PoisonOfTheLastBreath extends Enchantment {
 
     public boolean canEnchant(@NotNull ItemStack stack) {
         Item item = stack.getItem();
-        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem;
+        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem || item instanceof TridentItem;
     }
 
     public static boolean has(@NotNull Player player) {

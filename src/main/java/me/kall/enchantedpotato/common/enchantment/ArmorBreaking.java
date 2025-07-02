@@ -33,7 +33,7 @@ public class ArmorBreaking extends Enchantment {
 
     public boolean canEnchant(@NotNull ItemStack stack) {
         Item item = stack.getItem();
-        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem;
+        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem || item instanceof TridentItem;
     }
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
@@ -71,13 +71,15 @@ public class ArmorBreaking extends Enchantment {
             ((ExtendedLivingEntity)entity).armorBreaking$bumpInterval();
             if (((ExtendedLivingEntity)entity).armorBreaking$getInterval() <= 600) return;
             ((ExtendedLivingEntity)entity).armorBreaking$clearInterval();
-            Set<String> tags = entity.getTags();
-            Predicate<String> isTag = tag -> tag.startsWith(TAG);
-            long count = tags.stream().filter(isTag).count();
-            if (count == 0) return;
-            if (count != 1) {
-                EnchantedPotato.LOGGER.error("{} has multiple {} tags, that's not reasonable! Removing all.", entity, TAG);
-                tags.removeIf(isTag);
+            synchronized (entity.getTags()) {
+                Set<String> tags = entity.getTags();
+                Predicate<String> isTag = tag -> tag.startsWith(TAG);
+                long count = tags.stream().filter(isTag).count();
+                if (count == 0) return;
+                if (count != 1) {
+                    EnchantedPotato.LOGGER.error("{} has multiple {} tags, that's not reasonable! Removing all.", entity, TAG);
+                    tags.removeIf(isTag);
+                }
             }
         }
     }

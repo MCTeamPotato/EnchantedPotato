@@ -14,8 +14,9 @@
   "enchantment.enchantedpotato.wonder_egg_priority": "辽国往事",
   "enchantment.enchantedpotato.poison_of_the_last_breath": "绝息之毒",
   "enchantment.enchantedpotato.dissolve": "化劲",
-  "enchantment.enchantedpotato.mark_from_the_beneath": "Mark From The Beneath",
-  "enchantment.enchantedpotato.armor_breaking": "Armor Breaking",
+  "enchantment.enchantedpotato.mark_from_the_beneath": "深穴铭刻",
+  "enchantment.enchantedpotato.armor_breaking": "破甲",
+  "enchantment.enchantedpotato.nature_blessing": "自然之祝",
   "enchantment.enchantedpotato.run_like_hell.desc": "生命值危急时获得短暂隐身与速度效果，随后进入冷却时间。",
   "enchantment.enchantedpotato.black_parade.desc": "击杀生物时获得速度效果，若已拥有则延长持续时间。",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "箭矢将直接命中视线范围内最近的生物实体。",
@@ -29,5 +30,6 @@
   "enchantment.enchantedpotato.poison_of_the_last_breath.desc": "攻击不激怒同类，阻止史莱姆分裂。",
   "enchantment.enchantedpotato.dissolve.desc": "当单次伤害超过生命值一定比例时，减免超出部分的伤害并获得力量效果。",
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "身处地底时获得挖掘速度加成，越深则效果越强。",
-  "enchantment.enchantedpotato.armor_breaking.desc": "攻击时使目标陷入破甲状态，削弱其护甲与韧性。"
+  "enchantment.enchantedpotato.armor_breaking.desc": "攻击时使目标陷入破甲状态，削弱其护甲与韧性。",
+  "enchantment.enchantedpotato.nature_blessing.desc": ""
 }

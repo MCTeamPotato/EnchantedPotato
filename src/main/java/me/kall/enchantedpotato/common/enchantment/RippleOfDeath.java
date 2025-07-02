@@ -27,7 +27,7 @@ public class RippleOfDeath extends Enchantment {
 
     public boolean canEnchant(@NotNull ItemStack stack) {
         Item item = stack.getItem();
-        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem;
+        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem || item instanceof TridentItem;
     }
 
     public static void onLivingDeath(@NotNull LivingDeathEvent event) {

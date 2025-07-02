@@ -16,6 +16,7 @@
   "enchantment.enchantedpotato.dissolve": "Dissolve",
   "enchantment.enchantedpotato.mark_from_the_beneath": "Mark From The Beneath",
   "enchantment.enchantedpotato.armor_breaking": "Armor Breaking",
+  "enchantment.enchantedpotato.nature_blessing": "Nature Blessing",
   "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
   "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "Arrows instantly strike the nearest visible entity in your line of sight.",
@@ -29,5 +30,6 @@
   "enchantment.enchantedpotato.poison_of_the_last_breath.desc": "Attacking mobs won't anger their allies and prevents slimes from splitting.",
   "enchantment.enchantedpotato.dissolve.desc": "Reduces excess damage taken when hit surpasses a percentage of health, granting Strength.",
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "Grants mining speed boost while underground, with greater effect at lower depths.",
-  "enchantment.enchantedpotato.armor_breaking.desc": "Attacks inflict targets with ArmorBreaking decay, drastically reducing their armor and toughness."
+  "enchantment.enchantedpotato.armor_breaking.desc": "Attacks inflict targets with ArmorBreaking decay, drastically reducing their armor and toughness.",
+  "enchantment.enchantedpotato.nature_blessing.desc": ""
 }
