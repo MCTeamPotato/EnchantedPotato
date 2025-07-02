@@ -20,6 +20,7 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.COMMON, DissolveConfig.INSTANCE, EnchantedPotato.MOD_ID + "/Dissolve.toml");
         context.registerConfig(ModConfig.Type.COMMON, PressurizedCollapseConfig.INSTANCE, EnchantedPotato.MOD_ID + "/PressurizedCollapse.toml");
         context.registerConfig(ModConfig.Type.COMMON, MarkFromTheBeneathConfig.INSTANCE, EnchantedPotato.MOD_ID + "/MarkFromTheBeneath.toml");
+        context.registerConfig(ModConfig.Type.COMMON, ArmorBreakingConfig.INSTANCE, EnchantedPotato.MOD_ID + "/ArmorBreaking.toml");
 
         if (FMLLoader.getDist().isClient()) {
             context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "/client/Rendering.toml");

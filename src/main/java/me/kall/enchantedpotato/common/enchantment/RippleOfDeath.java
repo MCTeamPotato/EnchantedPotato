@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.AABB;
@@ -23,6 +23,11 @@ public class RippleOfDeath extends Enchantment {
 
     public int getMaxLevel() {
         return 3;
+    }
+
+    public boolean canEnchant(@NotNull ItemStack stack) {
+        Item item = stack.getItem();
+        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem;
     }
 
     public static void onLivingDeath(@NotNull LivingDeathEvent event) {

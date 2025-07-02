@@ -16,7 +16,7 @@ public class ModEnchantments {
             PRESSURIZED_COLLAPSE, UNTOUCHABLE, GRACE_OF_GAIA,
             GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH,
             WONDER_EGG_PRIORITY, POISON_OF_THE_LAST_BREATH, DISSOLVE,
-            MARK_FROM_THE_BENEATH;
+            MARK_FROM_THE_BENEATH, ARMOR_BREAKING;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -32,6 +32,7 @@ public class ModEnchantments {
         POISON_OF_THE_LAST_BREATH = ENCHANTMENTS.register("poison_of_the_last_breath", PoisonOfTheLastBreath::new);
         DISSOLVE = ENCHANTMENTS.register("dissolve", Dissolve::new);
         MARK_FROM_THE_BENEATH = ENCHANTMENTS.register("mark_from_the_beneath", MarkFromTheBeneath::new);
+        ARMOR_BREAKING = ENCHANTMENTS.register("armor_breaking", ArmorBreaking::new);
     }
 
     public static void register(IEventBus bus) {

@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -21,6 +21,11 @@ public class LoRATrainer extends Enchantment {
 
     public int getMaxLevel() {
         return 3;
+    }
+
+    public boolean canEnchant(@NotNull ItemStack stack) {
+        Item item = stack.getItem();
+        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem;
     }
 
     public static void onLivingDamage(@NotNull LivingDamageEvent event) {

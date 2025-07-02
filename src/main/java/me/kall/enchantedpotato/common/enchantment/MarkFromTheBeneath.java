@@ -23,6 +23,7 @@ public class MarkFromTheBeneath extends Enchantment {
             Player player = event.getEntity();
             double height = player.getY();
             int level = player.getMainHandItem().getEnchantmentLevel(ModEnchantments.MARK_FROM_THE_BENEATH.get());
+            if (level == 0) level = player.getOffhandItem().getEnchantmentLevel(ModEnchantments.MARK_FROM_THE_BENEATH.get());
             if (level == 0) return;
             double validBaseHeight = MarkFromTheBeneathConfig.VALID_BASE_MAX_HEIGHT.get();
             double gainedHeightPerLevel = MarkFromTheBeneathConfig.GAINED_BASE_HEIGHT_PER_LEVEL.get() * (double) (level - 1);

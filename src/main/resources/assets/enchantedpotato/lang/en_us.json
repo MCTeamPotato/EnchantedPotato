@@ -1,4 +1,5 @@
 {
+  "effect.enchantedpotato.armor_breaking": "Armor Breaking",
   "info.enchantedpotato.runlikehell": "RunLikeHellCoolDown: %d",
   "info.enchantedpotato.untouchable": "UntouchableCoolDown: %d",
   "enchantment.enchantedpotato.run_like_hell": "Run Like Hell",
@@ -13,6 +14,8 @@
   "enchantment.enchantedpotato.wonder_egg_priority": "Wonder Egg Priority",
   "enchantment.enchantedpotato.poison_of_the_last_breath": "Poison Of The Last Breath",
   "enchantment.enchantedpotato.dissolve": "Dissolve",
+  "enchantment.enchantedpotato.mark_from_the_beneath": "Mark From The Beneath",
+  "enchantment.enchantedpotato.armor_breaking": "Armor Breaking",
   "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
   "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "Arrows instantly strike the nearest visible entity in your line of sight.",
@@ -24,5 +27,7 @@
   "enchantment.enchantedpotato.ripple_of_death.desc": "Releases a death ripple on kill, damaging nearby hostile mobs for a percentage of their max health. Damage and range scale with level.",
   "enchantment.enchantedpotato.wonder_egg_priority.desc": "Eggs deal damage when thrown.",
   "enchantment.enchantedpotato.poison_of_the_last_breath.desc": "Attacking mobs won't anger their allies and prevents slimes from splitting.",
-  "enchantment.enchantedpotato.dissolve.desc": "Reduces excess damage taken when hit surpasses a percentage of health, granting Strength."
+  "enchantment.enchantedpotato.dissolve.desc": "Reduces excess damage taken when hit surpasses a percentage of health, granting Strength.",
+  "enchantment.enchantedpotato.mark_from_the_beneath.desc": "Grants mining speed boost while underground, with greater effect at lower depths.",
+  "enchantment.enchantedpotato.armor_breaking.desc": "Attacks inflict targets with ArmorBreaking decay, drastically reducing their armor and toughness."
 }
