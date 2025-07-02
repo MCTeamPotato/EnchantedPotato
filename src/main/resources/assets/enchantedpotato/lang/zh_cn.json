@@ -31,5 +31,5 @@
   "enchantment.enchantedpotato.dissolve.desc": "当单次伤害超过生命值一定比例时，减免超出部分的伤害并获得力量效果。",
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "身处地底时获得挖掘速度加成，越深则效果越强。",
   "enchantment.enchantedpotato.armor_breaking.desc": "攻击时使目标陷入破甲状态，削弱其护甲与韧性。",
-  "enchantment.enchantedpotato.nature_blessing.desc": ""
+  "enchantment.enchantedpotato.nature_blessing.desc": "周期性治疗自身，并释放自然之力伤害&击退敌人。"
 }

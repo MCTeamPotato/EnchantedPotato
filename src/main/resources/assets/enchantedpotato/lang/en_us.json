@@ -31,5 +31,5 @@
   "enchantment.enchantedpotato.dissolve.desc": "Reduces excess damage taken when hit surpasses a percentage of health, granting Strength.",
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "Grants mining speed boost while underground, with greater effect at lower depths.",
   "enchantment.enchantedpotato.armor_breaking.desc": "Attacks inflict targets with ArmorBreaking decay, drastically reducing their armor and toughness.",
-  "enchantment.enchantedpotato.nature_blessing.desc": ""
+  "enchantment.enchantedpotato.nature_blessing.desc": "Periodically heals you and releases nature power to damage and knockback foes"
 }
