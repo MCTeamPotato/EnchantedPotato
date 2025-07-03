@@ -38,8 +38,8 @@ public class ArmorBreaking extends Enchantment {
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
         if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
-            int level = player.getMainHandItem().getEnchantmentLevel(ModEnchantments.ARMOR_BREAKING.get());
-            if (level == 0) level = player.getOffhandItem().getEnchantmentLevel(ModEnchantments.ARMOR_BREAKING.get());
+            Enchantment enchantment = ModEnchantments.ARMOR_BREAKING.get();
+            int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
             if (level == 0) return;
             LivingEntity entity = event.getEntity();
             Set<String> tagSet = entity.getTags();

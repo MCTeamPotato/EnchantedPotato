@@ -15,18 +15,25 @@ public abstract class AbstractOverlay implements IGuiOverlay {
 
     public abstract int getYOffSet();
 
-    public abstract int getCoolDownTicks(ExtendedPlayer player);
+    public abstract double getValue(ExtendedPlayer player);
+
+    public abstract boolean isTicks();
 
     @Override
     public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.options.hideGui) return;
 
-        int coolDownTick = getCoolDownTicks((ExtendedPlayer) mc.player);
+        double value = getValue((ExtendedPlayer) mc.player);
 
-        if (coolDownTick > 0) {
-            int seconds = (int) Math.ceil(coolDownTick / 20.0);
-            Component text = Component.translatable(getTranslateKey(), seconds);
+        if (value > 0) {
+            double displayNumber;
+            if (!isTicks()) {
+                displayNumber = value;
+            } else {
+                displayNumber = Math.ceil(value / 20.0);
+            }
+            Component text = Component.translatable(getTranslateKey(), displayNumber);
             int yPos = screenHeight - getYOffSet();
             guiGraphics.drawString(mc.font, text, getX(), yPos, 0xFFA500, true);
         }

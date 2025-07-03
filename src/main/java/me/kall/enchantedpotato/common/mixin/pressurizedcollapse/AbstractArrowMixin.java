@@ -50,6 +50,7 @@ public abstract class AbstractArrowMixin extends Projectile {
         if (this.getOwner() instanceof Player player) {
             ItemStack bow = player.getMainHandItem();
             if (!Items.BOW.equals(bow.getItem())) bow = player.getOffhandItem();
+            if (!Items.BOW.equals(bow.getItem())) return;
 
             this.pressurizedCollapse$level = bow.getEnchantmentLevel(ModEnchantments.PRESSURIZED_COLLAPSE.get());
             if (this.pressurizedCollapse$level != 0) {

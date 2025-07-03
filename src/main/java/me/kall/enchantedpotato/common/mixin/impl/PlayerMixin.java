@@ -54,6 +54,69 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
         this.untouchable$getAttribute().setBaseValue(coolDown);
     }
 
+    @Unique
+    private AttributeInstance runLikeHell$getAttribute() {
+        return this.getAttribute(ModAttributes.RUN_LIKE_HELL_COOLDOWN.get());
+    }
+
+    @Unique
+    private AttributeInstance untouchable$getAttribute() {
+        return this.getAttribute(ModAttributes.UNTOUCHABLE_COOLDOWN.get());
+    }
+
+    @Unique
+    private AttributeInstance oceanHued$getCoolDownAttribute() {
+        return this.getAttribute(ModAttributes.OCEAN_HUED_COOLDOWN.get());
+    }
+
+    public AttributeInstance oceanHued$getCountingAttribute() {
+        return this.getAttribute(ModAttributes.OCEAN_HUED_COUNTING.get());
+    }
+
+    public AttributeInstance oceanHued$getHealingAmountAttribute() {
+        return this.getAttribute(ModAttributes.OCEAN_HUED_HEALING_AMOUNT.get());
+    }
+
+    @Override
+    public double oceanHued$getHealingAmount() {
+        return this.oceanHued$getHealingAmountAttribute().getBaseValue();
+    }
+
+    @Override
+    public void oceanHued$setHealingAmount(double healingAmount) {
+        this.oceanHued$getHealingAmountAttribute().setBaseValue(healingAmount);
+    }
+
+    public boolean oceanHued$isInCounting() {
+        return this.oceanHued$getCountingAttribute().getBaseValue() != 0.00 && !this.oceanHued$isReady();
+    }
+
+    public int oceanHued$getCountingTicks() {
+        return (int) this.oceanHued$getCountingAttribute().getBaseValue();
+    }
+
+    public void oceanHued$setCountingTicks(double countingTicks) {
+        this.oceanHued$getCountingAttribute().setBaseValue(countingTicks);
+    }
+
+    public boolean oceanHued$isReady() {
+        return this.oceanHued$getCountingTicks() >= 300.00;
+    }
+
+    @Override
+    public boolean oceanHued$isInCoolDown() {
+        return this.oceanHued$getCoolDown() != 0;
+    }
+
+    @Override
+    public int oceanHued$getCoolDown() {
+        return (int) this.oceanHued$getCoolDownAttribute().getBaseValue();
+    }
+
+    @Override
+    public void oceanHued$setCoolDown(int coolDown) {
+        this.oceanHued$getCoolDownAttribute().setBaseValue(coolDown);
+    }
 
     @Inject(method = "tick", at = @At("RETURN"))
     private void runLikeHell$onTick(CallbackInfo ci) {
@@ -61,19 +124,16 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
             if (this.isCreative()) {
                 this.runLikeHell$setCoolDown(0);
                 this.untouchable$setCoolDown(0);
+                this.oceanHued$setCoolDown(0);
             }
             if (this.runLikeHell$isInCoolDown()) this.runLikeHell$setCoolDown(this.runLikeHell$getCoolDown() - 1);
             if (this.untouchable$isInCoolDown()) this.untouchable$setCoolDown(this.untouchable$getCoolDown() - 1);
+            if (this.oceanHued$isInCoolDown()) {
+                this.oceanHued$setCoolDown(this.oceanHued$getCoolDown() - 1);
+                return;
+            }
+
+            if (this.oceanHued$isInCounting()) this.oceanHued$setCountingTicks(this.oceanHued$getCountingTicks() + 1);
         }
-    }
-
-    @Unique
-    public AttributeInstance runLikeHell$getAttribute() {
-        return this.getAttribute(ModAttributes.RUN_LIKE_HELL_COOLDOWN.get());
-    }
-
-    @Unique
-    public AttributeInstance untouchable$getAttribute() {
-        return this.getAttribute(ModAttributes.UNTOUCHABLE_COOLDOWN.get());
     }
 }

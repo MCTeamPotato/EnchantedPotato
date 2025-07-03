@@ -16,7 +16,8 @@ public class ModEnchantments {
             PRESSURIZED_COLLAPSE, UNTOUCHABLE, GRACE_OF_GAIA,
             GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH,
             WONDER_EGG_PRIORITY, POISON_OF_THE_LAST_BREATH, DISSOLVE,
-            MARK_FROM_THE_BENEATH, ARMOR_BREAKING, NATURE_BLESSING;
+            MARK_FROM_THE_BENEATH, ARMOR_BREAKING, NATURE_BLESSING,
+            CARESSING_MOONLIGHT, OCEAN_HUED;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -34,6 +35,8 @@ public class ModEnchantments {
         MARK_FROM_THE_BENEATH = ENCHANTMENTS.register("mark_from_the_beneath", MarkFromTheBeneath::new);
         ARMOR_BREAKING = ENCHANTMENTS.register("armor_breaking", ArmorBreaking::new);
         NATURE_BLESSING = ENCHANTMENTS.register("nature_blessing", NatureBlessing::new);
+        CARESSING_MOONLIGHT = ENCHANTMENTS.register("caressing_moonlight", CaressingMoonlight::new);
+        OCEAN_HUED = ENCHANTMENTS.register("ocean_hued", OceanHued::new);
     }
 
     public static void register(IEventBus bus) {

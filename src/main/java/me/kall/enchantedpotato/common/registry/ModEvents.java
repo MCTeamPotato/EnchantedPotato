@@ -29,6 +29,10 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, ArmorBreaking::onLivingHurt);
         bus.addListener(EventPriority.LOWEST, ArmorBreaking::checkPossibleTagError);
         bus.addListener(NatureBlessing::onPlayerTick);
+        bus.addListener(EventPriority.LOWEST, CaressingMoonlight::onLivingHurt);
+        bus.addListener(EventPriority.LOWEST, OceanHued::onHeal);
+        bus.addListener(EventPriority.LOWEST, OceanHued::onLivingHurt);
+        bus.addListener(EventPriority.LOWEST, OceanHued::onPlayerDeath);
     }
 
     @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)

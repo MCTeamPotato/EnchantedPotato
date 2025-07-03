@@ -1,5 +1,7 @@
 package me.kall.enchantedpotato.common.api;
 
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+
 public interface ExtendedPlayer {
     boolean runLikeHell$isInCoolDown();
     int runLikeHell$getCoolDown();
@@ -8,4 +10,18 @@ public interface ExtendedPlayer {
     boolean untouchable$isInCoolDown();
     int untouchable$getCoolDown();
     void untouchable$setCoolDown(int coolDown);
+
+    AttributeInstance oceanHued$getCountingAttribute();
+    boolean oceanHued$isInCounting();
+    int oceanHued$getCountingTicks();
+    void oceanHued$setCountingTicks(double countingTicks);
+    boolean oceanHued$isReady();
+
+    AttributeInstance oceanHued$getHealingAmountAttribute();
+    double oceanHued$getHealingAmount();
+    void oceanHued$setHealingAmount(double healingAmount);
+
+    boolean oceanHued$isInCoolDown();
+    int oceanHued$getCoolDown();
+    void oceanHued$setCoolDown(int coolDown);
 }

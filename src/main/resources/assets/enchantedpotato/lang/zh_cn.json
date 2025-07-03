@@ -2,6 +2,9 @@
   "effect.enchantedpotato.armor_breaking": "破甲",
   "info.enchantedpotato.runlikehell": "地狱狂奔冷却：%d",
   "info.enchantedpotato.untouchable": "禁止接触冷却：%d",
+  "info.enchantedpotato.oceanhued.counting": "海染计时：%d",
+  "info.enchantedpotato.oceanhued.cooldown": "海染冷却：%d",
+  "info.enchantedpotato.oceanhued.healing_amount": "海染治疗量统计：%d",
   "enchantment.enchantedpotato.run_like_hell": "地狱狂奔",
   "enchantment.enchantedpotato.black_parade": "黑色游行",
   "enchantment.enchantedpotato.grace_of_gungnir": "冈格尼尔之赐",
@@ -17,6 +20,8 @@
   "enchantment.enchantedpotato.mark_from_the_beneath": "深穴铭刻",
   "enchantment.enchantedpotato.armor_breaking": "破甲",
   "enchantment.enchantedpotato.nature_blessing": "自然之祝",
+  "enchantment.enchantedpotato.caressing_moonlight": "月光摩挲连绵",
+  "enchantment.enchantedpotato.ocean_hued": "海染",
   "enchantment.enchantedpotato.run_like_hell.desc": "生命值危急时获得短暂隐身与速度效果，随后进入冷却时间。",
   "enchantment.enchantedpotato.black_parade.desc": "击杀生物时获得速度效果，若已拥有则延长持续时间。",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "箭矢将直接命中视线范围内最近的生物实体。",
@@ -31,5 +36,6 @@
   "enchantment.enchantedpotato.dissolve.desc": "当单次伤害超过生命值一定比例时，减免超出部分的伤害并获得力量效果。",
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "身处地底时获得挖掘速度加成，越深则效果越强。",
   "enchantment.enchantedpotato.armor_breaking.desc": "攻击时使目标陷入破甲状态，削弱其护甲与韧性。",
-  "enchantment.enchantedpotato.nature_blessing.desc": "周期性治疗自身，并释放自然之力伤害&击退敌人。"
+  "enchantment.enchantedpotato.nature_blessing.desc": "周期性治疗自身，并释放自然之力伤害&击退敌人。",
+  "enchantment.enchantedpotato.ocean_hued.desc": "积蓄治疗能量，攻击时释放为海之怒火，对目标及附近亡灵造成伤害"
 }

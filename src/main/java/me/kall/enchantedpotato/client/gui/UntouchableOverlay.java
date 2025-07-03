@@ -21,7 +21,12 @@ public class UntouchableOverlay extends AbstractOverlay implements IGuiOverlay {
     }
 
     @Override
-    public int getCoolDownTicks(ExtendedPlayer player) {
+    public double getValue(ExtendedPlayer player) {
         return player.untouchable$getCoolDown();
+    }
+
+    @Override
+    public boolean isTicks() {
+        return true;
     }
 }

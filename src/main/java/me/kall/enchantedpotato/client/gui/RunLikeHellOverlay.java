@@ -21,7 +21,12 @@ public class RunLikeHellOverlay extends AbstractOverlay implements IGuiOverlay {
     }
 
     @Override
-    public int getCoolDownTicks(ExtendedPlayer player) {
+    public double getValue(ExtendedPlayer player) {
         return player.runLikeHell$getCoolDown();
+    }
+
+    @Override
+    public boolean isTicks() {
+        return true;
     }
 }

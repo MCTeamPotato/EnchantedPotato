@@ -1,5 +1,6 @@
 package me.kall.enchantedpotato.client.event;
 
+import me.kall.enchantedpotato.client.gui.OceanHuedOverlay;
 import me.kall.enchantedpotato.client.gui.RunLikeHellOverlay;
 import me.kall.enchantedpotato.client.gui.UntouchableOverlay;
 import me.kall.enchantedpotato.client.renderer.GurenNoYumiyaRenderer;
@@ -13,6 +14,9 @@ public class ClientModEvents {
     public static void registerGui(@NotNull RegisterGuiOverlaysEvent event) {
         event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "run_like_hell_cooldown", new RunLikeHellOverlay());
         event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "untouchable_cooldown", new UntouchableOverlay());
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_counting", new OceanHuedOverlay.Counting());
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_cooldown", new OceanHuedOverlay.Cooldown());
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_healing_amount", new OceanHuedOverlay.HealingAmount());
     }
 
     public static void register(@NotNull IEventBus modBus, @NotNull IEventBus forgeBus) {

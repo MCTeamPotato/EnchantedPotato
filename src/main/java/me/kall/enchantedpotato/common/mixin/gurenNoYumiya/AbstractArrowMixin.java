@@ -34,6 +34,7 @@ public abstract class AbstractArrowMixin extends Projectile {
         if (this.getOwner() instanceof Player player) {
             ItemStack bow = player.getMainHandItem();
             if (!Items.BOW.equals(bow.getItem())) bow = player.getOffhandItem();
+            if (!Items.BOW.equals(bow.getItem())) return;
             int level = bow.getEnchantmentLevel(ModEnchantments.GUREN_NO_YUMIYA.get());
             if (level != 0) {
                 double demandSeconds = BOW_CHARGE_TIME + (BASE_EXTRA_CHARGE_TIME_REQUIRED - GurenNoYumiyaConfig.SAVED_HOLDING_SECONDS_PER_LEVEL.get() * (level - 1));
