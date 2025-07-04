@@ -27,7 +27,6 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, Dissolve::onPlayerHurt);
         bus.addListener(EventPriority.LOWEST, MarkFromTheBeneath::onPlayerDig);
         bus.addListener(EventPriority.LOWEST, ArmorBreaking::onLivingHurt);
-        bus.addListener(EventPriority.LOWEST, ArmorBreaking::checkPossibleTagError);
         bus.addListener(NatureBlessing::onPlayerTick);
         bus.addListener(EventPriority.LOWEST, CaressingMoonlight::onLivingHurt);
         bus.addListener(EventPriority.LOWEST, OceanHued::onHeal);
