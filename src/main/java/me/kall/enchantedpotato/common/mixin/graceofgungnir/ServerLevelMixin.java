@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ServerLevel.class, priority = 1200)
 public abstract class ServerLevelMixin {
-    @Inject(method = "addEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;onAddedToWorld()V"))
+    @Inject(method = "addEntity", at = @At(value = "INVOKE", remap = false, target = "Lnet/minecraft/world/entity/Entity;onAddedToWorld()V"))
     private void canRemove(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if (entity instanceof AbstractArrow arrow) {
             ((ExtendedAbstractArrow)arrow).graceOfGungnir$setCanRemove(true);
