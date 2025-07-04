@@ -1,9 +1,10 @@
 package me.kall.enchantedpotato.common.mixin.armorbreaking;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
 import me.kall.enchantedpotato.common.enchantment.ArmorBreaking;
-import net.minecraft.world.damagesource.CombatRules;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,7 +13,6 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Iterator;
@@ -23,8 +23,8 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
         super(entityType, level);
     }
 
-    @Redirect(method = "getDamageAfterArmorAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterAbsorb(FFF)F"))
-    private float modifyArmorValue(float damageAmount, float armorValue, float armorToughness) {
+    @WrapOperation(method = "getDamageAfterArmorAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterAbsorb(FFF)F"))
+    private float modifyArmorValue(float damageAmount, float armorValue, float armorToughness, Operation<Float> operation) {
         String armorBreaking = null;
         for (String tag : this.getTags()) {
             if (tag.startsWith(ArmorBreaking.TAG)) {
@@ -55,7 +55,7 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
                 armorToughness = armorToughness * (1.0F - reductionPercent);
             }
         }
-        return CombatRules.getDamageAfterAbsorb(damageAmount, armorValue, armorToughness);
+        return operation.call(damageAmount, armorValue, armorToughness);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
