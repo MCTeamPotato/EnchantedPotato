@@ -25,7 +25,7 @@
   "enchantment.enchantedpotato.mine_carve": "Mine Carve",
   "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
   "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
-  "enchantment.enchantedpotato.grace_of_gungnir.desc": "Arrows instantly strike the nearest visible entity in your line of sight.",
+  "enchantment.enchantedpotato.grace_of_gungnir.desc": "Whether it hits the target or not, the arrow will always damage the nearest living entity within the line of sight at the time of firing.",
   "enchantment.enchantedpotato.pressurized_collapse.desc": "Arrows create a gravitational vortex on impact, pulling non-player entities toward the epicenter. Range and force scale with draw duration and enchantment level.",
   "enchantment.enchantedpotato.untouchable.desc": "When hurt, knock back nearby monsters and inflict slowness. Cooldown decreases with enchantment level.",
   "enchantment.enchantedpotato.grace_of_gaia.desc": "Reduces damage taken at low depths. Reduction increases proportionally with depth. Boots only.",
@@ -37,8 +37,8 @@
   "enchantment.enchantedpotato.dissolve.desc": "Reduces excess damage taken when hit surpasses a percentage of health, granting Strength.",
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "Grants mining speed boost while underground, with greater effect at lower depths.",
   "enchantment.enchantedpotato.armor_breaking.desc": "Attacks inflict targets with ArmorBreaking decay, drastically reducing their armor and toughness.",
-  "enchantment.enchantedpotato.nature_blessing.desc": "Periodically heals you and releases nature power to damage and knockback foes",
-  "enchantment.enchantedpotato.caressing_moonlight.desc": "Caressing Moonlight",
-  "enchantment.enchantedpotato.ocean_hued.desc": "Stores healing energy, releasing as oceanic wrath on attack to damage the target and nearby undead",
-  "enchantment.enchantedpotato.mine_carve.desc": ""
+  "enchantment.enchantedpotato.nature_blessing.desc": "Periodically heals you and releases nature power to damage and knockback foes.",
+  "enchantment.enchantedpotato.caressing_moonlight.desc": "Deal extras damage for entities with harmful potion effects.",
+  "enchantment.enchantedpotato.ocean_hued.desc": "Stores healing energy, releasing as oceanic wrath on attack to damage the target and nearby undead.",
+  "enchantment.enchantedpotato.mine_carve.desc": "Permanently reduces target's armor."
 }

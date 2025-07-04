@@ -16,7 +16,6 @@
     "gurennoyumiya.AbstractArrowMixin",
     "impl.LivingEntityMixin",
     "impl.PlayerMixin",
-    "graceofgungnir.ServerLevelMixin",
     "poisonofthelastbreath.HurtByTargetGoalMixin",
     "poisonofthelastbreath.PiglinAiMixin",
     "poisonofthelastbreath.SlimeMixin",

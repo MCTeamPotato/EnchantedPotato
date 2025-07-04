@@ -25,7 +25,7 @@
   "enchantment.enchantedpotato.mine_carve": "镐击",
   "enchantment.enchantedpotato.run_like_hell.desc": "生命值危急时获得短暂隐身与速度效果，随后进入冷却时间。",
   "enchantment.enchantedpotato.black_parade.desc": "击杀生物时获得速度效果，若已拥有则延长持续时间。",
-  "enchantment.enchantedpotato.grace_of_gungnir.desc": "箭矢将直接命中视线范围内最近的生物实体。",
+  "enchantment.enchantedpotato.grace_of_gungnir.desc": "无论是否射中，箭矢将始终伤害射出时视线范围内最近的生物实体。",
   "enchantment.enchantedpotato.pressurized_collapse.desc": "箭矢命中时生成引力漩涡，将非玩家实体拉向中心点。作用范围与力度随拉弓时间及附魔等级提升。",
   "enchantment.enchantedpotato.untouchable.desc": "受伤时击退周围怪物并施加缓慢效果。冷却时间随附魔等级降低。",
   "enchantment.enchantedpotato.grace_of_gaia.desc": "身处低处时，根据深度比例减少所受伤害。减免量随深度增加而提升。靴子专属。",
@@ -38,5 +38,7 @@
   "enchantment.enchantedpotato.mark_from_the_beneath.desc": "身处地底时获得挖掘速度加成，越深则效果越强。",
   "enchantment.enchantedpotato.armor_breaking.desc": "攻击时使目标陷入破甲状态，削弱其护甲与韧性。",
   "enchantment.enchantedpotato.nature_blessing.desc": "周期性治疗自身，并释放自然之力伤害&击退敌人。",
-  "enchantment.enchantedpotato.ocean_hued.desc": "积蓄治疗能量，攻击时释放为海之怒火，对目标及附近亡灵造成伤害"
+  "enchantment.enchantedpotato.caressing_moonlight.desc": "对存在负面效果的生物造成额外伤害。",
+  "enchantment.enchantedpotato.ocean_hued.desc": "积蓄治疗能量，攻击时释放为海之怒火，对目标及附近亡灵造成伤害。",
+  "enchantment.enchantedpotato.mine_carve.desc": "永久削减目标的护甲。"
 }

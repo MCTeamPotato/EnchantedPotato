@@ -19,7 +19,7 @@ public class PoisonOfTheLastBreath extends Enchantment {
     }
 
     public static boolean has(@NotNull Player player) {
-        Enchantment enchantment = ModEnchantments.CARESSING_MOONLIGHT.get();
+        Enchantment enchantment = ModEnchantments.POISON_OF_THE_LAST_BREATH.get();
         int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
         return level != 0;
     }
