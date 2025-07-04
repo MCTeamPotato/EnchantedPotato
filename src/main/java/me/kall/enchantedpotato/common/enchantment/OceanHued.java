@@ -70,7 +70,7 @@ public class OceanHued extends Enchantment {
         }
     }
 
-    public static void onPlayerDeath(LivingDeathEvent event) {
+    public static void onPlayerDeath(@NotNull LivingDeathEvent event) {
         if (!event.isCanceled() && event.getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
             int level = player.getItemBySlot(EquipmentSlot.HEAD).getEnchantmentLevel(ModEnchantments.OCEAN_HUED.get());
             if (level == 0) return;

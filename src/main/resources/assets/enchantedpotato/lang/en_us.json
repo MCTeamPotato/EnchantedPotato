@@ -22,6 +22,7 @@
   "enchantment.enchantedpotato.nature_blessing": "Nature Blessing",
   "enchantment.enchantedpotato.caressing_moonlight": "Caressing Moonlight",
   "enchantment.enchantedpotato.ocean_hued": "Ocean Hued",
+  "enchantment.enchantedpotato.mine_carve": "Mine Carve",
   "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
   "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "Arrows instantly strike the nearest visible entity in your line of sight.",
@@ -38,5 +39,6 @@
   "enchantment.enchantedpotato.armor_breaking.desc": "Attacks inflict targets with ArmorBreaking decay, drastically reducing their armor and toughness.",
   "enchantment.enchantedpotato.nature_blessing.desc": "Periodically heals you and releases nature power to damage and knockback foes",
   "enchantment.enchantedpotato.caressing_moonlight.desc": "Caressing Moonlight",
-  "enchantment.enchantedpotato.ocean_hued.desc": "Stores healing energy, releasing as oceanic wrath on attack to damage the target and nearby undead"
+  "enchantment.enchantedpotato.ocean_hued.desc": "Stores healing energy, releasing as oceanic wrath on attack to damage the target and nearby undead",
+  "enchantment.enchantedpotato.mine_carve.desc": ""
 }

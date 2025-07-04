@@ -32,6 +32,7 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, OceanHued::onHeal);
         bus.addListener(EventPriority.LOWEST, OceanHued::onLivingHurt);
         bus.addListener(EventPriority.LOWEST, OceanHued::onPlayerDeath);
+        bus.addListener(EventPriority.LOWEST, MineCarve::onLivingHurt);
     }
 
     @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)
