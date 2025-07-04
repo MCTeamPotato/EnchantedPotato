@@ -1,19 +1,21 @@
 package me.kall.enchantedpotato.common.mixin.armorbreaking;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
 import me.kall.enchantedpotato.common.enchantment.ArmorBreaking;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Iterator;
 
@@ -23,8 +25,45 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
         super(entityType, level);
     }
 
-    @WrapOperation(method = "getDamageAfterArmorAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterAbsorb(FFF)F"))
-    private float modifyArmorValue(float damageAmount, float armorValue, float armorToughness, Operation<Float> operation) {
+    @Inject(method = "getAttributeValue(Lnet/minecraft/world/entity/ai/attributes/Attribute;)D", at = @At("RETURN"), cancellable = true)
+    private void onGetArmorValue(Attribute attribute, CallbackInfoReturnable<Double> cir) {
+        if (!attribute.equals(Attributes.ARMOR)) return;
+        int enchantmentLevel = armorBreaking$getLevel();
+        if (enchantmentLevel == 0) return;
+        float armorValue = cir.getReturnValue().floatValue();
+        if (armorValue != 0.00F) {
+            float reductionPercent = ArmorBreakingConfig.BASE_ARMOR_REDUCTION.get().floatValue() + ArmorBreakingConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get().floatValue() * (float) (enchantmentLevel - 1);
+            float minReductionAmount = ArmorBreakingConfig.MINUS_ARMOR_REDUCTION_AMOUNT.get().floatValue();
+
+            if (reductionPercent > 1.0F) reductionPercent = 1.0F;
+
+            float armorReduction = armorValue * reductionPercent;
+            if (armorReduction < minReductionAmount) armorReduction = minReductionAmount;
+            if (armorValue > armorReduction) {
+                armorValue = armorValue - armorReduction;
+            } else {
+                armorValue = 0.0F;
+            }
+            cir.setReturnValue((double) armorValue);
+        }
+    }
+
+    @Inject(method = "getAttributeValue(Lnet/minecraft/world/entity/ai/attributes/Attribute;)D", at = @At("RETURN"), cancellable = true)
+    private void onGetArmorToughnessValue(Attribute attribute, CallbackInfoReturnable<Double> cir) {
+        if (!attribute.equals(Attributes.ARMOR_TOUGHNESS)) return;
+        int enchantmentLevel = armorBreaking$getLevel();
+        if (enchantmentLevel == 0) return;
+        float armorToughness = cir.getReturnValue().floatValue();
+        if (armorToughness != 0.0F) {
+            float reductionPercent = ArmorBreakingConfig.BASE_ARMOR_TOUGHNESS_REDUCTION.get().floatValue() + ArmorBreakingConfig.GAINED_ARMOR_TOUGHNESS_REDUCTION_PER_LEVEL.get().floatValue() * (float) (enchantmentLevel - 1);
+            if (reductionPercent > 1.0F) reductionPercent = 1.0F;
+            armorToughness = armorToughness * (1.0F - reductionPercent);
+        }
+        cir.setReturnValue((double) armorToughness);
+    }
+
+    @Unique
+    private int armorBreaking$getLevel() {
         String armorBreaking = null;
         for (String tag : this.getTags()) {
             if (tag.startsWith(ArmorBreaking.TAG)) {
@@ -32,30 +71,7 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
                 break;
             }
         }
-        if (armorBreaking != null) {
-            int enchantmentLevel = Integer.parseInt(armorBreaking.split("g")[1]);
-            if (armorValue != 0.0F) {
-
-                float reductionPercent = ArmorBreakingConfig.BASE_ARMOR_REDUCTION.get().floatValue() + ArmorBreakingConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get().floatValue() * (float) (enchantmentLevel - 1);
-                float minReductionAmount = ArmorBreakingConfig.MINUS_ARMOR_REDUCTION_AMOUNT.get().floatValue();
-
-                if (reductionPercent > 1.0F) reductionPercent = 1.0F;
-
-                float armorReduction = armorValue * reductionPercent;
-                if (armorReduction < minReductionAmount) armorReduction = minReductionAmount;
-                if (armorValue > armorReduction) {
-                    armorValue = armorValue - armorReduction;
-                } else {
-                    armorValue = 0.0F;
-                }
-            }
-            if (armorToughness != 0.0F) {
-                float reductionPercent = ArmorBreakingConfig.BASE_ARMOR_TOUGHNESS_REDUCTION.get().floatValue() + ArmorBreakingConfig.GAINED_ARMOR_TOUGHNESS_REDUCTION_PER_LEVEL.get().floatValue() * (float) (enchantmentLevel - 1);
-                if (reductionPercent > 1.0F) reductionPercent = 1.0F;
-                armorToughness = armorToughness * (1.0F - reductionPercent);
-            }
-        }
-        return operation.call(damageAmount, armorValue, armorToughness);
+        return armorBreaking != null ? Integer.parseInt(armorBreaking.split("g")[1]) : 0;
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
