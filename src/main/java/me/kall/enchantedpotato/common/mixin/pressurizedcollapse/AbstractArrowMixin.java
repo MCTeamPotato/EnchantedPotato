@@ -1,7 +1,7 @@
 package me.kall.enchantedpotato.common.mixin.pressurizedcollapse;
 
 import me.kall.enchantedpotato.common.config.PressurizedCollapseConfig;
-import me.kall.enchantedpotato.common.enchantment.PressurizedCollapse;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.PressurizedCollapse;
 import me.kall.enchantedpotato.common.network.PressurizedCollapsePacket;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import me.kall.enchantedpotato.common.registry.ModPackets;

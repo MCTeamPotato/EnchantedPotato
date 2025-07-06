@@ -1,7 +1,7 @@
 package me.kall.enchantedpotato.common.mixin.graceofgungnir;
 
 import me.kall.enchantedpotato.common.api.PotatoHitResult;
-import me.kall.enchantedpotato.common.enchantment.GraceOfGungnir;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.GraceOfGungnir;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

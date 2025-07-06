@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.leggings;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.UntouchableConfig;

@@ -1,8 +1,7 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
-import me.kall.enchantedpotato.common.data.ArmorBreakingEntitiesData;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -35,8 +34,7 @@ public class ArmorBreaking extends Enchantment {
             int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
             if (level == 0) return;
             LivingEntity entity = event.getEntity();
-            ArmorBreakingEntitiesData data = ArmorBreakingEntitiesData.get(serverLevel);
-            data.add(entity.getUUID(), level);
+            entity.getPersistentData().putInt("ArmorBreakingLevel", level);
             ((ExtendedLivingEntity)entity).armorBreaking$getAttribute().setBaseValue(ArmorBreakingConfig.BASE_DURATION.get().doubleValue() + ArmorBreakingConfig.GAINED_DURATION_PER_LEVEL.get().doubleValue() * (double) (level - 1));
         }
     }

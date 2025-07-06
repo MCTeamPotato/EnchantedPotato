@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.chestplate;
 
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.NatureBlessingConfig;

@@ -1,7 +1,7 @@
 package me.kall.enchantedpotato.common.mixin.gurennoyumiya;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
-import me.kall.enchantedpotato.common.enchantment.GurenNoYumiya;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.GurenNoYumiya;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;

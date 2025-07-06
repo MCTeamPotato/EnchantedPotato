@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.RippleOfDeathConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;

@@ -1,6 +1,6 @@
 package me.kall.enchantedpotato.common.mixin.poisonofthelastbreath;
 
-import me.kall.enchantedpotato.common.enchantment.PoisonOfTheLastBreath;
+import me.kall.enchantedpotato.common.enchantment.weapon.PoisonOfTheLastBreath;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;

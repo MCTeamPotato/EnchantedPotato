@@ -16,12 +16,15 @@
     "gurennoyumiya.AbstractArrowMixin",
     "impl.LivingEntityMixin",
     "impl.PlayerMixin",
+    "lawofinertia.LivingEntityMixin",
+    "lotusinwater.PlayerMixin",
     "poisonofthelastbreath.HurtByTargetGoalMixin",
     "poisonofthelastbreath.PiglinAiMixin",
     "poisonofthelastbreath.SlimeMixin",
     "poisonofthelastbreath.VillagerMixin",
     "poisonofthelastbreath.ZombifiedPiglinMixin",
     "pressurizedcollapse.AbstractArrowMixin",
+    "unitestonesofall.BlockMixin",
     "wondereggpriority.ThrownEggMixin"
   ],
   "injectors": {

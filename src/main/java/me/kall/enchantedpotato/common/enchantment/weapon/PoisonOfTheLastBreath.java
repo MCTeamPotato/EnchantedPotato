@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.EquipmentSlot;

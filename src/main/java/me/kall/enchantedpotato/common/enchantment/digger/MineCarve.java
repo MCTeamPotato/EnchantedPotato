@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.digger;
 
 import me.kall.enchantedpotato.common.config.MineCarveConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;

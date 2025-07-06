@@ -1,7 +1,22 @@
 package me.kall.enchantedpotato.common.registry;
 
 import me.kall.enchantedpotato.EnchantedPotato;
-import me.kall.enchantedpotato.common.enchantment.*;
+import me.kall.enchantedpotato.common.enchantment.boots.BlackParade;
+import me.kall.enchantedpotato.common.enchantment.boots.GraceOfGaia;
+import me.kall.enchantedpotato.common.enchantment.boots.LotusInWater;
+import me.kall.enchantedpotato.common.enchantment.boots.RunLikeHell;
+import me.kall.enchantedpotato.common.enchantment.chestplate.Dissolve;
+import me.kall.enchantedpotato.common.enchantment.chestplate.NatureBlessing;
+import me.kall.enchantedpotato.common.enchantment.chestplate.WonderEggPriority;
+import me.kall.enchantedpotato.common.enchantment.digger.MarkFromTheBeneath;
+import me.kall.enchantedpotato.common.enchantment.digger.MineCarve;
+import me.kall.enchantedpotato.common.enchantment.digger.UniteStonesOfAll;
+import me.kall.enchantedpotato.common.enchantment.helmet.OceanHued;
+import me.kall.enchantedpotato.common.enchantment.leggings.Untouchable;
+import me.kall.enchantedpotato.common.enchantment.weapon.*;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.GraceOfGungnir;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.GurenNoYumiya;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.PressurizedCollapse;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,7 +32,8 @@ public class ModEnchantments {
             GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH,
             WONDER_EGG_PRIORITY, POISON_OF_THE_LAST_BREATH, DISSOLVE,
             MARK_FROM_THE_BENEATH, ARMOR_BREAKING, NATURE_BLESSING,
-            CARESSING_MOONLIGHT, OCEAN_HUED, MINE_CARVE;
+            CARESSING_MOONLIGHT, OCEAN_HUED, MINE_CARVE,
+            LOTUS_IN_WATER, UNITE_STONES_OF_ALL, LAW_OF_INERTIA;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -38,6 +54,9 @@ public class ModEnchantments {
         CARESSING_MOONLIGHT = ENCHANTMENTS.register("caressing_moonlight", CaressingMoonlight::new);
         OCEAN_HUED = ENCHANTMENTS.register("ocean_hued", OceanHued::new);
         MINE_CARVE = ENCHANTMENTS.register("mine_carve", MineCarve::new);
+        LOTUS_IN_WATER = ENCHANTMENTS.register("lotus_in_water", LotusInWater::new);
+        UNITE_STONES_OF_ALL = ENCHANTMENTS.register("unite_stones_of_all", UniteStonesOfAll::new);
+        LAW_OF_INERTIA = ENCHANTMENTS.register("law_of_inertia", LawOfInertia::new);
     }
 
     public static void register(IEventBus bus) {

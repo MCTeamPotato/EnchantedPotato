@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.enchantment;
+package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.config.BlackParadeConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;

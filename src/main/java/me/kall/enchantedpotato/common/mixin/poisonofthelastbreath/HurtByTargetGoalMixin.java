@@ -1,6 +1,6 @@
 package me.kall.enchantedpotato.common.mixin.poisonofthelastbreath;
 
-import me.kall.enchantedpotato.common.enchantment.PoisonOfTheLastBreath;
+import me.kall.enchantedpotato.common.enchantment.weapon.PoisonOfTheLastBreath;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
