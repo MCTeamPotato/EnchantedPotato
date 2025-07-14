@@ -9,10 +9,6 @@ public interface ExtendedLivingEntity {
 
     AttributeInstance armorBreaking$getAttribute();
 
-    int armorBreaking$getInterval();
-    void armorBreaking$bumpInterval();
-    void armorBreaking$clearInterval();
-
     int natureBlessing$getInterval();
     void natureBlessing$setInterval(int interval);
 }

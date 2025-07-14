@@ -17,6 +17,7 @@ import me.kall.enchantedpotato.common.enchantment.weapon.*;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.GraceOfGungnir;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.GurenNoYumiya;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.PressurizedCollapse;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.Sniper;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,7 +34,8 @@ public class ModEnchantments {
             WONDER_EGG_PRIORITY, POISON_OF_THE_LAST_BREATH, DISSOLVE,
             MARK_FROM_THE_BENEATH, ARMOR_BREAKING, NATURE_BLESSING,
             CARESSING_MOONLIGHT, OCEAN_HUED, MINE_CARVE,
-            LOTUS_IN_WATER, UNITE_STONES_OF_ALL, LAW_OF_INERTIA;
+            LOTUS_IN_WATER, UNITE_STONES_OF_ALL, LAW_OF_INERTIA,
+            SNIPER, ENDER_ENDER;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -57,6 +59,8 @@ public class ModEnchantments {
         LOTUS_IN_WATER = ENCHANTMENTS.register("lotus_in_water", LotusInWater::new);
         UNITE_STONES_OF_ALL = ENCHANTMENTS.register("unite_stones_of_all", UniteStonesOfAll::new);
         LAW_OF_INERTIA = ENCHANTMENTS.register("law_of_inertia", LawOfInertia::new);
+        SNIPER = ENCHANTMENTS.register("sniper", Sniper::new);
+        ENDER_ENDER = ENCHANTMENTS.register("ender_ender", EnderEnder::new);
     }
 
     public static void register(IEventBus bus) {
