@@ -20,7 +20,7 @@ public abstract class LivingEntityMixin implements ExtendedLivingEntity {
 
     @Shadow @Nullable public abstract AttributeInstance getAttribute(Attribute attribute);
 
-    @Unique private int armorBreaking$interval = 0, natureBlessing$interval = 0;
+    @Unique private int natureBlessing$interval = 0;
 
     @Override
     public @Nullable Player enchantedPotato$getLastHurtByPlayer() {
@@ -30,21 +30,6 @@ public abstract class LivingEntityMixin implements ExtendedLivingEntity {
     @Override
     public AttributeInstance armorBreaking$getAttribute() {
         return this.getAttribute(ModAttributes.ARMOR_BREAKING_DURATION.get());
-    }
-
-    @Override
-    public int armorBreaking$getInterval() {
-        return this.armorBreaking$interval;
-    }
-
-    @Override
-    public void armorBreaking$bumpInterval() {
-        this.armorBreaking$interval++;
-    }
-
-    @Override
-    public void armorBreaking$clearInterval() {
-        this.armorBreaking$interval = 0;
     }
 
     @Override

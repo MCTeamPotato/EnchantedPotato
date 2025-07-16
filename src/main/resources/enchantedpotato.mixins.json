@@ -24,7 +24,6 @@
     "poisonofthelastbreath.VillagerMixin",
     "poisonofthelastbreath.ZombifiedPiglinMixin",
     "pressurizedcollapse.AbstractArrowMixin",
-    "sniper.AbstractArrowMixin",
     "unitestonesofall.BlockMixin",
     "wondereggpriority.ThrownEggMixin"
   ],

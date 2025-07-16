@@ -26,7 +26,6 @@
   "enchantment.enchantedpotato.lotus_in_water": "Lotus In Water",
   "enchantment.enchantedpotato.unite_stones_of_all": "Unite Stones Of All",
   "enchantment.enchantedpotato.law_of_inertia": "Law Of Inertia",
-  "enchantment.enchantedpotato.sniper": "Sniper",
   "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
   "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "Whether it hits the target or not, the arrow will always damage the nearest living entity within the line of sight at the time of firing.",
@@ -47,6 +46,5 @@
   "enchantment.enchantedpotato.mine_carve.desc": "Permanently reduces target's armor.",
   "enchantment.enchantedpotato.lotus_in_water.desc": "Immune to being pushed by fluids.",
   "enchantment.enchantedpotato.unite_stones_of_all.desc": "Replaces drops from specific stones with Stone/Cobblestone. Some stones may drop Quartz when mined without Silk Touch.",
-  "enchantment.enchantedpotato.law_of_inertia.desc": "Entities repelled by you will deal inertia damage to other entities during their retreat.",
-  "enchantment.enchantedpotato.sniper.desc": "Increase arrows' speed."
+  "enchantment.enchantedpotato.law_of_inertia.desc": "Entities repelled by you will deal inertia damage to other entities during their retreat."
 }
