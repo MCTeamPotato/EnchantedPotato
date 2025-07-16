@@ -10,8 +10,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PacketDistributor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -49,8 +49,8 @@ public abstract class AbstractArrowMixin extends Projectile {
     private void onShoot(double x, double y, double z, float velocity, float inaccuracy, CallbackInfo ci) {
         if (this.getOwner() instanceof Player player) {
             ItemStack bow = player.getMainHandItem();
-            if (!Items.BOW.equals(bow.getItem())) bow = player.getOffhandItem();
-            if (!Items.BOW.equals(bow.getItem())) return;
+            if (!(bow.getItem() instanceof BowItem)) bow = player.getOffhandItem();
+            if (!(bow.getItem() instanceof BowItem)) return;
 
             this.pressurizedCollapse$level = bow.getEnchantmentLevel(ModEnchantments.PRESSURIZED_COLLAPSE.get());
             if (this.pressurizedCollapse$level != 0) {

@@ -8,8 +8,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -36,8 +36,8 @@ public abstract class AbstractArrowMixin extends Projectile {
     private void onShoot(CallbackInfo ci) {
         if (this.getOwner() instanceof Player player) {
             ItemStack bow = player.getMainHandItem();
-            if (!Items.BOW.equals(bow.getItem())) bow = player.getOffhandItem();
-            if (!Items.BOW.equals(bow.getItem())) return;
+            if (!(bow.getItem() instanceof BowItem)) bow = player.getOffhandItem();
+            if (!(bow.getItem() instanceof BowItem)) return;
             int level = bow.getEnchantmentLevel(ModEnchantments.GRACE_OF_GUNGNIR.get());
             if (level == 0) return;
             this.graceOfGungnir$target = GraceOfGungnir.findNearestLivingEntityOnPath(player);

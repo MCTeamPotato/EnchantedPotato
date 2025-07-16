@@ -7,8 +7,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -33,8 +33,8 @@ public abstract class AbstractArrowMixin extends Projectile {
     private void onShoot(double x, double y, double z, float velocity, float inaccuracy, CallbackInfo ci) {
         if (this.getOwner() instanceof Player player) {
             ItemStack bow = player.getMainHandItem();
-            if (!Items.BOW.equals(bow.getItem())) bow = player.getOffhandItem();
-            if (!Items.BOW.equals(bow.getItem())) return;
+            if (!(bow.getItem() instanceof BowItem)) bow = player.getOffhandItem();
+            if (!(bow.getItem() instanceof BowItem)) return;
             int level = bow.getEnchantmentLevel(ModEnchantments.GUREN_NO_YUMIYA.get());
             if (level != 0) {
                 double demandSeconds = BOW_CHARGE_TIME + (BASE_EXTRA_CHARGE_TIME_REQUIRED - GurenNoYumiyaConfig.SAVED_HOLDING_SECONDS_PER_LEVEL.get() * (level - 1));
