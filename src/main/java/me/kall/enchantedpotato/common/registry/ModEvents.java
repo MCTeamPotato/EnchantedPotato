@@ -1,6 +1,8 @@
 package me.kall.enchantedpotato.common.registry;
 
 import me.kall.enchantedpotato.EnchantedPotato;
+import me.kall.enchantedpotato.common.enchantment.weapon.MendingMirror;
+import me.kall.enchantedpotato.common.enchantment.weapon.SacredRiftwind;
 import me.kall.enchantedpotato.common.enchantment.boots.BlackParade;
 import me.kall.enchantedpotato.common.enchantment.boots.GraceOfGaia;
 import me.kall.enchantedpotato.common.enchantment.boots.RunLikeHell;
@@ -46,6 +48,8 @@ public class ModEvents {
         bus.addListener(UniteStonesOfAll::onServerStarted);
         bus.addListener(EventPriority.LOWEST, UniteStonesOfAll::onBlockBreak);
         bus.addListener(EventPriority.LOWEST, LawOfInertia::onLivingTick);
+        bus.addListener(MendingMirror::onPlayerWakeUp);
+        bus.addListener(EventPriority.LOWEST, SacredRiftwind::onLivingHurt);
     }
 
     @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)

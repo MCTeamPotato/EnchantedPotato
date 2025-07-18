@@ -26,6 +26,8 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.COMMON, OceanHuedConfig.INSTANCE, EnchantedPotato.MOD_ID + "/OceanHued.toml");
         context.registerConfig(ModConfig.Type.COMMON, MineCarveConfig.INSTANCE, EnchantedPotato.MOD_ID + "/MineCarve.toml");
         context.registerConfig(ModConfig.Type.COMMON, UniteStonesOfAllConfig.INSTANCE, EnchantedPotato.MOD_ID + "/UniteStonesOfAll.toml");
+        context.registerConfig(ModConfig.Type.COMMON, MendingMirrorConfig.INSTANCE, EnchantedPotato.MOD_ID + "/MendingMirror.toml");
+        context.registerConfig(ModConfig.Type.COMMON, FinalPowerConfig.INSTANCE, EnchantedPotato.MOD_ID + "/FinalPower.toml");
 
         if (FMLLoader.getDist().isClient()) {
             context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "/client/Rendering.toml");

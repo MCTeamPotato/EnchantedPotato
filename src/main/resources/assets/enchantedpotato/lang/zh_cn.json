@@ -26,6 +26,9 @@
   "enchantment.enchantedpotato.lotus_in_water": "走水静莲",
   "enchantment.enchantedpotato.unite_stones_of_all": "复岩劫",
   "enchantment.enchantedpotato.law_of_inertia": "惯性定律",
+  "enchantment.enchantedpotato.mending_mirror": "破镜重圆",
+  "enchantment.enchantedpotato.sacred_riftwind": "圣痕裂风",
+  "enchantment.enchantedpotato.final_power": "终湮神力",
   "enchantment.enchantedpotato.run_like_hell.desc": "生命值危急时获得短暂隐身与速度效果，随后进入冷却时间。",
   "enchantment.enchantedpotato.black_parade.desc": "击杀生物时获得速度效果，若已拥有则延长持续时间。",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "无论是否射中，箭矢将始终伤害射出时视线范围内最近的生物实体。",
@@ -46,5 +49,8 @@
   "enchantment.enchantedpotato.mine_carve.desc": "永久削减目标的护甲。",
   "enchantment.enchantedpotato.lotus_in_water.desc": "免疫流体的推动效果。",
   "enchantment.enchantedpotato.unite_stones_of_all.desc": "将特定石头的掉落物替换为石头/圆石，部分石头在无精准采集时有几率掉落石英。",
-  "enchantment.enchantedpotato.law_of_inertia.desc": "被你击退的生物会在后退途中对其他生物造成惯性伤害。"
+  "enchantment.enchantedpotato.law_of_inertia.desc": "被你击退的生物会在后退途中对其他生物造成惯性伤害。",
+  "enchantment.enchantedpotato.mending_mirror.desc": "物品损毁时暂存其形，待安眠醒转，破镜重圆复归三成。",
+  "enchantment.enchantedpotato.sacred_riftwind.desc": "你的生命值越低，你造成的伤害越高",
+  "enchantment.enchantedpotato.final_power.desc": "无视防具。"
 }

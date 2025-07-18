@@ -1,6 +1,9 @@
 package me.kall.enchantedpotato.common.registry;
 
 import me.kall.enchantedpotato.EnchantedPotato;
+import me.kall.enchantedpotato.common.enchantment.weapon.FinalPower;
+import me.kall.enchantedpotato.common.enchantment.weapon.MendingMirror;
+import me.kall.enchantedpotato.common.enchantment.weapon.SacredRiftwind;
 import me.kall.enchantedpotato.common.enchantment.boots.BlackParade;
 import me.kall.enchantedpotato.common.enchantment.boots.GraceOfGaia;
 import me.kall.enchantedpotato.common.enchantment.boots.LotusInWater;
@@ -33,7 +36,8 @@ public class ModEnchantments {
             WONDER_EGG_PRIORITY, POISON_OF_THE_LAST_BREATH, DISSOLVE,
             MARK_FROM_THE_BENEATH, ARMOR_BREAKING, NATURE_BLESSING,
             CARESSING_MOONLIGHT, OCEAN_HUED, MINE_CARVE,
-            LOTUS_IN_WATER, UNITE_STONES_OF_ALL, LAW_OF_INERTIA;
+            LOTUS_IN_WATER, UNITE_STONES_OF_ALL, LAW_OF_INERTIA,
+            MENDING_MIRROR, SACRED_RIFTWIND, FINAL_POWER;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -57,6 +61,9 @@ public class ModEnchantments {
         LOTUS_IN_WATER = ENCHANTMENTS.register("lotus_in_water", LotusInWater::new);
         UNITE_STONES_OF_ALL = ENCHANTMENTS.register("unite_stones_of_all", UniteStonesOfAll::new);
         LAW_OF_INERTIA = ENCHANTMENTS.register("law_of_inertia", LawOfInertia::new);
+        MENDING_MIRROR = ENCHANTMENTS.register("mending_mirror", MendingMirror::new);
+        SACRED_RIFTWIND = ENCHANTMENTS.register("sacred_riftwind", SacredRiftwind::new);
+        FINAL_POWER = ENCHANTMENTS.register("final_power", FinalPower::new);
     }
 
     public static void register(IEventBus bus) {
