@@ -9,9 +9,9 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public class ModPackets {
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(ResourceLocation.parse(EnchantedPotato.MOD_ID + ":main"), () -> "1.0", s -> true, s -> true);
+    private static int packetId = 0;
 
     public static void register() {
-        int packetId = 0;
         CHANNEL.registerMessage(packetId++, PressurizedCollapsePacket.class, PressurizedCollapsePacket::encode, PressurizedCollapsePacket::decode, PressurizedCollapsePacket::handle);
         CHANNEL.registerMessage(packetId++, GurenNoYumiyaPacket.class, GurenNoYumiyaPacket::encode, GurenNoYumiyaPacket::decode, GurenNoYumiyaPacket::handle);
     }
