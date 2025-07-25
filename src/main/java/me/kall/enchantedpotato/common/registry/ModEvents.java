@@ -50,6 +50,7 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, LawOfInertia::onLivingTick);
         bus.addListener(MendingMirror::onPlayerWakeUp);
         bus.addListener(EventPriority.LOWEST, SacredRiftwind::onLivingHurt);
+        bus.addListener(EventPriority.LOWEST, Mercy::onLivingDamage);
     }
 
     @Mod.EventBusSubscriber(modid = EnchantedPotato.MOD_ID)

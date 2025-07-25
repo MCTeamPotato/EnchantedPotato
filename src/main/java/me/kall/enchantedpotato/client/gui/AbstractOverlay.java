@@ -27,12 +27,7 @@ public abstract class AbstractOverlay implements IGuiOverlay {
         double value = getValue((ExtendedPlayer) mc.player);
 
         if (value > 0) {
-            double displayNumber;
-            if (!isTicks()) {
-                displayNumber = value;
-            } else {
-                displayNumber = Math.ceil(value / 20.0);
-            }
+            double displayNumber = isTicks() ? Math.ceil(value / 20.0) : value;
             Component text = Component.translatable(getTranslateKey(), displayNumber);
             int yPos = screenHeight - getYOffSet();
             guiGraphics.drawString(mc.font, text, getX(), yPos, 0xFFA500, true);

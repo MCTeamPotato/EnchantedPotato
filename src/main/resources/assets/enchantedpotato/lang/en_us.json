@@ -29,6 +29,7 @@
   "enchantment.enchantedpotato.mending_mirror": "Mending Mirror",
   "enchantment.enchantedpotato.sacred_riftwind": "Sacred Riftwind",
   "enchantment.enchantedpotato.final_power": "Final Power",
+  "enchantment.enchantedpotato.mercy": "Mercy",
   "enchantment.enchantedpotato.run_like_hell.desc": "When reduced below critical health, gain temporary invisibility and speed. Triggers a cooldown period.",
   "enchantment.enchantedpotato.black_parade.desc": "Grants Speed on kill and extends duration if active.",
   "enchantment.enchantedpotato.grace_of_gungnir.desc": "Whether it hits the target or not, the arrow will always damage the nearest living entity within the line of sight at the time of firing.",
@@ -52,5 +53,6 @@
   "enchantment.enchantedpotato.law_of_inertia.desc": "Entities repelled by you will deal inertia damage to other entities during their retreat.",
   "enchantment.enchantedpotato.mending_mirror.desc": "Broken items enter stasis and reappear after sleeping - restored to 30% durability but lose this enchantment.",
   "enchantment.enchantedpotato.sacred_riftwind.desc": "The less your health is, the higher your damage bonus is",
-  "enchantment.enchantedpotato.final_power.desc": "Ignore protection equipments"
+  "enchantment.enchantedpotato.final_power.desc": "Ignore protection equipments",
+  "enchantment.enchantedpotato.mercy.desc": "Prevent fatal strikes, leaving targets at 1 HP."
 }

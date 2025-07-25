@@ -1,15 +1,16 @@
 package me.kall.enchantedpotato.client.renderer;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Set;
+
 public class GurenNoYumiyaRenderer extends AbstractRenderer {
-    private final Object2ObjectArrayMap<BlockPos, RenderEffect> activeEffects = new Object2ObjectArrayMap<>();
+    private final Set<RenderEffect> activeEffects = new ObjectOpenHashSet<>();
 
     public static final GurenNoYumiyaRenderer INSTANCE = new GurenNoYumiyaRenderer();
 
@@ -19,7 +20,7 @@ public class GurenNoYumiyaRenderer extends AbstractRenderer {
     }
 
     @Override
-    public Object2ObjectArrayMap<BlockPos, RenderEffect> getActiveEffects() {
+    public Set<RenderEffect> getActiveEffects() {
         return this.activeEffects;
     }
 

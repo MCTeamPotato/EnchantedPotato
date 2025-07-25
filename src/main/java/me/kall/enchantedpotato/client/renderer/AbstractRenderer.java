@@ -2,33 +2,31 @@ package me.kall.enchantedpotato.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.event.TickEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Set;
+
 public abstract class AbstractRenderer {
     public abstract int getColor();
 
-    public abstract Object2ObjectArrayMap<BlockPos, RenderEffect> getActiveEffects();
+    public abstract Set<RenderEffect> getActiveEffects();
 
     public abstract int getMaxAge();
 
     public abstract void spawnParticles(Vec3 center, double radius, int age);
 
     public void addEffect(@NotNull Vec3 position, double radius) {
-        BlockPos pos = new BlockPos((int) position.x, (int) position.y, (int) position.z);
-        getActiveEffects().put(pos, new RenderEffect(position, radius));
+        getActiveEffects().add(new RenderEffect(position, radius));
     }
 
     public void onClientTick(TickEvent.@NotNull ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
-            getActiveEffects().object2ObjectEntrySet().removeIf(entry -> {
-                RenderEffect effect = entry.getValue();
+            getActiveEffects().removeIf(effect -> {
                 effect.bumpAge();
                 spawnParticles(effect.getPosition(), effect.getRadius(), effect.getAge());
                 return effect.getAge() >= getMaxAge();
@@ -41,7 +39,7 @@ public abstract class AbstractRenderer {
 
         PoseStack poseStack = event.getPoseStack();
 
-        for (RenderEffect effect : getActiveEffects().values()) {
+        for (RenderEffect effect : getActiveEffects()) {
             renderCircle(poseStack, effect.getPosition(), effect.getRadius(), effect.getAge());
         }
     }

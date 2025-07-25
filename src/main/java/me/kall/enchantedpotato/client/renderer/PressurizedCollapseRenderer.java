@@ -1,11 +1,12 @@
 package me.kall.enchantedpotato.client.renderer;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
-import net.minecraft.core.BlockPos;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Set;
+
 public class PressurizedCollapseRenderer extends AbstractRenderer {
-    private final Object2ObjectArrayMap<BlockPos, RenderEffect> activeEffects = new Object2ObjectArrayMap<>();
+    private final Set<RenderEffect> activeEffects = new ObjectOpenHashSet<>();
 
     public static final PressurizedCollapseRenderer INSTANCE = new PressurizedCollapseRenderer();
 
@@ -14,10 +15,7 @@ public class PressurizedCollapseRenderer extends AbstractRenderer {
         return 50;
     }
 
-    @Override
-    public void spawnParticles(Vec3 center, double radius, int age) {
-
-    }
+    @Override public void spawnParticles(Vec3 center, double radius, int age) {}
 
     @Override
     public int getColor() {
@@ -25,7 +23,7 @@ public class PressurizedCollapseRenderer extends AbstractRenderer {
     }
 
     @Override
-    public Object2ObjectArrayMap<BlockPos, RenderEffect> getActiveEffects() {
+    public Set<RenderEffect> getActiveEffects() {
         return this.activeEffects;
     }
 }
