@@ -1,19 +1,13 @@
 package me.kall.enchantedpotato.common.registry;
 
 import me.kall.enchantedpotato.EnchantedPotato;
-import me.kall.enchantedpotato.common.enchantment.weapon.MendingMirror;
-import me.kall.enchantedpotato.common.enchantment.weapon.SacredRiftwind;
-import me.kall.enchantedpotato.common.enchantment.boots.BlackParade;
-import me.kall.enchantedpotato.common.enchantment.boots.GraceOfGaia;
-import me.kall.enchantedpotato.common.enchantment.boots.RunLikeHell;
+import me.kall.enchantedpotato.common.enchantment.boots.*;
 import me.kall.enchantedpotato.common.enchantment.chestplate.Dissolve;
 import me.kall.enchantedpotato.common.enchantment.chestplate.NatureBlessing;
-import me.kall.enchantedpotato.common.enchantment.digger.UniteStonesOfAll;
+import me.kall.enchantedpotato.common.enchantment.digger.*;
 import me.kall.enchantedpotato.common.enchantment.helmet.OceanHued;
 import me.kall.enchantedpotato.common.enchantment.leggings.Untouchable;
 import me.kall.enchantedpotato.common.enchantment.weapon.*;
-import me.kall.enchantedpotato.common.enchantment.digger.MarkFromTheBeneath;
-import me.kall.enchantedpotato.common.enchantment.digger.MineCarve;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
