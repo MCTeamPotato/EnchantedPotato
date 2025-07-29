@@ -37,7 +37,7 @@ public class PressurizedCollapse extends Enchantment {
             double strength = (1.0 - (distance / (range * range))) * 0.8 * (1.0D + 0.5D * ((double) level - 1.0D));
             entity.setDeltaMovement(entity.getDeltaMovement().add(direction.scale(strength)));
             entity.hurtMarked = true;
-            if (!entity.isOnGround()) {
+            if (!entity.onGround()) {
                 entity.setDeltaMovement(entity.getDeltaMovement().multiply(0.7, 0.98, 0.7));
             }
         }

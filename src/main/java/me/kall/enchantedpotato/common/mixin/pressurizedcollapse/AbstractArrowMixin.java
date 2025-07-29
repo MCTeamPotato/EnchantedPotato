@@ -31,14 +31,14 @@ public abstract class AbstractArrowMixin extends Projectile {
 
     @Inject(method = {"onHitEntity", "onHitBlock"}, at = @At("HEAD"))
     private void onHit(CallbackInfo ci) {
-        if (this.level instanceof ServerLevel && this.getOwner() instanceof Player && this.pressurizedCollapse$chargeTime != 0) {
+        if (this.level() instanceof ServerLevel && this.getOwner() instanceof Player && this.pressurizedCollapse$chargeTime != 0) {
             double baseRange = PressurizedCollapseConfig.BASE_RANGE.get();
             double maxExtraRange = PressurizedCollapseConfig.MAX_EXTRA_RANGE.get();
             float maxChargeTime = PressurizedCollapseConfig.MAX_CHARGE_TIME.get().floatValue();
 
             float chargeBonus = Math.min((this.pressurizedCollapse$chargeTime - 20.0F) / (maxChargeTime - 20.0F), 1.0F);
             double range = baseRange + (maxExtraRange * chargeBonus);
-            PressurizedCollapse.apply(this.position(), range, this.level, this.pressurizedCollapse$level);
+            PressurizedCollapse.apply(this.position(), range, this.level(), this.pressurizedCollapse$level);
 
             PressurizedCollapsePacket packet = new PressurizedCollapsePacket(this.position(), range);
             ModPackets.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> this), packet);

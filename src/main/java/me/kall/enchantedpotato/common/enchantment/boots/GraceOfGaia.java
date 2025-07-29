@@ -20,7 +20,7 @@ public class GraceOfGaia extends Enchantment {
     }
 
     public static void onPlayerHurt(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
             int level = player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.GRACE_OF_GAIA.get());
             if (level == 0) return;
             int baseValidY = GraceOfGaiaConfig.BASE_VALID_Y.get();

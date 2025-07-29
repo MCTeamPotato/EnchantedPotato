@@ -120,7 +120,7 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
 
     @Inject(method = "tick", at = @At("RETURN"))
     private void runLikeHell$onTick(CallbackInfo ci) {
-        if (this.level instanceof ServerLevel) {
+        if (this.level() instanceof ServerLevel) {
             if (this.isCreative()) {
                 this.runLikeHell$setCoolDown(0);
                 this.untouchable$setCoolDown(0);

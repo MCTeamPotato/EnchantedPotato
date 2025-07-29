@@ -29,7 +29,7 @@ public class LoRATrainer extends Enchantment {
     }
 
     public static void onLivingDamage(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
             ItemStack stack = player.getItemBySlot(EquipmentSlot.MAINHAND);
             if (stack.getEnchantmentLevel(ModEnchantments.LORA_TRAINER.get()) == 0) stack = player.getItemBySlot(EquipmentSlot.OFFHAND);
             int level = stack.getEnchantmentLevel(ModEnchantments.LORA_TRAINER.get());

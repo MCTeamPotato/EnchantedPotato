@@ -1,8 +1,8 @@
 package me.kall.enchantedpotato.client.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
@@ -20,7 +20,7 @@ public abstract class AbstractOverlay implements IGuiOverlay {
     public abstract boolean isTicks();
 
     @Override
-    public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
+    public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.options.hideGui) return;
 
@@ -30,7 +30,7 @@ public abstract class AbstractOverlay implements IGuiOverlay {
             double displayNumber = isTicks() ? Math.ceil(value / 20.0) : value;
             Component text = Component.translatable(getTranslateKey(), displayNumber);
             int yPos = screenHeight - getYOffSet();
-            Minecraft.getInstance().font.draw(poseStack, text, getX(), yPos, 0xFFA500);
+            guiGraphics.drawString(mc.font, text, getX(), yPos, 0xFFA500, true);
         }
     }
 }

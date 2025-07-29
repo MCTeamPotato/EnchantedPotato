@@ -23,7 +23,7 @@ public class RunLikeHell extends Enchantment {
     }
 
     public static void onLivingHurt(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
             if (player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.RUN_LIKE_HELL.get()) == 0 || event.isCanceled()) return;
             float amount = event.getAmount();
             if (player.getHealth() - amount <= player.getMaxHealth() * RunLikeHellConfig.getPercent() && !((ExtendedPlayer)player).runLikeHell$isInCoolDown()) {
