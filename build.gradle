@@ -7,12 +7,10 @@ plugins {
 }
 
 group = project.maven_group
-version = project.minecraft_version + "-" + project.mod_version
+version = "${project.minecraft_version}-${project.mod_version}"
 
-configurations {
-    shadow
-    implementation.extendsFrom(shadow)
-}
+def isNeo = minecraft_version == "1.21.1"
+def isOld = minecraft_version == "1.16.5"
 
 base {
     archivesName = project.archives_name
@@ -21,67 +19,94 @@ base {
 loom {
     silentMojangMappingsLicense()
 
-    forge {
-        mixinConfig 'enchantedpotato.mixins.json'
+    if (!isNeo) {
+        forge {
+            mixinConfig 'enchantedpotato.mixins.json'
+        }
     }
 }
 
 repositories {
-    maven {
-        name = 'ParchmentMC'
-        url = 'https://maven.parchmentmc.org'
-    }
+    maven { name = 'ParchmentMC'; url = 'https://maven.parchmentmc.org' }
     maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
-        content {
-            includeGroup "maven.modrinth"
-        }
+        content { includeGroup "maven.modrinth" }
     }
     maven {
         url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
+        content { includeGroup "curse.maven" }
     }
+    maven { name = 'NeoForged'; url = 'https://maven.neoforged.net/releases' }
+}
+
+def versionMap = [
+        "1.20.1": [forge: "47.4.2", parchment: "2023.09.03"],
+        "1.19.2": [forge: "43.5.0", parchment: "2022.11.27"],
+        "1.18.2": [forge: "40.3.10", parchment: "2022.11.06"],
+        "1.16.5": [forge: "36.2.42", parchment: "2022.03.06"],
+        "1.21.1": [neo  : "21.1.192", parchment: "2024.11.17"]
+]
+
+def versionInfo = versionMap[minecraft_version]
+if (versionInfo == null) throw new IllegalArgumentException("Unsupported version: ${minecraft_version}")
+
+String forgeVersion = versionInfo.forge ?: ""
+String parchmentVersion = versionInfo.parchment
+
+configurations {
+    shadow
+    implementation.extendsFrom(shadow)
 }
 
 dependencies {
     minecraft "net.minecraft:minecraft:$project.minecraft_version"
-    mappings loom.layered() {
+    mappings loom.layered {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${parchmentVersion}@zip")
     }
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+
+    if (isNeo) {
+        neoForge "net.neoforged:neoforge:${versionInfo.neo}"
+    } else {
+        forge "net.minecraftforge:forge:${project.minecraft_version}-${forgeVersion}"
+    }
+
     shadow(annotationProcessor("io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"))
 }
 
 shadowJar {
     configurations = [project.configurations.shadow]
-    relocate "com.llamalad7.mixinextras", "me.kall.lead.mixinextras"
+    relocate "com.llamalad7.mixinextras", "me.kall.enchantedpotato.mixinextras"
     mergeServiceFiles()
-
     archiveClassifier = "dev-shadow"
 }
 
+
 processResources {
     inputs.property 'version', project.version
-
-    filesMatching('META-INF/mods.toml') {
-        expand version: project.version
+    if (isNeo) {
+        filesMatching('META-INF/neoforge.mods.toml') {
+            expand version: project.version
+        }
+        exclude("META-INF/mods.toml")
+    } else {
+        filesMatching('META-INF/mods.toml') {
+            expand version: project.version
+        }
+        exclude("META-INF/neoforge.mods.toml")
     }
 }
 
 java {
     withSourcesJar()
+    def javaVer = isNeo ? JavaVersion.VERSION_21 : (isOld ? JavaVersion.VERSION_1_8 : JavaVersion.VERSION_17)
+    sourceCompatibility = javaVer
+    targetCompatibility = javaVer
+}
 
-    if (version.startsWith("1.16.5")) {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    } else {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = isNeo ? 21 : (isOld ? 8 : 17)
 }
 
 remapJar {
@@ -90,18 +115,11 @@ remapJar {
     archiveClassifier = null
 }
 
-tasks.withType(JavaCompile).configureEach {
-    if (version.startsWith("1.16.5")) {
-        it.options.release = 8
-    } else {
-        it.options.release = 17
-    }
-}
-
 String currentChangeLog = file("CHANGELOG.md").getText("UTF-8")
-String[] javaVersions = ["Java 17", "Java 21", "Java 22"]
+String[] javaVersions = isNeo ? ["Java 21", "Java 22"] : (isOld ? ["Java 8", "Java 17", "Java 21", "Java 22"] : ["Java 17", "Java 21", "Java 22"])
 
 tasks.register("publishCurseForge", TaskPublishCurseForge) {
+    if (cf_project_id == "") throw new UnsupportedOperationException("Didn't define CurseForge project ID")
     apiToken = System.getenv("CURSEFORGE_TOKEN")
     disableVersionDetection()
 
@@ -110,12 +128,11 @@ tasks.register("publishCurseForge", TaskPublishCurseForge) {
     mainFile.releaseType = "release"
     mainFile.changelog = currentChangeLog
     mainFile.changelogType = "markdown"
-    mainFile.addModLoader("Forge")
+    mainFile.addModLoader(isNeo ? "NeoForge" : "Forge")
     mainFile.addJavaVersion(javaVersions)
     mainFile.addGameVersion(minecraft_version)
 
     def sourcesFile = mainFile.withAdditionalFile(sourcesJar)
-
     sourcesFile.changelog = currentChangeLog
     sourcesFile.changelogType = "markdown"
 }
