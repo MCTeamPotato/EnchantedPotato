@@ -4,6 +4,7 @@ import me.kall.enchantedpotato.common.config.RippleOfDeathConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -31,7 +32,7 @@ public class RippleOfDeath extends Enchantment {
     }
 
     public static void onLivingDeath(@NotNull LivingDeathEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel level) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level instanceof ServerLevel level) {
             ItemStack stack = player.getItemBySlot(EquipmentSlot.MAINHAND);
             if (stack.getEnchantmentLevel(ModEnchantments.RIPPLE_OF_DEATH.get()) == 0) stack = player.getItemBySlot(EquipmentSlot.OFFHAND);
             int enchantmentLevel = stack.getEnchantmentLevel(ModEnchantments.RIPPLE_OF_DEATH.get());
@@ -45,7 +46,7 @@ public class RippleOfDeath extends Enchantment {
             float gainedDamagePercentPerLevel = RippleOfDeathConfig.GAINED_DAMAGE_PERCENT_PER_LEVEL.get().floatValue();
             float damagePercent = basicDamagePercent + gainedDamagePercentPerLevel * (enchantmentLevel - 1);
             for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box, filter)) {
-                entity.hurt(player.damageSources().indirectMagic(player, player), entity.getMaxHealth() * damagePercent);
+                entity.hurt(DamageSource.indirectMagic(player, player), entity.getMaxHealth() * damagePercent);
             }
         }
     }

@@ -32,7 +32,7 @@ public class GraceOfGungnir extends Enchantment {
         Vec3 startPos = player.getEyePosition();
         Vec3 viewVector = player.getViewVector(1.0F);
         Vec3 endPos = startPos.add(viewVector.scale(maxDistance));
-        Level level = player.level();
+        Level level = player.level;
 
         ClipContext context = new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player);
         Vec3 blockHit = level.clip(context).getLocation();

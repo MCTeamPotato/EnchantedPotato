@@ -20,7 +20,7 @@ public class SacredRiftwind extends Enchantment {
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
         if (event.isCanceled()) return;
         LivingEntity entity = event.getEntity();
-        if (entity.level().isClientSide()) return;
+        if (entity.level.isClientSide()) return;
         if (event.getSource().getEntity() instanceof LivingEntity source) {
             Enchantment enchantment = ModEnchantments.SACRED_RIFTWIND.get();
             int level = Math.max(source.getMainHandItem().getEnchantmentLevel(enchantment), source.getOffhandItem().getEnchantmentLevel(enchantment));
