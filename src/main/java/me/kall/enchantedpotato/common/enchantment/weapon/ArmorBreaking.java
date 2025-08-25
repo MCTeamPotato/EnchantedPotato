@@ -14,6 +14,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class ArmorBreaking extends Enchantment {
+    public static final String ARMOR_BREAKING_KEY = "ArmorBreakingLevel";
+
     public ArmorBreaking() {
         super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
@@ -34,7 +36,7 @@ public class ArmorBreaking extends Enchantment {
             int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
             if (level == 0) return;
             LivingEntity entity = event.getEntity();
-            entity.getPersistentData().putInt("ArmorBreakingLevel", level);
+            entity.getPersistentData().putInt(ARMOR_BREAKING_KEY, level);
             ((ExtendedLivingEntity)entity).armorBreaking$getAttribute().setBaseValue(ArmorBreakingConfig.BASE_DURATION.get().doubleValue() + ArmorBreakingConfig.GAINED_DURATION_PER_LEVEL.get().doubleValue() * (double) (level - 1));
         }
     }

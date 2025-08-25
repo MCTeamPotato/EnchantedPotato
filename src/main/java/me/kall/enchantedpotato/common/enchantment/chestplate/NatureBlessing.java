@@ -27,10 +27,10 @@ public class NatureBlessing extends Enchantment {
     }
 
     public static void onPlayerTick(TickEvent.@NotNull PlayerTickEvent event) {
-        if (event.player instanceof ServerPlayer player && player.level() instanceof ServerLevel level) {
+        if (event.player instanceof ServerPlayer player && player.level() instanceof ServerLevel level && event.phase.equals(TickEvent.Phase.END)) {
             int enchantmentLevel = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.NATURE_BLESSING.get());
             if (enchantmentLevel == 0) return;
-            if (((ExtendedLivingEntity)player).natureBlessing$getInterval() == 0) {
+            if (((ExtendedLivingEntity)player).natureBlessing$getInterval() <= 0) {
                 ((ExtendedLivingEntity)player).natureBlessing$setInterval(100);
                 player.heal(NatureBlessingConfig.BASE_HEAL_AMOUNT.get().floatValue() + NatureBlessingConfig.GAINED_HEAL_AMOUNT_PER_LEVEL.get().floatValue() * (float) (enchantmentLevel - 1));
 

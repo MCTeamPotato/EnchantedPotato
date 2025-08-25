@@ -25,7 +25,8 @@ public class ModEnchantments {
             MARK_FROM_THE_BENEATH, ARMOR_BREAKING, NATURE_BLESSING,
             CARESSING_MOONLIGHT, OCEAN_HUED, MINE_CARVE,
             LOTUS_IN_WATER, UNITE_STONES_OF_ALL, LAW_OF_INERTIA,
-            MENDING_MIRROR, SACRED_RIFTWIND, FINAL_POWER, MERCY;
+            MENDING_MIRROR, SACRED_RIFTWIND, FINAL_POWER,
+            MERCY, SPACE_LEAPFROG;
 
     static {
         RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
@@ -53,6 +54,7 @@ public class ModEnchantments {
         SACRED_RIFTWIND = ENCHANTMENTS.register("sacred_riftwind", SacredRiftwind::new);
         FINAL_POWER = ENCHANTMENTS.register("final_power", FinalPower::new);
         MERCY = ENCHANTMENTS.register("mercy", Mercy::new);
+        SPACE_LEAPFROG = ENCHANTMENTS.register("space_leapfrog", SpaceLeapfrog::new);
     }
 
     public static void register(IEventBus bus) {

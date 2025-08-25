@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
+import me.kall.enchantedpotato.common.enchantment.weapon.ArmorBreaking;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,7 +25,7 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
     @WrapOperation(method = "getDamageAfterArmorAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterAbsorb(FFF)F"))
     private float modifyArmorValue(float damageAmount, float armorValue, float armorToughness, Operation<Float> operation) {
         if (this.level() instanceof ServerLevel){
-            int enchantmentLevel = this.getPersistentData().getInt("ArmorBreakingLevel");
+            int enchantmentLevel = this.getPersistentData().getInt(ArmorBreaking.ARMOR_BREAKING_KEY);
             if (enchantmentLevel != 0) {
                 if (armorValue != 0.0F) {
 
@@ -54,10 +55,10 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
     @Inject(method = "tick", at = @At("TAIL"))
     private void onTick(CallbackInfo ci) {
         if (this.level() instanceof ServerLevel) {
-            if (this.getPersistentData().getInt("ArmorBreakingLevel") == 0) return;
+            if (this.getPersistentData().getInt(ArmorBreaking.ARMOR_BREAKING_KEY) == 0) return;
             AttributeInstance duration = this.armorBreaking$getAttribute();
             duration.setBaseValue(duration.getBaseValue() - 1);
-            if (duration.getBaseValue() <= 0.0D) this.getPersistentData().remove("ArmorBreakingLevel");
+            if (duration.getBaseValue() <= 0.0D) this.getPersistentData().remove(ArmorBreaking.ARMOR_BREAKING_KEY);
         }
     }
 }

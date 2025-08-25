@@ -20,6 +20,7 @@ public class ModAttributes {
     public static final RegistryObject<Attribute> OCEAN_HUED_COUNTING = ATTRIBUTES.register("ocean_hued_counting", OceanHuedCounting::new);
     public static final RegistryObject<Attribute> OCEAN_HUED_HEALING_AMOUNT = ATTRIBUTES.register("ocean_hued_healing_amount", OceanHuedHealingAmount::new);
     public static final RegistryObject<Attribute> OCEAN_HUED_COOLDOWN = ATTRIBUTES.register("ocean_hued_cooldown", OceanHuedCoolDown::new);
+    public static final RegistryObject<Attribute> SPACE_LEAPFROG_COOLDOWN = ATTRIBUTES.register("space_leapfrog_cooldown", SpaceLeapfrogCoolDown::new);
 
     public static void register(@NotNull IEventBus bus) {
         bus.addListener(ModAttributes::registerAttribute);
@@ -33,5 +34,6 @@ public class ModAttributes {
         event.add(EntityType.PLAYER, ModAttributes.OCEAN_HUED_COOLDOWN.get());
         event.add(EntityType.PLAYER, ModAttributes.RUN_LIKE_HELL_COOLDOWN.get());
         event.add(EntityType.PLAYER, ModAttributes.UNTOUCHABLE_COOLDOWN.get());
+        event.add(EntityType.PLAYER, ModAttributes.SPACE_LEAPFROG_COOLDOWN.get());
     }
 }

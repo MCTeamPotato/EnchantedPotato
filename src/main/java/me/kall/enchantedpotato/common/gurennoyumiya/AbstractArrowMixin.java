@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.mixin.gurennoyumiya;
+package me.kall.enchantedpotato.common.gurennoyumiya;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.GurenNoYumiya;
@@ -41,7 +41,7 @@ public abstract class AbstractArrowMixin extends Projectile {
                 int demandTicks = (int) (demandSeconds * 20);
                 int holdingTicks = player.getTicksUsingItem();
                 if (holdingTicks >= demandTicks) {
-                    this.addTag("gurenNoYumiya" + level);
+                    this.getPersistentData().putInt(GurenNoYumiya.GUREN_NO_YUMIYA_KEY, level);
                 }
             }
         }

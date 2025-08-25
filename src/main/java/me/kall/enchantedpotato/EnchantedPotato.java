@@ -1,6 +1,6 @@
 package me.kall.enchantedpotato;
 
-import me.kall.enchantedpotato.client.event.ClientModEvents;
+import me.kall.enchantedpotato.client.registry.ClientModEvents;
 import me.kall.enchantedpotato.common.registry.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
