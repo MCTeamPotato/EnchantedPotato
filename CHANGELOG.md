@@ -1,2 +1,2 @@
-# 1.7.1
-Add Mercy enchantment: Prevent fatal strikes, leaving targets at 1 HP.
+# 1.7.2
+Add Space Leapfrog enchantment.
