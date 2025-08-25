@@ -13,4 +13,12 @@ public class SpaceLeapfrog extends Enchantment {
     public int getMaxLevel() {
         return 3;
     }
+
+    public static double getDist(int enchantmentLevel) {
+        return 5D * (double) enchantmentLevel;
+    }
+
+    public static float getExplodeRadius(int enchantmentLevel) {
+        return 3F * (float) enchantmentLevel;
+    }
 }

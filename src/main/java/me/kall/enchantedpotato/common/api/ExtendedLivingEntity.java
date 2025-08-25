@@ -8,7 +8,6 @@ public interface ExtendedLivingEntity {
     @Nullable Player enchantedPotato$getLastHurtByPlayer();
 
     AttributeInstance armorBreaking$getAttribute();
-    AttributeInstance spaceLeapfrog$getAttribute();
 
     int natureBlessing$getInterval();
     void natureBlessing$setInterval(int interval);

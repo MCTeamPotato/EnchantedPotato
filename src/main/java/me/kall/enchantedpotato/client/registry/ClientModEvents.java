@@ -34,5 +34,7 @@ public class ClientModEvents {
 
         forgeBus.addListener(GurenNoYumiyaRenderer.INSTANCE::onClientTick);
         forgeBus.addListener(GurenNoYumiyaRenderer.INSTANCE::onRenderLevelStage);
+
+        forgeBus.addListener(LeapfrogKey::onClientTick);
     }
 }

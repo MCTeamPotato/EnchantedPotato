@@ -33,11 +33,6 @@ public abstract class LivingEntityMixin implements ExtendedLivingEntity {
     }
 
     @Override
-    public AttributeInstance spaceLeapfrog$getAttribute() {
-        return this.getAttribute(ModAttributes.SPACE_LEAPFROG_COOLDOWN.get());
-    }
-
-    @Override
     public int natureBlessing$getInterval() {
         return this.natureBlessing$interval;
     }

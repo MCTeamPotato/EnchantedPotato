@@ -54,6 +54,21 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
         this.untouchable$getAttribute().setBaseValue(coolDown);
     }
 
+    @Override
+    public boolean spaceLeapfrog$isInCoolDown() {
+        return this.spaceLeapfrog$getCoolDown() != 0;
+    }
+
+    @Override
+    public int spaceLeapfrog$getCoolDown() {
+        return (int) this.spaceLeapfrog$getAttribute().getBaseValue();
+    }
+
+    @Override
+    public void spaceLeapfrog$setCoolDown(int coolDown) {
+        this.spaceLeapfrog$getAttribute().setBaseValue(coolDown);
+    }
+
     @Unique
     private AttributeInstance runLikeHell$getAttribute() {
         return this.getAttribute(ModAttributes.RUN_LIKE_HELL_COOLDOWN.get());
@@ -69,12 +84,19 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
         return this.getAttribute(ModAttributes.OCEAN_HUED_COOLDOWN.get());
     }
 
+    @Unique
     public AttributeInstance oceanHued$getCountingAttribute() {
         return this.getAttribute(ModAttributes.OCEAN_HUED_COUNTING.get());
     }
 
+    @Unique
     public AttributeInstance oceanHued$getHealingAmountAttribute() {
         return this.getAttribute(ModAttributes.OCEAN_HUED_HEALING_AMOUNT.get());
+    }
+
+    @Unique
+    public AttributeInstance spaceLeapfrog$getAttribute() {
+        return this.getAttribute(ModAttributes.SPACE_LEAPFROG_COOLDOWN.get());
     }
 
     @Override
@@ -119,15 +141,17 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
     }
 
     @Inject(method = "tick", at = @At("RETURN"))
-    private void runLikeHell$onTick(CallbackInfo ci) {
+    private void onTick(CallbackInfo ci) {
         if (this.level() instanceof ServerLevel) {
             if (this.isCreative()) {
                 this.runLikeHell$setCoolDown(0);
                 this.untouchable$setCoolDown(0);
                 this.oceanHued$setCoolDown(0);
+                this.spaceLeapfrog$setCoolDown(0);
             }
             if (this.runLikeHell$isInCoolDown()) this.runLikeHell$setCoolDown(this.runLikeHell$getCoolDown() - 1);
             if (this.untouchable$isInCoolDown()) this.untouchable$setCoolDown(this.untouchable$getCoolDown() - 1);
+            if (this.spaceLeapfrog$isInCoolDown()) this.spaceLeapfrog$setCoolDown(this.spaceLeapfrog$getCoolDown() - 1);
             if (this.oceanHued$isInCoolDown()) {
                 this.oceanHued$setCoolDown(this.oceanHued$getCoolDown() - 1);
                 return;

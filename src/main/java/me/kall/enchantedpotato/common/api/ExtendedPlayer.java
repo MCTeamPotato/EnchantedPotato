@@ -24,4 +24,9 @@ public interface ExtendedPlayer {
     boolean oceanHued$isInCoolDown();
     int oceanHued$getCoolDown();
     void oceanHued$setCoolDown(int coolDown);
+
+    AttributeInstance spaceLeapfrog$getAttribute();
+    boolean spaceLeapfrog$isInCoolDown();
+    int spaceLeapfrog$getCoolDown();
+    void spaceLeapfrog$setCoolDown(int coolDown);
 }
