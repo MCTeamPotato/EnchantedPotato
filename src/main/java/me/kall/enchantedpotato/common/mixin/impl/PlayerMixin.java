@@ -85,17 +85,17 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
     }
 
     @Unique
-    public AttributeInstance oceanHued$getCountingAttribute() {
+    private AttributeInstance oceanHued$getCountingAttribute() {
         return this.getAttribute(ModAttributes.OCEAN_HUED_COUNTING.get());
     }
 
     @Unique
-    public AttributeInstance oceanHued$getHealingAmountAttribute() {
+    private AttributeInstance oceanHued$getHealingAmountAttribute() {
         return this.getAttribute(ModAttributes.OCEAN_HUED_HEALING_AMOUNT.get());
     }
 
     @Unique
-    public AttributeInstance spaceLeapfrog$getAttribute() {
+    private AttributeInstance spaceLeapfrog$getAttribute() {
         return this.getAttribute(ModAttributes.SPACE_LEAPFROG_COOLDOWN.get());
     }
 
