@@ -28,6 +28,7 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.COMMON, UniteStonesOfAllConfig.INSTANCE, EnchantedPotato.MOD_ID + "/UniteStonesOfAll.toml");
         context.registerConfig(ModConfig.Type.COMMON, MendingMirrorConfig.INSTANCE, EnchantedPotato.MOD_ID + "/MendingMirror.toml");
         context.registerConfig(ModConfig.Type.COMMON, FinalPowerConfig.INSTANCE, EnchantedPotato.MOD_ID + "/FinalPower.toml");
+        context.registerConfig(ModConfig.Type.COMMON, SpaceLeapfrogConfig.INSTANCE, EnchantedPotato.MOD_ID + "/SpaceLeapfrog.toml");
 
         if (FMLLoader.getDist().isClient()) {
             context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "/client/Rendering.toml");

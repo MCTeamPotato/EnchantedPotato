@@ -1,11 +1,8 @@
 package me.kall.enchantedpotato.client.registry;
 
-import me.kall.enchantedpotato.client.gui.OceanHuedOverlay;
-import me.kall.enchantedpotato.client.gui.RunLikeHellOverlay;
-import me.kall.enchantedpotato.client.gui.UntouchableOverlay;
+import me.kall.enchantedpotato.client.gui.*;
 import me.kall.enchantedpotato.client.keybind.LeapfrogKey;
-import me.kall.enchantedpotato.client.renderer.GurenNoYumiyaRenderer;
-import me.kall.enchantedpotato.client.renderer.PressurizedCollapseRenderer;
+import me.kall.enchantedpotato.client.renderer.*;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -19,6 +16,7 @@ public class ClientModEvents {
         event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_counting", new OceanHuedOverlay.Counting());
         event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_cooldown", new OceanHuedOverlay.Cooldown());
         event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_healing_amount", new OceanHuedOverlay.HealingAmount());
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "space_leapfrog_cooldown", new SpaceLeapfrogOverlay());
     }
 
     public static void registerKey(@NotNull RegisterKeyMappingsEvent event) {

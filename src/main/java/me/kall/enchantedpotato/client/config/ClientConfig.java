@@ -10,7 +10,8 @@ public class ClientConfig {
             UNTOUCHABLE_POS_X, UNTOUCHABLE_POS_Y_OFFSET,
             OCEAN_HUED_COUNTING_POS_X, OCEAN_HUED_COUNTING_POS_Y_OFFSET,
             OCEAN_HUED_COOLDOWN_POS_X, OCEAN_HUED_COOLDOWN_POS_Y_OFFSET,
-            OCEAN_HUED_HEALING_AMOUNT_POS_X, OCEAN_HUED_HEALING_AMOUNT_POS_Y_OFFSET;
+            OCEAN_HUED_HEALING_AMOUNT_POS_X, OCEAN_HUED_HEALING_AMOUNT_POS_Y_OFFSET,
+            SPACE_LEAPFROG_POS_X, SPACE_LEAPFROG_POS_Y_OFFSET;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -25,6 +26,8 @@ public class ClientConfig {
         OCEAN_HUED_COOLDOWN_POS_Y_OFFSET = builder.defineInRange("OceanHuedCooldownPosYOffset", 44, 0, Integer.MAX_VALUE);
         OCEAN_HUED_HEALING_AMOUNT_POS_X = builder.defineInRange("OceanHuedHealingAmountPosX", 10, 0, Integer.MAX_VALUE);
         OCEAN_HUED_HEALING_AMOUNT_POS_Y_OFFSET = builder.defineInRange("OceanHuedHealingAmountPosYOffset", 44, 0, Integer.MAX_VALUE);
+        SPACE_LEAPFROG_POS_X = builder.defineInRange("SpaceLeapfrogCooldownTextPosX", 10, 0, Integer.MAX_VALUE);
+        SPACE_LEAPFROG_POS_Y_OFFSET = builder.defineInRange("SpaceLeapfrogCooldownTextPosYOffset", 58, 0, Integer.MAX_VALUE);
         builder.pop();
         INSTANCE = builder.build();
     }
