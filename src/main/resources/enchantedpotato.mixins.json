@@ -14,7 +14,7 @@
     "armorbreaking.LivingEntityMixin",
     "finalpower.LivingEntityMixin",
     "graceofgungnir.AbstractArrowMixin",
-    "me.kall.enchantedpotato.common.gurennoyumiya.AbstractArrowMixin",
+    "gurennoyumiya.AbstractArrowMixin",
     "impl.LivingEntityMixin",
     "impl.PlayerMixin",
     "lawofinertia.LivingEntityMixin",
