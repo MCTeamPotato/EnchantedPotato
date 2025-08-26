@@ -1,13 +1,14 @@
 package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
 import me.kall.enchantedpotato.common.registry.ModPackets;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -16,13 +17,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
 
-public class GurenNoYumiya extends Enchantment {
+public class GurenNoYumiya extends BaseEnchantment {
     public static final String GUREN_NO_YUMIYA_KEY = "GurenNoYumiyaLevel";
 
     public GurenNoYumiya() {
         super(Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
+    @Override
     public int getMaxLevel() {
         return 4;
     }
@@ -53,5 +55,10 @@ public class GurenNoYumiya extends Enchantment {
                     });
             arrow.getPersistentData().remove(GUREN_NO_YUMIYA_KEY);
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.GUREN_NO_YUMIYA.get();
     }
 }

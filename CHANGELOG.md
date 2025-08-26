@@ -1,2 +1,2 @@
-# 1.7.2
-Add Space Leapfrog enchantment.
+# 1.8.0
+Introduce DisableConfig

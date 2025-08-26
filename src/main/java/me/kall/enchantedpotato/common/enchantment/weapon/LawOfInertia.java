@@ -1,24 +1,31 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class LawOfInertia extends Enchantment {
+public class LawOfInertia extends BaseEnchantment {
     public static final String MARK = "InertiaKnockbackDamage";
+
     public LawOfInertia() {
         super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.LAW_OF_INERTIA.get();
+    }
+
+    @Override
     public boolean canEnchant(@NotNull ItemStack stack) {
-        Item item = stack.getItem();
-        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem || item instanceof TridentItem;
+        return BaseEnchantment.canUseAsWeapon(stack.getItem()) && super.canEnchant(stack);
     }
 
     public static void onLivingTick(@NotNull LivingEvent.LivingTickEvent event) {

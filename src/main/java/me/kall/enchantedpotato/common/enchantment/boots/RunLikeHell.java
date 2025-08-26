@@ -2,6 +2,7 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.RunLikeHellConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -10,14 +11,14 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class RunLikeHell extends Enchantment {
+public class RunLikeHell extends BaseEnchantment {
     public RunLikeHell() {
         super(Rarity.RARE, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }
@@ -45,5 +46,10 @@ public class RunLikeHell extends Enchantment {
 
     public static void onChangeTarget(@NotNull LivingChangeTargetEvent event) {
         if (RunLikeHellConfig.ALLOW_BETTER_INVISIBILITY.get() && event.getNewTarget() instanceof ServerPlayer player && player.hasEffect(MobEffects.INVISIBILITY)) event.setCanceled(true);
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.RUN_LIKE_HELL.get();
     }
 }

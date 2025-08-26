@@ -2,6 +2,8 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,7 +15,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class ArmorBreaking extends Enchantment {
+public class ArmorBreaking extends BaseEnchantment {
     public static final String ARMOR_BREAKING_KEY = "ArmorBreakingLevel";
 
     public ArmorBreaking() {
@@ -25,9 +27,14 @@ public class ArmorBreaking extends Enchantment {
         return 5;
     }
 
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.ARMOR_BREAKING.get();
+    }
+
+    @Override
     public boolean canEnchant(@NotNull ItemStack stack) {
-        Item item = stack.getItem();
-        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem || item instanceof TridentItem;
+        return BaseEnchantment.canUseAsWeapon(stack.getItem()) && super.canEnchant(stack);
     }
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {

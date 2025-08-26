@@ -2,19 +2,20 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.SpaceLeapfrogConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class SpaceLeapfrog extends Enchantment {
+public class SpaceLeapfrog extends BaseEnchantment {
     public SpaceLeapfrog() {
         super(Rarity.RARE, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }
@@ -75,5 +76,10 @@ public class SpaceLeapfrog extends Enchantment {
                 targetPos.move(0, 1, 0);
             }
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.SPACE_LEAPFROG.get();
     }
 }

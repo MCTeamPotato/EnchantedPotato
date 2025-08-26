@@ -1,10 +1,12 @@
 package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.ClipContext;
@@ -18,11 +20,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class GraceOfGungnir extends Enchantment {
+public class GraceOfGungnir extends BaseEnchantment {
     public GraceOfGungnir() {
         super(Rarity.VERY_RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.GRACE_OF_GUNGNIR.get();
+    }
+
+    @Override
     protected boolean checkCompatibility(@NotNull Enchantment other) {
         return other != ModEnchantments.PRESSURIZED_COLLAPSE.get() && super.checkCompatibility(other);
     }

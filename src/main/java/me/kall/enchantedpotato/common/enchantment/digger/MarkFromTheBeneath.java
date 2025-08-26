@@ -1,6 +1,8 @@
 package me.kall.enchantedpotato.common.enchantment.digger;
 
 import me.kall.enchantedpotato.common.config.MarkFromTheBeneathConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -9,11 +11,12 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class MarkFromTheBeneath extends Enchantment {
+public class MarkFromTheBeneath extends BaseEnchantment {
     public MarkFromTheBeneath() {
         super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
+    @Override
     public int getMaxLevel() {
         return 3;
     }
@@ -37,5 +40,10 @@ public class MarkFromTheBeneath extends Enchantment {
     public static double heightToSpeed(double bottom, double top, double slow, double quick, double height) {
         double slope = (quick - slow) / (top - bottom);
         return quick - slope * (height - bottom);
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.MARK_FROM_THE_BENEATH.get();
     }
 }

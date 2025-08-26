@@ -1,22 +1,24 @@
 package me.kall.enchantedpotato.common.enchantment.chestplate;
 
 import me.kall.enchantedpotato.common.config.DissolveConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class Dissolve extends Enchantment {
+public class Dissolve extends BaseEnchantment {
     public Dissolve() {
         super(Rarity.RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
     }
 
+    @Override
     public int getMaxLevel() {
         return 3;
     }
@@ -53,5 +55,10 @@ public class Dissolve extends Enchantment {
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, duration, 1));
             }
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.DISSOLVE.get();
     }
 }

@@ -2,6 +2,7 @@ package me.kall.enchantedpotato.common.enchantment.leggings;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.UntouchableConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,17 +12,18 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class Untouchable extends Enchantment {
+public class Untouchable extends BaseEnchantment {
     public Untouchable() {
         super(Rarity.RARE, EnchantmentCategory.ARMOR_LEGS, new EquipmentSlot[]{EquipmentSlot.LEGS});
     }
 
+    @Override
     public int getMaxLevel() {
         return 3;
     }
@@ -47,5 +49,10 @@ public class Untouchable extends Enchantment {
                     entity.push(dir.x * force, 0.4, dir.z * force);
                     entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, slowDuration, 1));
                 });
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.UNTOUCHABLE.get();
     }
 }

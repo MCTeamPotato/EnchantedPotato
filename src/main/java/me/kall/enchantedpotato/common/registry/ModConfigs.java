@@ -3,6 +3,7 @@ package me.kall.enchantedpotato.common.registry;
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.client.config.ClientConfig;
 import me.kall.enchantedpotato.common.config.*;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -29,6 +30,8 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.COMMON, MendingMirrorConfig.INSTANCE, EnchantedPotato.MOD_ID + "/MendingMirror.toml");
         context.registerConfig(ModConfig.Type.COMMON, FinalPowerConfig.INSTANCE, EnchantedPotato.MOD_ID + "/FinalPower.toml");
         context.registerConfig(ModConfig.Type.COMMON, SpaceLeapfrogConfig.INSTANCE, EnchantedPotato.MOD_ID + "/SpaceLeapfrog.toml");
+
+        context.registerConfig(ModConfig.Type.COMMON, DisableConfig.INSTANCE, EnchantedPotato.MOD_ID + "/disable/Disable.toml");
 
         if (FMLLoader.getDist().isClient()) {
             context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "/client/Rendering.toml");

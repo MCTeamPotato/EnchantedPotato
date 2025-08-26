@@ -2,6 +2,7 @@ package me.kall.enchantedpotato.common.enchantment.digger;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.common.config.UniteStonesOfAllConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -23,12 +24,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-public class UniteStonesOfAll extends Enchantment {
+public class UniteStonesOfAll extends BaseEnchantment {
     private static final Set<Block> UNITED_STONES = new ObjectOpenHashSet<>();
     private static final Set<Block> QUARTZ_STONES = new ObjectOpenHashSet<>();
 
     public UniteStonesOfAll() {
         super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.UNITE_STONES_OF_ALL.get();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.CaressingMoonlightConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -12,7 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class CaressingMoonlight extends Enchantment {
+public class CaressingMoonlight extends BaseEnchantment {
     public CaressingMoonlight() {
         super(Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
@@ -36,5 +38,10 @@ public class CaressingMoonlight extends Enchantment {
             float damageBonus = (baseDamage + gainedDamagePerLevel * (float) (level - 1)) * count;
             event.setAmount(event.getAmount() + damageBonus);
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.CARESSING_MOONLIGHT.get();
     }
 }

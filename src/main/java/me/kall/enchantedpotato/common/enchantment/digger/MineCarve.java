@@ -1,6 +1,8 @@
 package me.kall.enchantedpotato.common.enchantment.digger;
 
 import me.kall.enchantedpotato.common.config.MineCarveConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class MineCarve extends Enchantment {
+public class MineCarve extends BaseEnchantment {
     public MineCarve() {
         super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
@@ -25,6 +27,11 @@ public class MineCarve extends Enchantment {
     @Override
     public int getMaxLevel() {
         return 4;
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.MINE_CARVE.get();
     }
 
     @Override

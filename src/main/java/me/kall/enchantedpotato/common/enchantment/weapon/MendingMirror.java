@@ -1,7 +1,9 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.MendingMirrorConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.data.MendingMirrorData;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
@@ -19,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 import java.util.UUID;
 
-public class MendingMirror extends Enchantment {
+public class MendingMirror extends BaseEnchantment {
     public MendingMirror() {
         super(Rarity.RARE, EnchantmentCategory.BREAKABLE, EquipmentSlot.values());
     }
@@ -76,5 +78,10 @@ public class MendingMirror extends Enchantment {
             });
             if (MendingMirrorConfig.PLAY_SOUND.get()) player.playSound(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.0F);
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.MENDING_MIRROR.get();
     }
 }

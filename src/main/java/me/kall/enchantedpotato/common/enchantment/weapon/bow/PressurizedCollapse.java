@@ -1,5 +1,7 @@
 package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,15 +15,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PressurizedCollapse extends Enchantment {
+public class PressurizedCollapse extends BaseEnchantment {
     public PressurizedCollapse() {
         super(Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
 
+    @Override
     public int getMaxLevel() {
         return 3;
     }
 
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.PRESSURIZED_COLLAPSE.get();
+    }
+
+    @Override
     protected boolean checkCompatibility(@NotNull Enchantment other) {
         return other != ModEnchantments.GRACE_OF_GUNGNIR.get() && super.checkCompatibility(other);
     }

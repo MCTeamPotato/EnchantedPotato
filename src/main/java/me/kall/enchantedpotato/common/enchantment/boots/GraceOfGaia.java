@@ -1,16 +1,17 @@
 package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.config.GraceOfGaiaConfig;
+import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.enchantment.Enchantment;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class GraceOfGaia extends Enchantment {
+public class GraceOfGaia extends BaseEnchantment {
     public GraceOfGaia() {
         super(Rarity.RARE, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
     }
@@ -32,5 +33,10 @@ public class GraceOfGaia extends Enchantment {
             if (absorbed > GraceOfGaiaConfig.getMaxDamageReduction()) absorbed = GraceOfGaiaConfig.getMaxDamageReduction();
             event.setAmount(event.getAmount() * (1.0F - absorbed));
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.GRACE_OF_GAIA.get();
     }
 }
