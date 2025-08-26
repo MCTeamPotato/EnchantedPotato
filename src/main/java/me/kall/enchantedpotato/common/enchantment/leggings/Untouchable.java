@@ -29,7 +29,7 @@ public class Untouchable extends BaseEnchantment {
     }
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level instanceof ServerLevel) {
             int enchantmentLevel = player.getItemBySlot(EquipmentSlot.LEGS).getEnchantmentLevel(ModEnchantments.UNTOUCHABLE.get());
             if (enchantmentLevel == 0 || ((ExtendedPlayer)player).untouchable$isInCoolDown()) return;
             int coolDown = UntouchableConfig.BASIC_COOLDOWN.get() - UntouchableConfig.SAVED_COOLDOWN_PER_LEVEL.get() * (enchantmentLevel - 1);
@@ -43,7 +43,7 @@ public class Untouchable extends BaseEnchantment {
         double force = UntouchableConfig.BASIC_FORCE.get() + (level * UntouchableConfig.GAINED_FORCE_PER_LEVEL.get());
         int slowDuration = UntouchableConfig.BASIC_SLOWNESS_DURATION.get() + (level * UntouchableConfig.GAINED_SLOWNESS_DURATION_PER_LEVEL.get());
 
-        player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(radius), e -> e instanceof Monster)
+        player.level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(radius), e -> e instanceof Monster)
                 .forEach(entity -> {
                     Vec3 dir = entity.position().subtract(player.position()).normalize();
                     entity.push(dir.x * force, 0.4, dir.z * force);

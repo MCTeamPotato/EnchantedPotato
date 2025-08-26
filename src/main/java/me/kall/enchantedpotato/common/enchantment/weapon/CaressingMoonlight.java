@@ -25,7 +25,7 @@ public class CaressingMoonlight extends BaseEnchantment {
     }
 
     public static void onLivingHurt(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level instanceof ServerLevel) {
             Enchantment enchantment = ModEnchantments.CARESSING_MOONLIGHT.get();
             int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
             if (level == 0) return;

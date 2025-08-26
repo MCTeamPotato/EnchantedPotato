@@ -24,7 +24,7 @@ public class Dissolve extends BaseEnchantment {
     }
 
     public static void onPlayerHurt(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level instanceof ServerLevel) {
             int level = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.DISSOLVE.get());
             if (level == 0) return;
 

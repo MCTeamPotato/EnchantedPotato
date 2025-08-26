@@ -37,7 +37,7 @@ public class MendingMirror extends BaseEnchantment {
     }
 
     public static void recordBrokenItem(@NotNull Entity entity, @NotNull ItemStack stack) {
-        if (!(entity.level() instanceof ServerLevel level)) return;
+        if (!(entity.level instanceof ServerLevel level)) return;
         MendingMirrorData data = MendingMirrorData.get(level);
 
         UUID playerId = entity.getUUID();
@@ -67,7 +67,7 @@ public class MendingMirror extends BaseEnchantment {
         Player player = event.getEntity();
         UUID playerId = player.getUUID();
 
-        if (!(player.level() instanceof ServerLevel level)) return;
+        if (!(player.level instanceof ServerLevel level)) return;
         MendingMirrorData data = MendingMirrorData.get(level);
 
         Set<CompoundTag> recovered = data.removeData(playerId);

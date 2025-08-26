@@ -3,14 +3,14 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.SpaceLeapfrogConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +38,7 @@ public class SpaceLeapfrog extends BaseEnchantment {
     }
 
     public static void spaceLeapfrog(@NotNull ServerPlayer player) {
-        ServerLevel level = player.serverLevel();
+        ServerLevel level = player.getLevel();
 
         int enchantmentLevel = player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.SPACE_LEAPFROG.get());
         if (enchantmentLevel <= 0) return;
@@ -57,7 +57,7 @@ public class SpaceLeapfrog extends BaseEnchantment {
         validatePos(targetBlock, level, targetPos);
 
         player.teleportTo(targetPos.getX(), targetPos.getY(), targetPos.getZ());
-        level.explode(player, originPos.getX(), originPos.getY(), originPos.getZ(), radius, Level.ExplosionInteraction.NONE);
+        level.explode(player, originPos.getX(), originPos.getY(), originPos.getZ(), radius, Explosion.BlockInteraction.NONE);
 
         ((ExtendedPlayer) player).spaceLeapfrog$setCoolDown(getCoolDown(enchantmentLevel));
     }

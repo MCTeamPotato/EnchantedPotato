@@ -5,6 +5,7 @@ import me.kall.enchantedpotato.common.config.OceanHuedConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
@@ -29,7 +30,7 @@ public class OceanHued extends BaseEnchantment {
     }
 
     public static void onHeal(@NotNull LivingHealEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getEntity() instanceof Player player && player.level instanceof ServerLevel) {
             if (player.getItemBySlot(EquipmentSlot.HEAD).getEnchantmentLevel(ModEnchantments.OCEAN_HUED.get()) == 0) {
                 ((ExtendedPlayer)player).oceanHued$setHealingAmount(0.00);
                 ((ExtendedPlayer)player).oceanHued$setCountingTicks(0.00);
@@ -48,7 +49,7 @@ public class OceanHued extends BaseEnchantment {
     }
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel level) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level instanceof ServerLevel level) {
             int enchantmentLevel = player.getItemBySlot(EquipmentSlot.HEAD).getEnchantmentLevel(ModEnchantments.OCEAN_HUED.get());
             if (enchantmentLevel == 0) return;
             if (((ExtendedPlayer)player).oceanHued$isReady()) {
@@ -63,7 +64,7 @@ public class OceanHued extends BaseEnchantment {
                 if (amount > maxDamageAmount) amount = maxDamageAmount;
 
                 for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, attacked.getBoundingBox().inflate(OceanHuedConfig.BASE_RADIUS.get().floatValue() + OceanHuedConfig.GAINED_RADIUS_PER_LEVEL.get().floatValue() * (float) (enchantmentLevel - 1)), filter)) {
-                    entity.hurt(level.damageSources().inWall(), amount);
+                    entity.hurt(DamageSource.IN_WALL, amount);
                 }
                 ((ExtendedPlayer)player).oceanHued$setCountingTicks(0.00);
                 ((ExtendedPlayer)player).oceanHued$setCoolDown(OceanHuedConfig.getCoolDown(enchantmentLevel));
@@ -73,7 +74,7 @@ public class OceanHued extends BaseEnchantment {
     }
 
     public static void onPlayerDeath(@NotNull LivingDeathEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getEntity() instanceof Player player && player.level instanceof ServerLevel) {
             int level = player.getItemBySlot(EquipmentSlot.HEAD).getEnchantmentLevel(ModEnchantments.OCEAN_HUED.get());
             if (level == 0) return;
             ((ExtendedPlayer)player).oceanHued$setHealingAmount(0.00);

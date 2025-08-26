@@ -40,7 +40,7 @@ public class MineCarve extends BaseEnchantment {
     }
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level instanceof ServerLevel) {
             Enchantment mineCarve = ModEnchantments.MINE_CARVE.get();
             int enchantmentLevel = Math.max(player.getMainHandItem().getEnchantmentLevel(mineCarve), player.getOffhandItem().getEnchantmentLevel(mineCarve));
             if (enchantmentLevel > 0) {

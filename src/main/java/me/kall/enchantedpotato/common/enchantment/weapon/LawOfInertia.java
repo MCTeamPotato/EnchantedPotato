@@ -31,7 +31,7 @@ public class LawOfInertia extends BaseEnchantment {
     public static void onLivingTick(@NotNull LivingEvent.LivingTickEvent event) {
         if (event.isCanceled()) return;
         LivingEntity entity = event.getEntity();
-        if (!(entity.level() instanceof ServerLevel)) return;
+        if (!(entity.level instanceof ServerLevel)) return;
         float damage = entity.getPersistentData().getFloat(MARK);
         if (damage == 0.0F) return;
 

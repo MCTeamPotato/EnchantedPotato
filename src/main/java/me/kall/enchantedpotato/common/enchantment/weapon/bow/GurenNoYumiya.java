@@ -43,7 +43,7 @@ public class GurenNoYumiya extends BaseEnchantment {
             GurenNoYumiyaPacket packet = new GurenNoYumiyaPacket(pos, radius);
             ModPackets.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> arrow), packet);
 
-            arrow.level()
+            arrow.level
                     .getEntitiesOfClass(LivingEntity.class, box, filter)
                     .forEach(entity -> {
                         if (entity.isOnFire()) {

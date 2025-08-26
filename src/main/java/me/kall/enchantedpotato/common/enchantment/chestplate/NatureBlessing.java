@@ -6,6 +6,7 @@ import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -29,7 +30,7 @@ public class NatureBlessing extends BaseEnchantment {
     }
 
     public static void onPlayerTick(TickEvent.@NotNull PlayerTickEvent event) {
-        if (event.player instanceof ServerPlayer player && player.level() instanceof ServerLevel level && event.phase.equals(TickEvent.Phase.END)) {
+        if (event.player instanceof ServerPlayer player && player.level instanceof ServerLevel level && event.phase.equals(TickEvent.Phase.END)) {
             int enchantmentLevel = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.NATURE_BLESSING.get());
             if (enchantmentLevel == 0) return;
             if (((ExtendedLivingEntity)player).natureBlessing$getInterval() <= 0) {
@@ -48,7 +49,7 @@ public class NatureBlessing extends BaseEnchantment {
 
                 for (LivingEntity entity : entities) {
                     if (entity.getUUID() == player.getUUID() || player.isAlliedTo(entity) || entity instanceof Player || !entity.isAlive()) continue;
-                    entity.hurt(player.damageSources().indirectMagic(player, player), damage);
+                    entity.hurt(DamageSource.indirectMagic(player, player), damage);
 
                     Vec3 knockbackDir = new Vec3(entity.getX() - player.getX(), 0, entity.getZ() - player.getZ()).normalize();
 

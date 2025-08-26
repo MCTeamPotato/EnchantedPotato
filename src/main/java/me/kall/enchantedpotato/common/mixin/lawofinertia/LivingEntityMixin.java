@@ -38,10 +38,10 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "push", at = @At("HEAD"))
     private void onPush(Entity entity, CallbackInfo ci) {
         float amount = this.getPersistentData().getFloat(LawOfInertia.MARK);
-        if (amount != 0.0F && this.level() instanceof ServerLevel && entity instanceof LivingEntity living) {
+        if (amount != 0.0F && this.level instanceof ServerLevel && entity instanceof LivingEntity living) {
             float damage = amount / 4.0F;
             if (damage < 1.0F) damage = 1.0F;
-            living.hurt(this.damageSources().generic(), damage);
+            living.hurt(DamageSource.GENERIC, damage);
         }
     }
 }

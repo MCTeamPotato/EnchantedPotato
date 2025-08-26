@@ -29,7 +29,7 @@ public class Mercy extends BaseEnchantment {
 
     public static void onLivingDamage(@NotNull LivingDamageEvent event) {
         LivingEntity attacked = event.getEntity();
-        if (!event.isCanceled() && attacked.level() instanceof ServerLevel) {
+        if (!event.isCanceled() && attacked.level instanceof ServerLevel) {
             LivingEntity attacker = null;
             if (event.getSource().getEntity() instanceof LivingEntity sourceEntity) {
                 attacker = sourceEntity;
