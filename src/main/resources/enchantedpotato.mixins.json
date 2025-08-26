@@ -12,6 +12,8 @@
   ],
   "mixins": [
     "armorbreaking.LivingEntityMixin",
+    "disable.EnchantedBookItemMixin",
+    "disable.ItemStackMixin",
     "finalpower.LivingEntityMixin",
     "graceofgungnir.AbstractArrowMixin",
     "gurennoyumiya.AbstractArrowMixin",

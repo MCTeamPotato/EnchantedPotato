@@ -64,7 +64,7 @@ public abstract class BaseEnchantment extends Enchantment {
         super.doPostHurt(target, attacker, level);
     }
 
-    private static void removeEnchantment(@NotNull ItemStack stack, Enchantment enchantment) {
+    public static void removeEnchantment(@NotNull ItemStack stack, Enchantment enchantment) {
         if (stack.isEmpty() || !stack.hasTag()) return;
 
         ResourceLocation targetId = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
