@@ -22,7 +22,7 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
 
     @Override
     public boolean canEnchant(@NotNull ItemStack stack) {
-        return BaseEnchantment.canUseAsWeapon(stack.getItem()) && super.canEnchant(stack);
+        return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
     }
 
     public static boolean has(@NotNull Player player) {
