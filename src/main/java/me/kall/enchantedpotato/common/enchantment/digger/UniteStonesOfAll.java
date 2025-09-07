@@ -46,19 +46,21 @@ public class UniteStonesOfAll extends BaseEnchantment {
         return UNITED_STONES.contains(state.getBlock());
     }
 
-    public static void onServerStarted(ServerStartedEvent ignored) {
-        for (String string : UniteStonesOfAllConfig.UNITED_STONES.get()) {
-            ResourceLocation id = ResourceLocation.parse(string);
-            Block block = ForgeRegistries.BLOCKS.getValue(id);
-            if (block == null) continue;
-            UNITED_STONES.add(block);
-        }
-        for (String string : UniteStonesOfAllConfig.QUARTZ_STONES.get()) {
-            ResourceLocation id = ResourceLocation.parse(string);
-            Block block = ForgeRegistries.BLOCKS.getValue(id);
-            if (block == null) continue;
-            QUARTZ_STONES.add(block);
-        }
+    public static void onServerStarted(@NotNull ServerStartedEvent event) {
+        event.getServer().execute(() -> {
+            for (String string : UniteStonesOfAllConfig.UNITED_STONES.get()) {
+                ResourceLocation id = ResourceLocation.parse(string);
+                Block block = ForgeRegistries.BLOCKS.getValue(id);
+                if (block == null) continue;
+                UNITED_STONES.add(block);
+            }
+            for (String string : UniteStonesOfAllConfig.QUARTZ_STONES.get()) {
+                ResourceLocation id = ResourceLocation.parse(string);
+                Block block = ForgeRegistries.BLOCKS.getValue(id);
+                if (block == null) continue;
+                QUARTZ_STONES.add(block);
+            }
+        });
     }
 
     public static void handleBlockDrops(Level level, BlockPos pos, BlockState state, boolean hasSilkTouch) {
