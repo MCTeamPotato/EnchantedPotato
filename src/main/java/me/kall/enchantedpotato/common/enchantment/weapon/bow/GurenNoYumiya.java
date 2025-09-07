@@ -33,6 +33,7 @@ public class GurenNoYumiya extends BaseEnchantment {
         if (arrow.getOwner() instanceof ServerPlayer) {
             int level = arrow.getPersistentData().getInt(GUREN_NO_YUMIYA_KEY);
 
+            if (level == 0) return;
             double radius = GurenNoYumiyaConfig.BASE_RADIUS.get() + GurenNoYumiyaConfig.GAINED_RADIUS_PER_LEVEL.get() * (double)(level - 1);
             AABB box = new AABB(arrow.blockPosition()).inflate(radius);
             Predicate<LivingEntity> filter = entity -> entity.isAlive() && !entity.fireImmune() && !entity.getUUID().equals(arrow.getOwner().getUUID());
