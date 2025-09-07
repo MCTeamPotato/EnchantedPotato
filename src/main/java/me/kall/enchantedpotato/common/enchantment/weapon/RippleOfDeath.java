@@ -35,7 +35,7 @@ public class RippleOfDeath extends BaseEnchantment {
 
     @Override
     public boolean canEnchant(@NotNull ItemStack stack) {
-        return BaseEnchantment.canUseAsWeapon(stack.getItem()) && super.canEnchant(stack);
+        return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
     }
 
     public static void onLivingDeath(@NotNull LivingDeathEvent event) {

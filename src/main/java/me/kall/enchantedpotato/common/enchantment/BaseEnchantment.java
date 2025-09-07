@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -101,7 +102,7 @@ public abstract class BaseEnchantment extends Enchantment {
         }
     }
 
-    public static boolean canUseAsWeapon(Item item) {
-        return item instanceof AxeItem || item instanceof SwordItem || item instanceof BowItem || item instanceof TridentItem;
+    public static boolean canUseAsWeapon(ItemStack stack) {
+        return stack.getItem().getAttributeModifiers(EquipmentSlot.MAINHAND, stack).containsKey(Attributes.ATTACK_DAMAGE);
     }
 }

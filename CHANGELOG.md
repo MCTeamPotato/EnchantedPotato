@@ -1,2 +1,3 @@
-# 1.8.0
-Introduce DisableConfig
+# 1.8.1
+- Use more universal weapon test approach
+- Fix GurenNoYumiya 
