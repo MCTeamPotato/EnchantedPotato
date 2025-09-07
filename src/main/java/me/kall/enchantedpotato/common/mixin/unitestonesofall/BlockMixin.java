@@ -1,6 +1,7 @@
 package me.kall.enchantedpotato.common.mixin.unitestonesofall;
 
 import me.kall.enchantedpotato.common.enchantment.digger.UniteStonesOfAll;
+import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class BlockMixin {
     @Inject(method = "playerDestroy", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;causeFoodExhaustion(F)V", shift = At.Shift.AFTER), cancellable = true)
     private void onPlayerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci) {
+        int enchantmentLevel = player.getMainHandItem().getEnchantmentLevel(ModEnchantments.UNITE_STONES_OF_ALL.get());
+        if (enchantmentLevel == 0) enchantmentLevel = player.getOffhandItem().getEnchantmentLevel(ModEnchantments.UNITE_STONES_OF_ALL.get());
+        if (enchantmentLevel == 0) return;
         if (UniteStonesOfAll.isTargetBlock(state)) {
             boolean hasSilkTouch = stack.getEnchantmentLevel(Enchantments.SILK_TOUCH) != 0;
             UniteStonesOfAll.handleBlockDrops(level, pos, state, hasSilkTouch);
