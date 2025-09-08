@@ -14,8 +14,8 @@ public class UniteStonesOfAllConfig {
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("UniteStonesOfAll");
-        UNITED_STONES = builder.defineList("UnitedStones", List.of("minecraft:andesite", "minecraft:granite", "minecraft:deepslate", "minecraft:tuff", "minecraft:calcite"), Predicates.alwaysTrue());
-        QUARTZ_STONES = builder.defineList("QuartzStones", List.of("minecraft:granite", "minecraft:andesite"), Predicates.alwaysTrue());
+        UNITED_STONES = builder.defineList("UnitedStones", List.of("minecraft:andesite", "minecraft:granite", "minecraft:deepslate", "minecraft:tuff", "minecraft:calcite"), () -> "", Predicates.alwaysTrue());
+        QUARTZ_STONES = builder.defineList("QuartzStones", List.of("minecraft:granite", "minecraft:andesite"), () -> "", Predicates.alwaysTrue());
         QUARTZ_DROP_CHANCE = builder.defineInRange("QuartzDropChance", 0.15D, 0.00, 1.00);
         builder.pop();
         INSTANCE = builder.build();
