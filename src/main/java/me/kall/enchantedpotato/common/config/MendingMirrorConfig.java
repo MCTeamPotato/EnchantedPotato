@@ -1,14 +1,14 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class MendingMirrorConfig {
-    public static final ForgeConfigSpec INSTANCE;
-    public static final ForgeConfigSpec.DoubleValue REMAINING_DURABILITY;
-    public static final ForgeConfigSpec.BooleanValue PLAY_SOUND;
+    public static final ModConfigSpec INSTANCE;
+    public static final ModConfigSpec.DoubleValue REMAINING_DURABILITY;
+    public static final ModConfigSpec.BooleanValue PLAY_SOUND;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("MendingMirror");
         REMAINING_DURABILITY = builder.defineInRange("RemainingDurability", 0.30, 0.01, 1.00);
         PLAY_SOUND = builder.define("PlaySoundOnRecovering", true);

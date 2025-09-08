@@ -1,11 +1,11 @@
 package me.kall.enchantedpotato.client.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ClientConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.IntValue
+    public static final ModConfigSpec.IntValue
             RUN_LIKE_HELL_POS_X, RUN_LIKE_HELL_POS_Y_OFFSET,
             UNTOUCHABLE_POS_X, UNTOUCHABLE_POS_Y_OFFSET,
             OCEAN_HUED_COUNTING_POS_X, OCEAN_HUED_COUNTING_POS_Y_OFFSET,
@@ -14,7 +14,7 @@ public class ClientConfig {
             SPACE_LEAPFROG_POS_X, SPACE_LEAPFROG_POS_Y_OFFSET;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("EnchantedPotatoClientSettings");
         RUN_LIKE_HELL_POS_X = builder.defineInRange("RunLikeHellCooldownTextPosX", 10, 0, Integer.MAX_VALUE);
         RUN_LIKE_HELL_POS_Y_OFFSET = builder.defineInRange("RunLikeHellCooldownTextPosYOffset", 16, 0, Integer.MAX_VALUE);

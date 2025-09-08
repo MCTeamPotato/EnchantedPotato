@@ -24,12 +24,12 @@ public abstract class PlayerMixin extends LivingEntity implements ExtendedPlayer
         super(entityType, level);
     }
 
-    @Unique private AttributeInstance runLikeHell$getAttribute() {return this.getAttribute(ModAttributes.RUN_LIKE_HELL_COOLDOWN.get());}
-    @Unique private AttributeInstance untouchable$getAttribute() {return this.getAttribute(ModAttributes.UNTOUCHABLE_COOLDOWN.get());}
-    @Unique private AttributeInstance oceanHued$getCoolDownAttribute() {return this.getAttribute(ModAttributes.OCEAN_HUED_COOLDOWN.get());}
-    @Unique private AttributeInstance oceanHued$getCountingAttribute() {return this.getAttribute(ModAttributes.OCEAN_HUED_COUNTING.get());}
-    @Unique private AttributeInstance oceanHued$getHealingAmountAttribute() {return this.getAttribute(ModAttributes.OCEAN_HUED_HEALING_AMOUNT.get());}
-    @Unique private AttributeInstance spaceLeapfrog$getAttribute() {return this.getAttribute(ModAttributes.SPACE_LEAPFROG_COOLDOWN.get());}
+    @Unique private AttributeInstance runLikeHell$getAttribute() {return this.getAttribute(ModAttributes.RUN_LIKE_HELL_COOLDOWN.getDelegate());}
+    @Unique private AttributeInstance untouchable$getAttribute() {return this.getAttribute(ModAttributes.UNTOUCHABLE_COOLDOWN.getDelegate());}
+    @Unique private AttributeInstance oceanHued$getCoolDownAttribute() {return this.getAttribute(ModAttributes.OCEAN_HUED_COOLDOWN.getDelegate());}
+    @Unique private AttributeInstance oceanHued$getCountingAttribute() {return this.getAttribute(ModAttributes.OCEAN_HUED_COUNTING.getDelegate());}
+    @Unique private AttributeInstance oceanHued$getHealingAmountAttribute() {return this.getAttribute(ModAttributes.OCEAN_HUED_HEALING_AMOUNT.getDelegate());}
+    @Unique private AttributeInstance spaceLeapfrog$getAttribute() {return this.getAttribute(ModAttributes.SPACE_LEAPFROG_COOLDOWN.getDelegate());}
 
     @Override public boolean runLikeHell$isInCoolDown() {return this.runLikeHell$getCoolDown() != 0;}
     @Override public int runLikeHell$getCoolDown() {return (int) this.runLikeHell$getAttribute().getBaseValue();}

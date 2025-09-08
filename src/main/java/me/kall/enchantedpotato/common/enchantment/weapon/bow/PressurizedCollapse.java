@@ -2,12 +2,13 @@ package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -16,23 +17,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class PressurizedCollapse extends BaseEnchantment {
-    public PressurizedCollapse() {
-        super(Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 3;
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.PRESSURIZED_COLLAPSE.get();
-    }
-
-    @Override
-    protected boolean checkCompatibility(@NotNull Enchantment other) {
-        return other != ModEnchantments.GRACE_OF_GUNGNIR.get() && super.checkCompatibility(other);
     }
 
     public static void apply(@NotNull Vec3 center, double range, @NotNull Level world, int level) {
@@ -50,5 +37,40 @@ public class PressurizedCollapse extends BaseEnchantment {
                 entity.setDeltaMovement(entity.getDeltaMovement().multiply(0.7, 0.98, 0.7));
             }
         }
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

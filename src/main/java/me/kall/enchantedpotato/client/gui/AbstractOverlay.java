@@ -1,13 +1,14 @@
 package me.kall.enchantedpotato.client.gui;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractOverlay implements IGuiOverlay {
+public abstract class AbstractOverlay implements LayeredDraw.Layer {
 
     public abstract String getTranslateKey();
 
@@ -20,7 +21,7 @@ public abstract class AbstractOverlay implements IGuiOverlay {
     public abstract boolean isTicks();
 
     @Override
-    public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
+    public void render(@NotNull GuiGraphics guiGraphics, @NotNull DeltaTracker deltaTracker) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.options.hideGui) return;
 
@@ -29,7 +30,7 @@ public abstract class AbstractOverlay implements IGuiOverlay {
         if (value > 0) {
             double displayNumber = isTicks() ? Math.ceil(value / 20.0) : value;
             Component text = Component.translatable(getTranslateKey(), displayNumber);
-            int yPos = screenHeight - getYOffSet();
+            int yPos = mc.getWindow().getGuiScaledHeight() - getYOffSet();
             guiGraphics.drawString(mc.font, text, getX(), yPos, 0xFFA500, true);
         }
     }

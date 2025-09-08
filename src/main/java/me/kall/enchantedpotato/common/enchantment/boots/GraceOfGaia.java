@@ -2,27 +2,23 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.config.GraceOfGaiaConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class GraceOfGaia extends BaseEnchantment {
-    public GraceOfGaia() {
-        super(Rarity.RARE, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
-    }
-
-    public int getMaxLevel() {
-        return 3;
-    }
-
-    public static void onPlayerHurt(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
-            int level = player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.GRACE_OF_GAIA.get());
+    public static void onPlayerHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel && !event.isCanceled()) {
+            int level = getLevel(player.getItemBySlot(EquipmentSlot.FEET), serverLevel, ModEnchantments.GRACE_OF_GAIA);
             if (level == 0) return;
             int baseValidY = GraceOfGaiaConfig.BASE_VALID_Y.get();
             int gainedYPerLevel = GraceOfGaiaConfig.GAINED_Y_PER_LEVEL.get();
@@ -38,5 +34,42 @@ public class GraceOfGaia extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.GRACE_OF_GAIA.get();
+    }
+
+
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.FEET;
     }
 }

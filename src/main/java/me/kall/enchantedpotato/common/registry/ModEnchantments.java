@@ -1,23 +1,20 @@
 package me.kall.enchantedpotato.common.registry;
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.EnchantedPotato;
-import me.kall.enchantedpotato.common.enchantment.boots.*;
-import me.kall.enchantedpotato.common.enchantment.chestplate.*;
-import me.kall.enchantedpotato.common.enchantment.digger.*;
-import me.kall.enchantedpotato.common.enchantment.helmet.OceanHued;
-import me.kall.enchantedpotato.common.enchantment.leggings.Untouchable;
-import me.kall.enchantedpotato.common.enchantment.weapon.*;
-import me.kall.enchantedpotato.common.enchantment.weapon.bow.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Set;
 
 public class ModEnchantments {
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, EnchantedPotato.MOD_ID);
+    private static final EnchantmentRegister REGISTER = new EnchantmentRegister();
 
-    public static final RegistryObject<Enchantment>
+    public static final ResourceKey<Enchantment>
             RUN_LIKE_HELL, BLACK_PARADE, GRACE_OF_GUNGNIR,
             PRESSURIZED_COLLAPSE, UNTOUCHABLE, GRACE_OF_GAIA,
             GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH,
@@ -29,35 +26,45 @@ public class ModEnchantments {
             MERCY, SPACE_LEAPFROG;
 
     static {
-        RUN_LIKE_HELL = ENCHANTMENTS.register("run_like_hell", RunLikeHell::new);
-        BLACK_PARADE = ENCHANTMENTS.register("black_parade", BlackParade::new);
-        GRACE_OF_GUNGNIR = ENCHANTMENTS.register("grace_of_gungnir", GraceOfGungnir::new);
-        PRESSURIZED_COLLAPSE = ENCHANTMENTS.register("pressurized_collapse", PressurizedCollapse::new);
-        UNTOUCHABLE = ENCHANTMENTS.register("untouchable", Untouchable::new);
-        GRACE_OF_GAIA = ENCHANTMENTS.register("grace_of_gaia", GraceOfGaia::new);
-        GUREN_NO_YUMIYA = ENCHANTMENTS.register("guren_no_yumiya", GurenNoYumiya::new);
-        LORA_TRAINER = ENCHANTMENTS.register("lora_trainer", LoRATrainer::new);
-        RIPPLE_OF_DEATH = ENCHANTMENTS.register("ripple_of_death", RippleOfDeath::new);
-        WONDER_EGG_PRIORITY = ENCHANTMENTS.register("wonder_egg_priority", WonderEggPriority::new);
-        POISON_OF_THE_LAST_BREATH = ENCHANTMENTS.register("poison_of_the_last_breath", PoisonOfTheLastBreath::new);
-        DISSOLVE = ENCHANTMENTS.register("dissolve", Dissolve::new);
-        MARK_FROM_THE_BENEATH = ENCHANTMENTS.register("mark_from_the_beneath", MarkFromTheBeneath::new);
-        ARMOR_BREAKING = ENCHANTMENTS.register("armor_breaking", ArmorBreaking::new);
-        NATURE_BLESSING = ENCHANTMENTS.register("nature_blessing", NatureBlessing::new);
-        CARESSING_MOONLIGHT = ENCHANTMENTS.register("caressing_moonlight", CaressingMoonlight::new);
-        OCEAN_HUED = ENCHANTMENTS.register("ocean_hued", OceanHued::new);
-        MINE_CARVE = ENCHANTMENTS.register("mine_carve", MineCarve::new);
-        LOTUS_IN_WATER = ENCHANTMENTS.register("lotus_in_water", LotusInWater::new);
-        UNITE_STONES_OF_ALL = ENCHANTMENTS.register("unite_stones_of_all", UniteStonesOfAll::new);
-        LAW_OF_INERTIA = ENCHANTMENTS.register("law_of_inertia", LawOfInertia::new);
-        MENDING_MIRROR = ENCHANTMENTS.register("mending_mirror", MendingMirror::new);
-        SACRED_RIFTWIND = ENCHANTMENTS.register("sacred_riftwind", SacredRiftwind::new);
-        FINAL_POWER = ENCHANTMENTS.register("final_power", FinalPower::new);
-        MERCY = ENCHANTMENTS.register("mercy", Mercy::new);
-        SPACE_LEAPFROG = ENCHANTMENTS.register("space_leapfrog", SpaceLeapfrog::new);
+        RUN_LIKE_HELL = REGISTER.register("run_like_hell");
+        BLACK_PARADE = REGISTER.register("black_parade");
+        GRACE_OF_GUNGNIR = REGISTER.register("grace_of_gungnir");
+        PRESSURIZED_COLLAPSE = REGISTER.register("pressurized_collapse");
+        UNTOUCHABLE = REGISTER.register("untouchable");
+        GRACE_OF_GAIA = REGISTER.register("grace_of_gaia");
+        GUREN_NO_YUMIYA = REGISTER.register("guren_no_yumiya");
+        LORA_TRAINER = REGISTER.register("lora_trainer");
+        RIPPLE_OF_DEATH = REGISTER.register("ripple_of_death");
+        WONDER_EGG_PRIORITY = REGISTER.register("wonder_egg_priority");
+        POISON_OF_THE_LAST_BREATH = REGISTER.register("poison_of_the_last_breath");
+        DISSOLVE = REGISTER.register("dissolve");
+        MARK_FROM_THE_BENEATH = REGISTER.register("mark_from_the_beneath");
+        ARMOR_BREAKING = REGISTER.register("armor_breaking");
+        NATURE_BLESSING = REGISTER.register("nature_blessing");
+        CARESSING_MOONLIGHT = REGISTER.register("caressing_moonlight");
+        OCEAN_HUED = REGISTER.register("ocean_hued");
+        MINE_CARVE = REGISTER.register("mine_carve");
+        LOTUS_IN_WATER = REGISTER.register("lotus_in_water");
+        UNITE_STONES_OF_ALL = REGISTER.register("unite_stones_of_all");
+        LAW_OF_INERTIA = REGISTER.register("law_of_inertia");
+        MENDING_MIRROR = REGISTER.register("mending_mirror");
+        SACRED_RIFTWIND = REGISTER.register("sacred_riftwind");
+        FINAL_POWER = REGISTER.register("final_power");
+        MERCY = REGISTER.register("mercy");
+        SPACE_LEAPFROG = REGISTER.register("space_leapfrog");
     }
 
-    public static void register(IEventBus bus) {
-        ENCHANTMENTS.register(bus);
+    private static final class EnchantmentRegister {
+        public final Set<ResourceLocation> ENCHANTMENTS = new ObjectOpenHashSet<>();
+
+        public @NotNull ResourceKey<Enchantment> register(String id) {
+            ResourceLocation resourceLocation = EnchantedPotato.loc(id);
+            ENCHANTMENTS.add(resourceLocation);
+            return ResourceKey.create(Registries.ENCHANTMENT, resourceLocation);
+        }
+
+        public void register(@NotNull BootstrapContext<Enchantment> context, Enchantment.EnchantmentDefinition definition, ResourceKey<Enchantment> enchantmentKey) {
+            context.register(enchantmentKey, Enchantment.enchantment(definition).build(enchantmentKey.location()));
+        }
     }
 }

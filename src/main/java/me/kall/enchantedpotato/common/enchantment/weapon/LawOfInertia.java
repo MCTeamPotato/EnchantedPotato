@@ -1,43 +1,72 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.*;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class LawOfInertia extends BaseEnchantment {
     public static final String MARK = "InertiaKnockbackDamage";
-
-    public LawOfInertia() {
-        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
 
     @Override
     public boolean isDisabled() {
         return DisableConfig.LAW_OF_INERTIA.get();
     }
 
-    @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
+    public static void onLivingTick(@NotNull EntityTickEvent.Pre event) {
+        if (event.isCanceled()) return;
+        if (event.getEntity() instanceof LivingEntity entity) {
+            if (!(entity.level() instanceof ServerLevel)) return;
+            float damage = entity.getPersistentData().getFloat(MARK);
+            if (damage == 0.0F) return;
+
+            Vec3 motion = entity.getDeltaMovement();
+            if (Math.sqrt(motion.x * motion.x + motion.z * motion.z) < 0.01) {
+                entity.getPersistentData().remove(MARK);
+            }
+        }
     }
 
-    public static void onLivingTick(@NotNull LivingEvent.LivingTickEvent event) {
-        if (event.isCanceled()) return;
-        LivingEntity entity = event.getEntity();
-        if (!(entity.level() instanceof ServerLevel)) return;
-        float damage = entity.getPersistentData().getFloat(MARK);
-        if (damage == 0.0F) return;
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
 
-        Vec3 motion = entity.getDeltaMovement();
-        if (Math.sqrt(motion.x * motion.x + motion.z * motion.z) < 0.01) {
-            entity.getPersistentData().remove(MARK);
-        }
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

@@ -2,11 +2,14 @@ package me.kall.enchantedpotato.common.data;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.saveddata.SavedData;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -16,7 +19,12 @@ public class MendingMirrorData extends SavedData {
     private final Map<UUID, Set<CompoundTag>> brokenItems = new Object2ObjectOpenHashMap<>();
 
     public static @NotNull MendingMirrorData get(@NotNull ServerLevel level) {
-        return level.getDataStorage().computeIfAbsent(MendingMirrorData::load, MendingMirrorData::new, "mending_mirror_data");
+        return level.getDataStorage().computeIfAbsent(factory(), "mending_mirror_data");
+    }
+
+    @Contract(value = " -> new", pure = true)
+    public static SavedData.@NotNull Factory<MendingMirrorData> factory() {
+        return new Factory<>(MendingMirrorData::new, (tag, provider) -> load(tag), DataFixTypes.PLAYER);
     }
 
     public void addData(UUID player, CompoundTag item) {
@@ -52,8 +60,7 @@ public class MendingMirrorData extends SavedData {
         }
     }
 
-    @Override
-    public @NotNull CompoundTag save(@NotNull CompoundTag compoundTag) {
+    public CompoundTag save(@NotNull CompoundTag compoundTag) {
         ListTag entries = new ListTag();
         brokenItems.forEach((uuid, compoundTags) -> {
             CompoundTag entryNBT = new CompoundTag();
@@ -67,5 +74,10 @@ public class MendingMirrorData extends SavedData {
         });
         compoundTag.put("entries", entries);
         return compoundTag;
+    }
+
+    @Override
+    public @NotNull CompoundTag save(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+        return save(tag);
     }
 }

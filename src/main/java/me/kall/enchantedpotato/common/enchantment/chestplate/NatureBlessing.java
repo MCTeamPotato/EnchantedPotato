@@ -4,33 +4,28 @@ import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.NatureBlessingConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NatureBlessing extends BaseEnchantment {
-    public NatureBlessing() {
-        super(Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 5;
-    }
-
-    public static void onPlayerTick(TickEvent.@NotNull PlayerTickEvent event) {
-        if (event.player instanceof ServerPlayer player && player.level() instanceof ServerLevel level && event.phase.equals(TickEvent.Phase.END)) {
-            int enchantmentLevel = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.NATURE_BLESSING.get());
+    public static void onPlayerTick(PlayerTickEvent.@NotNull Post event) {
+        if (event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel level) {
+            int enchantmentLevel = getLevel(player.getItemBySlot(EquipmentSlot.CHEST), level, ModEnchantments.NATURE_BLESSING);
             if (enchantmentLevel == 0) return;
             if (((ExtendedLivingEntity)player).natureBlessing$getInterval() <= 0) {
                 ((ExtendedLivingEntity)player).natureBlessing$setInterval(100);
@@ -62,5 +57,41 @@ public class NatureBlessing extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.NATURE_BLESSING.get();
+    }
+
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.CHEST;
     }
 }

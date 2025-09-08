@@ -1,18 +1,18 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class DissolveConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.DoubleValue
+    public static final ModConfigSpec.DoubleValue
             BASE_DAMAGE_REDUCTION, GAINED_DAMAGE_REDUCTION_PER_LEVEL,
             BASE_THRESHOLD, SAVED_THRESHOLD_PER_LEVEL, MINUS_THRESHOLD;
 
-    public static final ForgeConfigSpec.IntValue BASE_STRENGTH_DURATION, GAINED_STRENGTH_DURATION_PER_LEVEL;
+    public static final ModConfigSpec.IntValue BASE_STRENGTH_DURATION, GAINED_STRENGTH_DURATION_PER_LEVEL;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("Dissolve");
         BASE_DAMAGE_REDUCTION = builder.defineInRange("BaseDamageReductionForExceededPart", 0.5D, 0, 1.0D);
         GAINED_DAMAGE_REDUCTION_PER_LEVEL = builder.defineInRange("GainedDamageReductionForExceededPartPerLevel", 0.1D, 0, 1.0D);

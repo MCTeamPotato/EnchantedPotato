@@ -3,28 +3,23 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.SpaceLeapfrogConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class SpaceLeapfrog extends BaseEnchantment {
-    public SpaceLeapfrog() {
-        super(Rarity.RARE, EnchantmentCategory.ARMOR_FEET, new EquipmentSlot[]{EquipmentSlot.FEET});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 3;
-    }
-
     public static double getDist(int enchantmentLevel) {
         return SpaceLeapfrogConfig.BASIC_LEAPFROG_DIST.get() + SpaceLeapfrogConfig.GAINED_LEAPFROG_DIST_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
     }
@@ -40,7 +35,7 @@ public class SpaceLeapfrog extends BaseEnchantment {
     public static void spaceLeapfrog(@NotNull ServerPlayer player) {
         ServerLevel level = player.serverLevel();
 
-        int enchantmentLevel = player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.SPACE_LEAPFROG.get());
+        int enchantmentLevel = getLevel(player.getItemBySlot(EquipmentSlot.FEET), level, ModEnchantments.SPACE_LEAPFROG);
         if (enchantmentLevel <= 0) return;
 
         double dist = SpaceLeapfrog.getDist(enchantmentLevel);
@@ -81,5 +76,41 @@ public class SpaceLeapfrog extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.SPACE_LEAPFROG.get();
+    }
+
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.FEET;
     }
 }

@@ -1,108 +1,50 @@
 package me.kall.enchantedpotato.common.enchantment;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
-@ParametersAreNonnullByDefault
-public abstract class BaseEnchantment extends Enchantment {
-    public BaseEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] applicableSlots) {
-        super(rarity, category, applicableSlots);
-    }
-
+public abstract class BaseEnchantment {
     public abstract boolean isDisabled();
 
-    @Override
-    protected boolean checkCompatibility(Enchantment other) {
-        return super.checkCompatibility(other) && !isDisabled();
-    }
+    public abstract HolderSet<Item> supportedItems(HolderGetter<Item> items);
+    public abstract int weight();
+    public abstract int maxLevel();
+    public abstract Enchantment.Cost dynamicCost();
+    public abstract Enchantment.Cost constantCost();
+    public abstract int anvilCost();
+    public abstract EquipmentSlotGroup slotGroup();
 
-    @Override
-    public boolean canEnchant(ItemStack stack) {
-        return super.canEnchant(stack) && !isDisabled();
-    }
-
-    @Override
-    public boolean isTradeable() {
-        return super.isTradeable() && !isDisabled();
-    }
-
-    @Override
-    public boolean isDiscoverable() {
-        return super.isDiscoverable() && !isDisabled();
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        return super.canApplyAtEnchantingTable(stack) && !isDisabled();
-    }
-
-    @Override
-    public boolean isAllowedOnBooks() {
-        return super.isAllowedOnBooks() && !isDisabled();
-    }
-
-    @Override
-    public void doPostAttack(LivingEntity attacker, Entity target, int level) {
-        if (isDisabled()) this.getSlotItems(attacker).forEach((equipmentSlot, stack) -> removeEnchantment(stack, this));
-        super.doPostAttack(attacker, target, level);
-    }
-
-    @Override
-    public void doPostHurt(LivingEntity target, Entity attacker, int level) {
-        if (isDisabled()) this.getSlotItems(target).forEach((equipmentSlot, stack) -> removeEnchantment(stack, this));
-        super.doPostHurt(target, attacker, level);
+    public Enchantment.EnchantmentDefinition definition(HolderGetter<Item> items) {
+        return Enchantment.definition(supportedItems(items), weight(), maxLevel(), dynamicCost(), constantCost(), anvilCost(), slotGroup());
     }
 
     public static void removeEnchantment(@NotNull ItemStack stack, Enchantment enchantment) {
-        if (stack.isEmpty() || !stack.hasTag()) return;
-
-        ResourceLocation targetId = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
-        if (targetId == null) return;
-
-        String tagId = "Enchantments";
-        if (stack.getItem().equals(Items.ENCHANTED_BOOK)) tagId = "StoredEnchantments";
-
-        CompoundTag nbt = stack.getOrCreateTag();
-        ListTag enchantmentList = nbt.getList(tagId, 10);
-
-        ListTag newList = new ListTag();
-        boolean modified = false;
-
-        for (int i = 0; i < enchantmentList.size(); i++) {
-            CompoundTag enchantmentTag = enchantmentList.getCompound(i);
-            ResourceLocation id = ResourceLocation.tryParse(enchantmentTag.getString("id"));
-
-            if (id == null || !id.equals(targetId)) {
-                newList.add(enchantmentTag);
-            } else {
-                modified = true;
-            }
-        }
-
-        if (modified) {
-            if (newList.isEmpty()) {
-                nbt.remove(tagId);
-            } else {
-                nbt.put(tagId, newList);
-            }
-
-            if (nbt.isEmpty()) stack.setTag(null);
-        }
+        EnchantmentHelper.updateEnchantments(stack, enchantments -> enchantments.removeIf(entry -> entry.value().equals(enchantment)));
     }
 
-    public static boolean canUseAsWeapon(ItemStack stack) {
-        return stack.getItem().getAttributeModifiers(EquipmentSlot.MAINHAND, stack).containsKey(Attributes.ATTACK_DAMAGE);
+    public static boolean canUseAsWeapon(@NotNull ItemStack stack) {
+        return stack.getAttributeModifiers().modifiers().stream().anyMatch(entry -> entry.attribute().value().equals(Attributes.ATTACK_DAMAGE.value()));
+    }
+
+    public static int getLevel(@NotNull ItemStack stack, @NotNull Level level, ResourceKey<Enchantment> enchantmentKey) {
+
+        HolderLookup.RegistryLookup<Enchantment> enchantments = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        return stack.getEnchantmentLevel(enchantments.getOrThrow(enchantmentKey));
+    }
+
+    public static int getLevelInHands(ResourceKey<Enchantment> enchantmentKey, LivingEntity player, Level serverLevel) {
+        return Math.max(getLevel(player.getMainHandItem(), serverLevel, enchantmentKey), getLevel(player.getOffhandItem(), serverLevel, enchantmentKey));
     }
 }

@@ -1,22 +1,27 @@
 package me.kall.enchantedpotato.client.registry;
 
-import me.kall.enchantedpotato.client.gui.*;
+import me.kall.enchantedpotato.EnchantedPotato;
+import me.kall.enchantedpotato.client.gui.OceanHuedOverlay;
+import me.kall.enchantedpotato.client.gui.RunLikeHellOverlay;
+import me.kall.enchantedpotato.client.gui.SpaceLeapfrogOverlay;
+import me.kall.enchantedpotato.client.gui.UntouchableOverlay;
 import me.kall.enchantedpotato.client.keybind.LeapfrogKey;
-import me.kall.enchantedpotato.client.renderer.*;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.IEventBus;
+import me.kall.enchantedpotato.client.renderer.GurenNoYumiyaRenderer;
+import me.kall.enchantedpotato.client.renderer.PressurizedCollapseRenderer;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import org.jetbrains.annotations.NotNull;
 
 public class ClientModEvents {
-    public static void registerGui(@NotNull RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "run_like_hell_cooldown", new RunLikeHellOverlay());
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "untouchable_cooldown", new UntouchableOverlay());
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_counting", new OceanHuedOverlay.Counting());
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_cooldown", new OceanHuedOverlay.Cooldown());
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ocean_hued_healing_amount", new OceanHuedOverlay.HealingAmount());
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "space_leapfrog_cooldown", new SpaceLeapfrogOverlay());
+    public static void registerGui(@NotNull RegisterGuiLayersEvent event) {
+        event.registerAbove(VanillaGuiLayers.HOTBAR, EnchantedPotato.loc("run_like_hell_cooldown"), new RunLikeHellOverlay());
+        event.registerAbove(VanillaGuiLayers.HOTBAR, EnchantedPotato.loc("untouchable_cooldown"), new UntouchableOverlay());
+        event.registerAbove(VanillaGuiLayers.HOTBAR, EnchantedPotato.loc("ocean_hued_counting"), new OceanHuedOverlay.Counting());
+        event.registerAbove(VanillaGuiLayers.HOTBAR, EnchantedPotato.loc("ocean_hued_cooldown"), new OceanHuedOverlay.Cooldown());
+        event.registerAbove(VanillaGuiLayers.HOTBAR, EnchantedPotato.loc("ocean_hued_healing_amount"), new OceanHuedOverlay.HealingAmount());
+        event.registerAbove(VanillaGuiLayers.HOTBAR, EnchantedPotato.loc("space_leapfrog_cooldown"), new SpaceLeapfrogOverlay());
     }
 
     public static void registerKey(@NotNull RegisterKeyMappingsEvent event) {

@@ -5,8 +5,8 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -24,14 +24,12 @@ public abstract class AbstractRenderer {
         getActiveEffects().add(new RenderEffect(position, radius));
     }
 
-    public void onClientTick(TickEvent.@NotNull ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            getActiveEffects().removeIf(effect -> {
-                effect.bumpAge();
-                spawnParticles(effect.getPosition(), effect.getRadius(), effect.getAge());
-                return effect.getAge() >= getMaxAge();
-            });
-        }
+    public void onClientTick(ClientTickEvent.Post ignored) {
+        getActiveEffects().removeIf(effect -> {
+            effect.bumpAge();
+            spawnParticles(effect.getPosition(), effect.getRadius(), effect.getAge());
+            return effect.getAge() >= getMaxAge();
+        });
     }
 
     public void onRenderLevelStage(@NotNull RenderLevelStageEvent event) {
@@ -76,8 +74,8 @@ public abstract class AbstractRenderer {
             x2 += Math.sin(age * 0.2 + angle2) * offset;
             z2 += Math.cos(age * 0.2 + angle2) * offset;
 
-            buffer.vertex(poseStack.last().pose(), (float) x1, (float) y, (float) z1).color(r, g, b, a).normal(0, 1, 0).endVertex();
-            buffer.vertex(poseStack.last().pose(), (float) x2, (float) y, (float) z2).color(r, g, b, a).normal(0, 1, 0).endVertex();
+            buffer.addVertex(poseStack.last().pose(), (float) x1, (float) y, (float) z1).setColor(r, g, b, a).setNormal(0, 1, 0);
+            buffer.addVertex(poseStack.last().pose(), (float) x2, (float) y, (float) z2).setColor(r, g, b, a).setNormal(0, 1, 0);
         }
 
         poseStack.popPose();

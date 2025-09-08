@@ -1,15 +1,15 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class RunLikeHellConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.IntValue LOW_HEALTH_PERCENT, INVISIBILITY_DURATION, SPEED_DURATION, COOL_DOWN, SPEED_AMPLIFIER;
-    public static final ForgeConfigSpec.BooleanValue ALLOW_BETTER_INVISIBILITY;
+    public static final ModConfigSpec.IntValue LOW_HEALTH_PERCENT, INVISIBILITY_DURATION, SPEED_DURATION, COOL_DOWN, SPEED_AMPLIFIER;
+    public static final ModConfigSpec.BooleanValue ALLOW_BETTER_INVISIBILITY;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("RunLikeHell");
         LOW_HEALTH_PERCENT = builder.defineInRange("LowHealthPercent(%)", 30, 0, 100);
         INVISIBILITY_DURATION = builder.defineInRange("InvisibilityDuration(ticks)", 200, 0, Integer.MAX_VALUE);

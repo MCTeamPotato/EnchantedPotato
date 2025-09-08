@@ -1,16 +1,16 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class UntouchableConfig {
-    public static final ForgeConfigSpec INSTANCE;
-    public static final ForgeConfigSpec.IntValue BASIC_COOLDOWN, SAVED_COOLDOWN_PER_LEVEL, BASIC_SLOWNESS_DURATION, GAINED_SLOWNESS_DURATION_PER_LEVEL;
+    public static final ModConfigSpec INSTANCE;
+    public static final ModConfigSpec.IntValue BASIC_COOLDOWN, SAVED_COOLDOWN_PER_LEVEL, BASIC_SLOWNESS_DURATION, GAINED_SLOWNESS_DURATION_PER_LEVEL;
 
-    public static final ForgeConfigSpec.DoubleValue BASIC_RADIUS, GAINED_RADIUS_PER_LEVEL, BASIC_FORCE, GAINED_FORCE_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue BASIC_RADIUS, GAINED_RADIUS_PER_LEVEL, BASIC_FORCE, GAINED_FORCE_PER_LEVEL;
 
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("Untouchable");
         builder.push("CoolDown");
         builder.comment("Untouchable enchantment cooldown calculation: BasicCoolDown - CurrentEnchantmentLevel * SavedCoolDownPerLevel");

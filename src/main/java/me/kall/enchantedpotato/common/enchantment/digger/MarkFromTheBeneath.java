@@ -4,29 +4,21 @@ import me.kall.enchantedpotato.common.config.MarkFromTheBeneathConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class MarkFromTheBeneath extends BaseEnchantment {
-    public MarkFromTheBeneath() {
-        super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 3;
-    }
-
     public static void onPlayerDig(PlayerEvent.@NotNull BreakSpeed event) {
         if (!event.isCanceled()) {
             Player player = event.getEntity();
             double height = player.getY();
-            Enchantment enchantment = ModEnchantments.MARK_FROM_THE_BENEATH.get();
-            int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
+            int level = getLevelInHands(ModEnchantments.MARK_FROM_THE_BENEATH, player, player.level());
             if (level == 0) return;
             double validBaseHeight = MarkFromTheBeneathConfig.VALID_BASE_MAX_HEIGHT.get();
             double gainedHeightPerLevel = MarkFromTheBeneathConfig.GAINED_BASE_HEIGHT_PER_LEVEL.get() * (double) (level - 1);
@@ -45,5 +37,41 @@ public class MarkFromTheBeneath extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.MARK_FROM_THE_BENEATH.get();
+    }
+
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

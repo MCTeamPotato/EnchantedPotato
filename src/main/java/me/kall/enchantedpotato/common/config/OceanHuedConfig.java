@@ -1,18 +1,18 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class OceanHuedConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.IntValue BASE_COOLDOWN_TICKS, SAVED_COOLDOWN_TICKS_PER_LEVEL;
-    public static final ForgeConfigSpec.DoubleValue
+    public static final ModConfigSpec.IntValue BASE_COOLDOWN_TICKS, SAVED_COOLDOWN_TICKS_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue
             BASE_RADIUS, GAINED_RADIUS_PER_LEVEL,
             BASE_MAX_DAMAGE_AMOUNT, GAINED_MAX_DAMAGE_AMOUNT_PER_LEVEL,
             BASE_HEALING_AMOUNT_REDUCTION, SAVED_HEALING_AMOUNT_REDUCTION_PER_LEVEL;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("OceanHued");
         BASE_COOLDOWN_TICKS = builder.defineInRange("BaseCooldownTicks", 1200, 0, Integer.MAX_VALUE);
         SAVED_COOLDOWN_TICKS_PER_LEVEL = builder.defineInRange("SavedCooldownTicksPerLevel", 200, 0, Integer.MAX_VALUE);

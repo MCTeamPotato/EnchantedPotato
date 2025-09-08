@@ -1,5 +1,6 @@
 package me.kall.enchantedpotato.common.mixin.lawofinertia;
 
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.enchantment.weapon.LawOfInertia;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.server.level.ServerLevel;
@@ -8,7 +9,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,11 +25,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(DDD)V"))
     private void onKnockback(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.getEntity() instanceof Player player) {
-            Enchantment enchantment = ModEnchantments.LAW_OF_INERTIA.get();
-            int enchantmentLevel = Math.max(
-                    player.getMainHandItem().getEnchantmentLevel(enchantment),
-                    player.getOffhandItem().getEnchantmentLevel(enchantment)
-            );
+            int enchantmentLevel = BaseEnchantment.getLevelInHands(ModEnchantments.LAW_OF_INERTIA, player, player.level());
             if (enchantmentLevel == 0) return;
             this.getPersistentData().putFloat(LawOfInertia.MARK, amount);
         }

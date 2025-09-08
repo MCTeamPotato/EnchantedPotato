@@ -1,15 +1,15 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class SpaceLeapfrogConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.IntValue BASIC_COOLDOWN, SAVED_COOLDOWN_PER_LEVEL;
-    public static final ForgeConfigSpec.DoubleValue BASIC_LEAPFROG_DIST, GAINED_LEAPFROG_DIST_PER_LEVEL, BASIC_EXPLOSION_RADIUS, GAINED_EXPLOSION_RADIUS_PER_LEVEL;
+    public static final ModConfigSpec.IntValue BASIC_COOLDOWN, SAVED_COOLDOWN_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue BASIC_LEAPFROG_DIST, GAINED_LEAPFROG_DIST_PER_LEVEL, BASIC_EXPLOSION_RADIUS, GAINED_EXPLOSION_RADIUS_PER_LEVEL;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("SpaceLeapfrog");
         BASIC_COOLDOWN = builder.defineInRange("BasicCoolDown(ticks)", 1200, 0, Integer.MAX_VALUE);
         SAVED_COOLDOWN_PER_LEVEL = builder.defineInRange("SavedCoolDownPerLevel(ticks)", 200, 0, Integer.MAX_VALUE);

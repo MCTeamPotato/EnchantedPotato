@@ -4,38 +4,25 @@ import me.kall.enchantedpotato.common.config.MendingMirrorConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.data.MendingMirrorData;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.MendingEnchantment;
-import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 import java.util.UUID;
 
 public class MendingMirror extends BaseEnchantment {
-    public MendingMirror() {
-        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, EquipmentSlot.values());
-    }
-
-    @Override
-    public boolean isTreasureOnly() {
-        return true;
-    }
-
-    @Override
-    protected boolean checkCompatibility(@NotNull Enchantment other) {
-        return !(other instanceof MendingEnchantment) && super.checkCompatibility(other);
-    }
-
     public static void recordBrokenItem(@NotNull Entity entity, @NotNull ItemStack stack) {
         if (!(entity.level() instanceof ServerLevel level)) return;
         MendingMirrorData data = MendingMirrorData.get(level);
@@ -83,5 +70,40 @@ public class MendingMirror extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.MENDING_MIRROR.get();
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

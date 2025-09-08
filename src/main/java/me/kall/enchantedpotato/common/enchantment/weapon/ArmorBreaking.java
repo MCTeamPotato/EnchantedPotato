@@ -5,46 +5,67 @@ import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class ArmorBreaking extends BaseEnchantment {
     public static final String ARMOR_BREAKING_KEY = "ArmorBreakingLevel";
-
-    public ArmorBreaking() {
-        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 5;
-    }
 
     @Override
     public boolean isDisabled() {
         return DisableConfig.ARMOR_BREAKING.get();
     }
 
-    @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
-    }
-
-    public static void onLivingHurt(@NotNull LivingHurtEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
-            Enchantment enchantment = ModEnchantments.ARMOR_BREAKING.get();
-            int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel && !event.isCanceled()) {
+            int level = getLevelInHands(ModEnchantments.ARMOR_BREAKING, player, serverLevel);
             if (level == 0) return;
             LivingEntity entity = event.getEntity();
             entity.getPersistentData().putInt(ARMOR_BREAKING_KEY, level);
             ((ExtendedLivingEntity)entity).armorBreaking$getAttribute().setBaseValue(ArmorBreakingConfig.BASE_DURATION.get().doubleValue() + ArmorBreakingConfig.GAINED_DURATION_PER_LEVEL.get().doubleValue() * (double) (level - 1));
         }
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

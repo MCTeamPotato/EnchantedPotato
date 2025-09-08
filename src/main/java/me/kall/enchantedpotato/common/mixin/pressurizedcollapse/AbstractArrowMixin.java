@@ -1,6 +1,7 @@
 package me.kall.enchantedpotato.common.mixin.pressurizedcollapse;
 
 import me.kall.enchantedpotato.common.config.PressurizedCollapseConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.PressurizedCollapse;
 import me.kall.enchantedpotato.common.network.PressurizedCollapsePacket;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
@@ -48,11 +49,7 @@ public abstract class AbstractArrowMixin extends Projectile {
     @Inject(method = "shoot", at = @At("HEAD"))
     private void onShoot(double x, double y, double z, float velocity, float inaccuracy, CallbackInfo ci) {
         if (this.getOwner() instanceof Player player) {
-            ItemStack bow = player.getMainHandItem();
-            if (!(bow.getItem() instanceof BowItem)) bow = player.getOffhandItem();
-            if (!(bow.getItem() instanceof BowItem)) return;
-
-            this.pressurizedCollapse$level = bow.getEnchantmentLevel(ModEnchantments.PRESSURIZED_COLLAPSE.get());
+            this.pressurizedCollapse$level = BaseEnchantment.getLevelInHands(ModEnchantments.PRESSURIZED_COLLAPSE, player, player.level());
             if (this.pressurizedCollapse$level != 0) {
                 this.pressurizedCollapse$chargeTime = (float) player.getTicksUsingItem();
             }

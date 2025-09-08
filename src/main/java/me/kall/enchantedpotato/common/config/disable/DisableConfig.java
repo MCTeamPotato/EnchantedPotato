@@ -1,11 +1,11 @@
 package me.kall.enchantedpotato.common.config.disable;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class DisableConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.BooleanValue
+    public static final ModConfigSpec.BooleanValue
             RUN_LIKE_HELL, BLACK_PARADE, GRACE_OF_GUNGNIR,
             PRESSURIZED_COLLAPSE, UNTOUCHABLE, GRACE_OF_GAIA,
             GUREN_NO_YUMIYA, LORA_TRAINER, RIPPLE_OF_DEATH,
@@ -17,7 +17,7 @@ public class DisableConfig {
             MERCY, SPACE_LEAPFROG;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("DisableConfig");
         RUN_LIKE_HELL = builder.define("DisableRunLikeHell", false);
         BLACK_PARADE = builder.define("DisableBlackParade", false);

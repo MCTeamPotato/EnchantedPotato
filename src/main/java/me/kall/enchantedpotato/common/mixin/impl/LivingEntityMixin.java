@@ -2,6 +2,7 @@ package me.kall.enchantedpotato.common.mixin.impl;
 
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.registry.ModAttributes;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -18,7 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class LivingEntityMixin implements ExtendedLivingEntity {
     @Shadow @Nullable protected Player lastHurtByPlayer;
 
-    @Shadow @Nullable public abstract AttributeInstance getAttribute(Attribute attribute);
+
+    @Shadow @Nullable public abstract AttributeInstance getAttribute(Holder<Attribute> attribute);
 
     @Unique private int natureBlessing$interval = 0;
 
@@ -29,7 +31,7 @@ public abstract class LivingEntityMixin implements ExtendedLivingEntity {
 
     @Override
     public AttributeInstance armorBreaking$getAttribute() {
-        return this.getAttribute(ModAttributes.ARMOR_BREAKING_DURATION.get());
+        return this.getAttribute(ModAttributes.ARMOR_BREAKING_DURATION.getDelegate());
     }
 
     @Override

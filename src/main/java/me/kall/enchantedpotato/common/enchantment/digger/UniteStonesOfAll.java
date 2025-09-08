@@ -3,23 +3,24 @@ package me.kall.enchantedpotato.common.enchantment.digger;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.common.config.UniteStonesOfAllConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.event.level.BlockDropsEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -28,18 +29,44 @@ public class UniteStonesOfAll extends BaseEnchantment {
     private static final Set<Block> UNITED_STONES = new ObjectOpenHashSet<>();
     private static final Set<Block> QUARTZ_STONES = new ObjectOpenHashSet<>();
 
-    public UniteStonesOfAll() {
-        super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.UNITE_STONES_OF_ALL.get();
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return stack.getItem() instanceof PickaxeItem && super.canEnchant(stack);
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 
     public static boolean isTargetBlock(@NotNull BlockState state) {
@@ -50,14 +77,12 @@ public class UniteStonesOfAll extends BaseEnchantment {
         event.getServer().execute(() -> {
             for (String string : UniteStonesOfAllConfig.UNITED_STONES.get()) {
                 ResourceLocation id = ResourceLocation.parse(string);
-                Block block = ForgeRegistries.BLOCKS.getValue(id);
-                if (block == null) continue;
+                Block block = BuiltInRegistries.BLOCK.get(id);
                 UNITED_STONES.add(block);
             }
             for (String string : UniteStonesOfAllConfig.QUARTZ_STONES.get()) {
                 ResourceLocation id = ResourceLocation.parse(string);
-                Block block = ForgeRegistries.BLOCKS.getValue(id);
-                if (block == null) continue;
+                Block block = BuiltInRegistries.BLOCK.get(id);
                 QUARTZ_STONES.add(block);
             }
         });
@@ -80,7 +105,7 @@ public class UniteStonesOfAll extends BaseEnchantment {
         }
     }
 
-    public static void onBlockBreak(BlockEvent.@NotNull BreakEvent event) {
-        if (!event.isCanceled() && isTargetBlock(event.getState())) event.setExpToDrop(0);
+    public static void onBlockBreak(@NotNull BlockDropsEvent event) {
+        if (!event.isCanceled() && isTargetBlock(event.getState())) event.setDroppedExperience(0);
     }
 }

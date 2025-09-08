@@ -2,44 +2,29 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.LoRATrainerConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.*;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class LoRATrainer extends BaseEnchantment {
-
-    public LoRATrainer() {
-        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 3;
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.LORA_TRAINER.get();
     }
 
-    @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
-    }
-
-    public static void onLivingDamage(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
-            ItemStack stack = player.getItemBySlot(EquipmentSlot.MAINHAND);
-            if (stack.getEnchantmentLevel(ModEnchantments.LORA_TRAINER.get()) == 0) stack = player.getItemBySlot(EquipmentSlot.OFFHAND);
-            int level = stack.getEnchantmentLevel(ModEnchantments.LORA_TRAINER.get());
+    public static void onLivingDamage(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
+            int level = getLevelInHands(ModEnchantments.LORA_TRAINER, player, serverLevel);
             if (level == 0) return;
             LivingEntity entity = event.getEntity();
             int killCount = player.getStats().getValue(Stats.ENTITY_KILLED.get(entity.getType()));
@@ -53,5 +38,40 @@ public class LoRATrainer extends BaseEnchantment {
                 event.setAmount(event.getAmount() * damageBonus);
             }
         }
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

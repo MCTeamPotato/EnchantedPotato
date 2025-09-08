@@ -1,5 +1,6 @@
 package me.kall.enchantedpotato.common.mixin.wondereggpriority;
 
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,7 +21,7 @@ public abstract class ThrownEggMixin extends ThrowableItemProjectile {
     @ModifyConstant(method = "onHitEntity", constant = @Constant(floatValue = 0.0F))
     private float onHit(float constant) {
         if (this.getOwner() instanceof Player player) {
-            int level = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.WONDER_EGG_PRIORITY.get());
+            int level = BaseEnchantment.getLevel(player.getItemBySlot(EquipmentSlot.CHEST), player.level(), ModEnchantments.WONDER_EGG_PRIORITY);
             if (level > 0) {
                 constant = (float) level * 0.5F;
             }

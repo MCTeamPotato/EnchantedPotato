@@ -1,15 +1,15 @@
 package me.kall.enchantedpotato.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class RippleOfDeathConfig {
-    public static final ForgeConfigSpec INSTANCE;
+    public static final ModConfigSpec INSTANCE;
 
-    public static final ForgeConfigSpec.IntValue BASE_RADIUS, GAINED_RADIUS_PER_LEVEL;
-    public static final ForgeConfigSpec.DoubleValue BASIC_DAMAGE_PERCENT, GAINED_DAMAGE_PERCENT_PER_LEVEL;
+    public static final ModConfigSpec.IntValue BASE_RADIUS, GAINED_RADIUS_PER_LEVEL;
+    public static final ModConfigSpec.DoubleValue BASIC_DAMAGE_PERCENT, GAINED_DAMAGE_PERCENT_PER_LEVEL;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("RippleOfDeath");
         BASE_RADIUS = builder.defineInRange("BaseRadius", 3, 0, Integer.MAX_VALUE);
         GAINED_RADIUS_PER_LEVEL = builder.defineInRange("GainedRadiusPerLevel", 2, 0, Integer.MAX_VALUE);

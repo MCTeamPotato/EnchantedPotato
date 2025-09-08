@@ -3,30 +3,22 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class SacredRiftwind extends BaseEnchantment {
-    public SacredRiftwind() {
-        super(Rarity.UNCOMMON, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 5;
-    }
-
-    public static void onLivingHurt(@NotNull LivingHurtEvent event) {
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
         if (event.isCanceled()) return;
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide()) return;
         if (event.getSource().getEntity() instanceof LivingEntity source) {
-            Enchantment enchantment = ModEnchantments.SACRED_RIFTWIND.get();
-            int level = Math.max(source.getMainHandItem().getEnchantmentLevel(enchantment), source.getOffhandItem().getEnchantmentLevel(enchantment));
+            int level = getLevelInHands(ModEnchantments.SACRED_RIFTWIND, source, source.level());
             if (level != 0) {
                 float healthPercent = 1.0F - (source.getHealth() / source.getMaxHealth());
                 float bonus = (float) (level * 0.1D * healthPercent);
@@ -38,5 +30,40 @@ public class SacredRiftwind extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.SACRED_RIFTWIND.get();
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

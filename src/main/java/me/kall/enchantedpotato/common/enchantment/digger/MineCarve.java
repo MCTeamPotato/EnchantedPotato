@@ -1,32 +1,42 @@
 package me.kall.enchantedpotato.common.enchantment.digger;
 
+import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.config.MineCarveConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.UUID;
-
 public class MineCarve extends BaseEnchantment {
-    public MineCarve() {
-        super(Rarity.RARE, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
+            int enchantmentLevel = getLevelInHands(ModEnchantments.MINE_CARVE, player, serverLevel);
+            if (enchantmentLevel > 0) {
+                AttributeInstance armor = event.getEntity().getAttribute(Attributes.ARMOR);
+                if (armor == null) return;
 
-    @Override
-    public int getMaxLevel() {
-        return 4;
+                double amount = MineCarveConfig.BASE_ARMOR_REDUCTION.get() + MineCarveConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
+
+                AttributeModifier attributeModifier = new AttributeModifier(EnchantedPotato.loc("mine_carve_modifier"), -amount, AttributeModifier.Operation.ADD_VALUE);
+
+                for (AttributeModifier modifier : armor.getModifiers()) {
+                    if (modifier.id().equals(attributeModifier.id())) armor.removeModifier(modifier);
+                }
+
+                armor.addPermanentModifier(attributeModifier);
+            }
+        }
     }
 
     @Override
@@ -35,31 +45,37 @@ public class MineCarve extends BaseEnchantment {
     }
 
     @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return stack.getItem() instanceof PickaxeItem && super.canEnchant(stack);
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
     }
 
-    public static void onLivingHurt(@NotNull LivingHurtEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
-            Enchantment mineCarve = ModEnchantments.MINE_CARVE.get();
-            int enchantmentLevel = Math.max(player.getMainHandItem().getEnchantmentLevel(mineCarve), player.getOffhandItem().getEnchantmentLevel(mineCarve));
-            if (enchantmentLevel > 0) {
-                AttributeInstance armor = event.getEntity().getAttribute(Attributes.ARMOR);
-                if (armor == null) return;
+    @Override
+    public int weight() {
+        return 0;
+    }
 
-                double amount = MineCarveConfig.BASE_ARMOR_REDUCTION.get() + MineCarveConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
 
-                UUID uniqueId = UUID.randomUUID();
-                while (armor.getModifier(uniqueId) != null) uniqueId = UUID.randomUUID();
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
 
-                AttributeModifier attributeModifier = new AttributeModifier(uniqueId, "mine_carve_modifier", -amount, AttributeModifier.Operation.ADDITION);
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
 
-                for (AttributeModifier modifier : armor.getModifiers()) {
-                    if (modifier.getName().equals(attributeModifier.getName())) armor.removeModifier(modifier);
-                }
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
 
-                armor.addPermanentModifier(attributeModifier);
-            }
-        }
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

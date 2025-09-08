@@ -4,11 +4,15 @@ import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
 import me.kall.enchantedpotato.common.registry.ModPackets;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -19,15 +23,6 @@ import java.util.function.Predicate;
 
 public class GurenNoYumiya extends BaseEnchantment {
     public static final String GUREN_NO_YUMIYA_KEY = "GurenNoYumiyaLevel";
-
-    public GurenNoYumiya() {
-        super(Rarity.RARE, EnchantmentCategory.BOW, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
-    @Override
-    public int getMaxLevel() {
-        return 4;
-    }
 
     public static void apply(@NotNull AbstractArrow arrow) {
         if (arrow.getOwner() instanceof ServerPlayer) {
@@ -61,5 +56,40 @@ public class GurenNoYumiya extends BaseEnchantment {
     @Override
     public boolean isDisabled() {
         return DisableConfig.GUREN_NO_YUMIYA.get();
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

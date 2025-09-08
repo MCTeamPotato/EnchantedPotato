@@ -3,31 +3,56 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.jetbrains.annotations.NotNull;
 
 public class PoisonOfTheLastBreath extends BaseEnchantment {
-    public PoisonOfTheLastBreath() {
-        super(Rarity.RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.POISON_OF_THE_LAST_BREATH.get();
     }
 
-    @Override
-    public boolean canEnchant(@NotNull ItemStack stack) {
-        return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
+    public static boolean has(@NotNull Player player) {
+        return getLevelInHands(ModEnchantments.POISON_OF_THE_LAST_BREATH, player, player.level()) != 0;
     }
 
-    public static boolean has(@NotNull Player player) {
-        Enchantment enchantment = ModEnchantments.POISON_OF_THE_LAST_BREATH.get();
-        int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
-        return level != 0;
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }

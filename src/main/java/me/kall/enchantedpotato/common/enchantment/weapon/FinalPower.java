@@ -3,24 +3,56 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.jetbrains.annotations.NotNull;
 
 public class FinalPower extends BaseEnchantment {
-    public FinalPower() {
-        super(Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
-    }
-
     public static boolean entityHasFinalPower(@NotNull LivingEntity livingSource) {
-        Enchantment enchantment = ModEnchantments.FINAL_POWER.get();
-        return livingSource.getMainHandItem().getEnchantmentLevel(enchantment) != 0 || livingSource.getOffhandItem().getEnchantmentLevel(enchantment) != 0;
+        return getLevelInHands(ModEnchantments.FINAL_POWER, livingSource, livingSource.level()) != 0;
     }
 
     @Override
     public boolean isDisabled() {
         return DisableConfig.FINAL_POWER.get();
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return null;
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return null;
+    }
+
+    @Override
+    public int anvilCost() {
+        return 0;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
     }
 }
