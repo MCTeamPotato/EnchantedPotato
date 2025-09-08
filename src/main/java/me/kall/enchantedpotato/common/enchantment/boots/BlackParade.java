@@ -18,7 +18,6 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class BlackParade extends BaseEnchantment {
-
     public static void onLivingDie(@NotNull LivingDeathEvent event) {
         if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel level && getLevel(player.getItemBySlot(EquipmentSlot.FEET), level, ModEnchantments.BLACK_PARADE) != 0) {
             MobEffectInstance speedInstance = player.getEffect(MobEffects.MOVEMENT_SPEED);
@@ -41,6 +40,7 @@ public class BlackParade extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        if (isDisabled()) return HolderSet.empty();
         return null;
     }
 

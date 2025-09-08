@@ -1,33 +1,39 @@
 package me.kall.enchantedpotato.common.network;
 
+import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.enchantment.boots.SpaceLeapfrog;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
-import org.jetbrains.annotations.Contract;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
+public record SpaceLeapfrogPacket(boolean trigger) implements CustomPacketPayload {
+    public static final StreamCodec<FriendlyByteBuf, SpaceLeapfrogPacket> CODEC = CustomPacketPayload.codec(SpaceLeapfrogPacket::toBytes, SpaceLeapfrogPacket::new);
+    public static final ResourceLocation ID = EnchantedPotato.loc("space_leapfrog_packet");
+    public static final Type<SpaceLeapfrogPacket> TYPE = new Type<>(ID);
 
-public class SpaceLeapfrogPacket {
-    public SpaceLeapfrogPacket() {}
-    public static void encode(SpaceLeapfrogPacket ignored, FriendlyByteBuf ignoredBuf) {}
-
-    @Contract(value = "_ -> new", pure = true)
-    public static @NotNull SpaceLeapfrogPacket decode(FriendlyByteBuf ignored) {
-        return new SpaceLeapfrogPacket();
+    public SpaceLeapfrogPacket(@NotNull FriendlyByteBuf buf) {
+        this(buf.readBoolean());
     }
 
-    public static void handle(SpaceLeapfrogPacket ignored, @NotNull Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            ServerPlayer player = context.get().getSender();
-            if (player == null) return;
-            SpaceLeapfrog.spaceLeapfrog(player);
+    public void toBytes(@NotNull FriendlyByteBuf buf) {
+        buf.writeBoolean(trigger);
+    }
+
+
+    public static void handle(SpaceLeapfrogPacket packet, @NotNull IPayloadContext context) {
+        context.enqueueWork(() -> {
+            if (context.player() instanceof ServerPlayer player && packet.trigger()) {
+                SpaceLeapfrog.spaceLeapfrog(player);
+            }
         });
-        context.get().setPacketHandled(true);
     }
 
-
-    @SuppressWarnings("unused")
-    private void forInstance() {}
+    @Override
+    public @NotNull Type<? extends CustomPacketPayload> type() {
+        return TYPE;
+    }
 }

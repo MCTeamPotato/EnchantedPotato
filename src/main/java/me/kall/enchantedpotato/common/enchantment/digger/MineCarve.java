@@ -46,6 +46,7 @@ public class MineCarve extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        if (isDisabled()) return HolderSet.empty();
         return null;
     }
 

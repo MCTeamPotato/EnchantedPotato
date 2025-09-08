@@ -28,7 +28,9 @@ public final class EnchantedPotato {
         if (dist.isClient()) ClientModEvents.register(modBus, forgeBus);
 
         ModConfigs.register(container);
-        ModPackets.register();
+
+        modBus.addListener(ModPackets::register);
+
         LOGGER.info("Oh, potato, I'm enchanted by you.");
     }
 

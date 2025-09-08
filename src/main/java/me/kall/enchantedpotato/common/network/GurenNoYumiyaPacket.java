@@ -1,37 +1,35 @@
 package me.kall.enchantedpotato.common.network;
 
+import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.client.renderer.GurenNoYumiyaRenderer;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkEvent;
-import org.jetbrains.annotations.Contract;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
+public record GurenNoYumiyaPacket(Vec3 position, double radius) implements CustomPacketPayload {
+    public static final StreamCodec<FriendlyByteBuf, GurenNoYumiyaPacket> CODEC = CustomPacketPayload.codec(GurenNoYumiyaPacket::toBytes, GurenNoYumiyaPacket::new);
+    public static final ResourceLocation ID = EnchantedPotato.loc("guren_no_yumiya_packet");
+    public static final Type<GurenNoYumiyaPacket> TYPE = new Type<>(ID);
 
-public class GurenNoYumiyaPacket {
-    private final Vec3 position;
-    private final double radius;
-
-    public GurenNoYumiyaPacket(Vec3 position, double radius) {
-        this.position = position;
-        this.radius = radius;
+    public GurenNoYumiyaPacket(@NotNull FriendlyByteBuf buf) {
+        this(buf.readVec3(), buf.readDouble());
     }
 
-    public static void encode(@NotNull GurenNoYumiyaPacket msg, @NotNull FriendlyByteBuf buf) {
-        buf.writeDouble(msg.position.x);
-        buf.writeDouble(msg.position.y);
-        buf.writeDouble(msg.position.z);
-        buf.writeDouble(msg.radius);
+    public void toBytes(@NotNull FriendlyByteBuf buf) {
+        buf.writeVec3(position);
+        buf.writeDouble(radius);
     }
 
-    @Contract("_ -> new")
-    public static @NotNull GurenNoYumiyaPacket decode(@NotNull FriendlyByteBuf buf) {
-        return new GurenNoYumiyaPacket(new Vec3(buf.readDouble(), buf.readDouble(), buf.readDouble()), buf.readDouble());
+    public static void handle(GurenNoYumiyaPacket msg, @NotNull IPayloadContext context) {
+        context.enqueueWork(() -> GurenNoYumiyaRenderer.INSTANCE.addEffect(msg.position, msg.radius));
     }
 
-    public static void handle(GurenNoYumiyaPacket msg, @NotNull Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> GurenNoYumiyaRenderer.INSTANCE.addEffect(msg.position, msg.radius));
-        ctx.get().setPacketHandled(true);
+    @Override
+    public @NotNull Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

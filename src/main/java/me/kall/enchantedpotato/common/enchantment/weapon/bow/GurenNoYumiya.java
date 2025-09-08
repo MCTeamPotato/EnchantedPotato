@@ -2,21 +2,19 @@ package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
-import me.kall.enchantedpotato.common.registry.ModPackets;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
@@ -25,7 +23,7 @@ public class GurenNoYumiya extends BaseEnchantment {
     public static final String GUREN_NO_YUMIYA_KEY = "GurenNoYumiyaLevel";
 
     public static void apply(@NotNull AbstractArrow arrow) {
-        if (arrow.getOwner() instanceof ServerPlayer) {
+        if (arrow.getOwner() instanceof ServerPlayer player) {
             int level = arrow.getPersistentData().getInt(GUREN_NO_YUMIYA_KEY);
 
             if (level == 0) return;
@@ -37,7 +35,7 @@ public class GurenNoYumiya extends BaseEnchantment {
 
             Vec3 pos = arrow.position();
             GurenNoYumiyaPacket packet = new GurenNoYumiyaPacket(pos, radius);
-            ModPackets.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> arrow), packet);
+            PacketDistributor.sendToPlayer(player, packet);
 
             arrow.level()
                     .getEntitiesOfClass(LivingEntity.class, box, filter)
@@ -60,6 +58,7 @@ public class GurenNoYumiya extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        if (isDisabled()) return HolderSet.empty();
         return null;
     }
 

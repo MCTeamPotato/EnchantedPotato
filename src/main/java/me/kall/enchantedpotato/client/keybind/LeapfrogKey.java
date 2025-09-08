@@ -3,12 +3,11 @@ package me.kall.enchantedpotato.client.keybind;
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.network.SpaceLeapfrogPacket;
-import me.kall.enchantedpotato.common.registry.ModPackets;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
 public class LeapfrogKey {
@@ -20,7 +19,7 @@ public class LeapfrogKey {
         LocalPlayer player = minecraft.player;
         if (((ExtendedPlayer)player).spaceLeapfrog$isInCoolDown()) return;
         if (LEAPFROG_KEY.consumeClick()) {
-            ModPackets.CHANNEL.sendToServer(new SpaceLeapfrogPacket());
+            PacketDistributor.sendToServer(new SpaceLeapfrogPacket(true));
         }
     }
 }

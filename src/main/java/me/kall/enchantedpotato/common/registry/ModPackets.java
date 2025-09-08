@@ -1,22 +1,17 @@
 package me.kall.enchantedpotato.common.registry;
 
-import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
 import me.kall.enchantedpotato.common.network.PressurizedCollapsePacket;
 import me.kall.enchantedpotato.common.network.SpaceLeapfrogPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public class ModPackets {
-    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(ResourceLocation.parse(EnchantedPotato.MOD_ID + ":main"), () -> "1.0", s -> true, s -> true);
-    private static int packetId = 0;
+    public static void register(RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar("1");
 
-    public static void register() {
-        CHANNEL.registerMessage(packetId++, PressurizedCollapsePacket.class, PressurizedCollapsePacket::encode, PressurizedCollapsePacket::decode, PressurizedCollapsePacket::handle);
-        CHANNEL.registerMessage(packetId++, GurenNoYumiyaPacket.class, GurenNoYumiyaPacket::encode, GurenNoYumiyaPacket::decode, GurenNoYumiyaPacket::handle);
-
-        CHANNEL.messageBuilder(SpaceLeapfrogPacket.class, packetId++, NetworkDirection.PLAY_TO_SERVER).encoder(SpaceLeapfrogPacket::encode).decoder(SpaceLeapfrogPacket::decode).consumerMainThread(SpaceLeapfrogPacket::handle).add();
+        registrar.playToServer(SpaceLeapfrogPacket.TYPE, SpaceLeapfrogPacket.CODEC, SpaceLeapfrogPacket::handle);
+        registrar.playToClient(GurenNoYumiyaPacket.TYPE, GurenNoYumiyaPacket.CODEC, GurenNoYumiyaPacket::handle);
+        registrar.playToClient(PressurizedCollapsePacket.TYPE, PressurizedCollapsePacket.CODEC, PressurizedCollapsePacket::handle);
     }
 }

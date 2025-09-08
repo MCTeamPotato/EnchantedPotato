@@ -31,7 +31,7 @@ public class ModConfigs {
         container.registerConfig(ModConfig.Type.COMMON, FinalPowerConfig.INSTANCE, EnchantedPotato.MOD_ID + "/FinalPower.toml");
         container.registerConfig(ModConfig.Type.COMMON, SpaceLeapfrogConfig.INSTANCE, EnchantedPotato.MOD_ID + "/SpaceLeapfrog.toml");
 
-        container.registerConfig(ModConfig.Type.COMMON, DisableConfig.INSTANCE, EnchantedPotato.MOD_ID + "/disable/Disable.toml");
+        DisableConfig.init();
 
         if (FMLLoader.getDist().isClient()) {
             container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "/client/Rendering.toml");

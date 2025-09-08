@@ -1,37 +1,36 @@
 package me.kall.enchantedpotato.common.network;
 
+import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.client.renderer.PressurizedCollapseRenderer;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkEvent;
-import org.jetbrains.annotations.Contract;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
+public record PressurizedCollapsePacket(Vec3 position, double radius) implements CustomPacketPayload {
+    public static final StreamCodec<FriendlyByteBuf, PressurizedCollapsePacket> CODEC = CustomPacketPayload.codec(PressurizedCollapsePacket::toBytes, PressurizedCollapsePacket::new);
+    public static final ResourceLocation ID = EnchantedPotato.loc("pressurized_collapse_packet");
+    public static final Type<PressurizedCollapsePacket> TYPE = new Type<>(ID);
 
-public class PressurizedCollapsePacket {
-    private final Vec3 position;
-    private final double radius;
-
-    public PressurizedCollapsePacket(Vec3 position, double radius) {
-        this.position = position;
-        this.radius = radius;
+    public PressurizedCollapsePacket(@NotNull FriendlyByteBuf buf) {
+        this(buf.readVec3(), buf.readDouble());
     }
 
-    public static void encode(@NotNull PressurizedCollapsePacket msg, @NotNull FriendlyByteBuf buf) {
-        buf.writeDouble(msg.position.x);
-        buf.writeDouble(msg.position.y);
-        buf.writeDouble(msg.position.z);
-        buf.writeDouble(msg.radius);
+    public void toBytes(@NotNull FriendlyByteBuf buf) {
+        buf.writeVec3(position);
+        buf.writeDouble(radius);
     }
 
-    @Contract("_ -> new")
-    public static @NotNull PressurizedCollapsePacket decode(@NotNull FriendlyByteBuf buf) {
-        return new PressurizedCollapsePacket(new Vec3(buf.readDouble(), buf.readDouble(), buf.readDouble()), buf.readDouble());
+
+    public static void handle(PressurizedCollapsePacket msg, @NotNull IPayloadContext context) {
+        context.enqueueWork(() -> PressurizedCollapseRenderer.INSTANCE.addEffect(msg.position, msg.radius));
     }
 
-    public static void handle(PressurizedCollapsePacket msg, @NotNull Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> PressurizedCollapseRenderer.INSTANCE.addEffect(msg.position, msg.radius));
-        ctx.get().setPacketHandled(true);
+    @Override
+    public @NotNull Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }
