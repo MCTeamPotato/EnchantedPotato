@@ -131,6 +131,7 @@ tasks.register("publishCurseForge", TaskPublishCurseForge) {
     mainFile.addModLoader(isNeo ? "NeoForge" : "Forge")
     mainFile.addJavaVersion(javaVersions)
     mainFile.addGameVersion(minecraft_version)
+    mainFile.addOptional("enchantment-descriptions")
 
     def sourcesFile = mainFile.withAdditionalFile(sourcesJar)
     sourcesFile.changelog = currentChangeLog
