@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.enchantedpotato.mending_mirror"
+  },
+  "exclusive_set": "#enchantedpotato:exclusive_set/mending_com",
+  "max_cost": {
+    "base": 20,
+    "per_level_above_first": 12
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 15
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#minecraft:enchantable/durability",
+  "weight": 2
+}

@@ -7,6 +7,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -20,6 +21,8 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class MineCarve extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new MineCarve();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.MINE_CARVE.get();
@@ -58,6 +61,11 @@ public class MineCarve extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.MINE_CARVE;
     }
 
     public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {

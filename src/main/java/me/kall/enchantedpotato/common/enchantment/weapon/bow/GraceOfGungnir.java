@@ -2,9 +2,13 @@ package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import me.kall.enchantedpotato.common.registry.ModTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,6 +27,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class GraceOfGungnir extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new GraceOfGungnir();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.GRACE_OF_GUNGNIR.get();
@@ -57,6 +63,16 @@ public class GraceOfGungnir extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.GRACE_OF_GUNGNIR;
+    }
+
+    @Override
+    public TagKey<Enchantment> incompatible() {
+        return ModTags.BOW_COM;
     }
 
     public static @Nullable LivingEntity findNearestLivingEntityOnPath(@NotNull Player player) {

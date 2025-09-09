@@ -7,6 +7,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -24,11 +25,12 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class RunLikeHell extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new RunLikeHell();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.RUN_LIKE_HELL.get();
     }
-
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
@@ -58,6 +60,11 @@ public class RunLikeHell extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.FEET;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.RUN_LIKE_HELL;
     }
 
     public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {

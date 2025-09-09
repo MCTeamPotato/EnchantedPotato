@@ -5,13 +5,16 @@ import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.data.MendingMirrorData;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import me.kall.enchantedpotato.common.registry.ModTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
@@ -26,6 +29,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class MendingMirror extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new MendingMirror();
     @Override
     public boolean isDisabled() {
         return DisableConfig.MENDING_MIRROR.get();
@@ -33,7 +37,7 @@ public class MendingMirror extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
+        return items.getOrThrow(ItemTags.DURABILITY_ENCHANTABLE);
     }
 
     @Override
@@ -59,6 +63,16 @@ public class MendingMirror extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.MENDING_MIRROR;
+    }
+
+    @Override
+    public TagKey<Enchantment> incompatible() {
+        return ModTags.MENDING_COM;
     }
 
     public static void recordBrokenItem(@NotNull Entity entity, @NotNull ItemStack stack) {

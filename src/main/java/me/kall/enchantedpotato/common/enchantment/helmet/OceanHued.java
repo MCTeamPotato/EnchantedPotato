@@ -7,6 +7,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
@@ -24,6 +25,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
 
 public class OceanHued extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new OceanHued();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.OCEAN_HUED.get();
@@ -62,6 +65,11 @@ public class OceanHued extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HEAD;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.OCEAN_HUED;
     }
 
     public static void onHeal(@NotNull LivingHealEvent event) {

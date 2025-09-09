@@ -2,8 +2,10 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -15,6 +17,7 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class LawOfInertia extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new LawOfInertia();
     public static final String MARK = "InertiaKnockbackDamage";
 
     @Override
@@ -50,6 +53,11 @@ public class LawOfInertia extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.LAW_OF_INERTIA;
     }
 
     public static void onLivingTick(@NotNull EntityTickEvent.Pre event) {

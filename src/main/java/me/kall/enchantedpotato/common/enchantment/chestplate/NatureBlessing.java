@@ -7,6 +7,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -24,11 +25,12 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NatureBlessing extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new NatureBlessing();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.NATURE_BLESSING.get();
     }
-
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
@@ -63,6 +65,11 @@ public class NatureBlessing extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.CHEST;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.NATURE_BLESSING;
     }
 
     public static void onPlayerTick(PlayerTickEvent.@NotNull Post event) {

@@ -6,6 +6,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -18,6 +19,8 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class CaressingMoonlight extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new CaressingMoonlight();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.CARESSING_MOONLIGHT.get();
@@ -56,6 +59,11 @@ public class CaressingMoonlight extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.CARESSING_MOONLIGHT;
     }
 
     public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {

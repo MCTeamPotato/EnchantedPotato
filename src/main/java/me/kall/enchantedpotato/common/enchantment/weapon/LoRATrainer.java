@@ -6,6 +6,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -18,6 +19,7 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class LoRATrainer extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new LoRATrainer();
     @Override
     public boolean isDisabled() {
         return DisableConfig.LORA_TRAINER.get();
@@ -56,6 +58,11 @@ public class LoRATrainer extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.LORA_TRAINER;
     }
 
     public static void onLivingDamage(@NotNull LivingIncomingDamageEvent event) {

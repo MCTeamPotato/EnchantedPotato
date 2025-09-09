@@ -6,6 +6,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +16,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class MarkFromTheBeneath extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new MarkFromTheBeneath();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.MARK_FROM_THE_BENEATH.get();
@@ -53,6 +56,11 @@ public class MarkFromTheBeneath extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.MARK_FROM_THE_BENEATH;
     }
 
     public static void onPlayerDig(PlayerEvent.@NotNull BreakSpeed event) {

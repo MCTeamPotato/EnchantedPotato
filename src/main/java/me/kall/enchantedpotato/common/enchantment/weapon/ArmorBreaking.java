@@ -7,6 +7,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -18,6 +19,8 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class ArmorBreaking extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new ArmorBreaking();
+
     public static final String ARMOR_BREAKING_KEY = "ArmorBreakingLevel";
 
     @Override
@@ -58,6 +61,11 @@ public class ArmorBreaking extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.ARMOR_BREAKING;
     }
 
     public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {

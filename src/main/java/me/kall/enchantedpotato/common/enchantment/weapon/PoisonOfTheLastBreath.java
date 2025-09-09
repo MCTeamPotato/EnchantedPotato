@@ -5,6 +5,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +14,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
 public class PoisonOfTheLastBreath extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new PoisonOfTheLastBreath();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.POISON_OF_THE_LAST_BREATH.get();
@@ -46,6 +49,11 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.POISON_OF_THE_LAST_BREATH;
     }
 
     public static boolean has(@NotNull Player player) {

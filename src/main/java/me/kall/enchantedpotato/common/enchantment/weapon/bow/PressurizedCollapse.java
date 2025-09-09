@@ -2,9 +2,13 @@ package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import me.kall.enchantedpotato.common.registry.ModEnchantments;
+import me.kall.enchantedpotato.common.registry.ModTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class PressurizedCollapse extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new PressurizedCollapse();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.PRESSURIZED_COLLAPSE.get();
@@ -56,6 +62,16 @@ public class PressurizedCollapse extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.PRESSURIZED_COLLAPSE;
+    }
+
+    @Override
+    public TagKey<Enchantment> incompatible() {
+        return ModTags.BOW_COM;
     }
 
     public static void apply(@NotNull Vec3 center, double range, @NotNull Level world, int level) {

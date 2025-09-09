@@ -4,8 +4,10 @@ import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
 import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
+import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -21,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
 
 public class GurenNoYumiya extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new GurenNoYumiya();
+
     public static final String GUREN_NO_YUMIYA_KEY = "GurenNoYumiyaLevel";
 
     @Override
@@ -61,6 +65,11 @@ public class GurenNoYumiya extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.GUREN_NO_YUMIYA;
     }
 
     public static void apply(@NotNull AbstractArrow arrow) {

@@ -6,6 +6,7 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -21,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
 
 public class RippleOfDeath extends BaseEnchantment {
+    public static final BaseEnchantment INSTANCE = new RippleOfDeath();
+
     @Override
     public boolean isDisabled() {
         return DisableConfig.RIPPLE_OF_DEATH.get();
@@ -59,6 +62,11 @@ public class RippleOfDeath extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    @Override
+    public ResourceKey<Enchantment> loc() {
+        return ModEnchantments.RIPPLE_OF_DEATH;
     }
 
     public static void onLivingDeath(@NotNull LivingDeathEvent event) {

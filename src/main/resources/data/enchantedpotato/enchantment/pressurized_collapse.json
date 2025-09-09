@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.enchantedpotato.pressurized_collapse"
+  },
+  "exclusive_set": "#enchantedpotato:exclusive_set/bow_com",
+  "max_cost": {
+    "base": 18,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 22,
+    "per_level_above_first": 12
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#minecraft:enchantable/bow",
+  "weight": 2
+}
