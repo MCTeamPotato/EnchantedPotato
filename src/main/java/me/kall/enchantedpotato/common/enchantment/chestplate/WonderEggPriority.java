@@ -23,7 +23,7 @@ public class WonderEggPriority extends BaseEnchantment {
 
     @Override
     public Rarity rarity() {
-        return Rarity.RARE;
+        return Rarity.VERY_RARE;
     }
 
     @Override
@@ -33,17 +33,17 @@ public class WonderEggPriority extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(5, 3);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(5, 2);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 1;
     }
 
     @Override

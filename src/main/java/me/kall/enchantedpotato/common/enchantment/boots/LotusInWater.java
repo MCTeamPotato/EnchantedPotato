@@ -28,17 +28,17 @@ public class LotusInWater extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(8, 4);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(6, 3);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 1;
     }
 
     @Override

@@ -32,23 +32,19 @@ public class FinalPower extends BaseEnchantment {
         return Rarity.VERY_RARE;
     }
 
-    
-
-    
-
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(35, 25);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(30, 20);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 6;
     }
 
     @Override

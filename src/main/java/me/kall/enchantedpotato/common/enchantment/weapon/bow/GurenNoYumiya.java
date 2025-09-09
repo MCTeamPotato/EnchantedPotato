@@ -74,17 +74,17 @@ public class GurenNoYumiya extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(20, 12);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(16, 10);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 3;
     }
 
     @Override

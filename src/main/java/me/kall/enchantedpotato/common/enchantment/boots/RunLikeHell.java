@@ -68,17 +68,17 @@ public class RunLikeHell extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return cos;
+        return cost(15, 10);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(12, 8);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 2;
     }
 
     @Override

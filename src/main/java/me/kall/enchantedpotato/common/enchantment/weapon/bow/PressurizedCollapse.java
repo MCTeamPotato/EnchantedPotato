@@ -57,17 +57,17 @@ public class PressurizedCollapse extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(22, 12);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(18, 10);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 3;
     }
 
     @Override

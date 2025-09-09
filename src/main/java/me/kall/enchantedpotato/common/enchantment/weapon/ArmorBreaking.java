@@ -52,17 +52,17 @@ public class ArmorBreaking extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(25, 15);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(20, 12);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 4;
     }
 
     @Override

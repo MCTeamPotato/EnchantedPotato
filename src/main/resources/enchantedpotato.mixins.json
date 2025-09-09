@@ -17,6 +17,8 @@
     "finalpower.LivingEntityMixin",
     "graceofgungnir.AbstractArrowMixin",
     "gurennoyumiya.AbstractArrowMixin",
+    "impl.ItemMixin",
+    "impl.ItemStackMixin",
     "impl.LivingEntityMixin",
     "impl.PlayerMixin",
     "lawofinertia.LivingEntityMixin",

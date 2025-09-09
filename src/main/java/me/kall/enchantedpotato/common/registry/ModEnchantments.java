@@ -3,7 +3,6 @@ package me.kall.enchantedpotato.common.registry;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.EnchantedPotato;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -61,10 +60,6 @@ public class ModEnchantments {
             ResourceLocation resourceLocation = EnchantedPotato.loc(id);
             ENCHANTMENTS.add(resourceLocation);
             return ResourceKey.create(Registries.ENCHANTMENT, resourceLocation);
-        }
-
-        public void register(@NotNull BootstrapContext<Enchantment> context, Enchantment.EnchantmentDefinition definition, ResourceKey<Enchantment> enchantmentKey) {
-            context.register(enchantmentKey, Enchantment.enchantment(definition).build(enchantmentKey.location()));
         }
     }
 }

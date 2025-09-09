@@ -50,17 +50,17 @@ public class SacredRiftwind extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(28, 18);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(22, 15);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 5;
     }
 
     @Override

@@ -56,17 +56,17 @@ public class Mercy extends BaseEnchantment {
 
     @Override
     public Enchantment.Cost dynamicCost() {
-        return null;
+        return cost(12, 8);
     }
 
     @Override
     public Enchantment.Cost constantCost() {
-        return null;
+        return cost(10, 6);
     }
 
     @Override
     public int anvilCost() {
-        return 0;
+        return 1;
     }
 
     @Override
