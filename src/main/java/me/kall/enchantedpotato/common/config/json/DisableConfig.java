@@ -1,4 +1,4 @@
-package me.kall.enchantedpotato.common.config.disable;
+package me.kall.enchantedpotato.common.config.json;
 
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.api.JsonConfig;

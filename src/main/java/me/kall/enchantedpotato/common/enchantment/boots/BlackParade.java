@@ -1,12 +1,13 @@
 package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.config.BlackParadeConfig;
-import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -40,18 +41,12 @@ public class BlackParade extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        if (isDisabled()) return HolderSet.empty();
-        return null;
+        return items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
     }
 
     @Override
-    public int weight() {
-        return 0;
-    }
-
-    @Override
-    public int maxLevel() {
-        return 0;
+    public Rarity rarity() {
+        return Rarity.RARE;
     }
 
     @Override

@@ -3,7 +3,7 @@ package me.kall.enchantedpotato.common.registry;
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.client.config.ClientConfig;
 import me.kall.enchantedpotato.common.config.*;
-import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLLoader;

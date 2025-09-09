@@ -19,15 +19,18 @@ public abstract class BaseEnchantment {
     public abstract boolean isDisabled();
 
     public abstract HolderSet<Item> supportedItems(HolderGetter<Item> items);
-    public abstract int weight();
-    public abstract int maxLevel();
+    public abstract Rarity rarity();
     public abstract Enchantment.Cost dynamicCost();
     public abstract Enchantment.Cost constantCost();
     public abstract int anvilCost();
     public abstract EquipmentSlotGroup slotGroup();
 
+    public int maxLevel() {
+        return 1;
+    }
+
     public Enchantment.EnchantmentDefinition definition(HolderGetter<Item> items) {
-        return Enchantment.definition(supportedItems(items), weight(), maxLevel(), dynamicCost(), constantCost(), anvilCost(), slotGroup());
+        return Enchantment.definition(isDisabled() ? HolderSet.empty() : supportedItems(items), rarity().getWeight(), maxLevel(), dynamicCost(), constantCost(), anvilCost(), slotGroup());
     }
 
     public static void removeEnchantment(@NotNull ItemStack stack, Enchantment enchantment) {
@@ -38,13 +41,35 @@ public abstract class BaseEnchantment {
         return stack.getAttributeModifiers().modifiers().stream().anyMatch(entry -> entry.attribute().value().equals(Attributes.ATTACK_DAMAGE.value()));
     }
 
+    public static @NotNull Enchantment get(ResourceKey<Enchantment> key, @NotNull Level level) {
+        HolderLookup.RegistryLookup<Enchantment> enchantments = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        return enchantments.getOrThrow(key).value();
+    }
+
     public static int getLevel(@NotNull ItemStack stack, @NotNull Level level, ResourceKey<Enchantment> enchantmentKey) {
 
         HolderLookup.RegistryLookup<Enchantment> enchantments = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
         return stack.getEnchantmentLevel(enchantments.getOrThrow(enchantmentKey));
     }
 
-    public static int getLevelInHands(ResourceKey<Enchantment> enchantmentKey, LivingEntity player, Level serverLevel) {
+    public static int getLevelInHands(ResourceKey<Enchantment> enchantmentKey, @NotNull LivingEntity player, Level serverLevel) {
         return Math.max(getLevel(player.getMainHandItem(), serverLevel, enchantmentKey), getLevel(player.getOffhandItem(), serverLevel, enchantmentKey));
+    }
+
+    public enum Rarity {
+        COMMON(10),
+        UNCOMMON(5),
+        RARE(2),
+        VERY_RARE(1);
+
+        private final int weight;
+
+        Rarity(int weight) {
+            this.weight = weight;
+        }
+
+        public int getWeight() {
+            return this.weight;
+        }
     }
 }

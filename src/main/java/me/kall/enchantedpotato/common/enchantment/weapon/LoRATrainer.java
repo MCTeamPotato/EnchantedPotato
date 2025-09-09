@@ -1,7 +1,7 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.LoRATrainerConfig;
-import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -9,6 +9,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -42,18 +43,17 @@ public class LoRATrainer extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        if (isDisabled()) return HolderSet.empty();
-        return null;
+        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
     }
 
     @Override
-    public int weight() {
-        return 0;
+    public Rarity rarity() {
+        return Rarity.RARE;
     }
 
     @Override
     public int maxLevel() {
-        return 0;
+        return 3;
     }
 
     @Override

@@ -1,15 +1,17 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.MendingMirrorConfig;
-import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.data.MendingMirrorData;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,25 +32,16 @@ public class MendingMirror extends BaseEnchantment {
 
         UUID playerId = entity.getUUID();
         ItemStack copy = stack.copy();
-        copy.setDamageValue(0);
 
-        CompoundTag tag = copy.getOrCreateTag();
-        if (tag.contains("Enchantments", 9)) {
-            ListTag enchants = tag.getList("Enchantments", 10);
-            for (int i = 0; i < enchants.size(); i++) {
-                CompoundTag enchantTag = enchants.getCompound(i);
-                if ("mendingmirror:mending_mirror".equals(enchantTag.getString("id"))) {
-                    enchants.remove(i);
-                    break;
-                }
-            }
-        }
+        BaseEnchantment.removeEnchantment(copy, BaseEnchantment.get(ModEnchantments.MENDING_MIRROR, entity.level()));
 
         int maxDurability = copy.getMaxDamage();
         copy.setDamageValue((int) ((double)maxDurability * (1.00D - MendingMirrorConfig.REMAINING_DURABILITY.get())));
 
-        CompoundTag itemNbt = copy.save(new CompoundTag());
-        data.addData(playerId, itemNbt);
+        Tag itemNbt = copy.save(entity.registryAccess());
+        CompoundTag tag = new CompoundTag();
+        tag.put("ItemStackTag", itemNbt);
+        data.addData(playerId, tag);
     }
 
     public static void onPlayerWakeUp(@NotNull PlayerWakeUpEvent event) {
@@ -60,7 +54,7 @@ public class MendingMirror extends BaseEnchantment {
         Set<CompoundTag> recovered = data.removeData(playerId);
         if (recovered != null && !recovered.isEmpty()) {
             recovered.forEach(compoundTag -> {
-                ItemStack stack = ItemStack.of(compoundTag);
+                ItemStack stack = ItemStack.parse(level.registryAccess(), Optional.ofNullable(compoundTag.get("ItemStackTag")).orElseThrow()).orElseThrow();
                 if (!player.addItem(stack)) player.drop(stack, true);
             });
             if (MendingMirrorConfig.PLAY_SOUND.get()) player.playSound(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.0F);
@@ -74,19 +68,15 @@ public class MendingMirror extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        if (isDisabled()) return HolderSet.empty();
-        return null;
+        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
     }
 
     @Override
-    public int weight() {
-        return 0;
+    public Rarity rarity() {
+        return Rarity.RARE;
     }
 
-    @Override
-    public int maxLevel() {
-        return 0;
-    }
+    
 
     @Override
     public Enchantment.Cost dynamicCost() {

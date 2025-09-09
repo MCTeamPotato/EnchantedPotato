@@ -2,7 +2,7 @@ package me.kall.enchantedpotato.common.enchantment.digger;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.common.config.UniteStonesOfAllConfig;
-import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
@@ -10,6 +10,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
@@ -36,18 +37,12 @@ public class UniteStonesOfAll extends BaseEnchantment {
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        if (isDisabled()) return HolderSet.empty();
-        return null;
+        return items.getOrThrow(ItemTags.MINING_ENCHANTABLE);
     }
 
     @Override
-    public int weight() {
-        return 0;
-    }
-
-    @Override
-    public int maxLevel() {
-        return 0;
+    public Rarity rarity() {
+        return Rarity.RARE;
     }
 
     @Override
