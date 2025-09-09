@@ -26,6 +26,41 @@ import java.util.Set;
 import java.util.UUID;
 
 public class MendingMirror extends BaseEnchantment {
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.MENDING_MIRROR.get();
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
+    }
+
+    @Override
+    public Rarity rarity() {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return cost(25, 15);
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return cost(20, 12);
+    }
+
+    @Override
+    public int anvilCost() {
+        return 4;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
+    }
+
     public static void recordBrokenItem(@NotNull Entity entity, @NotNull ItemStack stack) {
         if (!(entity.level() instanceof ServerLevel level)) return;
         MendingMirrorData data = MendingMirrorData.get(level);
@@ -61,40 +96,4 @@ public class MendingMirror extends BaseEnchantment {
         }
     }
 
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.MENDING_MIRROR.get();
-    }
-
-    @Override
-    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
-    }
-
-    @Override
-    public Rarity rarity() {
-        return Rarity.RARE;
-    }
-
-    
-
-    @Override
-    public Enchantment.Cost dynamicCost() {
-        return cost(25, 15);
-    }
-
-    @Override
-    public Enchantment.Cost constantCost() {
-        return cost(20, 12);
-    }
-
-    @Override
-    public int anvilCost() {
-        return 4;
-    }
-
-    @Override
-    public EquipmentSlotGroup slotGroup() {
-        return EquipmentSlotGroup.HAND;
-    }
 }

@@ -18,10 +18,6 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
         return DisableConfig.POISON_OF_THE_LAST_BREATH.get();
     }
 
-    public static boolean has(@NotNull Player player) {
-        return getLevelInHands(ModEnchantments.POISON_OF_THE_LAST_BREATH, player, player.level()) != 0;
-    }
-
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
@@ -31,10 +27,6 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
     public Rarity rarity() {
         return Rarity.RARE;
     }
-
-    
-
-    
 
     @Override
     public Enchantment.Cost dynamicCost() {
@@ -54,5 +46,9 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    public static boolean has(@NotNull Player player) {
+        return getLevelInHands(ModEnchantments.POISON_OF_THE_LAST_BREATH, player, player.level()) != 0;
     }
 }

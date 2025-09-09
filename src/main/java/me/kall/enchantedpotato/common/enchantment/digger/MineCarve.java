@@ -20,26 +20,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class MineCarve extends BaseEnchantment {
-    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
-            int enchantmentLevel = getLevelInHands(ModEnchantments.MINE_CARVE, player, serverLevel);
-            if (enchantmentLevel > 0) {
-                AttributeInstance armor = event.getEntity().getAttribute(Attributes.ARMOR);
-                if (armor == null) return;
-
-                double amount = MineCarveConfig.BASE_ARMOR_REDUCTION.get() + MineCarveConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
-
-                AttributeModifier attributeModifier = new AttributeModifier(EnchantedPotato.loc("mine_carve_modifier"), -amount, AttributeModifier.Operation.ADD_VALUE);
-
-                for (AttributeModifier modifier : armor.getModifiers()) {
-                    if (modifier.id().equals(attributeModifier.id())) armor.removeModifier(modifier);
-                }
-
-                armor.addPermanentModifier(attributeModifier);
-            }
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.MINE_CARVE.get();
@@ -79,4 +59,25 @@ public class MineCarve extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
+            int enchantmentLevel = getLevelInHands(ModEnchantments.MINE_CARVE, player, serverLevel);
+            if (enchantmentLevel > 0) {
+                AttributeInstance armor = event.getEntity().getAttribute(Attributes.ARMOR);
+                if (armor == null) return;
+
+                double amount = MineCarveConfig.BASE_ARMOR_REDUCTION.get() + MineCarveConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
+
+                AttributeModifier attributeModifier = new AttributeModifier(EnchantedPotato.loc("mine_carve_modifier"), -amount, AttributeModifier.Operation.ADD_VALUE);
+
+                for (AttributeModifier modifier : armor.getModifiers()) {
+                    if (modifier.id().equals(attributeModifier.id())) armor.removeModifier(modifier);
+                }
+
+                armor.addPermanentModifier(attributeModifier);
+            }
+        }
+    }
+
 }

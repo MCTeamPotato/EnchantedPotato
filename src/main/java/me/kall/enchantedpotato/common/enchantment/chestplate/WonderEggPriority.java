@@ -15,7 +15,6 @@ public class WonderEggPriority extends BaseEnchantment {
         return DisableConfig.WONDER_EGG_PRIORITY.get();
     }
 
-
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE);

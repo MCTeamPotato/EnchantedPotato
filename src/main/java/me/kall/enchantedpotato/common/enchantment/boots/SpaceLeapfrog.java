@@ -21,6 +21,47 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class SpaceLeapfrog extends BaseEnchantment {
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.SPACE_LEAPFROG.get();
+    }
+
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
+    }
+
+    @Override
+    public Rarity rarity() {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 3;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return cost(25, 15);
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return cost(20, 12);
+    }
+
+    @Override
+    public int anvilCost() {
+        return 4;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.FEET;
+    }
+
     public static double getDist(int enchantmentLevel) {
         return SpaceLeapfrogConfig.BASIC_LEAPFROG_DIST.get() + SpaceLeapfrogConfig.GAINED_LEAPFROG_DIST_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
     }
@@ -74,44 +115,4 @@ public class SpaceLeapfrog extends BaseEnchantment {
         }
     }
 
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.SPACE_LEAPFROG.get();
-    }
-
-
-    @Override
-    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
-    }
-
-    @Override
-    public Rarity rarity() {
-        return Rarity.RARE;
-    }
-
-    @Override
-    public int maxLevel() {
-        return 3;
-    }
-
-    @Override
-    public Enchantment.Cost dynamicCost() {
-        return cost(25, 15);
-    }
-
-    @Override
-    public Enchantment.Cost constantCost() {
-        return cost(20, 12);
-    }
-
-    @Override
-    public int anvilCost() {
-        return 4;
-    }
-
-    @Override
-    public EquipmentSlotGroup slotGroup() {
-        return EquipmentSlotGroup.FEET;
-    }
 }

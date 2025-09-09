@@ -13,10 +13,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
 public class FinalPower extends BaseEnchantment {
-    public static boolean entityHasFinalPower(@NotNull LivingEntity livingSource) {
-        return getLevelInHands(ModEnchantments.FINAL_POWER, livingSource, livingSource.level()) != 0;
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.FINAL_POWER.get();
@@ -50,5 +46,9 @@ public class FinalPower extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    public static boolean has(@NotNull LivingEntity livingSource) {
+        return getLevelInHands(ModEnchantments.FINAL_POWER, livingSource, livingSource.level()) != 0;
     }
 }

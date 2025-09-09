@@ -22,20 +22,6 @@ public class LawOfInertia extends BaseEnchantment {
         return DisableConfig.LAW_OF_INERTIA.get();
     }
 
-    public static void onLivingTick(@NotNull EntityTickEvent.Pre event) {
-        if (event.isCanceled()) return;
-        if (event.getEntity() instanceof LivingEntity entity) {
-            if (!(entity.level() instanceof ServerLevel)) return;
-            float damage = entity.getPersistentData().getFloat(MARK);
-            if (damage == 0.0F) return;
-
-            Vec3 motion = entity.getDeltaMovement();
-            if (Math.sqrt(motion.x * motion.x + motion.z * motion.z) < 0.01) {
-                entity.getPersistentData().remove(MARK);
-            }
-        }
-    }
-
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
@@ -65,4 +51,19 @@ public class LawOfInertia extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void onLivingTick(@NotNull EntityTickEvent.Pre event) {
+        if (event.isCanceled()) return;
+        if (event.getEntity() instanceof LivingEntity entity) {
+            if (!(entity.level() instanceof ServerLevel)) return;
+            float damage = entity.getPersistentData().getFloat(MARK);
+            if (damage == 0.0F) return;
+
+            Vec3 motion = entity.getDeltaMovement();
+            if (Math.sqrt(motion.x * motion.x + motion.z * motion.z) < 0.01) {
+                entity.getPersistentData().remove(MARK);
+            }
+        }
+    }
+
 }

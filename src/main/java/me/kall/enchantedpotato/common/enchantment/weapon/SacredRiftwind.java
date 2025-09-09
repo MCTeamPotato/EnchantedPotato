@@ -14,20 +14,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class SacredRiftwind extends BaseEnchantment {
-    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (event.isCanceled()) return;
-        LivingEntity entity = event.getEntity();
-        if (entity.level().isClientSide()) return;
-        if (event.getSource().getEntity() instanceof LivingEntity source) {
-            int level = getLevelInHands(ModEnchantments.SACRED_RIFTWIND, source, source.level());
-            if (level != 0) {
-                float healthPercent = 1.0F - (source.getHealth() / source.getMaxHealth());
-                float bonus = (float) (level * 0.1D * healthPercent);
-                event.setAmount(event.getAmount() * (1.0F + bonus));
-            }
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.SACRED_RIFTWIND.get();
@@ -67,4 +53,19 @@ public class SacredRiftwind extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (event.isCanceled()) return;
+        LivingEntity entity = event.getEntity();
+        if (entity.level().isClientSide()) return;
+        if (event.getSource().getEntity() instanceof LivingEntity source) {
+            int level = getLevelInHands(ModEnchantments.SACRED_RIFTWIND, source, source.level());
+            if (level != 0) {
+                float healthPercent = 1.0F - (source.getHealth() / source.getMaxHealth());
+                float bonus = (float) (level * 0.1D * healthPercent);
+                event.setAmount(event.getAmount() * (1.0F + bonus));
+            }
+        }
+    }
+
 }

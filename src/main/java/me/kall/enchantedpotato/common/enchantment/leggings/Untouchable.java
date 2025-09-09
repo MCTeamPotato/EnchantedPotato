@@ -24,29 +24,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class Untouchable extends BaseEnchantment {
-    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
-            int enchantmentLevel = getLevel(player.getItemBySlot(EquipmentSlot.LEGS), serverLevel, ModEnchantments.UNTOUCHABLE);
-            if (enchantmentLevel == 0 || ((ExtendedPlayer)player).untouchable$isInCoolDown()) return;
-            int coolDown = UntouchableConfig.BASIC_COOLDOWN.get() - UntouchableConfig.SAVED_COOLDOWN_PER_LEVEL.get() * (enchantmentLevel - 1);
-            if (coolDown > 0) ((ExtendedPlayer)player).untouchable$setCoolDown(coolDown);
-            knockBack(player, enchantmentLevel);
-        }
-    }
-
-    private static void knockBack(@NotNull Player player, int level) {
-        double radius = UntouchableConfig.BASIC_RADIUS.get() + (level * UntouchableConfig.GAINED_RADIUS_PER_LEVEL.get());
-        double force = UntouchableConfig.BASIC_FORCE.get() + (level * UntouchableConfig.GAINED_FORCE_PER_LEVEL.get());
-        int slowDuration = UntouchableConfig.BASIC_SLOWNESS_DURATION.get() + (level * UntouchableConfig.GAINED_SLOWNESS_DURATION_PER_LEVEL.get());
-
-        player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(radius), e -> e instanceof Monster)
-                .forEach(entity -> {
-                    Vec3 dir = entity.position().subtract(player.position()).normalize();
-                    entity.push(dir.x * force, 0.4, dir.z * force);
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, slowDuration, 1));
-                });
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.UNTOUCHABLE.get();
@@ -86,4 +63,28 @@ public class Untouchable extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.LEGS;
     }
+
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
+            int enchantmentLevel = getLevel(player.getItemBySlot(EquipmentSlot.LEGS), serverLevel, ModEnchantments.UNTOUCHABLE);
+            if (enchantmentLevel == 0 || ((ExtendedPlayer)player).untouchable$isInCoolDown()) return;
+            int coolDown = UntouchableConfig.BASIC_COOLDOWN.get() - UntouchableConfig.SAVED_COOLDOWN_PER_LEVEL.get() * (enchantmentLevel - 1);
+            if (coolDown > 0) ((ExtendedPlayer)player).untouchable$setCoolDown(coolDown);
+            knockBack(player, enchantmentLevel);
+        }
+    }
+
+    private static void knockBack(@NotNull Player player, int level) {
+        double radius = UntouchableConfig.BASIC_RADIUS.get() + (level * UntouchableConfig.GAINED_RADIUS_PER_LEVEL.get());
+        double force = UntouchableConfig.BASIC_FORCE.get() + (level * UntouchableConfig.GAINED_FORCE_PER_LEVEL.get());
+        int slowDuration = UntouchableConfig.BASIC_SLOWNESS_DURATION.get() + (level * UntouchableConfig.GAINED_SLOWNESS_DURATION_PER_LEVEL.get());
+
+        player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(radius), e -> e instanceof Monster)
+                .forEach(entity -> {
+                    Vec3 dir = entity.position().subtract(player.position()).normalize();
+                    entity.push(dir.x * force, 0.4, dir.z * force);
+                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, slowDuration, 1));
+                });
+    }
+
 }

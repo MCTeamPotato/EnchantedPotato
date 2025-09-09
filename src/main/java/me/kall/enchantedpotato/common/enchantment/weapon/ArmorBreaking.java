@@ -25,16 +25,6 @@ public class ArmorBreaking extends BaseEnchantment {
         return DisableConfig.ARMOR_BREAKING.get();
     }
 
-    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel && !event.isCanceled()) {
-            int level = getLevelInHands(ModEnchantments.ARMOR_BREAKING, player, serverLevel);
-            if (level == 0) return;
-            LivingEntity entity = event.getEntity();
-            entity.getPersistentData().putInt(ARMOR_BREAKING_KEY, level);
-            ((ExtendedLivingEntity)entity).armorBreaking$getAttribute().setBaseValue(ArmorBreakingConfig.BASE_DURATION.get().doubleValue() + ArmorBreakingConfig.GAINED_DURATION_PER_LEVEL.get().doubleValue() * (double) (level - 1));
-        }
-    }
-
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
@@ -69,4 +59,15 @@ public class ArmorBreaking extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel && !event.isCanceled()) {
+            int level = getLevelInHands(ModEnchantments.ARMOR_BREAKING, player, serverLevel);
+            if (level == 0) return;
+            LivingEntity entity = event.getEntity();
+            entity.getPersistentData().putInt(ARMOR_BREAKING_KEY, level);
+            ((ExtendedLivingEntity)entity).armorBreaking$getAttribute().setBaseValue(ArmorBreakingConfig.BASE_DURATION.get().doubleValue() + ArmorBreakingConfig.GAINED_DURATION_PER_LEVEL.get().doubleValue() * (double) (level - 1));
+        }
+    }
+
 }

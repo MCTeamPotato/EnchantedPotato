@@ -28,6 +28,37 @@ public class GraceOfGungnir extends BaseEnchantment {
         return DisableConfig.GRACE_OF_GUNGNIR.get();
     }
 
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return items.getOrThrow(ItemTags.BOW_ENCHANTABLE);
+    }
+
+    @Override
+    public Rarity rarity() {
+        return Rarity.VERY_RARE;
+    }
+
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return cost(25, 15);
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return cost(20, 12);
+    }
+
+    @Override
+    public int anvilCost() {
+        return 3;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
+    }
+
     public static @Nullable LivingEntity findNearestLivingEntityOnPath(@NotNull Player player) {
         double maxDistance = 100;
         Vec3 startPos = player.getEyePosition();
@@ -61,34 +92,4 @@ public class GraceOfGungnir extends BaseEnchantment {
         return nearestTarget;
     }
 
-    @Override
-    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.BOW_ENCHANTABLE);
-    }
-
-    @Override
-    public Rarity rarity() {
-        return Rarity.VERY_RARE;
-    }
-
-
-    @Override
-    public Enchantment.Cost dynamicCost() {
-        return cost(25, 15);
-    }
-
-    @Override
-    public Enchantment.Cost constantCost() {
-        return cost(20, 12);
-    }
-
-    @Override
-    public int anvilCost() {
-        return 3;
-    }
-
-    @Override
-    public EquipmentSlotGroup slotGroup() {
-        return EquipmentSlotGroup.HAND;
-    }
 }

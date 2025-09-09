@@ -17,21 +17,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class GraceOfGaia extends BaseEnchantment {
-    public static void onPlayerHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel && !event.isCanceled()) {
-            int level = getLevel(player.getItemBySlot(EquipmentSlot.FEET), serverLevel, ModEnchantments.GRACE_OF_GAIA);
-            if (level == 0) return;
-            int baseValidY = GraceOfGaiaConfig.BASE_VALID_Y.get();
-            int gainedYPerLevel = GraceOfGaiaConfig.GAINED_Y_PER_LEVEL.get();
-            int baseY = baseValidY + (level - 1) * gainedYPerLevel;
-            int currentY = player.getOnPos().getY();
-            if (currentY >= baseY) return;
-            float absorbed = (float) (baseY - currentY) / 100F;
-            if (absorbed > GraceOfGaiaConfig.getMaxDamageReduction()) absorbed = GraceOfGaiaConfig.getMaxDamageReduction();
-            event.setAmount(event.getAmount() * (1.0F - absorbed));
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.GRACE_OF_GAIA.get();
@@ -72,4 +57,20 @@ public class GraceOfGaia extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.FEET;
     }
+
+    public static void onPlayerHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel && !event.isCanceled()) {
+            int level = getLevel(player.getItemBySlot(EquipmentSlot.FEET), serverLevel, ModEnchantments.GRACE_OF_GAIA);
+            if (level == 0) return;
+            int baseValidY = GraceOfGaiaConfig.BASE_VALID_Y.get();
+            int gainedYPerLevel = GraceOfGaiaConfig.GAINED_Y_PER_LEVEL.get();
+            int baseY = baseValidY + (level - 1) * gainedYPerLevel;
+            int currentY = player.getOnPos().getY();
+            if (currentY >= baseY) return;
+            float absorbed = (float) (baseY - currentY) / 100F;
+            if (absorbed > GraceOfGaiaConfig.getMaxDamageReduction()) absorbed = GraceOfGaiaConfig.getMaxDamageReduction();
+            event.setAmount(event.getAmount() * (1.0F - absorbed));
+        }
+    }
+
 }

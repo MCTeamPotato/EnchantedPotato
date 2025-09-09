@@ -24,6 +24,42 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class RunLikeHell extends BaseEnchantment {
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.RUN_LIKE_HELL.get();
+    }
+
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
+    }
+
+    @Override
+    public Rarity rarity() {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return cost(15, 10);
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return cost(12, 8);
+    }
+
+    @Override
+    public int anvilCost() {
+        return 2;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.FEET;
+    }
+
     public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
         if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
             if (getLevel(player.getItemBySlot(EquipmentSlot.FEET), serverLevel, ModEnchantments.RUN_LIKE_HELL) == 0 || event.isCanceled()) return;
@@ -47,42 +83,5 @@ public class RunLikeHell extends BaseEnchantment {
 
     public static void onChangeTarget(@NotNull LivingChangeTargetEvent event) {
         if (RunLikeHellConfig.ALLOW_BETTER_INVISIBILITY.get() && event.getNewAboutToBeSetTarget() instanceof ServerPlayer player && player.hasEffect(MobEffects.INVISIBILITY)) event.setCanceled(true);
-    }
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.RUN_LIKE_HELL.get();
-    }
-
-
-    @Override
-    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
-    }
-
-    @Override
-    public Rarity rarity() {
-        return Rarity.RARE;
-    }
-
-
-    @Override
-    public Enchantment.Cost dynamicCost() {
-        return cost(15, 10);
-    }
-
-    @Override
-    public Enchantment.Cost constantCost() {
-        return cost(12, 8);
-    }
-
-    @Override
-    public int anvilCost() {
-        return 2;
-    }
-
-    @Override
-    public EquipmentSlotGroup slotGroup() {
-        return EquipmentSlotGroup.FEET;
     }
 }

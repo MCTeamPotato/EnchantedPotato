@@ -19,21 +19,6 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class BlackParade extends BaseEnchantment {
-    public static void onLivingDie(@NotNull LivingDeathEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel level && getLevel(player.getItemBySlot(EquipmentSlot.FEET), level, ModEnchantments.BLACK_PARADE) != 0) {
-            MobEffectInstance speedInstance = player.getEffect(MobEffects.MOVEMENT_SPEED);
-            int configDuration = BlackParadeConfig.SPEED_DURATION.get();
-            int configAmplifier = BlackParadeConfig.SPEED_AMPLIFIER.get();
-            if (speedInstance == null) {
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, configDuration, configAmplifier));
-            } else {
-                int duration = speedInstance.getDuration();
-                player.removeEffect(MobEffects.MOVEMENT_SPEED);
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, configDuration + duration, configAmplifier));
-            }
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.BLACK_PARADE.get();
@@ -68,4 +53,20 @@ public class BlackParade extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.FEET;
     }
+
+    public static void onLivingDie(@NotNull LivingDeathEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel level && getLevel(player.getItemBySlot(EquipmentSlot.FEET), level, ModEnchantments.BLACK_PARADE) != 0) {
+            MobEffectInstance speedInstance = player.getEffect(MobEffects.MOVEMENT_SPEED);
+            int configDuration = BlackParadeConfig.SPEED_DURATION.get();
+            int configAmplifier = BlackParadeConfig.SPEED_AMPLIFIER.get();
+            if (speedInstance == null) {
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, configDuration, configAmplifier));
+            } else {
+                int duration = speedInstance.getDuration();
+                player.removeEffect(MobEffects.MOVEMENT_SPEED);
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, configDuration + duration, configAmplifier));
+            }
+        }
+    }
+
 }

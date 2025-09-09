@@ -24,6 +24,46 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
 
 public class OceanHued extends BaseEnchantment {
+    @Override
+    public boolean isDisabled() {
+        return DisableConfig.OCEAN_HUED.get();
+    }
+
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE);
+    }
+
+    @Override
+    public Rarity rarity() {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public int maxLevel() {
+        return 3;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return cost(18, 12);
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return cost(15, 10);
+    }
+
+    @Override
+    public int anvilCost() {
+        return 2;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HEAD;
+    }
+
     public static void onHeal(@NotNull LivingHealEvent event) {
         if (!event.isCanceled() && event.getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
             if (getLevel(player.getItemBySlot(EquipmentSlot.HEAD), serverLevel, ModEnchantments.OCEAN_HUED) == 0) {
@@ -78,43 +118,4 @@ public class OceanHued extends BaseEnchantment {
         }
     }
 
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.OCEAN_HUED.get();
-    }
-
-    @Override
-    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE);
-    }
-
-    @Override
-    public Rarity rarity() {
-        return Rarity.RARE;
-    }
-
-    @Override
-    public int maxLevel() {
-        return 3;
-    }
-
-    @Override
-    public Enchantment.Cost dynamicCost() {
-        return cost(18, 12);
-    }
-
-    @Override
-    public Enchantment.Cost constantCost() {
-        return cost(15, 10);
-    }
-
-    @Override
-    public int anvilCost() {
-        return 2;
-    }
-
-    @Override
-    public EquipmentSlotGroup slotGroup() {
-        return EquipmentSlotGroup.HEAD;
-    }
 }

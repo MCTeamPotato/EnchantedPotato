@@ -25,7 +25,6 @@ public class LotusInWater extends BaseEnchantment {
         return Rarity.RARE;
     }
 
-
     @Override
     public Enchantment.Cost dynamicCost() {
         return cost(8, 4);

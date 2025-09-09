@@ -23,35 +23,6 @@ import java.util.function.Predicate;
 public class GurenNoYumiya extends BaseEnchantment {
     public static final String GUREN_NO_YUMIYA_KEY = "GurenNoYumiyaLevel";
 
-    public static void apply(@NotNull AbstractArrow arrow) {
-        if (arrow.getOwner() instanceof ServerPlayer player) {
-            int level = arrow.getPersistentData().getInt(GUREN_NO_YUMIYA_KEY);
-
-            if (level == 0) return;
-            double radius = GurenNoYumiyaConfig.BASE_RADIUS.get() + GurenNoYumiyaConfig.GAINED_RADIUS_PER_LEVEL.get() * (double)(level - 1);
-            AABB box = new AABB(arrow.blockPosition()).inflate(radius);
-            Predicate<LivingEntity> filter = entity -> entity.isAlive() && !entity.fireImmune() && !entity.getUUID().equals(arrow.getOwner().getUUID());
-
-            int fireTicks = (GurenNoYumiyaConfig.BASE_FIRE_SECONDS.get() + GurenNoYumiyaConfig.GAINED_FIRE_SECONDS_PER_LEVEL.get() * (level - 1)) * 20;
-
-            Vec3 pos = arrow.position();
-            GurenNoYumiyaPacket packet = new GurenNoYumiyaPacket(pos, radius);
-            PacketDistributor.sendToPlayer(player, packet);
-
-            arrow.level()
-                    .getEntitiesOfClass(LivingEntity.class, box, filter)
-                    .forEach(entity -> {
-                        if (entity.isOnFire()) {
-                            int origin = entity.getRemainingFireTicks();
-                            entity.setRemainingFireTicks(origin + fireTicks);
-                        } else {
-                            entity.setRemainingFireTicks(fireTicks);
-                        }
-                    });
-            arrow.getPersistentData().remove(GUREN_NO_YUMIYA_KEY);
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.GUREN_NO_YUMIYA.get();
@@ -91,4 +62,34 @@ public class GurenNoYumiya extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void apply(@NotNull AbstractArrow arrow) {
+        if (arrow.getOwner() instanceof ServerPlayer player) {
+            int level = arrow.getPersistentData().getInt(GUREN_NO_YUMIYA_KEY);
+
+            if (level == 0) return;
+            double radius = GurenNoYumiyaConfig.BASE_RADIUS.get() + GurenNoYumiyaConfig.GAINED_RADIUS_PER_LEVEL.get() * (double)(level - 1);
+            AABB box = new AABB(arrow.blockPosition()).inflate(radius);
+            Predicate<LivingEntity> filter = entity -> entity.isAlive() && !entity.fireImmune() && !entity.getUUID().equals(arrow.getOwner().getUUID());
+
+            int fireTicks = (GurenNoYumiyaConfig.BASE_FIRE_SECONDS.get() + GurenNoYumiyaConfig.GAINED_FIRE_SECONDS_PER_LEVEL.get() * (level - 1)) * 20;
+
+            Vec3 pos = arrow.position();
+            GurenNoYumiyaPacket packet = new GurenNoYumiyaPacket(pos, radius);
+            PacketDistributor.sendToPlayer(player, packet);
+
+            arrow.level()
+                    .getEntitiesOfClass(LivingEntity.class, box, filter)
+                    .forEach(entity -> {
+                        if (entity.isOnFire()) {
+                            int origin = entity.getRemainingFireTicks();
+                            entity.setRemainingFireTicks(origin + fireTicks);
+                        } else {
+                            entity.setRemainingFireTicks(fireTicks);
+                        }
+                    });
+            arrow.getPersistentData().remove(GUREN_NO_YUMIYA_KEY);
+        }
+    }
+
 }

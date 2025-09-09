@@ -18,21 +18,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class CaressingMoonlight extends BaseEnchantment {
-    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
-            int level = getLevelInHands(ModEnchantments.CARESSING_MOONLIGHT, player, serverLevel);
-            if (level == 0) return;
-            float count = 0.0F;
-            for (MobEffectInstance activeEffect : event.getEntity().getActiveEffects()) {
-                if (activeEffect.getEffect().value().getCategory().equals(MobEffectCategory.HARMFUL)) count = count + 1.0F;
-            }
-            float baseDamage = CaressingMoonlightConfig.BASE_DAMAGE_FOR_EACH_EFFECT.get().floatValue();
-            float gainedDamagePerLevel = CaressingMoonlightConfig.GAINED_DAMAGE_FOR_EACH_EFFECT_PER_LEVEL.get().floatValue();
-            float damageBonus = (baseDamage + gainedDamagePerLevel * (float) (level - 1)) * count;
-            event.setAmount(event.getAmount() + damageBonus);
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.CARESSING_MOONLIGHT.get();
@@ -72,4 +57,20 @@ public class CaressingMoonlight extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void onLivingHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
+            int level = getLevelInHands(ModEnchantments.CARESSING_MOONLIGHT, player, serverLevel);
+            if (level == 0) return;
+            float count = 0.0F;
+            for (MobEffectInstance activeEffect : event.getEntity().getActiveEffects()) {
+                if (activeEffect.getEffect().value().getCategory().equals(MobEffectCategory.HARMFUL)) count = count + 1.0F;
+            }
+            float baseDamage = CaressingMoonlightConfig.BASE_DAMAGE_FOR_EACH_EFFECT.get().floatValue();
+            float gainedDamagePerLevel = CaressingMoonlightConfig.GAINED_DAMAGE_FOR_EACH_EFFECT_PER_LEVEL.get().floatValue();
+            float damageBonus = (baseDamage + gainedDamagePerLevel * (float) (level - 1)) * count;
+            event.setAmount(event.getAmount() + damageBonus);
+        }
+    }
+
 }

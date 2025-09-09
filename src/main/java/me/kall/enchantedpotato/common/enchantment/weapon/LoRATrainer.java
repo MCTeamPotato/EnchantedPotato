@@ -23,24 +23,6 @@ public class LoRATrainer extends BaseEnchantment {
         return DisableConfig.LORA_TRAINER.get();
     }
 
-    public static void onLivingDamage(@NotNull LivingIncomingDamageEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
-            int level = getLevelInHands(ModEnchantments.LORA_TRAINER, player, serverLevel);
-            if (level == 0) return;
-            LivingEntity entity = event.getEntity();
-            int killCount = player.getStats().getValue(Stats.ENTITY_KILLED.get(entity.getType()));
-            int baseKillCountRequired = LoRATrainerConfig.BASE_KILL_COUNT.get();
-            int savedKillCountPerLevel = LoRATrainerConfig.SAVED_KILL_COUNT_PER_LEVEL.get();
-            int required = baseKillCountRequired - savedKillCountPerLevel * (level - 1);
-            if (killCount >= required) {
-                float baseDamageBonus = 1F + LoRATrainerConfig.BASE_DAMAGE_BONUS.get().floatValue();
-                float gainedDamageBonusPerLevel = LoRATrainerConfig.GAINED_DAMAGE_BONUS_PER_LEVEL.get().floatValue();
-                float damageBonus = baseDamageBonus + gainedDamageBonusPerLevel * (level - 1);
-                event.setAmount(event.getAmount() * damageBonus);
-            }
-        }
-    }
-
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
@@ -74,5 +56,23 @@ public class LoRATrainer extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    public static void onLivingDamage(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
+            int level = getLevelInHands(ModEnchantments.LORA_TRAINER, player, serverLevel);
+            if (level == 0) return;
+            LivingEntity entity = event.getEntity();
+            int killCount = player.getStats().getValue(Stats.ENTITY_KILLED.get(entity.getType()));
+            int baseKillCountRequired = LoRATrainerConfig.BASE_KILL_COUNT.get();
+            int savedKillCountPerLevel = LoRATrainerConfig.SAVED_KILL_COUNT_PER_LEVEL.get();
+            int required = baseKillCountRequired - savedKillCountPerLevel * (level - 1);
+            if (killCount >= required) {
+                float baseDamageBonus = 1F + LoRATrainerConfig.BASE_DAMAGE_BONUS.get().floatValue();
+                float gainedDamageBonusPerLevel = LoRATrainerConfig.GAINED_DAMAGE_BONUS_PER_LEVEL.get().floatValue();
+                float damageBonus = baseDamageBonus + gainedDamageBonusPerLevel * (level - 1);
+                event.setAmount(event.getAmount() * damageBonus);
+            }
+        }
     }
 }

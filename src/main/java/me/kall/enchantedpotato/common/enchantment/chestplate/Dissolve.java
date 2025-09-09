@@ -19,40 +19,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class Dissolve extends BaseEnchantment {
-    public static void onPlayerHurt(@NotNull LivingIncomingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
-            int level = getLevel(player.getItemBySlot(EquipmentSlot.CHEST), serverLevel, ModEnchantments.DISSOLVE);
-            if (level == 0) return;
-
-            float baseDamageReductionForExceededPart = DissolveConfig.BASE_DAMAGE_REDUCTION.get().floatValue();
-            float gainedDamageReductionPerLevelForExceededPart = DissolveConfig.GAINED_DAMAGE_REDUCTION_PER_LEVEL.get().floatValue();
-            float damageReductionForExceededPart = baseDamageReductionForExceededPart + gainedDamageReductionPerLevelForExceededPart * (float)(level - 1);
-
-            if (damageReductionForExceededPart > 1.0F) damageReductionForExceededPart = 1.0F;
-
-            float baseThreshold = DissolveConfig.BASE_THRESHOLD.get().floatValue();
-            float savedThresholdPerLevel = DissolveConfig.SAVED_THRESHOLD_PER_LEVEL.get().floatValue();
-            float threshold = baseThreshold - savedThresholdPerLevel * (level - 1);
-
-            float minusThreshold = DissolveConfig.MINUS_THRESHOLD.get().floatValue();
-            if (threshold < minusThreshold) threshold = minusThreshold;
-
-            float amount = event.getAmount();
-            float health = player.getHealth();
-            if (amount > health * threshold) {
-                float exceed = amount - health * threshold;
-                amount = amount - exceed * damageReductionForExceededPart;
-                event.setAmount(amount);
-
-                int baseDuration = DissolveConfig.BASE_STRENGTH_DURATION.get();
-                int gainedDurationPerLevel = DissolveConfig.GAINED_STRENGTH_DURATION_PER_LEVEL.get();
-                int duration = baseDuration + gainedDurationPerLevel * (level - 1);
-
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, duration, 1));
-            }
-        }
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.DISSOLVE.get();
@@ -93,4 +59,39 @@ public class Dissolve extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.CHEST;
     }
+
+    public static void onPlayerHurt(@NotNull LivingIncomingDamageEvent event) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel serverLevel) {
+            int level = getLevel(player.getItemBySlot(EquipmentSlot.CHEST), serverLevel, ModEnchantments.DISSOLVE);
+            if (level == 0) return;
+
+            float baseDamageReductionForExceededPart = DissolveConfig.BASE_DAMAGE_REDUCTION.get().floatValue();
+            float gainedDamageReductionPerLevelForExceededPart = DissolveConfig.GAINED_DAMAGE_REDUCTION_PER_LEVEL.get().floatValue();
+            float damageReductionForExceededPart = baseDamageReductionForExceededPart + gainedDamageReductionPerLevelForExceededPart * (float)(level - 1);
+
+            if (damageReductionForExceededPart > 1.0F) damageReductionForExceededPart = 1.0F;
+
+            float baseThreshold = DissolveConfig.BASE_THRESHOLD.get().floatValue();
+            float savedThresholdPerLevel = DissolveConfig.SAVED_THRESHOLD_PER_LEVEL.get().floatValue();
+            float threshold = baseThreshold - savedThresholdPerLevel * (level - 1);
+
+            float minusThreshold = DissolveConfig.MINUS_THRESHOLD.get().floatValue();
+            if (threshold < minusThreshold) threshold = minusThreshold;
+
+            float amount = event.getAmount();
+            float health = player.getHealth();
+            if (amount > health * threshold) {
+                float exceed = amount - health * threshold;
+                amount = amount - exceed * damageReductionForExceededPart;
+                event.setAmount(amount);
+
+                int baseDuration = DissolveConfig.BASE_STRENGTH_DURATION.get();
+                int gainedDurationPerLevel = DissolveConfig.GAINED_STRENGTH_DURATION_PER_LEVEL.get();
+                int duration = baseDuration + gainedDurationPerLevel * (level - 1);
+
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, duration, 1));
+            }
+        }
+    }
+
 }

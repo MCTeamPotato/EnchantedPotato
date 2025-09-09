@@ -26,24 +26,6 @@ public class RippleOfDeath extends BaseEnchantment {
         return DisableConfig.RIPPLE_OF_DEATH.get();
     }
 
-    public static void onLivingDeath(@NotNull LivingDeathEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel level) {
-            int enchantmentLevel = getLevelInHands(ModEnchantments.RIPPLE_OF_DEATH, player, level);
-            if (enchantmentLevel == 0) return;
-            int baseRadius = RippleOfDeathConfig.BASE_RADIUS.get();
-            int gainedRadiusPerLevel = RippleOfDeathConfig.GAINED_RADIUS_PER_LEVEL.get();
-            int radius = baseRadius + gainedRadiusPerLevel * (enchantmentLevel - 1);
-            AABB box = event.getEntity().getBoundingBox().inflate(radius);
-            Predicate<LivingEntity> filter = entity -> entity.isAlive() && entity instanceof Mob && !entity.getUUID().equals(player.getUUID());
-            float basicDamagePercent = RippleOfDeathConfig.BASIC_DAMAGE_PERCENT.get().floatValue();
-            float gainedDamagePercentPerLevel = RippleOfDeathConfig.GAINED_DAMAGE_PERCENT_PER_LEVEL.get().floatValue();
-            float damagePercent = basicDamagePercent + gainedDamagePercentPerLevel * (enchantmentLevel - 1);
-            for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box, filter)) {
-                entity.hurt(player.damageSources().indirectMagic(player, player), entity.getMaxHealth() * damagePercent);
-            }
-        }
-    }
-
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
@@ -77,5 +59,23 @@ public class RippleOfDeath extends BaseEnchantment {
     @Override
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
+    }
+
+    public static void onLivingDeath(@NotNull LivingDeathEvent event) {
+        if (!event.isCanceled() && event.getSource().getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel level) {
+            int enchantmentLevel = getLevelInHands(ModEnchantments.RIPPLE_OF_DEATH, player, level);
+            if (enchantmentLevel == 0) return;
+            int baseRadius = RippleOfDeathConfig.BASE_RADIUS.get();
+            int gainedRadiusPerLevel = RippleOfDeathConfig.GAINED_RADIUS_PER_LEVEL.get();
+            int radius = baseRadius + gainedRadiusPerLevel * (enchantmentLevel - 1);
+            AABB box = event.getEntity().getBoundingBox().inflate(radius);
+            Predicate<LivingEntity> filter = entity -> entity.isAlive() && entity instanceof Mob && !entity.getUUID().equals(player.getUUID());
+            float basicDamagePercent = RippleOfDeathConfig.BASIC_DAMAGE_PERCENT.get().floatValue();
+            float gainedDamagePercentPerLevel = RippleOfDeathConfig.GAINED_DAMAGE_PERCENT_PER_LEVEL.get().floatValue();
+            float damagePercent = basicDamagePercent + gainedDamagePercentPerLevel * (enchantmentLevel - 1);
+            for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box, filter)) {
+                entity.hurt(player.damageSources().indirectMagic(player, player), entity.getMaxHealth() * damagePercent);
+            }
+        }
     }
 }

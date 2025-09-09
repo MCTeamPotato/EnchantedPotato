@@ -15,31 +15,10 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class MarkFromTheBeneath extends BaseEnchantment {
-    public static void onPlayerDig(PlayerEvent.@NotNull BreakSpeed event) {
-        if (!event.isCanceled()) {
-            Player player = event.getEntity();
-            double height = player.getY();
-            int level = getLevelInHands(ModEnchantments.MARK_FROM_THE_BENEATH, player, player.level());
-            if (level == 0) return;
-            double validBaseHeight = MarkFromTheBeneathConfig.VALID_BASE_MAX_HEIGHT.get();
-            double gainedHeightPerLevel = MarkFromTheBeneathConfig.GAINED_BASE_HEIGHT_PER_LEVEL.get() * (double) (level - 1);
-            double validHeight = validBaseHeight + gainedHeightPerLevel;
-            if (height > validHeight) return;
-            double extraSpeed = heightToSpeed(MarkFromTheBeneathConfig.VALID_BASE_MIN_HEIGHT.get(), validBaseHeight, MarkFromTheBeneathConfig.MIN_SPEED_BONUS.get(), MarkFromTheBeneathConfig.MAX_SPEED_BONUS.get(), height);
-            event.setNewSpeed(event.getOriginalSpeed() * (float) (1D + extraSpeed));
-        }
-    }
-
-    public static double heightToSpeed(double bottom, double top, double slow, double quick, double height) {
-        double slope = (quick - slow) / (top - bottom);
-        return quick - slope * (height - bottom);
-    }
-
     @Override
     public boolean isDisabled() {
         return DisableConfig.MARK_FROM_THE_BENEATH.get();
     }
-
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
@@ -75,4 +54,25 @@ public class MarkFromTheBeneath extends BaseEnchantment {
     public EquipmentSlotGroup slotGroup() {
         return EquipmentSlotGroup.HAND;
     }
+
+    public static void onPlayerDig(PlayerEvent.@NotNull BreakSpeed event) {
+        if (!event.isCanceled()) {
+            Player player = event.getEntity();
+            double height = player.getY();
+            int level = getLevelInHands(ModEnchantments.MARK_FROM_THE_BENEATH, player, player.level());
+            if (level == 0) return;
+            double validBaseHeight = MarkFromTheBeneathConfig.VALID_BASE_MAX_HEIGHT.get();
+            double gainedHeightPerLevel = MarkFromTheBeneathConfig.GAINED_BASE_HEIGHT_PER_LEVEL.get() * (double) (level - 1);
+            double validHeight = validBaseHeight + gainedHeightPerLevel;
+            if (height > validHeight) return;
+            double extraSpeed = heightToSpeed(MarkFromTheBeneathConfig.VALID_BASE_MIN_HEIGHT.get(), validBaseHeight, MarkFromTheBeneathConfig.MIN_SPEED_BONUS.get(), MarkFromTheBeneathConfig.MAX_SPEED_BONUS.get(), height);
+            event.setNewSpeed(event.getOriginalSpeed() * (float) (1D + extraSpeed));
+        }
+    }
+
+    public static double heightToSpeed(double bottom, double top, double slow, double quick, double height) {
+        double slope = (quick - slow) / (top - bottom);
+        return quick - slope * (height - bottom);
+    }
+
 }

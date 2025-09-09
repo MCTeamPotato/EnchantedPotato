@@ -19,6 +19,35 @@ public class Mercy extends BaseEnchantment {
     public boolean isDisabled() {
         return DisableConfig.MERCY.get();
     }
+    @Override
+    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
+        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
+    }
+
+    @Override
+    public Rarity rarity() {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public Enchantment.Cost dynamicCost() {
+        return cost(12, 8);
+    }
+
+    @Override
+    public Enchantment.Cost constantCost() {
+        return cost(10, 6);
+    }
+
+    @Override
+    public int anvilCost() {
+        return 1;
+    }
+
+    @Override
+    public EquipmentSlotGroup slotGroup() {
+        return EquipmentSlotGroup.HAND;
+    }
 
     public static void onLivingDamage(@NotNull LivingIncomingDamageEvent event) {
         LivingEntity attacked = event.getEntity();
@@ -40,37 +69,4 @@ public class Mercy extends BaseEnchantment {
         }
     }
 
-    @Override
-    public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
-        return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
-    }
-
-    @Override
-    public Rarity rarity() {
-        return Rarity.RARE;
-    }
-
-    
-
-    
-
-    @Override
-    public Enchantment.Cost dynamicCost() {
-        return cost(12, 8);
-    }
-
-    @Override
-    public Enchantment.Cost constantCost() {
-        return cost(10, 6);
-    }
-
-    @Override
-    public int anvilCost() {
-        return 1;
-    }
-
-    @Override
-    public EquipmentSlotGroup slotGroup() {
-        return EquipmentSlotGroup.HAND;
-    }
 }
