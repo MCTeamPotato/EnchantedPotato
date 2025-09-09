@@ -65,7 +65,7 @@ public class RippleOfDeath extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.RIPPLE_OF_DEATH;
     }
 

@@ -61,7 +61,7 @@ public class LoRATrainer extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.LORA_TRAINER;
     }
 

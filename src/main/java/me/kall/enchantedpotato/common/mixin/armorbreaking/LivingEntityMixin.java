@@ -25,7 +25,7 @@ public abstract class LivingEntityMixin extends Entity implements ExtendedLiving
 
     @WrapOperation(method = "getDamageAfterArmorAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterAbsorb(Lnet/minecraft/world/entity/LivingEntity;FLnet/minecraft/world/damagesource/DamageSource;FF)F"))
     private float modifyArmorValue(LivingEntity entity, float damageAmount, DamageSource damageSource, float armorValue, float armorToughness, Operation<Float> operation) {
-        if (this.level() instanceof ServerLevel){
+        if (this.level() instanceof ServerLevel) {
             int enchantmentLevel = this.getPersistentData().getInt(ArmorBreaking.ARMOR_BREAKING_KEY);
             if (enchantmentLevel != 0) {
                 if (armorValue != 0.0F) {

@@ -62,7 +62,7 @@ public class CaressingMoonlight extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.CARESSING_MOONLIGHT;
     }
 

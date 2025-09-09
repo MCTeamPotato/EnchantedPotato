@@ -27,7 +27,7 @@ public abstract class BaseEnchantment {
     public abstract Enchantment.Cost constantCost();
     public abstract int anvilCost();
     public abstract EquipmentSlotGroup slotGroup();
-    public abstract ResourceKey<Enchantment> loc();
+    public abstract ResourceKey<Enchantment> key();
 
     public @Nullable TagKey<Enchantment> incompatible() {
         return null;
@@ -47,7 +47,7 @@ public abstract class BaseEnchantment {
         if (incompatible != null) {
             builder = builder.exclusiveWith(context.lookup(Registries.ENCHANTMENT).getOrThrow(incompatible));
         }
-        context.register(loc(), builder.build(loc().location()));
+        context.register(key(), builder.build(key().location()));
     }
 
     @Contract(value = "_, _ -> new", pure = true)

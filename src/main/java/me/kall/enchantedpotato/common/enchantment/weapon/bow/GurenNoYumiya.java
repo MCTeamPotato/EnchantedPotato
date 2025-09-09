@@ -68,7 +68,7 @@ public class GurenNoYumiya extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.GUREN_NO_YUMIYA;
     }
 

@@ -70,7 +70,7 @@ public class UniteStonesOfAll extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.UNITE_STONES_OF_ALL;
     }
 

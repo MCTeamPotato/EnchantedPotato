@@ -52,7 +52,7 @@ public class FinalPower extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.FINAL_POWER;
     }
 

@@ -64,7 +64,7 @@ public class ArmorBreaking extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.ARMOR_BREAKING;
     }
 

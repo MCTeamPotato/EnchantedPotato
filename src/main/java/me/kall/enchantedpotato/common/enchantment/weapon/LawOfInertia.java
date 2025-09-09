@@ -56,7 +56,7 @@ public class LawOfInertia extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.LAW_OF_INERTIA;
     }
 

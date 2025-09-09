@@ -50,7 +50,7 @@ public class LotusInWater extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.LOTUS_IN_WATER;
     }
 }

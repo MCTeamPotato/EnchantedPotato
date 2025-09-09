@@ -52,7 +52,7 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.POISON_OF_THE_LAST_BREATH;
     }
 

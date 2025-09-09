@@ -65,7 +65,7 @@ public class SpaceLeapfrog extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.SPACE_LEAPFROG;
     }
 

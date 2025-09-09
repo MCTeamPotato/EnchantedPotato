@@ -55,7 +55,7 @@ public class WonderEggPriority extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.WONDER_EGG_PRIORITY;
     }
 }

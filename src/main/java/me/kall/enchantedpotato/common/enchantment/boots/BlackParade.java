@@ -6,7 +6,6 @@ import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
-import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
@@ -22,13 +21,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlackParade extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new BlackParade();
-
-    public void register(@NotNull BootstrapContext<Enchantment> context, HolderGetter<Item> items) {
-        Enchantment.EnchantmentDefinition definition = definition(items);
-        Enchantment.Builder builder = Enchantment.enchantment(definition);
-
-        context.register(ModEnchantments.BLACK_PARADE, builder.build(ModEnchantments.BLACK_PARADE.location()));
-    }
 
     @Override
     public boolean isDisabled() {
@@ -66,7 +58,7 @@ public class BlackParade extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.BLACK_PARADE;
     }
 

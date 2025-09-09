@@ -68,7 +68,7 @@ public class NatureBlessing extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.NATURE_BLESSING;
     }
 

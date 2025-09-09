@@ -59,7 +59,7 @@ public class MarkFromTheBeneath extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.MARK_FROM_THE_BENEATH;
     }
 

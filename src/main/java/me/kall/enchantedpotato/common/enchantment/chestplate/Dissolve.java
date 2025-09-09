@@ -63,7 +63,7 @@ public class Dissolve extends BaseEnchantment {
     }
 
     @Override
-    public ResourceKey<Enchantment> loc() {
+    public ResourceKey<Enchantment> key() {
         return ModEnchantments.DISSOLVE;
     }
 
