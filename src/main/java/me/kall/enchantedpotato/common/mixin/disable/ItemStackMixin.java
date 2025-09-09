@@ -1,5 +1,6 @@
 package me.kall.enchantedpotato.common.mixin.disable;
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.Entity;
@@ -14,28 +15,36 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin  {
     @Shadow public abstract ItemEnchantments getTagEnchantments();
 
-    @Unique private boolean disable$shouldCheck = true;
+    @Unique private boolean enchant$checked;
 
     @Inject(method = "inventoryTick", at = @At("HEAD"))
-    private void onTick(Level level, Entity entity, int inventorySlot, boolean isCurrentItem, CallbackInfo ci) {
-        if (this.disable$shouldCheck) {
-            if (!this.getTagEnchantments().isEmpty()) {
-                for (Holder<Enchantment> enchantment : this.getTagEnchantments().keySet()) {
-                    if (enchantment instanceof BaseEnchantment baseEnchantment && baseEnchantment.isDisabled()) {
-                        BaseEnchantment.removeEnchantment((ItemStack) (Object) this, enchantment.value());
-                    }
+    private void check(Level level, Entity entity, int inventorySlot, boolean isCurrentItem, CallbackInfo ci) {
+        if (this.getTagEnchantments().isEmpty()) {
+            enchant$checked = true;
+            return;
+        }
+
+        if (enchant$checked) return;
+        enchant$checked = true;
+        for (Holder<Enchantment> enchantmentHolder : new ObjectOpenHashSet<>(this.getTagEnchantments().keySet())) {
+            Optional.ofNullable(BaseEnchantment.getBase(enchantmentHolder)).ifPresent(baseEnchantment -> {
+                if (baseEnchantment.isDisabled()) {
+                    BaseEnchantment.removeEnchantment((ItemStack) (Object) this, enchantmentHolder.value());
                 }
-            }
-            this.disable$shouldCheck = false;
+            });
         }
     }
 
     @Inject(method = "enchant", at = @At("HEAD"), cancellable = true)
     private void onEnchant(Holder<Enchantment> enchantment, int level, CallbackInfo ci) {
-        if (enchantment instanceof BaseEnchantment baseEnchantment && baseEnchantment.isDisabled()) ci.cancel();
+        Optional.ofNullable(BaseEnchantment.getBase(enchantment)).ifPresent(baseEnchantment -> {
+            if (baseEnchantment.isDisabled()) ci.cancel();
+        });
     }
 }

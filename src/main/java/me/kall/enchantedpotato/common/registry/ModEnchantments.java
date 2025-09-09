@@ -1,6 +1,8 @@
 package me.kall.enchantedpotato.common.registry;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import me.kall.enchantedpotato.EnchantedPotato;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.enchantment.boots.*;
 import me.kall.enchantedpotato.common.enchantment.chestplate.Dissolve;
 import me.kall.enchantedpotato.common.enchantment.chestplate.NatureBlessing;
@@ -18,12 +20,45 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+
 public class ModEnchantments {
     private static final EnchantmentRegister REGISTER = new EnchantmentRegister();
+    public static final Map<ResourceLocation, BaseEnchantment> REGISTERED = new Object2ObjectOpenHashMap<>();
+
+    static {
+        REGISTERED.put(BlackParade.INSTANCE.key().location(), BlackParade.INSTANCE);
+        REGISTERED.put(GraceOfGaia.INSTANCE.key().location(), GraceOfGaia.INSTANCE);
+        REGISTERED.put(LotusInWater.INSTANCE.key().location(), LotusInWater.INSTANCE);
+        REGISTERED.put(RunLikeHell.INSTANCE.key().location(), RunLikeHell.INSTANCE);
+        REGISTERED.put(SpaceLeapfrog.INSTANCE.key().location(), SpaceLeapfrog.INSTANCE);
+        REGISTERED.put(Dissolve.INSTANCE.key().location(), Dissolve.INSTANCE);
+        REGISTERED.put(NatureBlessing.INSTANCE.key().location(), NatureBlessing.INSTANCE);
+        REGISTERED.put(WonderEggPriority.INSTANCE.key().location(), WonderEggPriority.INSTANCE);
+        REGISTERED.put(MarkFromTheBeneath.INSTANCE.key().location(), MarkFromTheBeneath.INSTANCE);
+        REGISTERED.put(MineCarve.INSTANCE.key().location(), MineCarve.INSTANCE);
+        REGISTERED.put(UniteStonesOfAll.INSTANCE.key().location(), UniteStonesOfAll.INSTANCE);
+        REGISTERED.put(OceanHued.INSTANCE.key().location(), OceanHued.INSTANCE);
+        REGISTERED.put(Untouchable.INSTANCE.key().location(), Untouchable.INSTANCE);
+        REGISTERED.put(GraceOfGungnir.INSTANCE.key().location(), GraceOfGungnir.INSTANCE);
+        REGISTERED.put(GurenNoYumiya.INSTANCE.key().location(), GurenNoYumiya.INSTANCE);
+        REGISTERED.put(PressurizedCollapse.INSTANCE.key().location(), PressurizedCollapse.INSTANCE);
+        REGISTERED.put(ArmorBreaking.INSTANCE.key().location(), ArmorBreaking.INSTANCE);
+        REGISTERED.put(CaressingMoonlight.INSTANCE.key().location(), CaressingMoonlight.INSTANCE);
+        REGISTERED.put(FinalPower.INSTANCE.key().location(), FinalPower.INSTANCE);
+        REGISTERED.put(LawOfInertia.INSTANCE.key().location(), LawOfInertia.INSTANCE);
+        REGISTERED.put(LoRATrainer.INSTANCE.key().location(), LoRATrainer.INSTANCE);
+        REGISTERED.put(MendingMirror.INSTANCE.key().location(), MendingMirror.INSTANCE);
+        REGISTERED.put(Mercy.INSTANCE.key().location(), Mercy.INSTANCE);
+        REGISTERED.put(PoisonOfTheLastBreath.INSTANCE.key().location(), PoisonOfTheLastBreath.INSTANCE);
+        REGISTERED.put(RippleOfDeath.INSTANCE.key().location(), RippleOfDeath.INSTANCE);
+        REGISTERED.put(SacredRiftwind.INSTANCE.key().location(), SacredRiftwind.INSTANCE);
+    }
 
     public static final ResourceKey<Enchantment> RUN_LIKE_HELL;
     public static final ResourceKey<Enchantment> BLACK_PARADE;
@@ -84,32 +119,32 @@ public class ModEnchantments {
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
 
-        BlackParade.INSTANCE.register(context, items);
-        GraceOfGaia.INSTANCE.register(context, items);
-        LotusInWater.INSTANCE.register(context, items);
-        RunLikeHell.INSTANCE.register(context, items);
-        SpaceLeapfrog.INSTANCE.register(context, items);
-        Dissolve.INSTANCE.register(context, items);
-        NatureBlessing.INSTANCE.register(context, items);
-        WonderEggPriority.INSTANCE.register(context, items);
-        MarkFromTheBeneath.INSTANCE.register(context, items);
-        MineCarve.INSTANCE.register(context, items);
-        UniteStonesOfAll.INSTANCE.register(context, items);
-        OceanHued.INSTANCE.register(context, items);
-        Untouchable.INSTANCE.register(context, items);
-        GraceOfGungnir.INSTANCE.register(context, items);
-        GurenNoYumiya.INSTANCE.register(context, items);
-        PressurizedCollapse.INSTANCE.register(context, items);
-        ArmorBreaking.INSTANCE.register(context, items);
-        CaressingMoonlight.INSTANCE.register(context, items);
-        FinalPower.INSTANCE.register(context, items);
-        LawOfInertia.INSTANCE.register(context, items);
-        LoRATrainer.INSTANCE.register(context, items);
-        MendingMirror.INSTANCE.register(context, items);
-        Mercy.INSTANCE.register(context, items);
+        BlackParade          .INSTANCE.register(context, items);
+        GraceOfGaia          .INSTANCE.register(context, items);
+        LotusInWater         .INSTANCE.register(context, items);
+        RunLikeHell          .INSTANCE.register(context, items);
+        SpaceLeapfrog        .INSTANCE.register(context, items);
+        Dissolve             .INSTANCE.register(context, items);
+        NatureBlessing       .INSTANCE.register(context, items);
+        WonderEggPriority    .INSTANCE.register(context, items);
+        MarkFromTheBeneath   .INSTANCE.register(context, items);
+        MineCarve            .INSTANCE.register(context, items);
+        UniteStonesOfAll     .INSTANCE.register(context, items);
+        OceanHued            .INSTANCE.register(context, items);
+        Untouchable          .INSTANCE.register(context, items);
+        GraceOfGungnir       .INSTANCE.register(context, items);
+        GurenNoYumiya        .INSTANCE.register(context, items);
+        PressurizedCollapse  .INSTANCE.register(context, items);
+        ArmorBreaking        .INSTANCE.register(context, items);
+        CaressingMoonlight   .INSTANCE.register(context, items);
+        FinalPower           .INSTANCE.register(context, items);
+        LawOfInertia         .INSTANCE.register(context, items);
+        LoRATrainer          .INSTANCE.register(context, items);
+        MendingMirror        .INSTANCE.register(context, items);
+        Mercy                .INSTANCE.register(context, items);
         PoisonOfTheLastBreath.INSTANCE.register(context, items);
-        RippleOfDeath.INSTANCE.register(context, items);
-        SacredRiftwind.INSTANCE.register(context, items);
+        RippleOfDeath        .INSTANCE.register(context, items);
+        SacredRiftwind       .INSTANCE.register(context, items);
     }
 
     private static final class EnchantmentRegister {
