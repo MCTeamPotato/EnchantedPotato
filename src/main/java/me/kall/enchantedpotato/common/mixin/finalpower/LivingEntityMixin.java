@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class LivingEntityMixin {
     @Inject(method = "getDamageAfterArmorAbsorb", at = @At(value = "HEAD"), cancellable = true)
     private void onAbsorb(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-        if (source.getEntity() instanceof LivingEntity livingEntity && FinalPower.entityHasFinalPower(livingEntity)) {
+        if (source.getEntity() instanceof LivingEntity && FinalPower.entityHasFinalPower((LivingEntity) source.getEntity())) {
             cir.setReturnValue(amount);
         }
     }
 
     @Inject(method = "isDamageSourceBlocked", at = @At("HEAD"), cancellable = true)
     private void onCheckShield(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (FinalPowerConfig.DISABLE_SHIELD.get() && source.getEntity() instanceof LivingEntity livingEntity && FinalPower.entityHasFinalPower(livingEntity)) {
+        if (FinalPowerConfig.DISABLE_SHIELD.get() && source.getEntity() instanceof LivingEntity && FinalPower.entityHasFinalPower((LivingEntity) source.getEntity())) {
             cir.setReturnValue(false);
         }
     }

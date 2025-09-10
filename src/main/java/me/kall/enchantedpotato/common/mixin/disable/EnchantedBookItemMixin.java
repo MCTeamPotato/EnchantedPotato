@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EnchantedBookItemMixin {
     @Inject(method = "addEnchantment", at = @At("HEAD"), cancellable = true)
     private static void onEnchant(ItemStack stack, EnchantmentInstance instance, CallbackInfo ci) {
-        if (instance.enchantment instanceof BaseEnchantment baseEnchantment && baseEnchantment.isDisabled()) ci.cancel();
+        if (instance.enchantment instanceof BaseEnchantment && ((BaseEnchantment)instance.enchantment).isDisabled()) ci.cancel();
     }
 }

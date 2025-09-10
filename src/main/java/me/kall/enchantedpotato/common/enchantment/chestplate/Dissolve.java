@@ -10,6 +10,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,8 +25,10 @@ public class Dissolve extends BaseEnchantment {
     }
 
     public static void onPlayerHurt(@NotNull LivingDamageEvent event) {
-        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player && player.level() instanceof ServerLevel) {
-            int level = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.DISSOLVE.get());
+        if (!(event.getEntity() instanceof ServerPlayer)) return;
+        ServerPlayer player = (ServerPlayer) event.getEntity();
+        if (!event.isCanceled() && player.level instanceof ServerLevel) {
+            int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.DISSOLVE.get(), player.getItemBySlot(EquipmentSlot.CHEST));
             if (level == 0) return;
 
             float baseDamageReductionForExceededPart = DissolveConfig.BASE_DAMAGE_REDUCTION.get().floatValue();

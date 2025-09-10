@@ -3,7 +3,7 @@ package me.kall.enchantedpotato.common.network;
 import me.kall.enchantedpotato.client.renderer.PressurizedCollapseRenderer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 

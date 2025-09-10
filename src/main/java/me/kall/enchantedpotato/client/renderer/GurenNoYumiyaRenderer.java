@@ -3,10 +3,10 @@ package me.kall.enchantedpotato.client.renderer;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Random;
 import java.util.Set;
 
 public class GurenNoYumiyaRenderer extends AbstractRenderer {
@@ -37,7 +37,7 @@ public class GurenNoYumiyaRenderer extends AbstractRenderer {
         Level level = mc.level;
         if (level == null) return;
 
-        RandomSource random = level.random;
+        Random random = level.random;
         int particles = 3 + random.nextInt(3);
 
         for (int i = 0; i < particles; i++) {

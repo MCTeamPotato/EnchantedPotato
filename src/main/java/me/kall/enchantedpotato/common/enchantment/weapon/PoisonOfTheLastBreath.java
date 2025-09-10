@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.jetbrains.annotations.NotNull;
 
 public class PoisonOfTheLastBreath extends BaseEnchantment {
@@ -27,7 +28,7 @@ public class PoisonOfTheLastBreath extends BaseEnchantment {
 
     public static boolean has(@NotNull Player player) {
         Enchantment enchantment = ModEnchantments.POISON_OF_THE_LAST_BREATH.get();
-        int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
+        int level = Math.max(EnchantmentHelper.getItemEnchantmentLevel(enchantment, player.getOffhandItem()), EnchantmentHelper.getItemEnchantmentLevel(enchantment, player.getMainHandItem()));
         return level != 0;
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,10 +24,10 @@ public class MarkFromTheBeneath extends BaseEnchantment {
 
     public static void onPlayerDig(PlayerEvent.@NotNull BreakSpeed event) {
         if (!event.isCanceled()) {
-            Player player = event.getEntity();
+            Player player = event.getPlayer();
             double height = player.getY();
             Enchantment enchantment = ModEnchantments.MARK_FROM_THE_BENEATH.get();
-            int level = Math.max(player.getMainHandItem().getEnchantmentLevel(enchantment), player.getOffhandItem().getEnchantmentLevel(enchantment));
+            int level = Math.max(EnchantmentHelper.getItemEnchantmentLevel(enchantment, player.getMainHandItem()), EnchantmentHelper.getItemEnchantmentLevel(enchantment, player.getOffhandItem()));
             if (level == 0) return;
             double validBaseHeight = MarkFromTheBeneathConfig.VALID_BASE_MAX_HEIGHT.get();
             double gainedHeightPerLevel = MarkFromTheBeneathConfig.GAINED_BASE_HEIGHT_PER_LEVEL.get() * (double) (level - 1);

@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,14 +23,12 @@ public abstract class LivingEntityMixin extends Entity {
         super(entityType, level);
     }
 
-    @Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(DDD)V"))
+    @Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(FDD)V"))
     private void onKnockback(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (source.getEntity() instanceof Player player) {
+        if (source.getEntity() instanceof Player) {
+            Player player = (Player) source.getEntity();
             Enchantment enchantment = ModEnchantments.LAW_OF_INERTIA.get();
-            int enchantmentLevel = Math.max(
-                    player.getMainHandItem().getEnchantmentLevel(enchantment),
-                    player.getOffhandItem().getEnchantmentLevel(enchantment)
-            );
+            int enchantmentLevel = Math.max(EnchantmentHelper.getItemEnchantmentLevel(enchantment, player.getMainHandItem()), EnchantmentHelper.getItemEnchantmentLevel(enchantment, player.getOffhandItem()));
             if (enchantmentLevel == 0) return;
             this.getPersistentData().putFloat(LawOfInertia.MARK, amount);
         }
@@ -38,10 +37,10 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "push", at = @At("HEAD"))
     private void onPush(Entity entity, CallbackInfo ci) {
         float amount = this.getPersistentData().getFloat(LawOfInertia.MARK);
-        if (amount != 0.0F && this.level() instanceof ServerLevel && entity instanceof LivingEntity living) {
+        if (amount != 0.0F && this.level instanceof ServerLevel && entity instanceof LivingEntity) {
             float damage = amount / 4.0F;
             if (damage < 1.0F) damage = 1.0F;
-            living.hurt(this.damageSources().generic(), damage);
+            entity.hurt(DamageSource.GENERIC, damage);
         }
     }
 }

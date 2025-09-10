@@ -5,8 +5,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,16 +18,8 @@ public abstract class PlayerMixin extends LivingEntity {
         super(entityType, level);
     }
 
-    @Override
-    public boolean isPushedByFluid(FluidType type) {
-        if (this.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.LOTUS_IN_WATER.get()) != 0) {
-            return false;
-        }
-        return super.isPushedByFluid(type);
-    }
-
     @Inject(method = "isPushedByFluid", at = @At("HEAD"), cancellable = true)
     private void onCheckIsPushedByFluid(CallbackInfoReturnable<Boolean> cir) {
-        if (this.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(ModEnchantments.LOTUS_IN_WATER.get()) != 0) cir.setReturnValue(false);
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.LOTUS_IN_WATER.get(), this.getItemBySlot(EquipmentSlot.FEET)) != 0) cir.setReturnValue(false);
     }
 }

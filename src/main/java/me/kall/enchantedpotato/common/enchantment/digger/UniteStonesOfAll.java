@@ -3,6 +3,7 @@ package me.kall.enchantedpotato.common.enchantment.digger;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.common.config.UniteStonesOfAllConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -12,13 +13,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,16 +46,16 @@ public class UniteStonesOfAll extends BaseEnchantment {
         return UNITED_STONES.contains(state.getBlock());
     }
 
-    public static void onServerStarted(@NotNull ServerStartedEvent event) {
+    public static void onServerStarted(@NotNull FMLServerStartedEvent event) {
         event.getServer().execute(() -> {
             for (String string : UniteStonesOfAllConfig.UNITED_STONES.get()) {
-                ResourceLocation id = ResourceLocation.parse(string);
+                ResourceLocation id = ResourceLocation.tryParse(string);
                 Block block = ForgeRegistries.BLOCKS.getValue(id);
                 if (block == null) continue;
                 UNITED_STONES.add(block);
             }
             for (String string : UniteStonesOfAllConfig.QUARTZ_STONES.get()) {
-                ResourceLocation id = ResourceLocation.parse(string);
+                ResourceLocation id = ResourceLocation.tryParse(string);
                 Block block = ForgeRegistries.BLOCKS.getValue(id);
                 if (block == null) continue;
                 QUARTZ_STONES.add(block);
@@ -64,7 +64,8 @@ public class UniteStonesOfAll extends BaseEnchantment {
     }
 
     public static void handleBlockDrops(Level level, BlockPos pos, BlockState state, boolean hasSilkTouch) {
-        if (level instanceof ServerLevel serverLevel) {
+        if (level instanceof ServerLevel) {
+            ServerLevel serverLevel = (ServerLevel) level;
             Item mainDrop = hasSilkTouch ? Items.STONE : Items.COBBLESTONE;
 
             ItemEntity drop = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(mainDrop, 1));

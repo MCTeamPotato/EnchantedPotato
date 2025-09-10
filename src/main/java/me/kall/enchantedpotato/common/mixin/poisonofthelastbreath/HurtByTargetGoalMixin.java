@@ -18,6 +18,6 @@ public abstract class HurtByTargetGoalMixin extends TargetGoal {
 
     @Inject(method = "alertOthers", at = @At("HEAD"), cancellable = true)
     private void onAlertOthers(CallbackInfo ci) {
-        if (this.mob.getLastHurtByMob() instanceof Player player && PoisonOfTheLastBreath.has(player)) ci.cancel();
+        if (this.mob.getLastHurtByMob() instanceof Player && PoisonOfTheLastBreath.has((Player) this.mob.getLastHurtByMob())) ci.cancel();
     }
 }

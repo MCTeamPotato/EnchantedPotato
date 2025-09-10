@@ -28,10 +28,10 @@ public class LawOfInertia extends BaseEnchantment {
         return BaseEnchantment.canUseAsWeapon(stack) && super.canEnchant(stack);
     }
 
-    public static void onLivingTick(@NotNull LivingEvent.LivingTickEvent event) {
+    public static void onLivingTick(@NotNull LivingEvent.LivingUpdateEvent event) {
         if (event.isCanceled()) return;
-        LivingEntity entity = event.getEntity();
-        if (!(entity.level() instanceof ServerLevel)) return;
+        LivingEntity entity = event.getEntityLiving();
+        if (!(entity.level instanceof ServerLevel)) return;
         float damage = entity.getPersistentData().getFloat(MARK);
         if (damage == 0.0F) return;
 

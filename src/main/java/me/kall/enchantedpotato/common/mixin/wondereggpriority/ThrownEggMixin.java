@@ -6,6 +6,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.entity.projectile.ThrownEgg;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -19,8 +20,8 @@ public abstract class ThrownEggMixin extends ThrowableItemProjectile {
 
     @ModifyConstant(method = "onHitEntity", constant = @Constant(floatValue = 0.0F))
     private float onHit(float constant) {
-        if (this.getOwner() instanceof Player player) {
-            int level = player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(ModEnchantments.WONDER_EGG_PRIORITY.get());
+        if (this.getOwner() instanceof Player) {
+            int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.WONDER_EGG_PRIORITY.get(), ((Player) this.getOwner()).getItemBySlot(EquipmentSlot.CHEST));
             if (level > 0) {
                 constant = (float) level * 0.5F;
             }

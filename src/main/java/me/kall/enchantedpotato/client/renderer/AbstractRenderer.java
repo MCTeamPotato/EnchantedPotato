@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.TickEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,10 +34,8 @@ public abstract class AbstractRenderer {
         }
     }
 
-    public void onRenderLevelStage(@NotNull RenderLevelStageEvent event) {
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS) return;
-
-        PoseStack poseStack = event.getPoseStack();
+    public void onRenderLevelStage(@NotNull RenderWorldLastEvent event) {
+        PoseStack poseStack = event.getMatrixStack();
 
         for (RenderEffect effect : getActiveEffects()) {
             renderCircle(poseStack, effect.getPosition(), effect.getRadius(), effect.getAge());

@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,17 +29,17 @@ public class Mercy extends BaseEnchantment {
     }
 
     public static void onLivingDamage(@NotNull LivingDamageEvent event) {
-        LivingEntity attacked = event.getEntity();
-        if (!event.isCanceled() && attacked.level() instanceof ServerLevel) {
+        LivingEntity attacked = event.getEntityLiving();
+        if (!event.isCanceled() && attacked.level instanceof ServerLevel) {
             LivingEntity attacker = null;
-            if (event.getSource().getEntity() instanceof LivingEntity sourceEntity) {
-                attacker = sourceEntity;
-            } else if (event.getSource().getDirectEntity() instanceof LivingEntity sourceDirectEntity) {
-                attacker = sourceDirectEntity;
+            if (event.getSource().getEntity() instanceof LivingEntity) {
+                attacker = (LivingEntity) event.getSource().getEntity();
+            } else if (event.getSource().getDirectEntity() instanceof LivingEntity) {
+                attacker = (LivingEntity) event.getSource().getDirectEntity();
             }
             if (attacker == null) return;
             Enchantment enchantment = ModEnchantments.MERCY.get();
-            if (Math.max(attacker.getMainHandItem().getEnchantmentLevel(enchantment), attacker.getOffhandItem().getEnchantmentLevel(enchantment)) != 0) {
+            if (Math.max(EnchantmentHelper.getItemEnchantmentLevel(enchantment, attacker.getOffhandItem()), EnchantmentHelper.getItemEnchantmentLevel(enchantment, attacker.getMainHandItem())) != 0) {
                 float health = attacked.getHealth();
                 float damage = event.getAmount();
                 if (health < damage) damage = health - 1.0F;

@@ -2,17 +2,17 @@ package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
 import me.kall.enchantedpotato.common.registry.ModPackets;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PacketDistributor;
+import net.minecraftforge.fml.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
@@ -44,7 +44,7 @@ public class GurenNoYumiya extends BaseEnchantment {
             GurenNoYumiyaPacket packet = new GurenNoYumiyaPacket(pos, radius);
             ModPackets.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> arrow), packet);
 
-            arrow.level()
+            arrow.level
                     .getEntitiesOfClass(LivingEntity.class, box, filter)
                     .forEach(entity -> {
                         if (entity.isOnFire()) {

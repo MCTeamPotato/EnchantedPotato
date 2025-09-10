@@ -2,17 +2,23 @@ package me.kall.enchantedpotato.common.registry;
 
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.enchantment.boots.*;
-import me.kall.enchantedpotato.common.enchantment.chestplate.*;
-import me.kall.enchantedpotato.common.enchantment.digger.*;
+import me.kall.enchantedpotato.common.enchantment.chestplate.Dissolve;
+import me.kall.enchantedpotato.common.enchantment.chestplate.NatureBlessing;
+import me.kall.enchantedpotato.common.enchantment.chestplate.WonderEggPriority;
+import me.kall.enchantedpotato.common.enchantment.digger.MarkFromTheBeneath;
+import me.kall.enchantedpotato.common.enchantment.digger.MineCarve;
+import me.kall.enchantedpotato.common.enchantment.digger.UniteStonesOfAll;
 import me.kall.enchantedpotato.common.enchantment.helmet.OceanHued;
 import me.kall.enchantedpotato.common.enchantment.leggings.Untouchable;
 import me.kall.enchantedpotato.common.enchantment.weapon.*;
-import me.kall.enchantedpotato.common.enchantment.weapon.bow.*;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.GraceOfGungnir;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.GurenNoYumiya;
+import me.kall.enchantedpotato.common.enchantment.weapon.bow.PressurizedCollapse;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, EnchantedPotato.MOD_ID);

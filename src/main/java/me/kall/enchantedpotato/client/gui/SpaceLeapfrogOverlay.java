@@ -3,7 +3,7 @@ package me.kall.enchantedpotato.client.gui;
 import me.kall.enchantedpotato.client.config.ClientConfig;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 
-public class SpaceLeapfrogOverlay extends AbstractOverlay{
+public class SpaceLeapfrogOverlay extends AbstractOverlay {
     @Override
     public String getTranslateKey() {
         return "info.enchantedpotato.space_leapfrog";

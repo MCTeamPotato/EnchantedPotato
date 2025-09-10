@@ -9,6 +9,7 @@
   },
   "minVersion": "0.8",
   "client": [
+    "client.ForgeIngameGuiMixin"
   ],
   "mixins": [
     "armorbreaking.LivingEntityMixin",
@@ -28,6 +29,7 @@
     "poisonofthelastbreath.VillagerMixin",
     "poisonofthelastbreath.ZombifiedPiglinMixin",
     "pressurizedcollapse.AbstractArrowMixin",
+    "runlikehell.MobMixin",
     "unitestonesofall.BlockMixin",
     "wondereggpriority.ThrownEggMixin"
   ],

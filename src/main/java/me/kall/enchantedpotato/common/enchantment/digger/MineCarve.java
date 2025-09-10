@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,25 +41,28 @@ public class MineCarve extends BaseEnchantment {
     }
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
-        if (!event.isCanceled() && event.getSource().getEntity() instanceof Player player && player.level() instanceof ServerLevel) {
-            Enchantment mineCarve = ModEnchantments.MINE_CARVE.get();
-            int enchantmentLevel = Math.max(player.getMainHandItem().getEnchantmentLevel(mineCarve), player.getOffhandItem().getEnchantmentLevel(mineCarve));
-            if (enchantmentLevel > 0) {
-                AttributeInstance armor = event.getEntity().getAttribute(Attributes.ARMOR);
-                if (armor == null) return;
+        if (event.getSource().getEntity() instanceof Player) {
+            Player player = (Player) event.getSource().getEntity();
+            if (!event.isCanceled() && player.level instanceof ServerLevel) {
+                Enchantment mineCarve = ModEnchantments.MINE_CARVE.get();
+                int enchantmentLevel = Math.max(EnchantmentHelper.getItemEnchantmentLevel(mineCarve, player.getMainHandItem()), EnchantmentHelper.getItemEnchantmentLevel(mineCarve, player.getOffhandItem()));
+                if (enchantmentLevel > 0) {
+                    AttributeInstance armor = event.getEntityLiving().getAttribute(Attributes.ARMOR);
+                    if (armor == null) return;
 
-                double amount = MineCarveConfig.BASE_ARMOR_REDUCTION.get() + MineCarveConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
+                    double amount = MineCarveConfig.BASE_ARMOR_REDUCTION.get() + MineCarveConfig.GAINED_ARMOR_REDUCTION_PER_LEVEL.get() * (double) (enchantmentLevel - 1);
 
-                UUID uniqueId = UUID.randomUUID();
-                while (armor.getModifier(uniqueId) != null) uniqueId = UUID.randomUUID();
+                    UUID uniqueId = UUID.randomUUID();
+                    while (armor.getModifier(uniqueId) != null) uniqueId = UUID.randomUUID();
 
-                AttributeModifier attributeModifier = new AttributeModifier(uniqueId, "mine_carve_modifier", -amount, AttributeModifier.Operation.ADDITION);
+                    AttributeModifier attributeModifier = new AttributeModifier(uniqueId, "mine_carve_modifier", -amount, AttributeModifier.Operation.ADDITION);
 
-                for (AttributeModifier modifier : armor.getModifiers()) {
-                    if (modifier.getName().equals(attributeModifier.getName())) armor.removeModifier(modifier);
+                    for (AttributeModifier modifier : armor.getModifiers()) {
+                        if (modifier.getName().equals(attributeModifier.getName())) armor.removeModifier(modifier);
+                    }
+
+                    armor.addPermanentModifier(attributeModifier);
                 }
-
-                armor.addPermanentModifier(attributeModifier);
             }
         }
     }

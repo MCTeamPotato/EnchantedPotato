@@ -3,7 +3,7 @@ package me.kall.enchantedpotato.common.network;
 import me.kall.enchantedpotato.common.enchantment.boots.SpaceLeapfrog;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 

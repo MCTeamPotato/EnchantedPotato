@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class VillagerMixin {
     @Inject(method = "tellWitnessesThatIWasMurdered", at = @At("HEAD"), cancellable = true)
     private void onTell(Entity murderer, CallbackInfo ci) {
-        if (murderer instanceof Player player && PoisonOfTheLastBreath.has(player)) {
+        if (murderer instanceof Player && PoisonOfTheLastBreath.has((Player) murderer)) {
             ci.cancel();
         }
     }

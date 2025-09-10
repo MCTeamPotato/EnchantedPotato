@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PiglinAiMixin {
     @Inject(method = "broadcastAngerTarget", at = @At("HEAD"), cancellable = true)
     private static void onAnger(AbstractPiglin piglin, LivingEntity target, CallbackInfo ci) {
-        if (target instanceof Player player && PoisonOfTheLastBreath.has(player)) ci.cancel();
+        if (target instanceof Player && PoisonOfTheLastBreath.has((Player) target)) ci.cancel();
     }
 }

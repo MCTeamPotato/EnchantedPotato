@@ -4,13 +4,13 @@ import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.client.config.ClientConfig;
 import me.kall.enchantedpotato.common.config.*;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
 import org.jetbrains.annotations.NotNull;
 
 public class ModConfigs {
-    public static void register(@NotNull FMLJavaModLoadingContext context) {
+    public static void register(@NotNull ModLoadingContext context) {
         context.registerConfig(ModConfig.Type.COMMON, RunLikeHellConfig.INSTANCE, EnchantedPotato.MOD_ID + "/RunLikeHell.toml");
         context.registerConfig(ModConfig.Type.COMMON, BlackParadeConfig.INSTANCE, EnchantedPotato.MOD_ID + "/BlackParade.toml");
         context.registerConfig(ModConfig.Type.COMMON, UntouchableConfig.INSTANCE, EnchantedPotato.MOD_ID + "/Untouchable.toml");

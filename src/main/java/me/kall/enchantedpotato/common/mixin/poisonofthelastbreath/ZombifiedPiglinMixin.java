@@ -19,7 +19,7 @@ public abstract class ZombifiedPiglinMixin extends Zombie {
 
     @Inject(method = "alertOthers", at = @At("HEAD"), cancellable = true)
     private void onAlertOthers(CallbackInfo ci) {
-        if (this.getTarget() instanceof Player player && PoisonOfTheLastBreath.has(player)) {
+        if (this.getTarget() instanceof Player && PoisonOfTheLastBreath.has((Player) this.getTarget())) {
             ci.cancel();
         }
     }

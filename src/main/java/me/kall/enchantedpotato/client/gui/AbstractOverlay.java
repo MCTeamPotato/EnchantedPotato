@@ -1,13 +1,12 @@
 package me.kall.enchantedpotato.client.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.minecraft.network.chat.TranslatableComponent;
 
-public abstract class AbstractOverlay implements IGuiOverlay {
+public abstract class AbstractOverlay {
 
     public abstract String getTranslateKey();
 
@@ -19,8 +18,7 @@ public abstract class AbstractOverlay implements IGuiOverlay {
 
     public abstract boolean isTicks();
 
-    @Override
-    public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
+    public void render(PoseStack poseStack) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.options.hideGui) return;
 
@@ -28,9 +26,9 @@ public abstract class AbstractOverlay implements IGuiOverlay {
 
         if (value > 0) {
             double displayNumber = isTicks() ? Math.ceil(value / 20.0) : value;
-            Component text = Component.translatable(getTranslateKey(), displayNumber);
-            int yPos = screenHeight - getYOffSet();
-            guiGraphics.drawString(mc.font, text, getX(), yPos, 0xFFA500, true);
+            Component text = new TranslatableComponent(getTranslateKey(), displayNumber);
+            int yPos = mc.getWindow().getGuiScaledHeight() - getYOffSet();
+            mc.font.drawShadow(poseStack, text, getX(), yPos, 0xFFA500);
         }
     }
 }

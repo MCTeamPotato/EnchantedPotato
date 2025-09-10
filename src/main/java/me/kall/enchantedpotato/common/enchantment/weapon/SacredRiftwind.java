@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,11 +23,12 @@ public class SacredRiftwind extends BaseEnchantment {
 
     public static void onLivingHurt(@NotNull LivingHurtEvent event) {
         if (event.isCanceled()) return;
-        LivingEntity entity = event.getEntity();
-        if (entity.level().isClientSide()) return;
-        if (event.getSource().getEntity() instanceof LivingEntity source) {
+        LivingEntity entity = event.getEntityLiving();
+        if (entity.level.isClientSide()) return;
+        if (event.getSource().getEntity() instanceof LivingEntity) {
+            LivingEntity source = (LivingEntity) event.getSource().getEntity();
             Enchantment enchantment = ModEnchantments.SACRED_RIFTWIND.get();
-            int level = Math.max(source.getMainHandItem().getEnchantmentLevel(enchantment), source.getOffhandItem().getEnchantmentLevel(enchantment));
+            int level = Math.max(EnchantmentHelper.getItemEnchantmentLevel(enchantment, source.getOffhandItem()), EnchantmentHelper.getItemEnchantmentLevel(enchantment, source.getMainHandItem()));
             if (level != 0) {
                 float healthPercent = 1.0F - (source.getHealth() / source.getMaxHealth());
                 float bonus = (float) (level * 0.1D * healthPercent);
