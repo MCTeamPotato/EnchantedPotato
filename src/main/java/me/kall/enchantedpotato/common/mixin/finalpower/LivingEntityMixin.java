@@ -20,7 +20,7 @@ public class LivingEntityMixin {
 
     @Inject(method = "getDamageAfterMagicAbsorb", at = @At("HEAD"), cancellable = true)
     private void onAbsorbMagic(DamageSource damageSource, float damageAmount, CallbackInfoReturnable<Float> cir) {
-        if (damageSource.getEntity() instanceof LivingEntity entity && FinalPower.entityHasFinalPower(entity)) {
+        if (damageSource.getEntity() instanceof LivingEntity && FinalPower.entityHasFinalPower((LivingEntity) damageSource.getEntity())) {
             cir.setReturnValue(damageAmount);
         }
     }
