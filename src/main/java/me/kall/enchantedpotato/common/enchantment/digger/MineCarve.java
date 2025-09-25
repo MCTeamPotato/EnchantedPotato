@@ -78,7 +78,6 @@ public class MineCarve extends BaseEnchantment {
                             armor.removeModifier(attributeModifier);
                         } catch (Throwable ignored) {
                         }
-                        System.out.println("Removed modifier on " + event.getEntity());
                     };
 
                     TASKS.put(new Pair<>(ticks, task), 0);
