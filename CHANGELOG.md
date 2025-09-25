@@ -1,2 +1,3 @@
 # 1.8.3
-- Fix DisableConfig (1.21.1 only)
+- MineCarve's effect now has duration ticks
+- Final Power now ignores enchantments and potion effects

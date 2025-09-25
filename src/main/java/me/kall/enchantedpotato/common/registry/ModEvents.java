@@ -34,6 +34,7 @@ public class ModEvents {
         bus.addListener(EventPriority.LOWEST, OceanHued::onLivingHurt);
         bus.addListener(EventPriority.LOWEST, OceanHued::onPlayerDeath);
         bus.addListener(EventPriority.LOWEST, MineCarve::onLivingHurt);
+        bus.addListener(MineCarve::onServerTick);
         bus.addListener(UniteStonesOfAll::onServerStarted);
         bus.addListener(EventPriority.LOWEST, UniteStonesOfAll::onBlockBreak);
         bus.addListener(EventPriority.LOWEST, LawOfInertia::onLivingTick);
