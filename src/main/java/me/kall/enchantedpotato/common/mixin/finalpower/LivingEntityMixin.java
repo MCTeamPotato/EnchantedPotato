@@ -18,6 +18,13 @@ public class LivingEntityMixin {
         }
     }
 
+    @Inject(method = "getDamageAfterMagicAbsorb", at = @At("HEAD"), cancellable = true)
+    private void onAbsorbMagic(DamageSource damageSource, float damageAmount, CallbackInfoReturnable<Float> cir) {
+        if (damageSource.getEntity() instanceof LivingEntity entity && FinalPower.entityHasFinalPower(entity)) {
+            cir.setReturnValue(damageAmount);
+        }
+    }
+
     @Inject(method = "isDamageSourceBlocked", at = @At("HEAD"), cancellable = true)
     private void onCheckShield(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         if (FinalPowerConfig.DISABLE_SHIELD.get() && source.getEntity() instanceof LivingEntity && FinalPower.entityHasFinalPower((LivingEntity) source.getEntity())) {
