@@ -3,12 +3,13 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.SpaceLeapfrogConfig;
 import me.kall.enchantedpotato.common.config.disable.DisableConfig;
+import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
-import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -63,16 +64,22 @@ public class SpaceLeapfrog extends BaseEnchantment {
     }
 
     private static void validatePos(@NotNull BlockState targetBlock, ServerLevel level, BlockPos.MutableBlockPos targetPos) {
+        int minY = level.getMinBuildHeight();
+        int maxY = level.getMaxBuildHeight();
+
         if (targetBlock.isAir()) {
-            if (targetPos.getY() <= level.getMinBuildHeight()) targetPos.setY(60);
-            while (level.getBlockState(targetPos.below()).isAir()) {
+            if (targetPos.getY() <= minY) {
+                targetPos.setY(60);
+            }
+
+            while (level.getBlockState(targetPos.below()).isAir() && targetPos.getY() > minY) {
                 targetPos.move(0, -1, 0);
             }
             targetPos.move(0, 1, 0);
         }
 
-        if (level.getBlockState(targetPos).getFluidState().isEmpty()) {
-            while (!level.getBlockState(targetPos.below()).isAir()) {
+        if (!level.getBlockState(targetPos).getFluidState().isEmpty()) {
+            while (!level.getBlockState(targetPos).isAir() && targetPos.getY() < maxY) {
                 targetPos.move(0, 1, 0);
             }
         }
