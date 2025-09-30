@@ -65,16 +65,22 @@ public class SpaceLeapfrog extends BaseEnchantment {
 
     @SuppressWarnings("deprecation")
     private static void validatePos(@NotNull BlockState targetBlock, ServerLevel level, BlockPos.MutableBlockPos targetPos) {
+        int minY = 0;
+        int maxY = level.getMaxBuildHeight();
+
         if (targetBlock.isAir()) {
-            if (targetPos.getY() <= 0) targetPos.setY(60);
-            while (level.getBlockState(targetPos.below()).isAir()) {
+            if (targetPos.getY() <= minY) {
+                targetPos.setY(60);
+            }
+
+            while (level.getBlockState(targetPos.below()).isAir() && targetPos.getY() > minY) {
                 targetPos.move(0, -1, 0);
             }
             targetPos.move(0, 1, 0);
         }
 
-        if (level.getBlockState(targetPos).getFluidState().isEmpty()) {
-            while (!level.getBlockState(targetPos.below()).isAir()) {
+        if (!level.getBlockState(targetPos).getFluidState().isEmpty()) {
+            while (!level.getBlockState(targetPos).isAir() && targetPos.getY() < maxY) {
                 targetPos.move(0, 1, 0);
             }
         }
