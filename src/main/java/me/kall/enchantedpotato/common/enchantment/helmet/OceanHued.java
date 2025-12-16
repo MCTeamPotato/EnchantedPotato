@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.helmet;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.OceanHuedConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -26,11 +25,6 @@ import java.util.function.Predicate;
 
 public class OceanHued extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new OceanHued();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.OCEAN_HUED.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

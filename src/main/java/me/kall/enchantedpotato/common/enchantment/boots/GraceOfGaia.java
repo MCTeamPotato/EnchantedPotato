@@ -1,7 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.config.GraceOfGaiaConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -19,11 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class GraceOfGaia extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new GraceOfGaia();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.GRACE_OF_GAIA.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

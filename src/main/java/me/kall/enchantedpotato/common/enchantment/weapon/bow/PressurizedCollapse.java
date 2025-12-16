@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import me.kall.enchantedpotato.common.registry.ModTags;
@@ -23,11 +22,6 @@ import java.util.List;
 
 public class PressurizedCollapse extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new PressurizedCollapse();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.PRESSURIZED_COLLAPSE.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -18,10 +17,6 @@ import org.jetbrains.annotations.NotNull;
 public class Mercy extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new Mercy();
 
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.MERCY.get();
-    }
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
         return items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE);

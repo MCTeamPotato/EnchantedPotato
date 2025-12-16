@@ -12,7 +12,6 @@
   ],
   "mixins": [
     "armorbreaking.LivingEntityMixin",
-    "disable.ItemStackMixin",
     "finalpower.LivingEntityMixin",
     "graceofgungnir.AbstractArrowMixin",
     "gurennoyumiya.AbstractArrowMixin",

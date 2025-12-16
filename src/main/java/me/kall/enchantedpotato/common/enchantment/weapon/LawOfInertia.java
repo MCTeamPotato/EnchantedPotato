@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -19,11 +18,6 @@ import org.jetbrains.annotations.NotNull;
 public class LawOfInertia extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new LawOfInertia();
     public static final String MARK = "InertiaKnockbackDamage";
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.LAW_OF_INERTIA.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

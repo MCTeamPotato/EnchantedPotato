@@ -1,7 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.RippleOfDeathConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -23,11 +22,6 @@ import java.util.function.Predicate;
 
 public class RippleOfDeath extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new RippleOfDeath();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.RIPPLE_OF_DEATH.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.leggings;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.UntouchableConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -26,11 +25,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class Untouchable extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new Untouchable();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.UNTOUCHABLE.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

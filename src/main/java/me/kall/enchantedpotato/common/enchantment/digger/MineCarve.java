@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.common.config.MineCarveConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -28,11 +27,6 @@ import org.jetbrains.annotations.NotNull;
 public class MineCarve extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new MineCarve();
     private static final Object2IntMap<IntObjectPair<Runnable>> TASKS = new Object2IntOpenHashMap<>();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.MINE_CARVE.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

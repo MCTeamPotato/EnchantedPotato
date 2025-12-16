@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -15,11 +14,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class PoisonOfTheLastBreath extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new PoisonOfTheLastBreath();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.POISON_OF_THE_LAST_BREATH.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

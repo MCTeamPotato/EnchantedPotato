@@ -3,7 +3,6 @@ package me.kall.enchantedpotato.common.registry;
 import me.kall.enchantedpotato.EnchantedPotato;
 import me.kall.enchantedpotato.client.config.ClientConfig;
 import me.kall.enchantedpotato.common.config.*;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLLoader;
@@ -30,8 +29,6 @@ public class ModConfigs {
         container.registerConfig(ModConfig.Type.COMMON, MendingMirrorConfig.INSTANCE, EnchantedPotato.MOD_ID + "-MendingMirror.toml");
         container.registerConfig(ModConfig.Type.COMMON, FinalPowerConfig.INSTANCE, EnchantedPotato.MOD_ID + "-FinalPower.toml");
         container.registerConfig(ModConfig.Type.COMMON, SpaceLeapfrogConfig.INSTANCE, EnchantedPotato.MOD_ID + "-SpaceLeapfrog.toml");
-
-        DisableConfig.init();
 
         if (FMLLoader.getDist().isClient()) {
             container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.INSTANCE, EnchantedPotato.MOD_ID + "-client-Rendering.toml");

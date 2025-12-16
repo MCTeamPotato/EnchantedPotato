@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.ArmorBreakingConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -22,11 +21,6 @@ public class ArmorBreaking extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new ArmorBreaking();
 
     public static final String ARMOR_BREAKING_KEY = "ArmorBreakingLevel";
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.ARMOR_BREAKING.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

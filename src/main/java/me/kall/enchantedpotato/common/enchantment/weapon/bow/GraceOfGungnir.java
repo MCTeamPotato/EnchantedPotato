@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import me.kall.enchantedpotato.common.registry.ModTags;
@@ -28,11 +27,6 @@ import java.util.function.Predicate;
 
 public class GraceOfGungnir extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new GraceOfGungnir();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.GRACE_OF_GUNGNIR.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

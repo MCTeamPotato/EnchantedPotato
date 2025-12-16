@@ -1,7 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment.weapon.bow;
 
 import me.kall.enchantedpotato.common.config.GurenNoYumiyaConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.network.GurenNoYumiyaPacket;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
@@ -26,11 +25,6 @@ public class GurenNoYumiya extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new GurenNoYumiya();
 
     public static final String GUREN_NO_YUMIYA_KEY = "GurenNoYumiyaLevel";
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.GUREN_NO_YUMIYA.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

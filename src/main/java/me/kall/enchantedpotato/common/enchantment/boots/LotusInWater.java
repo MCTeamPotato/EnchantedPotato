@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.boots;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -13,11 +12,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 public class LotusInWater extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new LotusInWater();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.LOTUS_IN_WATER.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

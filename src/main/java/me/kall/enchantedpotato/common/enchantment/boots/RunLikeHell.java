@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.RunLikeHellConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -26,11 +25,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class RunLikeHell extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new RunLikeHell();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.RUN_LIKE_HELL.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

@@ -1,7 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.config.BlackParadeConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -21,11 +20,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlackParade extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new BlackParade();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.BLACK_PARADE.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(@NotNull HolderGetter<Item> items) {

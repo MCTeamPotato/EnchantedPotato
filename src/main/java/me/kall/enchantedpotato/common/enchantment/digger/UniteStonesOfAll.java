@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.digger;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.kall.enchantedpotato.common.config.UniteStonesOfAllConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
@@ -33,11 +32,6 @@ public class UniteStonesOfAll extends BaseEnchantment {
 
     private static final Set<Block> UNITED_STONES = new ObjectOpenHashSet<>();
     private static final Set<Block> QUARTZ_STONES = new ObjectOpenHashSet<>();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.UNITE_STONES_OF_ALL.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.chestplate;
 
 import me.kall.enchantedpotato.common.api.ExtendedLivingEntity;
 import me.kall.enchantedpotato.common.config.NatureBlessingConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -26,11 +25,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class NatureBlessing extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new NatureBlessing();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.NATURE_BLESSING.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

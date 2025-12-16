@@ -1,7 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment.digger;
 
 import me.kall.enchantedpotato.common.config.MarkFromTheBeneathConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -17,11 +16,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class MarkFromTheBeneath extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new MarkFromTheBeneath();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.MARK_FROM_THE_BENEATH.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

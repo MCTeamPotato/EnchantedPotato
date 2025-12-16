@@ -1,7 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment;
 
-import me.kall.enchantedpotato.common.registry.ModEnchantments;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
@@ -21,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseEnchantment {
-    public abstract boolean isDisabled();
     public abstract HolderSet<Item> supportedItems(HolderGetter<Item> items);
     public abstract Rarity rarity();
     public abstract Enchantment.Cost dynamicCost();
@@ -54,10 +51,6 @@ public abstract class BaseEnchantment {
     @Contract(value = "_, _ -> new", pure = true)
     public static Enchantment.@NotNull Cost cost(int base, int perLevelAboveFirst) {
         return new Enchantment.Cost(base, perLevelAboveFirst);
-    }
-
-    public static @Nullable BaseEnchantment getBase(@NotNull Holder<Enchantment> enchantment) {
-        return ModEnchantments.REGISTERED.get(enchantment.unwrapKey().orElseThrow().location());
     }
 
     public static void removeEnchantment(@NotNull ItemStack stack, Enchantment enchantment) {

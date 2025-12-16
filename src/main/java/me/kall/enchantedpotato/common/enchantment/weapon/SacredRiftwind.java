@@ -1,6 +1,5 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.HolderGetter;
@@ -16,11 +15,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class SacredRiftwind extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new SacredRiftwind();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.SACRED_RIFTWIND.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

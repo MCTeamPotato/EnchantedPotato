@@ -2,7 +2,6 @@ package me.kall.enchantedpotato.common.enchantment.boots;
 
 import me.kall.enchantedpotato.common.api.ExtendedPlayer;
 import me.kall.enchantedpotato.common.config.SpaceLeapfrogConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
 import net.minecraft.core.BlockPos;
@@ -23,11 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpaceLeapfrog extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new SpaceLeapfrog();
-
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.SPACE_LEAPFROG.get();
-    }
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {

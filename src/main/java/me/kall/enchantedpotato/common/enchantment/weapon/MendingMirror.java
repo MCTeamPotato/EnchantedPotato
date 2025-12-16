@@ -1,7 +1,6 @@
 package me.kall.enchantedpotato.common.enchantment.weapon;
 
 import me.kall.enchantedpotato.common.config.MendingMirrorConfig;
-import me.kall.enchantedpotato.common.config.json.DisableConfig;
 import me.kall.enchantedpotato.common.data.MendingMirrorData;
 import me.kall.enchantedpotato.common.enchantment.BaseEnchantment;
 import me.kall.enchantedpotato.common.registry.ModEnchantments;
@@ -30,10 +29,7 @@ import java.util.UUID;
 
 public class MendingMirror extends BaseEnchantment {
     public static final BaseEnchantment INSTANCE = new MendingMirror();
-    @Override
-    public boolean isDisabled() {
-        return DisableConfig.MENDING_MIRROR.get();
-    }
+
 
     @Override
     public HolderSet<Item> supportedItems(HolderGetter<Item> items) {
