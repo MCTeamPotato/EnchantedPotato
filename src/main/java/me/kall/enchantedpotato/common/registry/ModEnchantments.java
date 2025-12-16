@@ -17,48 +17,28 @@ import me.kall.enchantedpotato.common.enchantment.weapon.bow.GraceOfGungnir;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.GurenNoYumiya;
 import me.kall.enchantedpotato.common.enchantment.weapon.bow.PressurizedCollapse;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.EnchantmentTagsProvider;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class ModEnchantments {
     private static final EnchantmentRegister REGISTER = new EnchantmentRegister();
     public static final Map<ResourceLocation, BaseEnchantment> REGISTERED = new Object2ObjectOpenHashMap<>();
-
-    static {
-        REGISTERED.put(BlackParade.INSTANCE.key().location(), BlackParade.INSTANCE);
-        REGISTERED.put(GraceOfGaia.INSTANCE.key().location(), GraceOfGaia.INSTANCE);
-        REGISTERED.put(LotusInWater.INSTANCE.key().location(), LotusInWater.INSTANCE);
-        REGISTERED.put(RunLikeHell.INSTANCE.key().location(), RunLikeHell.INSTANCE);
-        REGISTERED.put(SpaceLeapfrog.INSTANCE.key().location(), SpaceLeapfrog.INSTANCE);
-        REGISTERED.put(Dissolve.INSTANCE.key().location(), Dissolve.INSTANCE);
-        REGISTERED.put(NatureBlessing.INSTANCE.key().location(), NatureBlessing.INSTANCE);
-        REGISTERED.put(WonderEggPriority.INSTANCE.key().location(), WonderEggPriority.INSTANCE);
-        REGISTERED.put(MarkFromTheBeneath.INSTANCE.key().location(), MarkFromTheBeneath.INSTANCE);
-        REGISTERED.put(MineCarve.INSTANCE.key().location(), MineCarve.INSTANCE);
-        REGISTERED.put(UniteStonesOfAll.INSTANCE.key().location(), UniteStonesOfAll.INSTANCE);
-        REGISTERED.put(OceanHued.INSTANCE.key().location(), OceanHued.INSTANCE);
-        REGISTERED.put(Untouchable.INSTANCE.key().location(), Untouchable.INSTANCE);
-        REGISTERED.put(GraceOfGungnir.INSTANCE.key().location(), GraceOfGungnir.INSTANCE);
-        REGISTERED.put(GurenNoYumiya.INSTANCE.key().location(), GurenNoYumiya.INSTANCE);
-        REGISTERED.put(PressurizedCollapse.INSTANCE.key().location(), PressurizedCollapse.INSTANCE);
-        REGISTERED.put(ArmorBreaking.INSTANCE.key().location(), ArmorBreaking.INSTANCE);
-        REGISTERED.put(CaressingMoonlight.INSTANCE.key().location(), CaressingMoonlight.INSTANCE);
-        REGISTERED.put(FinalPower.INSTANCE.key().location(), FinalPower.INSTANCE);
-        REGISTERED.put(LawOfInertia.INSTANCE.key().location(), LawOfInertia.INSTANCE);
-        REGISTERED.put(LoRATrainer.INSTANCE.key().location(), LoRATrainer.INSTANCE);
-        REGISTERED.put(MendingMirror.INSTANCE.key().location(), MendingMirror.INSTANCE);
-        REGISTERED.put(Mercy.INSTANCE.key().location(), Mercy.INSTANCE);
-        REGISTERED.put(PoisonOfTheLastBreath.INSTANCE.key().location(), PoisonOfTheLastBreath.INSTANCE);
-        REGISTERED.put(RippleOfDeath.INSTANCE.key().location(), RippleOfDeath.INSTANCE);
-        REGISTERED.put(SacredRiftwind.INSTANCE.key().location(), SacredRiftwind.INSTANCE);
-    }
 
     public static final ResourceKey<Enchantment> RUN_LIKE_HELL;
     public static final ResourceKey<Enchantment> BLACK_PARADE;
@@ -116,6 +96,36 @@ public class ModEnchantments {
         SPACE_LEAPFROG = REGISTER.register("space_leapfrog");
     }
 
+    static {
+        REGISTERED.put(BlackParade.INSTANCE.key().location(), BlackParade.INSTANCE);
+        REGISTERED.put(GraceOfGaia.INSTANCE.key().location(), GraceOfGaia.INSTANCE);
+        REGISTERED.put(LotusInWater.INSTANCE.key().location(), LotusInWater.INSTANCE);
+        REGISTERED.put(RunLikeHell.INSTANCE.key().location(), RunLikeHell.INSTANCE);
+        REGISTERED.put(SpaceLeapfrog.INSTANCE.key().location(), SpaceLeapfrog.INSTANCE);
+        REGISTERED.put(Dissolve.INSTANCE.key().location(), Dissolve.INSTANCE);
+        REGISTERED.put(NatureBlessing.INSTANCE.key().location(), NatureBlessing.INSTANCE);
+        REGISTERED.put(WonderEggPriority.INSTANCE.key().location(), WonderEggPriority.INSTANCE);
+        REGISTERED.put(MarkFromTheBeneath.INSTANCE.key().location(), MarkFromTheBeneath.INSTANCE);
+        REGISTERED.put(MineCarve.INSTANCE.key().location(), MineCarve.INSTANCE);
+        REGISTERED.put(UniteStonesOfAll.INSTANCE.key().location(), UniteStonesOfAll.INSTANCE);
+        REGISTERED.put(OceanHued.INSTANCE.key().location(), OceanHued.INSTANCE);
+        REGISTERED.put(Untouchable.INSTANCE.key().location(), Untouchable.INSTANCE);
+        REGISTERED.put(GraceOfGungnir.INSTANCE.key().location(), GraceOfGungnir.INSTANCE);
+        REGISTERED.put(GurenNoYumiya.INSTANCE.key().location(), GurenNoYumiya.INSTANCE);
+        REGISTERED.put(PressurizedCollapse.INSTANCE.key().location(), PressurizedCollapse.INSTANCE);
+        REGISTERED.put(ArmorBreaking.INSTANCE.key().location(), ArmorBreaking.INSTANCE);
+        REGISTERED.put(CaressingMoonlight.INSTANCE.key().location(), CaressingMoonlight.INSTANCE);
+        REGISTERED.put(FinalPower.INSTANCE.key().location(), FinalPower.INSTANCE);
+        REGISTERED.put(LawOfInertia.INSTANCE.key().location(), LawOfInertia.INSTANCE);
+        REGISTERED.put(LoRATrainer.INSTANCE.key().location(), LoRATrainer.INSTANCE);
+        REGISTERED.put(MendingMirror.INSTANCE.key().location(), MendingMirror.INSTANCE);
+        REGISTERED.put(Mercy.INSTANCE.key().location(), Mercy.INSTANCE);
+        REGISTERED.put(PoisonOfTheLastBreath.INSTANCE.key().location(), PoisonOfTheLastBreath.INSTANCE);
+        REGISTERED.put(RippleOfDeath.INSTANCE.key().location(), RippleOfDeath.INSTANCE);
+        REGISTERED.put(SacredRiftwind.INSTANCE.key().location(), SacredRiftwind.INSTANCE);
+    }
+
+
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
 
@@ -147,9 +157,29 @@ public class ModEnchantments {
         SacredRiftwind       .INSTANCE.register(context, items);
     }
 
-    private static final class EnchantmentRegister {
+    public static final class EnchantmentRegister {
+
+        public final List<ResourceKey<Enchantment>> enchantments = new ArrayList<>();
         public @NotNull ResourceKey<Enchantment> register(String id) {
-            return ResourceKey.create(Registries.ENCHANTMENT, EnchantedPotato.loc(id));
+            ResourceKey<Enchantment> key = ResourceKey.create(Registries.ENCHANTMENT, EnchantedPotato.loc(id));
+            enchantments.add(key);
+            return key;
+        }
+    }
+
+    public static final class PotatoEnchantTags extends EnchantmentTagsProvider {
+
+        public PotatoEnchantTags(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+            super(arg, completableFuture, EnchantedPotato.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.@NotNull Provider provider) {
+            for (ResourceKey<Enchantment> enchantment : ModEnchantments.REGISTER.enchantments) {
+                tag(EnchantmentTags.IN_ENCHANTING_TABLE).add(enchantment);
+                tag(EnchantmentTags.ON_RANDOM_LOOT).add(enchantment);
+                tag(EnchantmentTags.TRADEABLE).add(enchantment);
+            }
         }
     }
 }

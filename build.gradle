@@ -16,12 +16,28 @@ base {
     archivesName = project.archives_name
 }
 
+def generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir generatedResources
+    }
+}
+
 loom {
     silentMojangMappingsLicense()
 
     if (!isNeo) {
         forge {
             mixinConfig 'enchantedpotato.mixins.json'
+        }
+    }
+
+    runs {
+        data {
+            data()
+            programArgs "--all", "--mod", "enchantedpotato"
+            programArgs "--output", generatedResources.absolutePath
         }
     }
 }
@@ -81,7 +97,6 @@ shadowJar {
     mergeServiceFiles()
     archiveClassifier = "dev-shadow"
 }
-
 
 processResources {
     inputs.property 'version', project.version
