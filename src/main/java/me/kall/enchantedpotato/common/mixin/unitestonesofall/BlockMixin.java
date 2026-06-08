@@ -21,6 +21,7 @@ public class BlockMixin {
     @Inject(method = "playerDestroy", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;causeFoodExhaustion(F)V", shift = At.Shift.AFTER), cancellable = true)
     private void onPlayerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci) {
         int enchantmentLevel = Math.max(EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.UNITE_STONES_OF_ALL.get(), player.getMainHandItem()), EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.UNITE_STONES_OF_ALL.get(), player.getOffhandItem()));
+        if (enchantmentLevel == 0) return;
         if (UniteStonesOfAll.isTargetBlock(state)) {
             boolean hasSilkTouch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) != 0;
             UniteStonesOfAll.handleBlockDrops(level, pos, state, hasSilkTouch);
